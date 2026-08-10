@@ -1,10 +1,22 @@
-local-server % tail -100 dist/Naplo.app/Contents/MacOS/naplo.faulthandler.log
+ail -1000 dist/Naplo.app/Contents/MacOS/naplo.faulthandler.log
+Thread 0x0000000172123000 (most recent call first):
+  File "server/tray.py", line 740 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x0000000171117000 (most recent call first):
+  File "PIL/Image.py", line 2437 in resize
+  File "PIL/Image.py", line 1931 in resize
+  File "pystray/_darwin.py", line 178 in _assert_image
+  File "pystray/_darwin.py", line 67 in _show
+  File "pystray/_base.py", line 184 in visible
   File "pystray/_base.py", line 400 in setup_handler
   File "threading.py", line 1012 in run
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Current thread 0x000000016e6eb000 (most recent call first):
+Current thread 0x000000017010b000 (most recent call first):
   File "pystray/_darwin.py", line 108 in _run
   File "pystray/_base.py", line 212 in run
   File "threading.py", line 1012 in run
@@ -12,27 +24,41 @@ Current thread 0x000000016e6eb000 (most recent call first):
   File "threading.py", line 1032 in _bootstrap
 
 Thread 0x00000001fce6e180 (most recent call first):
-  File "pydantic/_internal/_generate_schema.py", line 2252 in _apply_annotations
-  File "pydantic/_internal/_generate_schema.py", line 1299 in _common_field_schema
-  File "pydantic/_internal/_generate_schema.py", line 1245 in _generate_md_field_schema
-  File "pydantic/_internal/_generate_schema.py", line 868 in _model_schema
-  File "pydantic/_internal/_generate_schema.py", line 1038 in _generate_schema_inner
-  File "pydantic/_internal/_generate_schema.py", line 744 in generate_schema
-  File "pydantic/_internal/_model_construction.py", line 677 in complete_model_class
-  File "pydantic/_internal/_model_construction.py", line 256 in __new__
-  File "fastapi/openapi/models.py", line 61 in <module>
+  File "pyimod01_archive.py", line 134 in extract
+  File "pyimod02_importers.py", line 503 in get_code
+  File "pyimod02_importers.py", line 383 in _check_name_wrapper
+  File "pyimod02_importers.py", line 446 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/abc/_sockets.py", line 20 in <module>
   File "pyimod02_importers.py", line 457 in exec_module
   File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
   File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
   File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
-  File "fastapi/params.py", line 8 in <module>
+  File "anyio/abc/__init__.py", line 5 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/to_thread.py", line 14 in <module>
   File "pyimod02_importers.py", line 457 in exec_module
   File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
   File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
   File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
   File "<frozen importlib._bootstrap>", line 488 in _call_with_frames_removed
   File "<frozen importlib._bootstrap>", line 1415 in _handle_fromlist
-  File "fastapi/routing.py", line 35 in <module>
+  File "anyio/_core/_fileio.py", line 27 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/__init__.py", line 26 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "fastapi/routing.py", line 32 in <module>
   File "pyimod02_importers.py", line 457 in exec_module
   File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
   File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
@@ -59,27 +85,16 @@ Thread 0x00000001fce6e180 (most recent call first):
   File "uvicorn/importer.py", line 19 in import_from_string
   File "uvicorn/config.py", line 415 in load_app
   File "uvicorn/main.py", line 609 in run
-  File "naplo.py", line 324 in main
-  File "naplo.py", line 334 in <module>
-Thread 0x0000000170703000 (most recent call first):
+  File "naplo.py", line 380 in main
+  File "naplo.py", line 390 in <module>
+Thread 0x0000000172123000 (most recent call first):
   File "server/tray.py", line 740 in _loop
   File "threading.py", line 1012 in run
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000016f6f7000 (most recent call first):
-  File "pyimod01_archive.py", line 119 in extract
-  File "pyimod02_importers.py", line 503 in get_code
-  File "pyimod02_importers.py", line 383 in _check_name_wrapper
-  File "pyimod02_importers.py", line 446 in exec_module
-  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
-  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
-  File "<frozen importlib._bootstrap>", line 488 in _call_with_frames_removed
-  File "<frozen importlib._bootstrap>", line 1415 in _handle_fromlist
-  File "PIL/Image.py", line 441 in preinit
-  File "PIL/Image.py", line 2652 in save
-  File "pystray/_darwin.py", line 178 in _assert_image
+Thread 0x0000000171117000 (most recent call first):
+  File "pystray/_darwin.py", line 181 in _assert_image
   File "pystray/_darwin.py", line 67 in _show
   File "pystray/_base.py", line 184 in visible
   File "pystray/_base.py", line 400 in setup_handler
@@ -87,7 +102,7 @@ Thread 0x000000016f6f7000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Current thread 0x000000016e6eb000 (most recent call first):
+Current thread 0x000000017010b000 (most recent call first):
   File "pystray/_darwin.py", line 108 in _run
   File "pystray/_base.py", line 212 in run
   File "threading.py", line 1012 in run
@@ -95,7 +110,244 @@ Current thread 0x000000016e6eb000 (most recent call first):
   File "threading.py", line 1032 in _bootstrap
 
 Thread 0x00000001fce6e180 (most recent call first):
-  File "pydantic/_internal/_generate_schema.py"Fatal Python error: Segmentation fault
+  File "typing_extensions.py", line 1783 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/abc/_tasks.py", line 12 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/abc/_streams.py", line 11 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/abc/_sockets.py", line 20 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/abc/__init__.py", line 5 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/to_thread.py", line 14 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 488 in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1415 in _handle_fromlist
+  File "anyio/_core/_fileio.py", line 27 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/__init__.py", line 26 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "fastapi/routing.py", line 32 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 488 in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1415 in _handle_fromlist
+  File "fastapi/applications.py", line 6 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "fastapi/__init__.py", line 7 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "server/main.py", line 16 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1387 in _gcd_import
+  File "importlib/__init__.py", line 90 in import_module
+  File "uvicorn/importer.py", line 19 in import_from_string
+  File "uvicorn/config.py", line 415 in load_app
+  File "uvicorn/main.py", line 609 in run
+  File "naplo.py", line 380 in main
+  File "naplo.py", line 390 in <module>
+Thread 0x0000000172123000 (most recent call first):
+  File "server/tray.py", line 740 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x0000000171117000 (most recent call first):
+  File "pystray/_darwin.py", line 181 in _assert_image
+  File "pystray/_darwin.py", line 67 in _show
+  File "pystray/_base.py", line 184 in visible
+  File "pystray/_base.py", line 400 in setup_handler
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Current thread 0x000000017010b000 (most recent call first):
+  File "pystray/_darwin.py", line 108 in _run
+  File "pystray/_base.py", line 212 in run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001fce6e180 (most recent call first):
+  File "pyimod01_archive.py", line 134 in extract
+  File "pyimod02_importers.py", line 503 in get_code
+  File "pyimod02_importers.py", line 383 in _check_name_wrapper
+  File "pyimod02_importers.py", line 446 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/abc/__init__.py", line 43 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/to_thread.py", line 14 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 488 in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1415 in _handle_fromlist
+  File "anyio/_core/_fileio.py", line 27 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/__init__.py", line 26 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "fastapi/routing.py", line 32 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 488 in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1415 in _handle_fromlist
+  File "fastapi/applications.py", line 6 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "fastapi/__init__.py", line 7 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "server/main.py", line 16 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1387 in _gcd_import
+  File "importlib/__init__.py", line 90 in import_module
+  File "uvicorn/importer.py", line 19 in import_from_string
+  File "uvicorn/config.py", line 415 in load_app
+  File "uvicorn/main.py", line 609 in run
+  File "naplo.py", line 380 in main
+  File "naplo.py", line 390 in <module>
+Thread 0x0000000172123000 (most recent call first):
+  File "server/tray.py", line 740 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Current thread 0x000000017010b000 (most recent call first):
+  File "pystray/_darwin.py", line 108 in _run
+  File "pystray/_base.py", line 212 in run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001fce6e180 (most recent call first):
+  File "anyio/_core/_synchronization.py", line 19 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/abc/__init__.py", line 43 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/to_thread.py", line 14 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 488 in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1415 in _handle_fromlist
+  File "anyio/_core/_fileio.py", line 27 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "anyio/__init__.py", line 26 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "fastapi/routing.py", line 32 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 488 in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1415 in _handle_fromlist
+  File "fastapi/applications.py", line 6 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "fastapi/__init__.py", line 7 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "server/main.py", line 16 in <module>
+  File "pyimod02_importers.py", line 457 in exec_module
+  File "<frozen importlib._bootstrap>", line 935 in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1331 in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1360 in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1387 in _gcd_import
+  File "importlib/__init__.py", line 90 in import_module
+  File "uvicorn/importer.py", line 19 in import_from_string
+  File "uvicorn/config.py", line 415 in load_app
+  File "uvicorn/main.py", line 609 in run
+  File "naplo.py", line 380 in main
+  File "naplo.py", line 390 in <module>
+Thread 0x0000000172123000 (most recent call first):
+  File "server/tray.py", line 740 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Current thread 0x000000017010b000 (most recent call first):
+  File "pystray/_darwin.py", line 108 in _run
+  File "pystray/_base.py", line 212 in run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001fce6e180 (most recent call first):
+  File "dataclasses.py", line 474 in _create_fn
+  File Fatal Python error: Segmentation fault
 
 
-Extension modules: charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, objc._objc, CoreFoundation._CoreFoundation, CoreFoundation._inlines, Foundation._Foundation, Foundation._inlines, AppKit._AppKit, AppKit._inlines, objc._machsignals, PIL._imaging, PIL._imagingft, numpy._core._multiarray_umath, numpy.linalg._umath_linalg (total: 18)
+Extension modules: PIL._imaging, PIL._imagingmath, numpy._core._multiarray_umath, numpy.linalg._umath_linalg, _cffi_backend, _webrtcvad, objc._objc, CoreFoundation._CoreFoundation, CoreFoundation._inlines, Foundation._Foundation, Foundation._inlines, AppKit._AppKit, AppKit._inlines, CoreAudio._CoreAudio, CoreAudio._inlines, CoreMedia._CoreMedia, CoreMedia._inlines, AVFAudio._inlines, AVFoundation._AVFoundation, AVFoundation._inlines, UserNotifications._UserNotifications, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, objc._machsignals, PIL._imagingft (total: 29)
