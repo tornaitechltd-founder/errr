@@ -1,5 +1,12 @@
-Installing the current project: naplo-local-server (0.1.0)
-Error: The current project could not be installed: No file/folder found for package naplo-local-server
-If you do not want to install the current project use --no-root.
-If you want to use Poetry only for dependency management but not for packaging, you can disable package mode by setting package-mode = false in your pyproject.toml file.
-If you did intend to install the current project, you may need to set `packages` in your pyproject.toml file.
+naplo % git status 
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        local-server/assets/naplo.icns
+        local-server/ffmpeg/__MACOSX/
+        local-server/ffmpeg/ffmpeg
+        local-server/ffmpeg/ffprobe
+        local-server/whisper/ggml-metal.metal
+        local-server/whisper/whisper-cli
