@@ -1,12 +1,15 @@
-naplo % git status 
-On branch main
-Your branch is up to date with 'origin/main'.
+Last login: Mon Aug 10 21:08:55 on ttys001
+/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo/Naplo ; exit;
+tornaitechltd@Mates-MacBook-Air ~ % /Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo/Naplo ; exit;
+2026-08-10 21:09:51 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo/.env', '/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo/_internal/.env']
+2026-08-10 21:09:51 [INFO] naplo: [config] Using OS environment variables / defaults.
+2026-08-10 21:09:51 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
+2026-08-10 21:09:51 [INFO] naplo: 🚀 Starting Naplo backend on port 8066...
+zsh: trace trap  /Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo/Naplo
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        local-server/assets/naplo.icns
-        local-server/ffmpeg/__MACOSX/
-        local-server/ffmpeg/ffmpeg
-        local-server/ffmpeg/ffprobe
-        local-server/whisper/ggml-metal.metal
-        local-server/whisper/whisper-cli
+Saving session...
+...copying shared history...
+...saving history...truncating history files...
+...completed.
+
+[Process completed]
