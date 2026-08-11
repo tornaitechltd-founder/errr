@@ -1,39 +1,20 @@
-tornaitechltd@Mates-MacBook-Air local-server % tail -1000 dist/Naplo.app/Contents/MacOS/naplo.log             
-2026-08-10 22:48:50 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app/Contents/MacOS/.env', '/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app/Contents/Frameworks/.env']
-2026-08-10 22:48:50 [INFO] naplo: [config] Using OS environment variables / defaults.
-2026-08-10 22:48:50 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
-2026-08-10 22:48:50 [INFO] naplo: 🚀 Starting Naplo backend on port 8066...
-2026-08-10 22:48:50 [ERROR] naplo: uvicorn worker crashed: No module named 'pyaudiowpatch'
-Traceback (most recent call last):
-  File "naplo.py", line 406, in _uvicorn_worker
-  File "uvicorn/server.py", line 75, in run
-  File "asyncio/runners.py", line 195, in run
-  File "asyncio/runners.py", line 118, in run
-  File "asyncio/base_events.py", line 691, in run_until_complete
-  File "uvicorn/server.py", line 79, in serve
-  File "uvicorn/server.py", line 86, in _serve
-  File "uvicorn/config.py", line 481, in load
-  File "uvicorn/config.py", line 415, in load_app
-  File "uvicorn/importer.py", line 22, in import_from_string
-  File "uvicorn/importer.py", line 19, in import_from_string
-  File "importlib/__init__.py", line 90, in import_module
-  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
-  File "pyimod02_importers.py", line 457, in exec_module
-  File "server/main.py", line 21, in <module>
-    from .audio import session, silence_monitor
-  File "pyimod02_importers.py", line 457, in exec_module
-  File "server/audio/session/__init__.py", line 46, in <module>
-    from .ambient import _post_stop_restore_ambient, start_ambient_capture, stop_ambient_capture
-  File "pyimod02_importers.py", line 457, in exec_module
-  File "server/audio/session/ambient.py", line 34, in <module>
-    from .. import device_manager as _device_manager
-  File "pyimod02_importers.py", line 457, in exec_module
-  File "server/audio/device_manager/__init__.py", line 42, in <module>
-    from . import state as _state
-  File "pyimod02_importers.py", line 457, in exec_module
-  File "server/audio/device_manager/state.py", line 53, in <module>
-    import pyaudiowpatch as pyaudio
-ModuleNotFoundError: No module named 'pyaudiowpatch'
+2026-08-11 20:28:48 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app/Contents/MacOS/.env', '/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app/Contents/Frameworks/.env']
+2026-08-11 20:28:48 [INFO] naplo: [config] Using OS environment variables / defaults.
+2026-08-11 20:28:48 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
+2026-08-11 20:28:48 [INFO] naplo: 🚀 Starting Naplo backend on port 8066...
+pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
+INFO:     Started server process [3784]
+INFO:     Waiting for application startup.
+2026-08-11 20:28:49 [INFO] naplo: [config] Bundled ffmpeg not found at /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg, relying on system PATH
+2026-08-11 20:28:49 [WARNING] naplo: [config] ffprobe not found (neither bundled nor on PATH); pydub will decode without media probing
+2026-08-11 20:28:49 [INFO] naplo.diarization: Preferred provider: coreml (CoreMLExecutionProvider available in onnxruntime (['CoreMLExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']))
+2026-08-11 20:28:49 [ERROR] naplo.diarization: Embedding model not found at /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx
+2026-08-11 20:28:49 [ERROR] naplo.diarization: Diarization segmentation model not found at /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx
+2026-08-11 20:28:49 [INFO] naplo.lifecycle: Diarization models pre-warmed
+2026-08-11 20:28:49 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
+2026-08-11 20:28:49 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
+2026-08-11 20:28:49 [WARNING] server.audio.device_manager.events.source_darwin: DarwinDefaultDeviceEventSource.start() called but Phase 3 body is not implemented yet — auto-follow-default will not fire. See MACOS_PORT_PLAN.md §8.3.
+2026-08-11 20:28:49 [WARNING] server.audio.device_manager.events.source_darwin: DarwinDefaultDeviceEventSource.start() called but Phase 3 body is not implemented yet — auto-follow-default will not fire. See MACOS_PORT_PLAN.md §8.3.
+2026-08-11 20:28:49 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=darwin_default_device, source_alive=True)
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8066 (Press CTRL+C to quit)
