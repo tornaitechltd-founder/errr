@@ -1,20 +1,50 @@
-2026-08-11 20:28:48 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app/Contents/MacOS/.env', '/Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app/Contents/Frameworks/.env']
-2026-08-11 20:28:48 [INFO] naplo: [config] Using OS environment variables / defaults.
-2026-08-11 20:28:48 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
-2026-08-11 20:28:48 [INFO] naplo: 🚀 Starting Naplo backend on port 8066...
-pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
-INFO:     Started server process [3784]
-INFO:     Waiting for application startup.
-2026-08-11 20:28:49 [INFO] naplo: [config] Bundled ffmpeg not found at /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg, relying on system PATH
-2026-08-11 20:28:49 [WARNING] naplo: [config] ffprobe not found (neither bundled nor on PATH); pydub will decode without media probing
-2026-08-11 20:28:49 [INFO] naplo.diarization: Preferred provider: coreml (CoreMLExecutionProvider available in onnxruntime (['CoreMLExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']))
-2026-08-11 20:28:49 [ERROR] naplo.diarization: Embedding model not found at /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx
-2026-08-11 20:28:49 [ERROR] naplo.diarization: Diarization segmentation model not found at /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx
-2026-08-11 20:28:49 [INFO] naplo.lifecycle: Diarization models pre-warmed
-2026-08-11 20:28:49 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
-2026-08-11 20:28:49 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
-2026-08-11 20:28:49 [WARNING] server.audio.device_manager.events.source_darwin: DarwinDefaultDeviceEventSource.start() called but Phase 3 body is not implemented yet — auto-follow-default will not fire. See MACOS_PORT_PLAN.md §8.3.
-2026-08-11 20:28:49 [WARNING] server.audio.device_manager.events.source_darwin: DarwinDefaultDeviceEventSource.start() called but Phase 3 body is not implemented yet — auto-follow-default will not fire. See MACOS_PORT_PLAN.md §8.3.
-2026-08-11 20:28:49 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=darwin_default_device, source_alive=True)
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8066 (Press CTRL+C to quit)
+tornaitechltd@Mates-MacBook-Air local-server % log show --last 5m --predicate 'process == "Naplo"'
+Filtering the log data using "process == "Naplo""
+Skipping info and debug messages, pass --info and/or --debug to include.
+Timestamp                       Thread     Type        Activity             PID    TTL  
+2026-08-12 19:23:29.045878+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0x105347460] activating connection: mach=true listener=false peer=false name=com.apple.distributed_notifications@Uv3
+2026-08-12 19:23:29.048226+0100 0x219d2    Activity    0x7b330              14180  0    Naplo: (libsystem_info.dylib) Retrieve User by ID
+2026-08-12 19:23:29.049094+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0x10534d3b0] activating connection: mach=true listener=false peer=false name=com.apple.cfprefsd.daemon
+2026-08-12 19:23:29.049193+0100 0x219f3    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0x10534d9e0] activating connection: mach=true listener=false peer=false name=com.apple.cfprefsd.agent
+2026-08-12 19:23:29.054869+0100 0x219d2    Activity    0x7b331              14180  0    Naplo: (TCC) TCCAccessRequest() IPC
+2026-08-12 19:23:29.054987+0100 0x219d2    Default     0x7b331              14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0x105350b10] activating connection: mach=true listener=false peer=false name=com.apple.tccd.system
+2026-08-12 19:23:29.057822+0100 0x219d2    Default     0x7b331              14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0x105350b10] invalidated after the last release of the connection object
+2026-08-12 19:23:29.058145+0100 0x219d2    Default     0x0                  14180  7    Naplo: (SkyLight) [com.apple.SkyLight:default] server port 0x00002a0b, session port 0x00002a0b
+2026-08-12 19:23:29.061358+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a800000] activating connection: mach=true listener=false peer=false name=com.apple.coreservices.launchservicesd
+2026-08-12 19:23:29.064107+0100 0x219d2    Default     0x0                  14180  7    Naplo: (SkyLight) [com.apple.SkyLight:default] New connection 0xcd6ff main
+2026-08-12 19:23:29.064646+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a800140] activating connection: mach=true listener=false peer=false name=com.apple.coreservices.appleevents
+2026-08-12 19:23:29.066907+0100 0x219d2    Default     0x0                  14180  0    Naplo: (LaunchServices) [com.apple.processmanager:front-35286506] CHECKIN: pid=14180
+2026-08-12 19:23:29.068804+0100 0x219d2    Default     0x0                  14180  0    Naplo: (LaunchServices) [com.apple.processmanager:front-35286506] CHECKEDIN: pid=14180 asn=0x0-0x77077 foreground=0
+2026-08-12 19:23:29.069005+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a800280] activating connection: mach=false listener=true peer=false name=(anonymous)
+2026-08-12 19:23:29.069008+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a800280] Connection returned listener port: 0x5203
+2026-08-12 19:23:29.069204+0100 0x219f3    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a85c000] activating connection: mach=false listener=false peer=true name=com.apple.xpc.anonymous.0xc5a800280.peer[368].0xc5a85c000
+2026-08-12 19:23:29.069862+0100 0x219d2    Default     0x0                  14180  0    Naplo: (HIServices) [com.apple.processmanager:front-35286506] FRONTLOGGING: version 1
+2026-08-12 19:23:29.069862+0100 0x219d2    Default     0x0                  14180  0    Naplo: (HIServices) [com.apple.processmanager:front-35286506] Registered, pid=14180 ASN=0x0,0x77077
+2026-08-12 19:23:29.069963+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a8003c0] activating connection: mach=true listener=false peer=false name=com.apple.analyticsd
+2026-08-12 19:23:29.070432+0100 0x219f8    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a800500] activating connection: mach=true listener=false peer=false name=com.apple.lsd.mapdb
+2026-08-12 19:23:29.070878+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a800280] Connection returned listener port: 0x5203
+2026-08-12 19:23:29.071125+0100 0x219f3    Default     0x0                  14180  0    Naplo: (CoreAnalytics) [com.apple.CoreAnalytics:client] Received configuration update from daemon (initial)
+2026-08-12 19:23:29.071136+0100 0x219d2    Default     0x0                  14180  0    Naplo: (HIServices) [com.apple.processmanager:front-35286506] BringForward: pid=14180 asn=0x0-0x77077 bringForward=0 foreground=0 uiElement=1 launchedByLS=1 modifiersCount=1 allDisabled=0
+2026-08-12 19:23:29.071142+0100 0x219d2    Default     0x0                  14180  0    Naplo: (HIServices) [com.apple.processmanager:front-35286506] BringFrontModifier: pid=14180 asn=0x0-0x77077 Modifier 0 hideAfter=0 hideOthers=0 dontMakeFrontmost=0 mouseDown=0/0 seed=0/0
+2026-08-12 19:23:29.071150+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a800280] Connection returned listener port: 0x5203
+2026-08-12 19:23:29.071331+0100 0x219d2    Default     0x0                  14180  0    Naplo: (HIServices) [com.apple.processmanager:front-35286506] SignalReady: pid=14180 asn=0x0-0x77077
+2026-08-12 19:23:29.071520+0100 0x219d2    Default     0x0                  14180  0    Naplo: (LaunchServices) [com.apple.processmanager:front-35286506] SIGNAL: pid=14180 asn=0x0x-0x77077
+2026-08-12 19:23:29.073529+0100 0x219d2    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a800640] activating connection: mach=true listener=false peer=false name=com.apple.pasteboard.1
+2026-08-12 19:23:29.073964+0100 0x219d2    Activity    0x7b332              14180  0    Naplo: (CoreFoundation) Loading Preferences From User CFPrefsD
+2026-08-12 19:23:29.074157+0100 0x219d2    Activity    0x7b333              14180  0    Naplo: (CoreFoundation) Loading Preferences From System CFPrefsD
+2026-08-12 19:23:29.075099+0100 0x219d2    Activity    0x7b334              14180  0    Naplo: (libsystem_info.dylib) Membership API: translate identifier
+2026-08-12 19:23:29.331170+0100 0x219d2    Default     0x0                  14180  0    Naplo: (AE) [com.apple.appleevents:main] OSErr AERemoveEventHandler(AEEventClass, AEEventID, AEEventHandlerUPP, Boolean)(misc,actv handler=0x1041c4c28 isSys=NO) err=0/noErr
+2026-08-12 19:23:29.331175+0100 0x219d2    Default     0x0                  14180  0    Naplo: (AE) [com.apple.appleevents:main] OSErr AERemoveEventHandler(AEEventClass, AEEventID, AEEventHandlerUPP, Boolean)(aevt,rapp handler=0x1041c4bcc isSys=NO) err=0/noErr
+2026-08-12 19:23:29.331178+0100 0x219d2    Default     0x0                  14180  0    Naplo: (AE) [com.apple.appleevents:main] OSErr AERemoveEventHandler(AEEventClass, AEEventID, AEEventHandlerUPP, Boolean)(GURL,GURL handler=0x1041c4b9c isSys=NO) err=0/noErr
+2026-08-12 19:23:29.331181+0100 0x219d2    Default     0x0                  14180  0    Naplo: (AE) [com.apple.appleevents:main] OSErr AERemoveEventHandler(AEEventClass, AEEventID, AEEventHandlerUPP, Boolean)(aevt,odoc handler=0x1041c4b6c isSys=NO) err=0/noErr
+2026-08-12 19:23:29.331183+0100 0x219d2    Default     0x0                  14180  0    Naplo: (AE) [com.apple.appleevents:main] OSErr AERemoveEventHandler(AEEventClass, AEEventID, AEEventHandlerUPP, Boolean)(aevt,oapp handler=0x1041c4b64 isSys=NO) err=0/noErr
+2026-08-12 19:23:29.336817+0100 0x219d2    Default     0x0                  14180  0    Naplo: [PYI-14180:ERROR] Failed to load Python shared library '/Applications/Naplo.app/Contents/Frameworks/Python': dlopen(/Applications/Naplo.app/Contents/Frameworks/Python, 0x000A): tried: '/Applications/Naplo.app/Contents/Frameworks/Python' (code signature in <7E6B0856-B09E-388D-9552-3A8783AEDFEB> '/Applications/Naplo.app/Contents/Frameworks/Python.framework/Versions/3.12/Python' not valid for use in process: mapping process and mapped file (non-platform) have different Team IDs), '/System/Volumes/Preboot/Cryptexes/OS/Applications/Naplo.app/Contents/Frameworks/Python' (no such file), '/Applications/Naplo.app/Contents/Frameworks/Python' (code signature in <7E6B0856-B09E-388D-9552-3A8783AEDFEB> '/Applications/Naplo.app/Contents/Frameworks/Python.framework/Versions/3.12/Python' not valid for use in process: mapping process and mapped file (non-platform) have different Team IDs), '/Applications/Naplo.app/Contents/Frameworks/Python.framework/Versions/3.12/Python' (code signature in <7E6B0856-B09E-388D-9552-3A<…>
+2026-08-12 19:23:29.336869+0100 0x219d2    Default     0x0                  14180  0    Naplo: (CoreAnalytics) [com.apple.CoreAnalytics:client] Entering exit handler.
+2026-08-12 19:23:29.336874+0100 0x219d2    Default     0x0                  14180  0    Naplo: (CoreAnalytics) [com.apple.CoreAnalytics:client] Queueing exit procedure onto XPC queue. Any further messages sent will be discarded. activeSendTransactions=0
+2026-08-12 19:23:29.336941+0100 0x219f3    Default     0x0                  14180  0    Naplo: (CoreAnalytics) [com.apple.CoreAnalytics:client] Cancelling XPC connection. Any further reply handler invocations will not retry messages
+2026-08-12 19:23:29.336948+0100 0x219f3    Default     0x0                  14180  0    Naplo: (libxpc.dylib) [com.apple.xpc:connection] [0xc5a8003c0] invalidated because the current process cancelled the connection by calling xpc_connection_cancel()
+2026-08-12 19:23:29.336968+0100 0x219d2    Default     0x0                  14180  0    Naplo: (CoreAnalytics) [com.apple.CoreAnalytics:client] Exiting exit handler.
+2026-08-12 19:23:29.337024+0100 0x219f8    Default     0x0                  14180  0    Naplo: (CoreAnalytics) [com.apple.CoreAnalytics:client] XPC connection invalidated (daemon unloaded/disabled)
+--------------------------------------------------------------------------------------------------------------------
+Log      - Default:         38, Info:                0, Debug:             0, Error:          0, Fault:          0
+Activity - Create:           5, Transition:          0, Actions:           0
