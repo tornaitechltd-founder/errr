@@ -1,9 +1,6 @@
-2026-08-16 20:09:47 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: type=PyObjCPointer dir=['pointerAsInteger', 'typestr']
-2026-08-16 20:09:47 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: int(ptr) raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.PyObjCPointer'
-2026-08-16 20:09:47 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ptr.address raised: 'objc.PyObjCPointer' object has no attribute 'address'
-2026-08-16 20:09:47 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ptr.value raised: 'objc.PyObjCPointer' object has no attribute 'value'
-2026-08-16 20:09:47 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ptr.pointerAsInteger raised: 'int' object is not callable
-2026-08-16 20:09:47 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ptr.pointer raised: 'objc.PyObjCPointer' object has no attribute 'pointer'
-2026-08-16 20:09:47 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ctypes.cast(ptr, c_void_p).value raised: argument 1: TypeError: wrong type
-2026-08-16 20:09:47 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: PyObjC AudioDeviceStart rejected (calling method/function with 'undefined' argument); falling back to ctypes
-2026-08-16 20:09:47 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: could not extract raw pointer address from PyObjCPointer; system-audio probe unavailable on this pyobjc build
+2026-08-16 20:21:48 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: type=PyObjCPointer dir=['pointerAsInteger', 'typestr']
+2026-08-16 20:21:48 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: int(ptr) raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.PyObjCPointer'
+2026-08-16 20:21:48 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ptr.pointerAsInteger -> 0xa (accepted)
+2026-08-16 20:21:48 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: PyObjC AudioDeviceStart rejected (calling method/function with 'undefined' argument); falling back to ctypes
+2026-08-16 20:21:48 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: AudioDeviceStart OSStatus=1852797029
+
