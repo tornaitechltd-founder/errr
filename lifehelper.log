@@ -1,51 +1,56 @@
-2026-08-16 19:03:35 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Library/Application Support/Naplo/.env', '/Applications/Naplo.app/Contents/MacOS/.env', '/Applications/Naplo.app/Contents/Frameworks/.env']
-2026-08-16 19:03:35 [INFO] naplo: [config] Using OS environment variables / defaults.
-2026-08-16 19:03:35 [INFO] naplo: [bootstrap-check] target=v1 installed=v1 root=/Users/tornaitechltd/Library/Application Support/Naplo/assets frozen=True
-2026-08-16 19:03:35 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
-2026-08-16 19:03:35 [INFO] naplo: 🚀 Starting Naplo backend on port 8066...
+2026-08-16 19:23:41 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Library/Application Support/Naplo/.env', '/Applications/Naplo.app/Contents/MacOS/.env', '/Applications/Naplo.app/Contents/Frameworks/.env']
+2026-08-16 19:23:41 [INFO] naplo: [config] Using OS environment variables / defaults.
+2026-08-16 19:23:41 [INFO] naplo: Launched via protocol handler (action: launch)
+2026-08-16 19:23:41 [INFO] naplo: [bootstrap-check] target=v1 installed=v1 root=/Users/tornaitechltd/Library/Application Support/Naplo/assets frozen=True
+2026-08-16 19:23:41 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
+2026-08-16 19:23:41 [INFO] server.services.local_presence: [local_presence] Announced port 8066 via nonce
+2026-08-16 19:23:41 [INFO] naplo: 🚀 Starting Naplo backend on port 8066...
 pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
-INFO:     Started server process [38799]
+INFO:     Started server process [41994]
 INFO:     Waiting for application startup.
-2026-08-16 19:03:36 [INFO] naplo: [config] Using bundled ffmpeg: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg
-2026-08-16 19:03:36 [INFO] naplo: [config] Using ffprobe: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe
-2026-08-16 19:03:36 [INFO] naplo.diarization: Preferred provider: coreml (CoreMLExecutionProvider available in onnxruntime (['CoreMLExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']))
-2026-08-16 19:03:36 [INFO] naplo.diarization: Embedding backend preference: ort (auto, based on preferred provider=coreml)
-2026-08-16 19:03:36 [INFO] naplo.diarization: Embedding extractor load plan: preferred=(ort,coreml) attempts=[('ort', 'coreml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
-2026-08-16 19:03:36 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
-2026-08-16 19:03:36 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
-2026-08-16 19:03:37 [INFO] naplo.diarization: Embedding model has 2 inputs: feats='audio_signal' (channels_first=True), length='length'
-2026-08-16 19:03:37 [INFO] server.audio.device_manager.events.source_darwin: (darwin-default-device) event source started (listeners: default-input + default-output)
-2026-08-16 19:03:37 [INFO] naplo.diarization: Embedding model has 2 outputs; using 'embs' (dim=192); ignoring 'logits'
-2026-08-16 19:03:37 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=darwin_default_device, source_alive=True)
+2026-08-16 19:23:42 [INFO] naplo: [config] Using bundled ffmpeg: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg
+2026-08-16 19:23:42 [INFO] naplo: [config] Using ffprobe: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe
+2026-08-16 19:23:42 [INFO] naplo.diarization: Preferred provider: coreml (CoreMLExecutionProvider available in onnxruntime (['CoreMLExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']))
+2026-08-16 19:23:42 [INFO] naplo.diarization: Embedding backend preference: ort (auto, based on preferred provider=coreml)
+2026-08-16 19:23:42 [INFO] naplo.diarization: Embedding extractor load plan: preferred=(ort,coreml) attempts=[('ort', 'coreml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
+2026-08-16 19:23:42 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
+2026-08-16 19:23:42 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
+2026-08-16 19:23:43 [INFO] naplo.diarization: Embedding model has 2 inputs: feats='audio_signal' (channels_first=True), length='length'
+2026-08-16 19:23:43 [INFO] naplo.diarization: Embedding model has 2 outputs; using 'embs' (dim=192); ignoring 'logits'
+2026-08-16 19:23:43 [INFO] naplo.diarization: DmlSpeakerEmbeddingExtractor loaded: dim=192 active_providers=['CoreMLExecutionProvider', 'CPUExecutionProvider']
+2026-08-16 19:23:43 [INFO] naplo.diarization: Speaker Embedding extractor loaded: dim=192 model=embedding.onnx backend=ort provider=coreml
+2026-08-16 19:23:43 [INFO] naplo.diarization: Diarizer load plan: preferred=(ort,coreml) attempts=[('ort', 'coreml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
+2026-08-16 19:23:43 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
+2026-08-16 19:23:43 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
+2026-08-16 19:23:43 [INFO] naplo.diarization: Segmentation model has symbolic input shape ['N', 1, 'T']; probing with default window=160000 samples
+2026-08-16 19:23:43 [INFO] server.audio.device_manager.events.source_darwin: (darwin-default-device) event source started (listeners: default-input + default-output)
+2026-08-16 19:23:43 [INFO] naplo.diarization: DmlOfflineSpeakerDiarization loaded: window_samples=160000 local_speakers=3 powerset=True active_providers=['CoreMLExecutionProvider', 'CPUExecutionProvider']
+2026-08-16 19:23:43 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=darwin_default_device, source_alive=True)
+2026-08-16 19:23:43 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
+2026-08-16 19:23:43 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
 INFO:     Application startup complete.
-2026-08-16 19:03:37 [INFO] naplo.diarization: DmlSpeakerEmbeddingExtractor loaded: dim=192 active_providers=['CoreMLExecutionProvider', 'CPUExecutionProvider']
-2026-08-16 19:03:37 [INFO] naplo.diarization: Speaker Embedding extractor loaded: dim=192 model=embedding.onnx backend=ort provider=coreml
-2026-08-16 19:03:37 [INFO] naplo.diarization: Diarizer load plan: preferred=(ort,coreml) attempts=[('ort', 'coreml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
+2026-08-16 19:23:43 [INFO] naplo.diarization: Diarizer loaded (seg=segmentation.onnx), emb=embedding.onnx), threads=4, sample_rate=16000, cluster_threshold=0.5, backend=ort, requested_provider=coreml, effective_provider='coreml'
+2026-08-16 19:23:43 [INFO] naplo.lifecycle: Diarization models pre-warmed
 INFO:     Uvicorn running on http://127.0.0.1:8066 (Press CTRL+C to quit)
-2026-08-16 19:03:37 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
-2026-08-16 19:03:37 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
-2026-08-16 19:03:37 [INFO] naplo.diarization: Segmentation model has symbolic input shape ['N', 1, 'T']; probing with default window=160000 samples
-2026-08-16 19:03:37 [INFO] naplo.diarization: DmlOfflineSpeakerDiarization loaded: window_samples=160000 local_speakers=3 powerset=True active_providers=['CoreMLExecutionProvider', 'CPUExecutionProvider']
-2026-08-16 19:03:37 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
-2026-08-16 19:03:37 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
-2026-08-16 19:03:37 [INFO] naplo.diarization: Diarizer loaded (seg=segmentation.onnx), emb=embedding.onnx), threads=4, sample_rate=16000, cluster_threshold=0.5, backend=ort, requested_provider=coreml, effective_provider='coreml'
-2026-08-16 19:03:37 [INFO] naplo.lifecycle: Diarization models pre-warmed
-INFO:     127.0.0.1:54236 - "GET /api/settings HTTP/1.1" 401 Unauthorized
-2026-08-16 19:03:58 [INFO] httpx: HTTP Request: GET https://naplo.app/api/public/jwks "HTTP/1.1 200 OK"
-2026-08-16 19:03:58 [INFO] server.auth: [auth] Loaded RSA public key from JWKS endpoint (https://naplo.app/api/public/jwks)
-2026-08-16 19:03:58 [INFO] server.routes.token: JWT Token verified and set via /api/token
-2026-08-16 19:04:16 [INFO] server.routes.token: JWT Token verified and set via /api/token
-2026-08-16 19:04:20 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
-2026-08-16 19:04:20 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: input format rate=48000Hz channels=1 fCommonFormat=1 interleaved=False seconds=5
-2026-08-16 19:04:21 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: abl.mNumberBuffers raised: 'CoreAudio.AudioBufferList' object has no attribute 'mNumberBuffers'
-2026-08-16 19:04:21 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: first-buffer accessors fAudioBufferList=AudioBufferList fMNumberBuffers=None fFloatChannelData=tuple fInt16ChannelData=None fStride=1 frame_count=4800
-2026-08-16 19:04:26 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: tap fires=50 total_frames=240000 empty_conversions=0 raw_bytes=480000
-2026-08-16 19:04:26 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: result peak=-26.7 dBFS rms=-43.6 dBFS
-server/audio/backend/coreaudio/_system_audio.py:408: ObjCPointerWarning: PyObjCPointer created: at 0xa of type ^?I@@?
+INFO:     127.0.0.1:59424 - "GET /api/settings HTTP/1.1" 401 Unauthorized
+2026-08-16 19:23:43 [INFO] httpx: HTTP Request: GET https://naplo.app/api/public/jwks "HTTP/1.1 200 OK"
+2026-08-16 19:23:43 [INFO] server.auth: [auth] Loaded RSA public key from JWKS endpoint (https://naplo.app/api/public/jwks)
+2026-08-16 19:23:43 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-16 19:23:56 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-16 19:24:00 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
+2026-08-16 19:24:00 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: input format rate=48000Hz channels=1 fCommonFormat=1 interleaved=False seconds=5
+2026-08-16 19:24:00 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: abl.mNumberBuffers raised: 'CoreAudio.AudioBufferList' object has no attribute 'mNumberBuffers'
+2026-08-16 19:24:00 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: first-buffer accessors fAudioBufferList=AudioBufferList fMNumberBuffers=None fFloatChannelData=tuple fInt16ChannelData=None fStride=1 frame_count=4800
+2026-08-16 19:24:05 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: tap fires=50 total_frames=240000 empty_conversions=0 raw_bytes=480000
+2026-08-16 19:24:05 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: result peak=-13.9 dBFS rms=-34.2 dBFS
+server/audio/backend/coreaudio/_system_audio.py:433: ObjCPointerWarning: PyObjCPointer created: at 0xa of type ^?I@@?
   err, io_proc_id_raw = AudioDeviceCreateIOProcIDWithBlock(
-2026-08-16 19:04:31 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs raised: calling method/function with 'undefined' argument
-Traceback (most recent call last):
-  File "server/audio/backend/coreaudio/_system_audio.py", line 419, in probe_system_audio_dbfs
-    err = AudioDeviceStart(aggregate_id, io_proc_id)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: calling method/function with 'undefined' argument
+2026-08-16 19:27:28 [INFO] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: io_proc_id_raw type=PyObjCPointer repr=<objc.PyObjCPointer object at 0x11765b530>
+2026-08-16 19:27:28 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: could not int-cast io_proc_id_raw (int() argument must be a string, a bytes-like object or a real number, not 'objc.PyObjCPointer'); using PyObjCPointer as-is
+2026-08-16 19:27:28 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: AudioDeviceStart(int) rejected (calling method/function with 'undefined' argument); retrying with raw pointer wrapper
+2026-08-16 19:27:28 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: AudioDeviceStart(raw) also raised: calling method/function with 'undefined' argument; system-audio probe unavailable on this pyobjc build
+2026-08-16 19:27:34 [INFO] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: io_proc_id_raw type=PyObjCPointer repr=<objc.PyObjCPointer object at 0x11765b590>
+2026-08-16 19:27:34 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: could not int-cast io_proc_id_raw (int() argument must be a string, a bytes-like object or a real number, not 'objc.PyObjCPointer'); using PyObjCPointer as-is
+2026-08-16 19:27:34 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: AudioDeviceStart(int) rejected (calling method/function with 'undefined' argument); retrying with raw pointer wrapper
+2026-08-16 19:27:34 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: AudioDeviceStart(raw) also raised: calling method/function with 'undefined' argument; system-audio probe unavailable on this pyobjc build
+
