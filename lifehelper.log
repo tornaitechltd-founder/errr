@@ -1,280 +1,300 @@
-2026-08-16 17:29:18 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Library/Application Support/Naplo/.env', '/Applications/Naplo.app/Contents/MacOS/.env', '/Applications/Naplo.app/Contents/Frameworks/.env']
-2026-08-16 17:29:18 [INFO] naplo: [config] Using OS environment variables / defaults.
-2026-08-16 17:29:18 [INFO] naplo.asset_bootstrap: [bootstrap] ASSETS_VERSION marker says v1 but 4 canary file(s) missing (ffmpeg, ffprobe, segmentation.onnx, embedding.onnx); treating as uninstalled
-2026-08-16 17:29:18 [INFO] naplo: [bootstrap-check] target=v1 installed=vNone root=/Users/tornaitechltd/Library/Application Support/Naplo/assets frozen=True
-2026-08-16 17:29:18 [INFO] naplo: [bootstrap-check] Assets out of date; downloading v1
-2026-08-16 17:29:18 [INFO] naplo.setup_window: Tk not available, running setup without GUI: No module named 'tkinter'
-2026-08-16 17:29:18 [INFO] naplo.asset_bootstrap: [bootstrap] ASSETS_VERSION marker says v1 but 4 canary file(s) missing (ffmpeg, ffprobe, segmentation.onnx, embedding.onnx); treating as uninstalled
-2026-08-16 17:29:18 [INFO] naplo.asset_bootstrap: [bootstrap] Asset bundle out of date (installed=None, target=1) - downloading
-2026-08-16 17:29:19 [INFO] server.download.http: HTTP 200 https://download.naplo.app/assets-v1-macos-arm64.zip content-length='222428633' content-type='application/zip' content-encoding=None transfer-encoding=None etag='"0722c6d090c77621682dfe97fc6ecd3c"' cf-ray='a2c1d130ed0bbe6f-LHR' cf-cache-status='MISS'
-
-
-2026-08-16 17:30:32 [INFO] server.download.http: wrote 222428633 bytes to assets-v1.zip.part, first 32 bytes = 504b03040a00000000006da60f5db7efdc8301000000010000000e001c004153
-2026-08-16 17:30:32 [INFO] server.download.http: [bootstrap] sha256 verified (dba42284c3011e403346483c8699611263ed8081478bf5bf3c73070d258fff90, 222428633 bytes)
-2026-08-16 17:30:33 [INFO] naplo.asset_bootstrap: [bootstrap] Asset bundle v1 installed at /Users/tornaitechltd/Library/Application Support/Naplo/assets
-2026-08-16 17:30:33 [INFO] naplo: [config] Using bundled ffmpeg: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg
-pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
-2026-08-16 17:30:33 [INFO] naplo: [config] Using ffprobe: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe
-2026-08-16 17:30:33 [INFO] naplo: 🚀 Starting Naplo backend on port 8066...
-2026-08-16 17:30:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-INFO:     Started server process [28861]
-INFO:     Waiting for application startup.
-2026-08-16 17:30:33 [INFO] naplo: [config] Using bundled ffmpeg: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg
-2026-08-16 17:30:33 [INFO] naplo: [config] Using ffprobe: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe
-2026-08-16 17:30:33 [INFO] naplo.diarization: Preferred provider: coreml (CoreMLExecutionProvider available in onnxruntime (['CoreMLExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']))
-2026-08-16 17:30:33 [INFO] naplo.diarization: Embedding backend preference: ort (auto, based on preferred provider=coreml)
-2026-08-16 17:30:33 [INFO] naplo.diarization: Embedding extractor load plan: preferred=(ort,coreml) attempts=[('ort', 'coreml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
-2026-08-16 17:30:33 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
-2026-08-16 17:30:33 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
-2026-08-16 17:30:34 [INFO] server.audio.device_manager.events.source_darwin: (darwin-default-device) event source started (listeners: default-input + default-output)
-2026-08-16 17:30:34 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=darwin_default_device, source_alive=True)
-2026-08-16 17:30:34 [INFO] naplo.diarization: Embedding model has 2 inputs: feats='audio_signal' (channels_first=True), length='length'
-2026-08-16 17:30:34 [INFO] naplo.diarization: Embedding model has 2 outputs; using 'embs' (dim=192); ignoring 'logits'
-INFO:     Application startup complete.
-2026-08-16 17:30:34 [INFO] naplo.diarization: DmlSpeakerEmbeddingExtractor loaded: dim=192 active_providers=['CoreMLExecutionProvider', 'CPUExecutionProvider']
-2026-08-16 17:30:34 [INFO] naplo.diarization: Speaker Embedding extractor loaded: dim=192 model=embedding.onnx backend=ort provider=coreml
-INFO:     Uvicorn running on http://127.0.0.1:8066 (Press CTRL+C to quit)
-2026-08-16 17:30:34 [INFO] naplo.diarization: Diarizer load plan: preferred=(ort,coreml) attempts=[('ort', 'coreml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
-2026-08-16 17:30:34 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
-2026-08-16 17:30:34 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
-2026-08-16 17:30:34 [INFO] naplo.diarization: Segmentation model has symbolic input shape ['N', 1, 'T']; probing with default window=160000 samples
-2026-08-16 17:30:34 [INFO] naplo.diarization: DmlOfflineSpeakerDiarization loaded: window_samples=160000 local_speakers=3 powerset=True active_providers=['CoreMLExecutionProvider', 'CPUExecutionProvider']
-2026-08-16 17:30:34 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
-2026-08-16 17:30:34 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
-2026-08-16 17:30:34 [INFO] naplo.diarization: Diarizer loaded (seg=segmentation.onnx), emb=embedding.onnx), threads=4, sample_rate=16000, cluster_threshold=0.5, backend=ort, requested_provider=coreml, effective_provider='coreml'
-2026-08-16 17:30:34 [INFO] naplo.lifecycle: Diarization models pre-warmed
-2026-08-16 17:30:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:37 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:37 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:37 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:37 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:39 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:39 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:39 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:39 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:41 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:41 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:41 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:41 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:41 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:41 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:41 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:41 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:43 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:43 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:43 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:43 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:45 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:45 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:45 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:45 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:47 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:47 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:47 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:47 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:47 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:47 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:47 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:47 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:49 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:49 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:49 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:49 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:51 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:51 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:51 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:51 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:53 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:53 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:53 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:53 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:53 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:53 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:53 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:53 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:55 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:55 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:55 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:55 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:57 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:57 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:57 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:57 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:59 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:59 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:59 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:59 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:30:59 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:30:59 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:30:59 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:30:59 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:01 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:01 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:01 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:01 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:03 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:03 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:03 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:03 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:04 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:04 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:04 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:04 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:04 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:04 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:04 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:04 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:05 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:05 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:05 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:05 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:05 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:05 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:05 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:05 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-INFO:     127.0.0.1:52329 - "GET /api/settings HTTP/1.1" 401 Unauthorized
-2026-08-16 17:31:07 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:07 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:07 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:07 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:08 [INFO] httpx: HTTP Request: GET https://naplo.app/api/public/jwks "HTTP/1.1 200 OK"
-2026-08-16 17:31:08 [INFO] server.auth: [auth] Loaded RSA public key from JWKS endpoint (https://naplo.app/api/public/jwks)
-2026-08-16 17:31:08 [INFO] server.routes.token: JWT Token verified and set via /api/token
-2026-08-16 17:31:09 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:09 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:09 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:09 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:10 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:10 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:10 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:10 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:11 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:11 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:11 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:11 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:13 [INFO] server.routes.token: JWT Token verified and set via /api/token
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:13 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:15 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:15 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:15 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:15 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:17 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
-2026-08-16 17:31:17 [INFO] server.audio.backend.coreaudio: probe_mic_dbfs: input format rate=48000Hz channels=1 commonFormat=1 interleaved=False seconds=5
-2026-08-16 17:31:17 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:17 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:17 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:17 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:18 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:18 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:18 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:18 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:19 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:19 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:19 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:19 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:21 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:21 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:21 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:21 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:22 [INFO] server.audio.backend.coreaudio: probe_mic_dbfs: tap fires=49 total_frames=235200 empty_conversions=49 raw_bytes=0
-2026-08-16 17:31:23 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:23 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:23 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:23 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:23 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:23 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:23 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:23 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:25 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:25 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:25 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:25 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:27 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:27 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:27 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:27 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:28 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:28 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:28 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:28 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:29 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:29 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:29 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:29 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:31 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:31 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:31 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:31 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:33 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:35 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:37 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:37 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:37 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:37 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:38 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:38 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:38 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:38 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:40 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:40 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:40 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:40 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:42 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:42 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:42 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:42 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:43 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:43 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:43 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:43 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:44 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:44 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:44 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:44 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:46 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:46 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:46 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:46 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:48 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:48 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:48 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:48 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
-2026-08-16 17:31:48 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg size=52070376 mode=0o100644
-2026-08-16 17:31:48 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe size=51878936 mode=0o100644
-2026-08-16 17:31:48 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/segmentation.onnx size=5992913 mode=0o100644
-2026-08-16 17:31:48 [INFO] naplo.asset_bootstrap: [bootstrap] canary OK /Users/tornaitechltd/Library/Application Support/Naplo/assets/diarize/models/embedding.onnx size=40257283 mode=0o100644
+2026-08-16 18:27:18 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-16 18:27:23 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
+2026-08-16 18:27:23 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: input format rate=48000Hz channels=1 fCommonFormat=1 interleaved=False seconds=5
+2026-08-16 18:27:23 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: abl.mNumberBuffers raised: 'CoreAudio.AudioBufferList' object has no attribute 'mNumberBuffers'
+2026-08-16 18:27:23 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: first-buffer accessors fAudioBufferList=AudioBufferList fMNumberBuffers=None fFloatChannelData=tuple fInt16ChannelData=None fStride=1 frame_count=4800
+2026-08-16 18:27:23 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:23 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:23 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:23 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:23 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:23 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:23 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:24 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:25 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:26 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:27 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:28 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:28 [WARNING] server.audio.backend.coreaudio._buffer_conversion: _pcm_buffer_to_int16_bytes raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+Traceback (most recent call last):
+  File "server/audio/backend/coreaudio/_buffer_conversion.py", line 102, in _pcm_buffer_to_int16_bytes
+    (ctypes.c_float * frame_count).from_address(int(plane_addr)),
+                                                ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'objc.varlist'
+2026-08-16 18:27:28 [INFO] server.audio.backend.coreaudio._mic: probe_mic_dbfs: tap fires=49 total_frames=235200 empty_conversions=49 raw_bytes=0
