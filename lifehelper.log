@@ -1,13 +1,12 @@
-
-2026-08-17 20:59:28 [INFO] server.audio.backend.coreaudio._system_audio_router: [system-audio] using ScreenCaptureKit backend
-2026-08-17 20:59:28 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
-2026-08-17 20:59:29 [INFO] server.audio.backend.coreaudio._sck_pcm: [sck] extract path 1 (CMBlockBufferCopyDataBytes) OK: 7680 bytes -> 1920 float32 samples
+2026-08-17 21:36:16 [INFO] server.audio.backend.coreaudio._system_audio_router: [system-audio] using ScreenCaptureKit backend
+2026-08-17 21:36:16 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
+2026-08-17 21:36:16 [INFO] server.audio.backend.coreaudio._sck_pcm: [sck] extract path 1 (CMBlockBufferCopyDataBytes) OK: 7680 bytes -> 1920 float32 samples
 
 ==> /Users/tornaitechltd/Library/Logs/Naplo/naplo.faulthandler.log <==
 Fatal Python error: Aborted
 
-Thread 0x000000016e67b000 (most recent call first):
-  File "server/audio/backend/coreaudio/_system_audio_sck.py", line 429 in probe_system_audio_dbfs_sck
+Thread 0x000000016e20f000 (most recent call first):
+  File "server/audio/backend/coreaudio/_system_audio_sck.py", line 444 in probe_system_audio_dbfs_sck
   File "server/audio/backend/coreaudio/_system_audio_router.py", line 89 in probe_system_audio_dbfs
   File "server/audio/diagnostics.py", line 244 in _run_coreaudio_diagnostic
   File "server/audio/diagnostics.py", line 347 in run_capture_diagnostic
@@ -16,7 +15,7 @@ Thread 0x000000016e67b000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x0000000174867000 (most recent call first):
+Thread 0x0000000174743000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/audio/device_manager/events/_coalescer.py", line 98 in _loop
@@ -24,7 +23,7 @@ Thread 0x0000000174867000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x00000001736b7000 (most recent call first):
+Thread 0x000000017324b000 (most recent call first):
   File "threading.py", line 359 in wait
   File "queue.py", line 180 in get
   File "server/audio/device_manager/events/dispatcher.py", line 387 in _run
@@ -32,7 +31,7 @@ Thread 0x00000001736b7000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x00000001726ab000 (most recent call first):
+Thread 0x000000017223f000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/services/auth_nudge.py", line 129 in _loop
@@ -40,7 +39,7 @@ Thread 0x00000001726ab000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000017169f000 (most recent call first):
+Thread 0x0000000171233000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/download/updater/state.py", line 178 in _poll_loop
@@ -48,7 +47,7 @@ Thread 0x000000017169f000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x0000000170693000 (most recent call first):
+Thread 0x0000000170227000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/services/local_presence.py", line 152 in _heartbeat_loop
@@ -56,7 +55,7 @@ Thread 0x0000000170693000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000016f687000 (most recent call first):
+Thread 0x000000016f21b000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/lifecycle.py", line 142 in _auto_stop_monitor
@@ -64,13 +63,13 @@ Thread 0x000000016f687000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000016d66f000 (most recent call first):
+Thread 0x000000016d203000 (most recent call first):
   File "server/tray/__init__.py", line 233 in _loop
   File "threading.py", line 1012 in run
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000016c5d7000 (most recent call first):
+Thread 0x000000016c16b000 (most recent call first):
   File "selectors.py", line 566 in select
   File "asyncio/base_events.py", line 1961 in _run_once
   File "asyncio/base_events.py", line 645 in run_forever
