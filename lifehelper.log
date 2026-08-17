@@ -1,49 +1,12 @@
-2026-08-17 21:54:23 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Library/Application Support/Naplo/.env', '/Applications/Naplo.app/Contents/MacOS/.env', '/Applications/Naplo.app/Contents/Frameworks/.env']
-2026-08-17 21:54:23 [INFO] naplo: [config] Using OS environment variables / defaults.
-2026-08-17 21:54:23 [INFO] naplo: [bootstrap-check] target=v1 installed=v1 root=/Users/tornaitechltd/Library/Application Support/Naplo/assets frozen=True
-2026-08-17 21:54:23 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
-2026-08-17 21:54:23 [INFO] naplo: 🚀 Starting Naplo backend on port 8066...
-pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
-INFO:     Started server process [4851]
-INFO:     Waiting for application startup.
-2026-08-17 21:54:24 [INFO] naplo: [config] Using bundled ffmpeg: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffmpeg
-2026-08-17 21:54:24 [INFO] naplo: [config] Using ffprobe: /Users/tornaitechltd/Library/Application Support/Naplo/assets/ffmpeg/ffprobe
-2026-08-17 21:54:24 [INFO] naplo.diarization: Preferred provider: coreml (CoreMLExecutionProvider available in onnxruntime (['CoreMLExecutionProvider', 'AzureExecutionProvider', 'CPUExecutionProvider']))
-2026-08-17 21:54:24 [INFO] naplo.diarization: Embedding backend preference: ort (auto, based on preferred provider=coreml)
-2026-08-17 21:54:24 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
-2026-08-17 21:54:24 [INFO] naplo.diarization: Embedding extractor load plan: preferred=(ort,coreml) attempts=[('ort', 'coreml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
-2026-08-17 21:54:24 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
-2026-08-17 21:54:24 [INFO] server.audio.device_manager.events.source_darwin: [darwin-default-device] event source started (listeners: default-input + default-output + device-list; initial device count=0)
-2026-08-17 21:54:24 [INFO] naplo.diarization: Embedding model has 2 inputs: feats='audio_signal' (channels_first=True), length='length'
-2026-08-17 21:54:24 [INFO] naplo.diarization: Embedding model has 2 outputs; using 'embs' (dim=192); ignoring 'logits'
-2026-08-17 21:54:24 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=darwin_default_device, source_alive=True)
-INFO:     Application startup complete.
-2026-08-17 21:54:24 [INFO] naplo.diarization: DmlSpeakerEmbeddingExtractor loaded: dim=192 active_providers=['CoreMLExecutionProvider', 'CPUExecutionProvider']
-2026-08-17 21:54:24 [INFO] naplo.diarization: Speaker Embedding extractor loaded: dim=192 model=embedding.onnx backend=ort provider=coreml
-2026-08-17 21:54:24 [INFO] naplo.diarization: Diarizer load plan: preferred=(ort,coreml) attempts=[('ort', 'coreml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
-INFO:     Uvicorn running on http://127.0.0.1:8066 (Press CTRL+C to quit)
-2026-08-17 21:54:24 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
-2026-08-17 21:54:24 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
-2026-08-17 21:54:24 [INFO] naplo.diarization: Segmentation model has symbolic input shape ['N', 1, 'T']; probing with default window=160000 samples
-2026-08-17 21:54:24 [INFO] naplo.diarization: DmlOfflineSpeakerDiarization loaded: window_samples=160000 local_speakers=3 powerset=True active_providers=['CoreMLExecutionProvider', 'CPUExecutionProvider']
-2026-08-17 21:54:24 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
-2026-08-17 21:54:24 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
-2026-08-17 21:54:24 [INFO] naplo.diarization: Diarizer loaded (seg=segmentation.onnx), emb=embedding.onnx), threads=4, sample_rate=16000, cluster_threshold=0.5, backend=ort, requested_provider=coreml, effective_provider='coreml'
-2026-08-17 21:54:24 [INFO] naplo.lifecycle: Diarization models pre-warmed
-INFO:     127.0.0.1:61909 - "GET /api/settings HTTP/1.1" 401 Unauthorized
-2026-08-17 21:54:50 [INFO] httpx: HTTP Request: GET https://naplo.app/api/public/jwks "HTTP/1.1 200 OK"
-2026-08-17 21:54:50 [INFO] server.auth: [auth] Loaded RSA public key from JWKS endpoint (https://naplo.app/api/public/jwks)
-2026-08-17 21:54:50 [INFO] server.routes.token: JWT Token verified and set via /api/token
-2026-08-17 21:54:53 [INFO] server.routes.token: JWT Token verified and set via /api/token
-2026-08-17 21:54:55 [INFO] server.audio.backend.coreaudio._system_audio_router: [system-audio] using ScreenCaptureKit backend
-2026-08-17 21:54:55 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
-2026-08-17 21:54:55 [INFO] server.audio.backend.coreaudio._sck_pcm: [sck] extract (CMBlockBufferCopyDataBytes) OK: 7680 bytes -> 1920 float32 samples
+2026-08-17 22:16:03 [INFO] server.audio.backend.coreaudio._system_audio_router: [system-audio] using ScreenCaptureKit backend
+2026-08-17 22:16:03 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
+2026-08-17 22:16:03 [INFO] server.audio.backend.coreaudio._sck_pcm: [sck] extract (CMBlockBufferCopyDataBytes) OK: 7680 bytes -> 1920 float32 samples
 
 ==> /Users/tornaitechltd/Library/Logs/Naplo/naplo.faulthandler.log <==
 Fatal Python error: Aborted
 
-Thread 0x000000016e723000 (most recent call first):
-  File "server/audio/backend/coreaudio/_system_audio_sck.py", line 444 in probe_system_audio_dbfs_sck
+Thread 0x0000000170bc7000 (most recent call first):
+  File "server/audio/backend/coreaudio/_system_audio_sck.py", line 464 in probe_system_audio_dbfs_sck
   File "server/audio/backend/coreaudio/_system_audio_router.py", line 89 in probe_system_audio_dbfs
   File "server/audio/diagnostics.py", line 244 in _run_coreaudio_diagnostic
   File "server/audio/diagnostics.py", line 347 in run_capture_diagnostic
@@ -52,7 +15,7 @@ Thread 0x000000016e723000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000017476b000 (most recent call first):
+Thread 0x00000001770fb000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/audio/device_manager/events/_coalescer.py", line 98 in _loop
@@ -60,7 +23,7 @@ Thread 0x000000017476b000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000017375f000 (most recent call first):
+Thread 0x0000000175c03000 (most recent call first):
   File "threading.py", line 359 in wait
   File "queue.py", line 180 in get
   File "server/audio/device_manager/events/dispatcher.py", line 387 in _run
@@ -68,7 +31,7 @@ Thread 0x000000017375f000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x0000000172753000 (most recent call first):
+Thread 0x0000000174bf7000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/services/auth_nudge.py", line 129 in _loop
@@ -76,15 +39,15 @@ Thread 0x0000000172753000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x0000000171747000 (most recent call first):
+Thread 0x0000000173beb000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
-  File "server/download/updater/state.py", line 187 in _poll_loop
+  File "server/download/updater/state.py", line 178 in _poll_loop
   File "threading.py", line 1012 in run
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000017073b000 (most recent call first):
+Thread 0x0000000172bdf000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/services/local_presence.py", line 152 in _heartbeat_loop
@@ -92,7 +55,7 @@ Thread 0x000000017073b000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000016f72f000 (most recent call first):
+Thread 0x0000000171bd3000 (most recent call first):
   File "threading.py", line 359 in wait
   File "threading.py", line 655 in wait
   File "server/lifecycle.py", line 142 in _auto_stop_monitor
@@ -100,13 +63,13 @@ Thread 0x000000016f72f000 (most recent call first):
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000016d68b000 (most recent call first):
+Thread 0x000000016fbbb000 (most recent call first):
   File "server/tray/__init__.py", line 233 in _loop
   File "threading.py", line 1012 in run
   File "threading.py", line 1075 in _bootstrap_inner
   File "threading.py", line 1032 in _bootstrap
 
-Thread 0x000000016c5f3000 (most recent call first):
+Thread 0x000000016eb23000 (most recent call first):
   File "selectors.py", line 566 in select
   File "asyncio/base_events.py", line 1961 in _run_once
   File "asyncio/base_events.py", line 645 in run_forever
@@ -127,3 +90,4 @@ Thread 0x00000001fa62a180 (most recent call first):
   File "naplo.py", line 488 in <module>
 
 Extension modules: PIL._imaging, PIL._imagingmath, numpy._core._multiarray_umath, numpy.linalg._umath_linalg, _cffi_backend, _webrtcvad, objc._objc, CoreFoundation._CoreFoundation, CoreFoundation._inlines, Foundation._Foundation, Foundation._inlines, AppKit._AppKit, AppKit._inlines, CoreAudio._CoreAudio, CoreAudio._inlines, CoreMedia._CoreMedia, CoreMedia._inlines, AVFAudio._inlines, AVFoundation._AVFoundation, AVFoundation._inlines, UserNotifications._UserNotifications, Quartz.CoreGraphics._callbacks, Quartz.CoreGraphics._doubleindirect, Quartz.CoreGraphics._sortandmap, Quartz.CoreGraphics._coregraphics, Quartz.CoreGraphics._inlines, Quartz.ImageKit._imagekit, Quartz.CoreVideo._CVPixelBuffer, Quartz.QuartzCore._quartzcore, Quartz.PDFKit._PDFKit, Quartz.QuickLookUI._QuickLookUI, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, objc._machsignals, PIL._imagingft, ScreenCaptureKit._ScreenCaptureKit, dispatch._dispatch, dispatch._inlines (total: 42)
+
