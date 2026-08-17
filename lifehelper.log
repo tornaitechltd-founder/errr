@@ -1,6 +1,5 @@
-2026-08-16 20:21:48 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: type=PyObjCPointer dir=['pointerAsInteger', 'typestr']
-2026-08-16 20:21:48 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: int(ptr) raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.PyObjCPointer'
-2026-08-16 20:21:48 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ptr.pointerAsInteger -> 0xa (accepted)
-2026-08-16 20:21:48 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: PyObjC AudioDeviceStart rejected (calling method/function with 'undefined' argument); falling back to ctypes
-2026-08-16 20:21:48 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: AudioDeviceStart OSStatus=1852797029
-
+2026-08-17 10:39:52 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: type=PyObjCPointer dir=['pointerAsInteger', 'typestr']
+2026-08-17 10:39:52 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: int(ptr) raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.PyObjCPointer'
+2026-08-17 10:39:52 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ptr.pointerAsInteger -> 0xa (accepted)
+2026-08-17 10:39:52 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: PyObjC AudioDeviceStart rejected (calling method/function with 'undefined' argument); falling back to ctypes
+2026-08-17 10:39:52 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: AudioDeviceStart OSStatus=1852797029 (fourcc='nope': kAudioHardwareIllegalOperationError - the IOProc is not properly registered (pyobjc block signature missing; requires bridge-support XML for AudioDeviceIOBlock))
