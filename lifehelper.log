@@ -1,5 +1,96 @@
-2026-08-17 10:39:52 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: type=PyObjCPointer dir=['pointerAsInteger', 'typestr']
-2026-08-17 10:39:52 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: int(ptr) raised: int() argument must be a string, a bytes-like object or a real number, not 'objc.PyObjCPointer'
-2026-08-17 10:39:52 [INFO] server.audio.backend.coreaudio._system_audio: _extract_pyobjc_pointer_address: ptr.pointerAsInteger -> 0xa (accepted)
-2026-08-17 10:39:52 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: PyObjC AudioDeviceStart rejected (calling method/function with 'undefined' argument); falling back to ctypes
-2026-08-17 10:39:52 [WARNING] server.audio.backend.coreaudio._system_audio: probe_system_audio_dbfs: AudioDeviceStart OSStatus=1852797029 (fourcc='nope': kAudioHardwareIllegalOperationError - the IOProc is not properly registered (pyobjc block signature missing; requires bridge-support XML for AudioDeviceIOBlock))
+INFO:     127.0.0.1:59676 - "GET /api/settings HTTP/1.1" 401 Unauthorized
+2026-08-17 18:19:36 [INFO] httpx: HTTP Request: GET https://naplo.app/api/public/jwks "HTTP/1.1 200 OK"
+2026-08-17 18:19:36 [INFO] server.auth: [auth] Loaded RSA public key from JWKS endpoint (https://naplo.app/api/public/jwks)
+2026-08-17 18:19:36 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-17 18:19:37 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-17 18:19:38 [INFO] server.audio.backend.coreaudio._system_audio_router: [system-audio] using ScreenCaptureKit backend
+2026-08-17 18:19:38 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
+
+==> /Users/tornaitechltd/Library/Logs/Naplo/naplo.faulthandler.log <==
+Fatal Python error: Aborted
+
+Thread 0x0000000177da7000 (most recent call first):
+  File "server/audio/backend/coreaudio/_system_audio_sck.py", line 626 in probe_system_audio_dbfs_sck
+  File "server/audio/backend/coreaudio/_system_audio_router.py", line 89 in probe_system_audio_dbfs
+  File "server/audio/diagnostics.py", line 244 in _run_coreaudio_diagnostic
+  File "server/audio/diagnostics.py", line 347 in run_capture_diagnostic
+  File "server/routes/microphone.py", line 142 in test_capture
+  File "anyio/_backends/_asyncio.py", line 986 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x0000000176bf7000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/audio/device_manager/events/_coalescer.py", line 98 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001756ff000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "queue.py", line 180 in get
+  File "server/audio/device_manager/events/dispatcher.py", line 387 in _run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001746f3000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/services/auth_nudge.py", line 129 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001736e7000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/download/updater/state.py", line 178 in _poll_loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001726db000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/services/local_presence.py", line 152 in _heartbeat_loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001716cf000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/lifecycle.py", line 142 in _auto_stop_monitor
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x000000016f6b7000 (most recent call first):
+  File "server/tray/__init__.py", line 233 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x000000016e61f000 (most recent call first):
+  File "selectors.py", line 566 in select
+  File "asyncio/base_events.py", line 1961 in _run_once
+  File "asyncio/base_events.py", line 645 in run_forever
+  File "asyncio/base_events.py", line 678 in run_until_complete
+  File "asyncio/runners.py", line 118 in run
+  File "asyncio/runners.py", line 195 in run
+  File "uvicorn/server.py", line 75 in run
+  File "naplo.py", line 458 in _uvicorn_worker
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000001fa62a180 (most recent call first):
+  File "pystray/_darwin.py", line 108 in _run
+  File "pystray/_base.py", line 212 in run
+  File "server/tray/__init__.py", line 301 in start_tray
+  File "naplo.py", line 469 in main
+  File "naplo.py", line 488 in <module>
+
+Extension modules: PIL._imaging, PIL._imagingmath, numpy._core._multiarray_umath, numpy.linalg._umath_linalg, _cffi_backend, _webrtcvad, objc._objc, CoreFoundation._CoreFoundation, CoreFoundation._inlines, Foundation._Foundation, Foundation._inlines, AppKit._AppKit, AppKit._inlines, CoreAudio._CoreAudio, CoreAudio._inlines, CoreMedia._CoreMedia, CoreMedia._inlines, AVFAudio._inlines, AVFoundation._AVFoundation, AVFoundation._inlines, UserNotifications._UserNotifications, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, objc._machsignals, PIL._imagingft, ScreenCaptureKit._ScreenCaptureKit, dispatch._dispatch, dispatch._inlines (total: 32)
