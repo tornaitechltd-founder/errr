@@ -1,133 +1,99 @@
-The crash is caused by calling PyObjC / AppKit / ScreenCaptureKit operations off the main thread.
+2026-08-17 19:43:06 [INFO] server.audio.backend: Audio backend: CoreAudioBackend (darwin)
+2026-08-17 19:43:06 [INFO] server.audio.backend.coreaudio._system_audio_sck: [sck] extract path 1 (CMBlockBufferCopyDataBytes) OK: 7680 bytes -> 1920 float32 samples
 
-In macOS, ScreenCaptureKit (and Quartz / AppKit APIs) require thread safety or main-thread dispatch when initialising or tearing down capture objects, or when handling delegate lifetime. Calling probe_system_audio_dbfs_sck() directly from an async worker thread (anyio worker pool) causes an internal Objective-C assertion or unhandled exception on an background dispatch queue, triggering abort() / SIGABRT which bypasses Python's exception handling and terminates the process.
+==> /Users/tornaitechltd/Library/Logs/Naplo/naplo.faulthandler.log <==
+Fatal Python error: Aborted
 
-Here is how to resolve the crash:
-Key Root Causes & Fixes
+Thread 0x00000001767db000 (most recent call first):
+  File "server/audio/backend/coreaudio/_system_audio_sck.py", line 692 in probe_system_audio_dbfs_sck
+  File "server/audio/backend/coreaudio/_system_audio_router.py", line 89 in probe_system_audio_dbfs
+  File "server/audio/diagnostics.py", line 244 in _run_coreaudio_diagnostic
+  File "server/audio/diagnostics.py", line 347 in run_capture_diagnostic
+  File "server/routes/microphone.py", line 142 in test_capture
+  File "anyio/_backends/_asyncio.py", line 986 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-    Main Thread Dispatch for ObjC Delegate Creation and Stream Setup
+Thread 0x000000016efdf000 (most recent call first):
+  File "threading.py", line 355 in wait
+  File "queue.py", line 171 in get
+  File "anyio/_backends/_asyncio.py", line 975 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-        ScreenCaptureKit calls like SCStream.alloc().initWithFilter_configuration_delegate_ and SCShareableContent.getShareableContentWithCompletionHandler_ need to be scheduled on the main run loop or dispatched via PyObjC main thread helpers if called from a background worker thread.
+Thread 0x00000001751cb000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/audio/device_manager/events/_coalescer.py", line 98 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-        On macOS, wrap the creation and teardown in dispatch_async(dispatch_get_main_queue(), ...) or use PyObjC’s AppKit / Foundation main-thread dispatch:
-        Python
+Thread 0x000000017401b000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "queue.py", line 180 in get
+  File "server/audio/device_manager/events/dispatcher.py", line 387 in _run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-        from PyObjCTools import AppHelper
+Thread 0x000000017300f000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/services/auth_nudge.py", line 129 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-        # Alternatively, dispatch via libdispatch:
-        from libdispatch import dispatch_async, dispatch_get_main_queue
+Thread 0x0000000172003000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/download/updater/state.py", line 178 in _poll_loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-    Delegate Lifetime Management & Retention
+Thread 0x0000000170ff7000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/services/local_presence.py", line 152 in _heartbeat_loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-        In PyObjC, if an Objective-C object (SCStream, delegate) loses all Python references while an native async callback or dispatch queue is active, Python's GC reclaims the underlying wrapper.
+Thread 0x000000016ffeb000 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server/lifecycle.py", line 142 in _auto_stop_monitor
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-        When ScreenCaptureKit fires an internal callback on an un-retained Objective-C instance, it triggers SIGABRT.
+Thread 0x000000016dfd3000 (most recent call first):
+  File "server/tray/__init__.py", line 233 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-        Fix: Store a strong, global reference to active delegate instances during probe execution, and explicitly clear them only after stopCaptureWithCompletionHandler_ completes fully.
+Thread 0x000000016cf3b000 (most recent call first):
+  File "selectors.py", line 566 in select
+  File "asyncio/base_events.py", line 1961 in _run_once
+  File "asyncio/base_events.py", line 645 in run_forever
+  File "asyncio/base_events.py", line 678 in run_until_complete
+  File "asyncio/runners.py", line 118 in run
+  File "asyncio/runners.py", line 195 in run
+  File "uvicorn/server.py", line 75 in run
+  File "naplo.py", line 458 in _uvicorn_worker
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
 
-    Safe Teardown in stopCaptureWithCompletionHandler_
+Thread 0x00000001fa62a180 (most recent call first):
+  File "pystray/_darwin.py", line 108 in _run
+  File "pystray/_base.py", line 212 in run
+  File "server/tray/__init__.py", line 301 in start_tray
+  File "naplo.py", line 469 in main
+  File "naplo.py", line 488 in <module>
 
-        Directly calling stream.stopCaptureWithCompletionHandler_ on a non-main thread while sample buffers are still in-flight on app.naplo.sck.audio queue creates a race condition in PyObjC's bridge.
+Extension modules: PIL._imaging, PIL._imagingmath, numpy._core._multiarray_umath, numpy.linalg._umath_linalg, _cffi_backend, _webrtcvad, objc._objc, CoreFoundation._CoreFoundation, CoreFoundation._inlines, Foundation._Foundation, Foundation._inlines, AppKit._AppKit, AppKit._inlines, CoreAudio._CoreAudio, CoreAudio._inlines, CoreMedia._CoreMedia, CoreMedia._inlines, AVFAudio._inlines, AVFoundation._AVFoundation, AVFoundation._inlines, UserNotifications._UserNotifications, Quartz.CoreGraphics._callbacks, Quartz.CoreGraphics._doubleindirect, Quartz.CoreGraphics._sortandmap, Quartz.CoreGraphics._coregraphics, Quartz.CoreGraphics._inlines, Quartz.ImageKit._imagekit, Quartz.CoreVideo._CVPixelBuffer, Quartz.QuartzCore._quartzcore, Quartz.PDFKit._PDFKit, Quartz.QuickLookUI._QuickLookUI, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, objc._machsignals, PIL._imagingft, ScreenCaptureKit._ScreenCaptureKit, dispatch._dispatch, dispatch._inlines (total: 42)
 
-        Remove stream outputs before calling stopCapture:
-        Python
-
-        stream.removeStreamOutput_type_error_(delegate, _SCStreamOutputTypeAudio, None)
-
-Refactored Probe Implementation
-
-Wrap the probe lifecycle inside PyObjC's main thread dispatcher or explicit queue retention:
-Python
-
-def probe_system_audio_dbfs_sck(seconds: int) -> Optional[tuple[float, float, str]]:
-    if not _sck_available() or _screen_recording_authorized() is False:
-        return None
-
-    from libdispatch import dispatch_sync, dispatch_get_main_queue
-
-    result_holder: dict[str, Any] = {"res": None}
-
-    def _run_probe_on_main():
-        # Keep strong reference to prevent GC during execution
-        collected: list[np.ndarray] = []
-        done = threading.Event()
-
-        def _on_audio(sample_buffer):
-            if done.is_set():
-                return
-            samples = _extract_float32_samples(sample_buffer, log_first=False)
-            if samples is not None and samples.size:
-                collected.append(samples.astype(np.float32, copy=False))
-
-        try:
-            content = _get_shareable_content()
-            if content is None:
-                return
-
-            fc = _build_filter_and_config(content)
-            if fc is None:
-                return
-            content_filter, config = fc
-
-            delegate = _make_delegate_class().alloc().init()
-            delegate.configure(_on_audio, None)
-
-            stream = SCStream.alloc().initWithFilter_configuration_delegate_(
-                content_filter, config, delegate
-            )
-            queue = _make_sample_queue()
-
-            ok, _ = stream.addStreamOutput_type_sampleHandlerQueue_error_(
-                delegate, _SCStreamOutputTypeAudio, queue, None
-            )
-            if not ok:
-                return
-
-            start_done = threading.Event()
-            start_err = {"err": None}
-            
-            def _start_cb(e):
-                start_err["err"] = e
-                start_done.set()
-
-            stream.startCaptureWithCompletionHandler_(_start_cb)
-            if not start_done.wait(timeout=5.0) or start_err["err"] is not None:
-                return
-
-            # Wait on background thread for sampling window
-            def _wait_and_stop():
-                time.sleep(max(1, min(10, int(seconds))))
-                done.set()
-                stop_done = threading.Event()
-                
-                # Clean teardown
-                def _do_stop():
-                    try:
-                        stream.removeStreamOutput_type_error_(delegate, _SCStreamOutputTypeAudio, None)
-                        stream.stopCaptureWithCompletionHandler_(lambda _e: stop_done.set())
-                    except Exception:
-                        stop_done.set()
-
-                dispatch_sync(dispatch_get_main_queue(), _do_stop)
-                stop_done.wait(timeout=3.0)
-
-                if collected:
-                    allsamples = np.concatenate(collected)
-                    if allsamples.size > 0:
-                        peak = float(np.max(np.abs(allsamples)))
-                        rms = float(np.sqrt(np.mean(allsamples ** 2)))
-                        peak_dbfs = 20.0 * float(np.log10(peak)) if peak > 1e-6 else -120.0
-                        rms_dbfs = 20.0 * float(np.log10(rms)) if rms > 1e-6 else -120.0
-                        result_holder["res"] = (peak_dbfs, rms_dbfs, "System audio (ScreenCaptureKit)")
-
-            threading.Thread(target=_wait_and_stop, daemon=True).start()
-
-        except Exception as e:
-            logger.warning(f'[sck] probe inner raised: {e}', exc_info=True)
-
-    # Ensure initiation happens synchronously on main thread
-    dispatch_sync(dispatch_get_main_queue(), _run_probe_on_main)
-    
-    # Give the background wait worker time to resolve
-    time.sleep(seconds + 0.5)
-    return result_holder["res"]
