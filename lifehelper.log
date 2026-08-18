@@ -1,24 +1,26 @@
-2026-08-18 12:37:10 [INFO] server.routes.token: JWT Token verified and set via /api/token
-2026-08-18 12:37:11 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Starting diarization for recording 6a809b458df052f6928ff5d7
-2026-08-18 12:37:11 [INFO] server.diarization.worker: Diarization thread spawned for recording 6a809b458df052f6928ff5d7
-2026-08-18 12:37:14 [INFO] server.diarization.worker: Stereo input has identical L/R channels - treating as mono to avoid duplicate diarization
-2026-08-18 12:37:14 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Audio ready: 258.0s mono
-2026-08-18 12:37:14 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Background diarization started for recording 6a809b458df052f6928ff5d7
-2026-08-18 12:37:15 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Diarization path decision: chunks_with_words=yes preferred_provider=directml active_provider=directml embedding_backend=ort
-2026-08-18 12:37:15 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Running ASR-driven diarization (1 chunks with word timestamps)
-2026-08-18 12:37:15 [INFO] naplo.asr_attribution: embed_segments: 1 segments, workers=4, active_provider=directml, embedding_backend=ort
-2026-08-18 12:37:17 [ERROR] naplo.diarization: Embedding inference failed: [ONNXRuntimeError] : 6 : RUNTIME_EXCEPTION : Non-zero status code returned while running Where node. Name:'/encoder/encoder/encoder.0/mconv.3/Where_1' Status Message: E:\_work\1\s\onnxruntime\core\providers\dml\DmlExecutionProvider\src\MLOperatorAuthorImpl.cpp(2818)\onnxruntime_pybind11_state.pyd!00007FF801C50A09: (caller: 00007FF801C1B597) Exception(4) tid(61ec) 80070057 The parameter is incorrect.
 
-Traceback (most recent call last):
-  File "server\diarization\inference.py", line 68, in _run_embedding
-    emb = extractor.compute(stream)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "server\diarization\gpu\embedding.py", line 306, in compute
-    out = self._sess.run([self._output_name], feed)[0]
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "onnxruntime\capi\onnxruntime_inference_collection.py", line 296, in run
-onnxruntime.capi.onnxruntime_pybind11_state.RuntimeException: [ONNXRuntimeError] : 6 : RUNTIME_EXCEPTION : Non-zero status code returned while running Where node. Name:'/encoder/encoder/encoder.0/mconv.3/Where_1' Status Message: E:\_work\1\s\onnxruntime\core\providers\dml\DmlExecutionProvider\src\MLOperatorAuthorImpl.cpp(2818)\onnxruntime_pybind11_state.pyd!00007FF801C50A09: (caller: 00007FF801C1B597) Exception(4) tid(61ec) 80070057 The parameter is incorrect.
+on music no speech jsut some simple music the cloud AI transcribtion comes back with these weird sentences
+
+For more information, visit www.fema.gov
+16:04
+16:04
+speaker
+And we're back to the beginning!
+16:04
+16:04
+Thank you for watching!
+16:04
+16:05
+speaker
+Place your bets according the axis mapped in the charts, semi-circle line or right triangle at the bottom Place your bets according the axis mapped in the charts, semi-circle line or right triangle at the bottom
+16:05
+16:05
+speaker
+Transcription sponsored by Rio métro Presentation 99.999999เรา-Paul
+16:05
+16:05
+Thank you. Bye-bye.
 
 
-2026-08-18 12:37:17 [WARNING] server.diarization.worker: ASR-driven diarization produced no usable embeddings
-2026-08-18 12:37:17 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] No diarization segments produced, skipping upload
+also local transcription on scilence also comes back with:
+Thank you. Thank you. Thank you.
