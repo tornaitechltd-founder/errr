@@ -1,10 +1,24 @@
-backend-1  | 2026-08-18 10:54:00.064  INFO [req=2ffc02d0 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a84380e05ff7f62fc0ad779/transcribe-from-storage] [omcat-handler-7] .m.b.r.a.DeferredTranscriptionController : >> transcribe(recordingId="6a84380e05ff7f62fc0ad779", body=LinkedHashMap, jwt=Jwt{sub=t***@gmail.com})
-backend-1  | 2026-08-18 10:54:00.109  INFO [req=2ffc02d0 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a84380e05ff7f62fc0ad779/transcribe-from-storage] [omcat-handler-7] .m.b.r.a.DeferredTranscriptionController : Deferred transcription request for recording 6a84380e05ff7f62fc0ad779 by t***@gmail.com - flipping mode from ai to ai (force=true)
-backend-1  | 2026-08-18 10:54:02.234  INFO [req=7bc7cd0c user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/local-presence/heartbeat] [omcat-handler-8] u.m.b.l.LocalPresenceController          : >> heartbeat(jwt=Jwt{sub=t***@gmail.com}, authentication=JwtAuthenticationToken, body=PresenceRequest{port=8066, scheme="http", version="1.0.33"})
-backend-1  | 2026-08-18 10:54:02.268  INFO [req=7bc7cd0c user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/local-presence/heartbeat] [omcat-handler-8] u.m.b.l.LocalPresenceController          : << heartbeat -> ResponseEntity{status=200, body=HashMap[1 entries]} in 33 ms
-backend-1  | 2026-08-18 10:54:03.953  WARN [req=2ffc02d0 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a84380e05ff7f62fc0ad779/transcribe-from-storage] [omcat-handler-7] u.m.b.r.service.TranscriptIndexService   : deleteRecording: BM25 invalidate failed for recording 6a84380e05ff7f62fc0ad779: Cannot invoke "java.lang.Boolean.booleanValue()" because the return value of "java.util.Map.remove(Object)" is null
-backend-1  |
-backend-1  | java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()" because the return value of "java.util.Map.remove(Object)" is null
-backend-1  |    at uk.magicmamaliga.backend.rag.service.LuceneBmIndex.invalidate(LuceneBmIndex.java:330) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at uk.magicmamaliga.backend.rag.service.TranscriptIndexService.deleteRecording(TranscriptIndexService.java:502) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at uk.magicmamaliga.backend.record.ai.DeferredTranscriptionController.transcribe(DeferredTranscriptionController.java:139) ~[!/:0.0.1-SNAPSHOT]
+2026-08-18 12:37:10 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-18 12:37:11 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Starting diarization for recording 6a809b458df052f6928ff5d7
+2026-08-18 12:37:11 [INFO] server.diarization.worker: Diarization thread spawned for recording 6a809b458df052f6928ff5d7
+2026-08-18 12:37:14 [INFO] server.diarization.worker: Stereo input has identical L/R channels - treating as mono to avoid duplicate diarization
+2026-08-18 12:37:14 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Audio ready: 258.0s mono
+2026-08-18 12:37:14 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Background diarization started for recording 6a809b458df052f6928ff5d7
+2026-08-18 12:37:15 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Diarization path decision: chunks_with_words=yes preferred_provider=directml active_provider=directml embedding_backend=ort
+2026-08-18 12:37:15 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] Running ASR-driven diarization (1 chunks with word timestamps)
+2026-08-18 12:37:15 [INFO] naplo.asr_attribution: embed_segments: 1 segments, workers=4, active_provider=directml, embedding_backend=ort
+2026-08-18 12:37:17 [ERROR] naplo.diarization: Embedding inference failed: [ONNXRuntimeError] : 6 : RUNTIME_EXCEPTION : Non-zero status code returned while running Where node. Name:'/encoder/encoder/encoder.0/mconv.3/Where_1' Status Message: E:\_work\1\s\onnxruntime\core\providers\dml\DmlExecutionProvider\src\MLOperatorAuthorImpl.cpp(2818)\onnxruntime_pybind11_state.pyd!00007FF801C50A09: (caller: 00007FF801C1B597) Exception(4) tid(61ec) 80070057 The parameter is incorrect.
+
+Traceback (most recent call last):
+  File "server\diarization\inference.py", line 68, in _run_embedding
+    emb = extractor.compute(stream)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "server\diarization\gpu\embedding.py", line 306, in compute
+    out = self._sess.run([self._output_name], feed)[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "onnxruntime\capi\onnxruntime_inference_collection.py", line 296, in run
+onnxruntime.capi.onnxruntime_pybind11_state.RuntimeException: [ONNXRuntimeError] : 6 : RUNTIME_EXCEPTION : Non-zero status code returned while running Where node. Name:'/encoder/encoder/encoder.0/mconv.3/Where_1' Status Message: E:\_work\1\s\onnxruntime\core\providers\dml\DmlExecutionProvider\src\MLOperatorAuthorImpl.cpp(2818)\onnxruntime_pybind11_state.pyd!00007FF801C50A09: (caller: 00007FF801C1B597) Exception(4) tid(61ec) 80070057 The parameter is incorrect.
+
+
+2026-08-18 12:37:17 [WARNING] server.diarization.worker: ASR-driven diarization produced no usable embeddings
+2026-08-18 12:37:17 [INFO] server.diarization.worker: [rediarize-6a809b458df052f6928ff5d7] No diarization segments produced, skipping upload
