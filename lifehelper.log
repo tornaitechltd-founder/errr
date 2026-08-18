@@ -1,191 +1,156 @@
-backend-1  | 2026-08-18 16:50:13.525  WARN [req=7bb07e3f user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a848d40d2131a2b0aa44541/transcribe] [cat-handler-272] u.m.b.r.a.s.AiTranscriptionService       : Whisper response had no words[] ▯ chunks will be empty
-backend-1  | 2026-08-18 16:50:13.528  INFO [req=75d503c7 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a848d40d2131a2b0aa44541/transcribe] [cat-handler-273] u.m.b.r.a.s.AiTranscriptionService       : Whisper hallucination filter for segment.wav: dropped 1 of 1 chunks
-backend-1  | 2026-08-18 16:50:13.531  INFO [req=75d503c7 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a848d40d2131a2b0aa44541/transcribe] [cat-handler-273] u.m.b.r.a.s.AiTranscriptionService       : Whisper hallucination filter for segment.wav: dropping flat text 'I'm not going home. I'm not going home.'
-backend-1  | 2026-08-18 16:50:13.608  WARN [req=7bb07e3f user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a848d40d2131a2b0aa44541/transcribe] [cat-handler-272] u.m.b.r.ai.AiTranscriptionController     : !! transcribe threw DataIntegrityViolationException: Command execution failed on MongoDB server with error 112 (WriteConflict): 'Caused by :: Write conflict during plan execution and yielding is disabled. :: Please retry your operation or multi-document transaction.' on server ac-q7pzwnw-shard-00-02.umbmotv.mongodb.net:27017. The full response is {"errorLabels": ["TransientTransactionError"], "ok": 0.0, "errmsg": "Caused by :: Write conflict during plan execution and yielding is disabled. :: Please retry your operation or multi-document transaction.", "code": 112, "codeName": "WriteConflict", "$clusterTime": {"clusterTime": {"$timestamp": {"t": 1787071813, "i": 1}}, "signature": {"hash": {"$binary": {"base64": "tOp9nl/8GnL0RuEM3Wjh1n+3/xo=", "subType": "00"}}, "keyId": 7616034157583400966}}, "operationTime": {"$timestamp": {"t": 1787071813, "i": 1}}} in 2993 ms
-backend-1  | 2026-08-18 16:50:13.609 ERROR [req=7bb07e3f user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a848d40d2131a2b0aa44541/transcribe] [cat-handler-272] u.m.b.b.exception.SystemExceptionAdvice  : Unhandled RuntimeException: Command execution failed on MongoDB server with error 112 (WriteConflict): 'Caused by :: Write conflict during plan execution and yielding is disabled. :: Please retry your operation or multi-document transaction.' on server ac-q7pzwnw-shard-00-02.umbmotv.mongodb.net:27017. The full response is {"errorLabels": ["TransientTransactionError"], "ok": 0.0, "errmsg": "Caused by :: Write conflict during plan execution and yielding is disabled. :: Please retry your operation or multi-document transaction.", "code": 112, "codeName": "WriteConflict", "$clusterTime": {"clusterTime": {"$timestamp": {"t": 1787071813, "i": 1}}, "signature": {"hash": {"$binary": {"base64": "tOp9nl/8GnL0RuEM3Wjh1n+3/xo=", "subType": "00"}}, "keyId": 7616034157583400966}}, "operationTime": {"$timestamp": {"t": 1787071813, "i": 1}}}
-backend-1  |
-backend-1  | org.springframework.dao.DataIntegrityViolationException: Command execution failed on MongoDB server with error 112 (WriteConflict): 'Caused by :: Write conflict during plan execution and yielding is disabled. :: Please retry your operation or multi-document transaction.' on server ac-q7pzwnw-shard-00-02.umbmotv.mongodb.net:27017. The full response is {"errorLabels": ["TransientTransactionError"], "ok": 0.0, "errmsg": "Caused by :: Write conflict during plan execution and yielding is disabled. :: Please retry your operation or multi-document transaction.", "code": 112, "codeName": "WriteConflict", "$clusterTime": {"clusterTime": {"$timestamp": {"t": 1787071813, "i": 1}}, "signature": {"hash": {"$binary": {"base64": "tOp9nl/8GnL0RuEM3Wjh1n+3/xo=", "subType": "00"}}, "keyId": 7616034157583400966}}, "operationTime": {"$timestamp": {"t": 1787071813, "i": 1}}}
-backend-1  |    at org.springframework.data.mongodb.core.MongoExceptionTranslator.doTranslateException(MongoExceptionTranslator.java:145) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    at org.springframework.data.mongodb.core.MongoExceptionTranslator.translateExceptionIfPossible(MongoExceptionTranslator.java:74) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    at org.springframework.data.mongodb.core.MongoTemplate.potentiallyConvertRuntimeException(MongoTemplate.java:3202) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    at org.springframework.data.mongodb.core.MongoTemplate.execute(MongoTemplate.java:634) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    at org.springframework.data.mongodb.core.MongoTemplate.doUpdate(MongoTemplate.java:1841) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    at org.springframework.data.mongodb.core.MongoTemplate.updateFirst(MongoTemplate.java:1765) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    at uk.magicmamaliga.backend.organization.service.OrganizationService.applyDelta(OrganizationService.java:373) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at uk.magicmamaliga.backend.organization.service.OrganizationService.updateOrgBalance(OrganizationService.java:285) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-backend-1  |    at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at uk.magicmamaliga.backend.organization.service.OrganizationService$$SpringCGLIB$$0.updateOrgBalance(<generated>) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at uk.magicmamaliga.backend.record.ai.service.AiTranscriptionService.transcribeBytesDetailed(AiTranscriptionService.java:280) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at uk.magicmamaliga.backend.record.ai.AiTranscriptionController.transcribe(AiTranscriptionController.java:80) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-backend-1  |    at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:82) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at uk.magicmamaliga.backend.base.logging.ControllerLoggingAspect.logAround(ControllerLoggingAspect.java:134) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-backend-1  |    at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:648) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:630) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:168) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.proceed(AuthorizationManagerBeforeMethodInterceptor.java:271) ~[spring-security-core-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.attemptAuthorization(AuthorizationManagerBeforeMethodInterceptor.java:266) ~[spring-security-core-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:197) ~[spring-security-core-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.config.annotation.method.configuration.DeferringMethodInterceptor.invoke(DeferringMethodInterceptor.java:44) ~[spring-security-config-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:96) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at uk.magicmamaliga.backend.record.ai.AiTranscriptionController$$SpringCGLIB$$0.transcribe(<generated>) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-backend-1  |    at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
-backend-1  |    at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$2(FilterChainProxy.java:235) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:376) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:207) ~[spring-security-oauth2-resource-server-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.oauth2.server.resource.web.OAuth2ProtectedResourceMetadataFilter.doFilterInternal(OAuth2ProtectedResourceMetadataFilter.java:98) ~[spring-security-oauth2-resource-server-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.1.0.jar!/:7.1.0]
-backend-1  |    at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at uk.magicmamaliga.backend.base.logging.MdcRequestContextFilter.doFilterInternal(MdcRequestContextFilter.java:104) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.22.jar!/:na]
-backend-1  |    at java.base/java.lang.VirtualThread.run(Unknown Source) ~[na:na]
-backend-1  | Caused by: com.mongodb.MongoCommandException: Command execution failed on MongoDB server with error 112 (WriteConflict): 'Caused by :: Write conflict during plan execution and yielding is disabled. :: Please retry your operation or multi-document transaction.' on server ac-q7pzwnw-shard-00-02.umbmotv.mongodb.net:27017. The full response is {"errorLabels": ["TransientTransactionError"], "ok": 0.0, "errmsg": "Caused by :: Write conflict during plan execution and yielding is disabled. :: Please retry your operation or multi-document transaction.", "code": 112, "codeName": "WriteConflict", "$clusterTime": {"clusterTime": {"$timestamp": {"t": 1787071813, "i": 1}}, "signature": {"hash": {"$binary": {"base64": "tOp9nl/8GnL0RuEM3Wjh1n+3/xo=", "subType": "00"}}, "keyId": 7616034157583400966}}, "operationTime": {"$timestamp": {"t": 1787071813, "i": 1}}}
-backend-1  |    at com.mongodb.internal.connection.ProtocolHelper.getCommandFailureException(ProtocolHelper.java:210) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:570) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceiveInternal(InternalStreamConnection.java:494) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.InternalStreamConnection.lambda$sendAndReceive$1(InternalStreamConnection.java:383) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.InternalStreamConnection.sendAndReceive(InternalStreamConnection.java:386) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.UsageTrackingInternalConnection.sendAndReceive(UsageTrackingInternalConnection.java:111) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.DefaultConnectionPool$PooledConnection.sendAndReceive(DefaultConnectionPool.java:757) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.CommandProtocolImpl.execute(CommandProtocolImpl.java:60) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.DefaultServer$DefaultServerProtocolExecutor.execute(DefaultServer.java:207) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.DefaultServerConnection.executeProtocol(DefaultServerConnection.java:112) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.DefaultServerConnection.command(DefaultServerConnection.java:82) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.connection.DefaultServer$OperationCountTrackingConnection.command(DefaultServer.java:305) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.MixedBulkWriteOperation.executeCommand(MixedBulkWriteOperation.java:435) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.MixedBulkWriteOperation.executeBulkWriteBatch(MixedBulkWriteOperation.java:281) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.MixedBulkWriteOperation.lambda$execute$2(MixedBulkWriteOperation.java:217) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.SyncOperationHelper.lambda$withSourceAndConnection$1(SyncOperationHelper.java:146) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.SyncOperationHelper.withSuppliedResource(SyncOperationHelper.java:177) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.SyncOperationHelper.lambda$withSourceAndConnection$2(SyncOperationHelper.java:142) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.SyncOperationHelper.withSuppliedResource(SyncOperationHelper.java:177) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.SyncOperationHelper.withSourceAndConnection(SyncOperationHelper.java:138) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.MixedBulkWriteOperation.lambda$execute$3(MixedBulkWriteOperation.java:200) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.MixedBulkWriteOperation.lambda$decorateWriteWithRetries$0(MixedBulkWriteOperation.java:153) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.async.function.RetryingSyncSupplier.get(RetryingSyncSupplier.java:67) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.MixedBulkWriteOperation.execute(MixedBulkWriteOperation.java:221) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.internal.operation.MixedBulkWriteOperation.execute(MixedBulkWriteOperation.java:81) ~[mongodb-driver-core-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.client.internal.MongoClusterImpl$OperationExecutorImpl.execute(MongoClusterImpl.java:472) ~[mongodb-driver-sync-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.client.internal.MongoCollectionImpl.executeSingleWriteRequest(MongoCollectionImpl.java:1117) ~[mongodb-driver-sync-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.client.internal.MongoCollectionImpl.executeUpdate(MongoCollectionImpl.java:1100) ~[mongodb-driver-sync-5.8.0.jar!/:na]
-backend-1  |    at com.mongodb.client.internal.MongoCollectionImpl.updateOne(MongoCollectionImpl.java:621) ~[mongodb-driver-sync-5.8.0.jar!/:na]
-backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-backend-1  |    at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:281) ~[spring-core-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.data.mongodb.SessionAwareMethodInterceptor.invoke(SessionAwareMethodInterceptor.java:130) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222) ~[spring-aop-7.0.8.jar!/:7.0.8]
-backend-1  |    at jdk.proxy2/jdk.proxy2.$Proxy159.updateOne(Unknown Source) ~[na:na]
-backend-1  |    at org.springframework.data.mongodb.core.MongoTemplate.lambda$doUpdate$1(MongoTemplate.java:1868) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    at org.springframework.data.mongodb.core.MongoTemplate.execute(MongoTemplate.java:632) ~[spring-data-mongodb-5.1.0.jar!/:5.1.0]
-backend-1  |    ... 137 common frames omitted
-backend-1  |
-backend-1  | 2026-08-18 16:50:13.616  INFO [req=75d503c7 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a848d40d2131a2b0aa44541/transcribe] [cat-handler-273] u.m.b.r.a.s.AiTranscriptionService       : AI transcription successful for user t***@gmail.com org 6a6e39b4fa2173292bad5767 (cost: $0.001050, text length: 0 chars, chunks: 0)
-backend-1  | 2026-08-18 16:50:13.652  INFO [req=75d503c7 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/recordings/6a848d40d2131a2b0aa44541/transcribe] [cat-handler-273] u.m.b.r.ai.AiTranscriptionController     : AI transcription for recording 6a848d40d2131a2b0aa44541 by t***@gmail.com: offset=30.07221817970276s, text=0 chars, chunks=0, source=speaker
+2026-08-18 20:12:00 [INFO] server.audio.device_manager.events.bus: [device-event] os_default_changed channel=loopback from=None to='{0.0.0.00000000}.{72d88202-1bea-4df4-b34c-bffd02cf5dd1}' rec='6a84ae3b7c78f421f3660943' detail='OS default device changed (role=eConsole)'
+2026-08-18 20:12:00 [INFO] server.audio.device_manager.events.bus: [device-event] os_default_changed channel=microphone from=None to='{0.0.1.00000000}.{836ea9ab-4ff0-4b90-831d-7cec632508d7}' rec='6a84ae3b7c78f421f3660943' detail='OS default device changed (role=eConsole)'
+2026-08-18 20:12:01 [WARNING] server.audio.device_manager.state: Refusing to commit loopback selection with channels=0 (index=16 name='Headphones (HUAWEI FreeLace Pro 2)'); keeping previous selection (current: index=16 channels=2)
+2026-08-18 20:12:01 [INFO] server.audio.device_manager.state: Microphone selection: index=3 name='Stereo Mix (Realtek(R) Audio)' rate=44100Hz channels=2
+2026-08-18 20:12:01 [WARNING] server.audio.device_manager.events.dispatcher: [dispatcher] could not resolve microphone default post-refresh; skipping swap
+2026-08-18 20:12:01 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-18 20:12:01 [ERROR] server.audio.capture.loopback: Failed to open loopback stream (attempt 1): [Errno -9998] Invalid number of channels
+2026-08-18 20:12:01 [INFO] server.audio.device_manager.events.bus: [device-event] os_default_changed channel=loopback from=None to='{0.0.0.00000000}.{550a42aa-865b-4f8b-8562-91c4f833a0f3}' rec='6a84ae3b7c78f421f3660943' detail='OS default device changed (role=eConsole)'
+2026-08-18 20:12:01 [INFO] server.audio.device_manager.events.bus: [device-event] os_default_changed channel=microphone from=None to='{0.0.1.00000000}.{2c8563a7-c395-4436-889c-45effab89c72}' rec='6a84ae3b7c78f421f3660943' detail='OS default device changed (role=eConsole)'
+2026-08-18 20:12:01 [INFO] server.audio.device_manager.state: Loopback selection: index=22 name='Headphones (HUAWEI FreeLace Pro 2) [Loopback]' rate=44100Hz channels=2
+2026-08-18 20:12:01 [INFO] server.audio.device_manager.state: Microphone selection: index=19 name='Headset (HUAWEI FreeLace Pro 2)' rate=16000Hz channels=1
+PS C:\Users\Mate\Desktop\Project\naplo> Get-Content -Path  "C:\Users\Mate\AppData\Local\Programs\Naplo\naplo.faulthandler.log" -Wait -Tail 1000
+Windows fatal exception: access violation
+
+Thread 0x00005648 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server\services\live_uploader\uploader.py", line 159 in _run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00004140 (most recent call first):
+  File "server\audio\transcribe\worker.py", line 88 in transcribe_worker
+  File "server\audio\session\workers.py", line 46 in _supervised
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000fc0 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "queue.py", line 180 in get
+  File "server\audio\transcribe\worker.py", line 91 in transcribe_worker
+  File "server\audio\session\workers.py", line 46 in _supervised
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x0000489c (most recent call first):
+  File "server\audio\capture\dispatch.py", line 321 in _wait_out_pa_swap
+  File "server\audio\capture\microphone.py", line 143 in capture_microphone_loop
+  File "server\audio\session\workers.py", line 46 in _supervised
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00006d5c (most recent call first):
+  File "server\audio\capture\dispatch.py", line 321 in _wait_out_pa_swap
+  File "server\audio\capture\loopback.py", line 193 in capture_loop
+  File "server\audio\session\workers.py", line 46 in _supervised
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00006808 (most recent call first):
+  File "threading.py", line 355 in wait
+  File "queue.py", line 171 in get
+  File "anyio\_backends\_asyncio.py", line 991 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00006c44 (most recent call first):
+  File "concurrent\futures\thread.py", line 89 in _worker
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x000040b8 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server\audio\device_manager\events\_coalescer.py", line 98 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00000668 (most recent call first):
+  File "threading.py", line 355 in wait
+  File "threading.py", line 655 in wait
+  File "server\audio\device_manager\events\source_windows.py", line 536 in _run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x0000084c (most recent call first):
+  File "threading.py", line 359 in wait
+  File "queue.py", line 180 in get
+  File "server\audio\device_manager\events\dispatcher.py", line 387 in _run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00005658 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server\services\auth_nudge.py", line 160 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x000060bc (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server\download\updater\state.py", line 187 in _poll_loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00001fc4 (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server\services\local_presence.py", line 152 in _heartbeat_loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x0000655c (most recent call first):
+  File "threading.py", line 359 in wait
+  File "threading.py", line 655 in wait
+  File "server\lifecycle.py", line 142 in _auto_stop_monitor
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00006090 (most recent call first):
+  File "pystray\_win32.py", line 147 in _mainloop
+  File "pystray\_win32.py", line 128 in _run
+  File "pystray\_base.py", line 212 in run
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Current thread 0x00001634 (most recent call first):
+  File "pyaudiowpatch\__init__.py", line 716 in __init__
+  File "server\audio\devices.py", line 241 in enumerate_wasapi_input_devices
+  File "server\audio\device_manager\enumerate.py", line 40 in get_available_devices
+  File "server\tray\_devices_menu.py", line 59 in get_cached_devices
+  File "server\tray\_devices_menu.py", line 205 in _build_devices_submenu
+  File "server\tray\__init__.py", line 156 in _build_full_menu
+  File "server\tray\__init__.py", line 241 in _loop
+  File "threading.py", line 1012 in run
+  File "threading.py", line 1075 in _bootstrap_inner
+  File "threading.py", line 1032 in _bootstrap
+
+Thread 0x00006590 (most recent call first):
+  File "asyncio\windows_events.py", line 774 in _poll
+  File "asyncio\windows_events.py", line 445 in select
+  File "asyncio\base_events.py", line 1948 in _run_once
+  File "asyncio\base_events.py", line 641 in run_forever
+  File "asyncio\windows_events.py", line 322 in run_forever
+  File "asyncio\base_events.py", line 674 in run_until_complete
+  File "asyncio\runners.py", line 118 in run
+  File "asyncio\runners.py", line 194 in run
+  File "uvicorn\server.py", line 75 in run
+  File "uvicorn\main.py", line 606 in run
+  File "naplo.py", line 478 in main
+  File "naplo.py", line 488 in <module>
