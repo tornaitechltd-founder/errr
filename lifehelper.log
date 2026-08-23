@@ -1,1 +1,214 @@
-<iframe name="__privateStripeFrame6205" frameborder="0" allowtransparency="true" scrolling="no" role="presentation" allow="clipboard-write" src="https://js.stripe.com/v3/elements-inner-easel-a94583e13c8daa5144ac292774cfaa4d.html#__shared_params__[version]=clover&amp;__shared_params__[light_experiment_assignments]=%7B%22token%22%3A%22fba6344a-5d3d-4abd-b461-a60df713e3a2%22%2C%22assignments%22%3A%7B%22api_fastpath_ewcs_elements_v1%22%3A%22control%22%2C%22api_fastpath_habanero_v1%22%3A%22treatment%22%7D%7D&amp;wait=false&amp;deferredIntentMode=setup&amp;rtl=false&amp;stripeJsFirstCreatedLatency=10&amp;initialOuterHeight=597&amp;initialOuterWidth=1425&amp;stripeJsInstanceCount=1&amp;elementsInstanceCount=1&amp;elementId=easel-2b53a867-9761-4e5b-8e86-62d10bf8ca7f&amp;componentName=easel&amp;keyMode=test&amp;apiKey=pk_test_51TyohARsKj4HM95Lr8RmFNN71Ci0sT1kN9TwPXfmX1QENmOvGkWfiBG1tWc8JG9iZcJcHv3QkyWhpI3ISMnu514v005n7hBaCz&amp;frameMessagingStrategy=postMessage&amp;referrer=https%3A%2F%2Fnaplo.app%2Fdashboard&amp;controllerId=__privateStripeController6201" title="Stripe developer tools frame" style="border: 0px !important; margin: -4px; padding: 0px !important; width: 163px; min-width: 0px; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px); color-scheme: light only !important; height: 112px; bottom: 4px; right: 4px; position: fixed; transition: transform 0.2s ease-in-out; z-index: 99999;"></iframe>
+===== Naplo started 2026-08-23 13:52:37 pid=25536 =====
+2026-08-23 13:52:41 [INFO] naplo: [config] No .env file found. Searched: ['C:\\Users\\Mate\\AppData\\Local\\Naplo\\.env', 'C:\\Users\\Mate\\AppData\\Local\\Programs\\Naplo\\.env', 'C:\\Users\\Mate\\AppData\\Local\\Programs\\Naplo\\_internal\\.env']
+2026-08-23 13:52:41 [INFO] naplo: [config] Using OS environment variables / defaults.
+2026-08-23 13:52:41 [INFO] naplo: [bootstrap-check] target=v1 installed=v1 root=C:\Users\Mate\AppData\Local\Naplo\assets frozen=True
+2026-08-23 13:52:41 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
+2026-08-23 13:52:41 [INFO] naplo: ðŸš€ Starting Naplo backend on http://127.0.0.1:8066
+INFO:     Started server process [25536]
+INFO:     Waiting for application startup.
+2026-08-23 13:52:43 [INFO] naplo: [config] Using bundled ffmpeg: C:\Users\Mate\AppData\Local\Naplo\assets\ffmpeg\ffmpeg.exe
+2026-08-23 13:52:43 [INFO] naplo: [config] Using ffprobe: C:\Users\Mate\AppData\Local\Naplo\assets\ffmpeg\ffprobe.exe
+2026-08-23 13:52:43 [INFO] naplo.diarization: Preferred provider: directml (DmlExecutionProvider available in onnxruntime (['DmlExecutionProvider', 'CPUExecutionProvider']))
+2026-08-23 13:52:43 [INFO] naplo.diarization: Embedding backend preference: ort (auto, based on preferred provider=directml)
+2026-08-23 13:52:43 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
+2026-08-23 13:52:43 [INFO] naplo.diarization: Embedding extractor load plan: preferred=(ort,directml) attempts=[('ort', 'directml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
+2026-08-23 13:52:43 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
+2026-08-23 13:52:43 [INFO] naplo.diarization: Embedding model has 2 inputs: feats='audio_signal' (channels_first=True), length='length'
+2026-08-23 13:52:43 [INFO] naplo.diarization: Embedding model has 2 outputs; using 'embs' (dim=192); ignoring 'logits'
+2026-08-23 13:52:44 [INFO] naplo.diarization: DmlSpeakerEmbeddingExtractor loaded: dim=192 active_providers=['DmlExecutionProvider', 'CPUExecutionProvider']
+2026-08-23 13:52:44 [INFO] naplo.diarization: Speaker Embedding extractor loaded: dim=192 model=embedding.onnx backend=ort provider=directml
+2026-08-23 13:52:44 [INFO] server.audio.device_manager.events.source_windows: [windows-mmdevice] event source started (coalesce_window=0.50s)
+2026-08-23 13:52:44 [INFO] naplo.diarization: Diarizer load plan: preferred=(ort,directml) attempts=[('ort', 'directml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
+2026-08-23 13:52:44 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
+2026-08-23 13:52:44 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
+2026-08-23 13:52:44 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=windows-mmdevice, source_alive=True)
+2026-08-23 13:52:44 [INFO] naplo.diarization: Segmentation model has symbolic input shape ['N', 1, 'T']; probing with default window=160000 samples
+2026-08-23 13:52:44 [INFO] naplo.diarization: DmlOfflineSpeakerDiarization loaded: window_samples=160000 local_speakers=3 powerset=True active_providers=['DmlExecutionProvider', 'CPUExecutionProvider']
+2026-08-23 13:52:44 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
+2026-08-23 13:52:44 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
+2026-08-23 13:52:44 [INFO] naplo.diarization: Diarizer loaded (seg=segmentation.onnx), emb=embedding.onnx), threads=8, sample_rate=16000, cluster_threshold=0.5, backend=ort, requested_provider=directml, effective_provider='directml'
+2026-08-23 13:52:44 [INFO] naplo.lifecycle: Diarization models pre-warmed
+2026-08-23 13:52:44 [INFO] server.audio.device_manager.events.source_windows: [windows-mmdevice] IMMNotificationClient registered; listening for OS default-device changes
+2026-08-23 13:52:44 [INFO] server.audio.device_manager.state: Loopback selection: index=16 name='Speakers (Realtek(R) Audio) [Loopback]' rate=48000Hz channels=2
+2026-08-23 13:52:44 [INFO] server.audio.device_manager.state: Microphone selection: index=14 name='Microphone Array (IntelÂ® Smart Sound Technology for Digital Microphones)' rate=48000Hz channels=2
+2026-08-23 13:52:44 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-23 13:52:44 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 13:52:44 [INFO] server.audio.session.ambient: Ambient capture started (pre-roll buffer enabled).
+INFO:     Application startup complete.
+INFO:     127.0.0.1:55277 - "GET /api/settings HTTP/1.1" 401 Unauthorized
+2026-08-23 13:52:47 [INFO] httpx: HTTP Request: GET https://naplo.app/api/public/jwks "HTTP/1.1 200 OK"
+2026-08-23 13:52:47 [INFO] server.auth: [auth] Loaded RSA public key from JWKS endpoint (https://naplo.app/api/public/jwks)
+2026-08-23 13:52:47 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-23 13:55:05 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-23 13:55:05 [INFO] naplo.main: Starting new session with group: Default group
+2026-08-23 13:55:05 [INFO] server.audio.session.recording: Session stopped - clearing in-memory buffers (live uploader owns persistence).
+2026-08-23 13:55:05 [INFO] server.audio.capture.loopback: Capture loop finished.
+2026-08-23 13:55:05 [INFO] server.audio.capture.microphone: Microphone capture loop finished.
+2026-08-23 13:55:05 [INFO] server.services.recordings: Creating recording (token present: True, mode=None, title=None, type=None)
+2026-08-23 13:55:06 [INFO] server.services.recordings: Recording created with ID: 6a8aedab7340757cb34fe227
+2026-08-23 13:55:06 [INFO] server.audio.session.recording: Recording session started with ID: 6a8aedab7340757cb34fe227 (transcribe=True)
+2026-08-23 13:55:06 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-23 13:55:06 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 13:55:06 [INFO] server.audio.transcribe.worker: Transcription worker running. All audio resampled to 16000 Hz
+2026-08-23 13:55:06 [INFO] server.audio.transcribe.worker: Transcription worker running. All audio resampled to 16000 Hz
+2026-08-23 13:55:06 [INFO] server.audio.session.preroll: Pre-roll injected: 30.0s (WAV 30.0s, transcribe 20.0s)
+2026-08-23 13:55:06 [INFO] server.services.live_uploader.uploader: [live_uploader] Started for recording 6a8aedab7340757cb34fe227 at 16000 Hz (interval=60s, codec=mp3@128k)
+2026-08-23 13:55:06 [INFO] naplo.main: Session started.
+2026-08-23 13:55:11 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (mic), 4 chars, offset=30.09s
+2026-08-23 13:55:11 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 1.32s, 9 voiced / 66 frames) before transcription
+2026-08-23 13:55:13 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (mic), 33 chars, offset=34.92s
+2026-08-23 13:55:15 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (mic), 13 chars, offset=37.05s
+2026-08-23 13:55:18 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 1.26s, 4 voiced / 63 frames) before transcription
+2026-08-23 13:55:19 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (speaker), 10 chars, offset=41.67s
+2026-08-23 13:55:19 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 2.22s, 7 voiced / 111 frames) before transcription
+2026-08-23 13:55:22 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 0.96s, 4 voiced / 48 frames) before transcription
+2026-08-23 13:55:23 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 1.24s, 4 voiced / 62 frames) before transcription
+2026-08-23 13:55:38 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (speaker), 43 chars, offset=59.06s
+2026-08-23 13:55:49 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 0.98s, 0 voiced / 49 frames) before transcription
+2026-08-23 13:55:54 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 1.54s, 6 voiced / 77 frames) before transcription
+2026-08-23 13:56:05 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (speaker), 31 chars, offset=87.06s
+2026-08-23 13:56:11 [INFO] server.services.live_uploader.uploader: [live_uploader] Uploaded seq=0 (1439469 bytes MP3) for 6a8aedab7340757cb34fe227
+2026-08-23 13:56:13 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (mic), 20 chars, offset=94.14s
+2026-08-23 13:56:13 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 1.00s, 5 voiced / 50 frames) before transcription
+2026-08-23 13:56:14 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (speaker), 19 chars, offset=94.06s
+2026-08-23 13:56:21 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 13:56:24 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-23 13:56:27 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (speaker), 27 chars, offset=101.07s
+2026-08-23 13:56:30 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 1 chunk(s) (speaker)
+2026-08-23 13:56:37 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 17 chars, 1 word-chunks, offset=119.43s, persisted=yes
+2026-08-23 13:56:44 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 1 chunk(s) (speaker)
+2026-08-23 13:56:51 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 45 chars, 1 word-chunks, offset=133.44s, persisted=yes
+2026-08-23 13:56:58 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 1 chunk(s) (speaker)
+2026-08-23 13:57:01 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 1 chunk(s) (speaker)
+2026-08-23 13:57:08 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 1 chunk(s) (speaker)
+2026-08-23 13:57:09 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 13:57:09 [WARNING] server.audio.capture.dispatch: [mic] capture loop stalled 282 ms - 10 ms still queued in the driver, 272 ms dropped. Frequent occurrences mean this thread is being starved.
+2026-08-23 13:57:13 [INFO] server.services.live_uploader.uploader: [live_uploader] Uploaded seq=1 (1031661 bytes MP3) for 6a8aedab7340757cb34fe227
+2026-08-23 13:57:15 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 19 chars, 1 word-chunks, offset=157.66s, persisted=yes
+2026-08-23 13:57:17 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 48 chars, 1 word-chunks, offset=159.59s, persisted=yes
+2026-08-23 13:57:21 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 17 chars, 1 word-chunks, offset=163.31s, persisted=yes
+2026-08-23 13:57:23 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 57 chars, 1 word-chunks, offset=164.65s, persisted=yes
+2026-08-23 13:57:23 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 1 chunk(s) (mic)
+2026-08-23 13:57:30 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 5 chunk(s) (speaker)
+2026-08-23 13:57:31 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 66 chars, 4 word-chunks, offset=171.65s, persisted=yes
+2026-08-23 13:57:31 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 38 chars, 2 word-chunks, offset=172.71s, persisted=yes
+2026-08-23 13:57:33 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 27 chars, 1 word-chunks, offset=175.35s, persisted=yes
+2026-08-23 13:57:37 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 120 chars, 1 word-chunks, offset=178.66s, persisted=yes
+2026-08-23 13:57:43 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 37 chars, 1 word-chunks, offset=182.58s, persisted=yes
+2026-08-23 13:57:44 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 106 chars, 1 word-chunks, offset=185.65s, persisted=yes
+2026-08-23 13:57:47 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 71 chars, 1 word-chunks, offset=189.60s, persisted=yes
+2026-08-23 13:57:50 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 40 chars, 1 word-chunks, offset=192.04s, persisted=yes
+2026-08-23 13:57:51 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 144 chars, 1 word-chunks, offset=192.65s, persisted=yes
+2026-08-23 13:57:54 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 25 chars, 1 word-chunks, offset=195.85s, persisted=yes
+2026-08-23 13:57:58 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 94 chars, 1 word-chunks, offset=199.66s, persisted=yes
+2026-08-23 13:57:59 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 47 chars, 1 word-chunks, offset=200.74s, persisted=yes
+2026-08-23 13:58:02 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 9 chars, 1 word-chunks, offset=204.42s, persisted=yes
+2026-08-23 13:58:05 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 66 chars, 2 word-chunks, offset=206.66s, persisted=yes
+2026-08-23 13:58:06 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 26 chars, 1 word-chunks, offset=207.74s, persisted=yes
+2026-08-23 13:58:12 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 14 chars, 1 word-chunks, offset=212.26s, persisted=yes
+2026-08-23 13:58:12 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 98 chars, 2 word-chunks, offset=213.65s, persisted=yes
+2026-08-23 13:58:17 [INFO] server.services.live_uploader.uploader: [live_uploader] Uploaded seq=2 (1000557 bytes MP3) for 6a8aedab7340757cb34fe227
+2026-08-23 13:58:18 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 6 chunk(s) (mic)
+2026-08-23 13:58:18 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 94 chars, 5 word-chunks, offset=219.27s, persisted=yes
+2026-08-23 13:58:19 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 100 chars, 5 word-chunks, offset=220.65s, persisted=yes
+2026-08-23 13:58:26 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 87 chars, 2 word-chunks, offset=227.29s, persisted=yes
+2026-08-23 13:58:26 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 108 chars, 1 word-chunks, offset=227.65s, persisted=yes
+2026-08-23 13:58:29 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 12 chars, 1 word-chunks, offset=230.54s, persisted=yes
+2026-08-23 13:58:32 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 34 chars, 1 word-chunks, offset=233.23s, persisted=yes
+2026-08-23 13:58:33 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 116 chars, 2 word-chunks, offset=234.65s, persisted=yes
+2026-08-23 13:58:36 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 12 chars, 1 word-chunks, offset=237.98s, persisted=yes
+2026-08-23 13:58:39 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 45 chars, 3 word-chunks, offset=241.66s, persisted=yes
+2026-08-23 13:58:43 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 48 chars, 2 word-chunks, offset=245.26s, persisted=yes
+2026-08-23 13:58:47 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 64 chars, 4 word-chunks, offset=248.65s, persisted=yes
+2026-08-23 13:58:50 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 17 chars, 1 word-chunks, offset=252.71s, persisted=yes
+2026-08-23 13:58:54 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 11 chars, 1 word-chunks, offset=255.66s, persisted=yes
+2026-08-23 13:58:54 [INFO] server.audio.transcribe.local: [local] hallucination filter dropped 1 of 1 chunk(s) (mic)
+2026-08-23 13:58:57 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 11 chars, 3 word-chunks, offset=259.06s, persisted=yes
+2026-08-23 13:59:01 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 29 chars, 1 word-chunks, offset=262.65s, persisted=yes
+2026-08-23 13:59:04 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 42 chars, 1 word-chunks, offset=265.90s, persisted=yes
+2026-08-23 13:59:06 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 25 chars, 1 word-chunks, offset=268.62s, persisted=yes
+2026-08-23 13:59:08 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 124 chars, 3 word-chunks, offset=269.65s, persisted=yes
+2026-08-23 13:59:15 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 133 chars, 1 word-chunks, offset=276.19s, persisted=yes
+2026-08-23 13:59:17 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 140 chars, 2 word-chunks, offset=276.65s, persisted=yes
+2026-08-23 13:59:19 [INFO] server.services.live_uploader.uploader: [live_uploader] Uploaded seq=3 (1014381 bytes MP3) for 6a8aedab7340757cb34fe227
+2026-08-23 13:59:19 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 61 chars, 1 word-chunks, offset=281.51s, persisted=yes
+2026-08-23 13:59:20 [INFO] server.audio.transcribe.worker: [local] Dropping low-speech segment (mic, 1.02s, 4 voiced / 51 frames) before transcription
+2026-08-23 13:59:22 [INFO] server.audio.transcribe.local: [local] Transcribed segment (speaker), 73 chars, 4 word-chunks, offset=283.66s, persisted=yes
+2026-08-23 13:59:24 [INFO] naplo.main: Stopping session...
+2026-08-23 13:59:24 [INFO] server.audio.capture.loopback: Capture loop finished.
+2026-08-23 13:59:24 [INFO] server.audio.capture.microphone: Microphone capture loop finished.
+2026-08-23 13:59:24 [INFO] server.audio.transcribe.local: [local] Transcribed segment (mic), 16 chars, 1 word-chunks, offset=286.58s, persisted=yes
+2026-08-23 13:59:25 [INFO] server.audio.transcribe.worker: [mic] Flushing 0.60s of buffered audio on stop
+2026-08-23 13:59:25 [INFO] server.audio.transcribe.worker: [ai] Dropping low-speech segment (mic, 0.60s, 8 voiced / 30 frames) before transcription
+2026-08-23 13:59:26 [INFO] server.audio.transcribe.worker: [speaker] Flushing 4.10s of buffered audio on stop
+2026-08-23 13:59:28 [INFO] server.audio.transcribe.ai: [ai] Transcribed segment (speaker), 47 chars, offset=289.87s
+2026-08-23 13:59:28 [INFO] server.services.live_uploader.uploader: [live_uploader] Thread exiting (rec=6a8aedab7340757cb34fe227)
+2026-08-23 13:59:29 [INFO] server.services.live_uploader.uploader: [live_uploader] Uploaded seq=4 (124461 bytes MP3) for 6a8aedab7340757cb34fe227
+2026-08-23 13:59:32 [INFO] server.services.live_uploader.uploader: [live_uploader] Finalised recording 6a8aedab7340757cb34fe227
+2026-08-23 13:59:32 [INFO] server.audio.session.recording: Session stopped - clearing in-memory buffers (live uploader owns persistence).
+2026-08-23 13:59:32 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-23 13:59:32 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 13:59:32 [INFO] server.audio.session.ambient: Ambient capture started (pre-roll buffer enabled).
+2026-08-23 13:59:32 [INFO] naplo.main: Session stopped. Server stays alive for new sessions and background diarization.
+2026-08-23 14:04:07 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-23 14:04:12 [INFO] server.routes.token: JWT Token verified and set via /api/token
+2026-08-23 14:07:26 [INFO] server.audio.call_detection.detector: Call detector loop ENTER: tick=2.0s holdoff=5.0s window=10.0s ambient_enabled=True detection_enabled=True required_active_ticks=2
+2026-08-23 14:07:26 [INFO] server.audio.call_detection.detector: Call detector started.
+2026-08-23 14:07:28 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=idle consecutive_active=0/2 mic_last_speech=0.8s ago speaker_last_speech=0.0s ago speaker_sustained=0.0s ago speaker_run_len=215.5s speaker_trigger(recent=True long=True active=True)=True ambient_enabled=True detection_enabled=True recording_id=None
+2026-08-23 14:07:31 [WARNING] server.audio.capture.dispatch: [speaker] capture loop stalled 907 ms - 80 ms still queued in the driver, 827 ms dropped. Frequent occurrences mean this thread is being starved.
+2026-08-23 14:07:31 [WARNING] server.audio.capture.dispatch: [mic] capture loop stalled 907 ms - 80 ms still queued in the driver, 827 ms dropped. Frequent occurrences mean this thread is being starved.
+2026-08-23 14:08:02 [INFO] server.audio.call_detection.actions: Call accepted by user (or auto-accepted) - starting capture-only recording
+2026-08-23 14:08:02 [INFO] server.audio.capture.loopback: Capture loop finished.
+2026-08-23 14:08:02 [INFO] server.audio.capture.microphone: Microphone capture loop finished.
+2026-08-23 14:08:02 [INFO] server.services.recordings: Creating recording (token present: True, mode=deferred, title=None, type=None)
+2026-08-23 14:08:03 [INFO] server.services.recordings: Recording created with ID: 6a8af0b47340757cb34fe236
+2026-08-23 14:08:03 [INFO] server.audio.session.recording: Recording session started with ID: 6a8af0b47340757cb34fe236 (transcribe=False)
+2026-08-23 14:08:03 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-23 14:08:03 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 14:08:03 [INFO] server.audio.session.preroll: Pre-roll injected: 30.0s (WAV 30.0s, transcribe 20.0s)
+2026-08-23 14:08:03 [INFO] server.services.live_uploader.uploader: [live_uploader] Started for recording 6a8af0b47340757cb34fe236 at 16000 Hz (interval=60s, codec=mp3@128k)
+2026-08-23 14:08:04 [WARNING] server.audio.capture.dispatch: [mic] capture loop stalled 265 ms - 10 ms still queued in the driver, 255 ms dropped. Frequent occurrences mean this thread is being starved.
+2026-08-23 14:08:05 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=active consecutive_active=0/2 mic_last_speech=0.0s ago speaker_last_speech=0.0s ago speaker_sustained=0.0s ago speaker_run_len=1.9s speaker_trigger(recent=True long=False active=True)=False ambient_enabled=True detection_enabled=True recording_id=6a8af0b47340757cb34fe236
+2026-08-23 14:08:35 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=active consecutive_active=0/2 mic_last_speech=0.6s ago speaker_last_speech=0.1s ago speaker_sustained=0.1s ago speaker_run_len=32.1s speaker_trigger(recent=True long=True active=True)=True ambient_enabled=True detection_enabled=True recording_id=6a8af0b47340757cb34fe236
+2026-08-23 14:09:06 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=active consecutive_active=0/2 mic_last_speech=0.0s ago speaker_last_speech=0.0s ago speaker_sustained=0.0s ago speaker_run_len=62.2s speaker_trigger(recent=True long=True active=True)=True ambient_enabled=True detection_enabled=True recording_id=6a8af0b47340757cb34fe236
+2026-08-23 14:09:07 [INFO] server.services.live_uploader.uploader: [live_uploader] Uploaded seq=0 (1437741 bytes MP3) for 6a8af0b47340757cb34fe236
+2026-08-23 14:09:36 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=active consecutive_active=0/2 mic_last_speech=0.0s ago speaker_last_speech=0.0s ago speaker_sustained=0.0s ago speaker_run_len=92.3s speaker_trigger(recent=True long=True active=True)=True ambient_enabled=True detection_enabled=True recording_id=6a8af0b47340757cb34fe236
+2026-08-23 14:10:06 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=active consecutive_active=0/2 mic_last_speech=2.9s ago speaker_last_speech=24.2s ago speaker_sustained=24.2s ago speaker_run_len=0.0s speaker_trigger(recent=False long=False active=False)=False ambient_enabled=True detection_enabled=True recording_id=6a8af0b47340757cb34fe236
+2026-08-23 14:10:10 [INFO] server.services.live_uploader.uploader: [live_uploader] Uploaded seq=1 (1020717 bytes MP3) for 6a8af0b47340757cb34fe236
+2026-08-23 14:10:12 [INFO] server.audio.call_detection.detector: Speaker free of sustained speech for 30s (pings ignored, mic ignored - office ambient keeps it active) - entering ENDING grace window
+2026-08-23 14:10:14 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=ending consecutive_active=0/2 mic_last_speech=1.3s ago speaker_last_speech=32.3s ago speaker_sustained=32.3s ago speaker_run_len=0.0s speaker_trigger(recent=False long=False active=False)=False ambient_enabled=True detection_enabled=True recording_id=6a8af0b47340757cb34fe236
+2026-08-23 14:10:42 [INFO] server.audio.call_detection.actions: Finalising auto-captured recording
+2026-08-23 14:10:42 [INFO] server.audio.capture.loopback: Capture loop finished.
+2026-08-23 14:10:42 [INFO] server.audio.capture.microphone: Microphone capture loop finished.
+2026-08-23 14:10:42 [INFO] server.services.live_uploader.uploader: [live_uploader] Thread exiting (rec=6a8af0b47340757cb34fe236)
+2026-08-23 14:10:45 [INFO] server.services.live_uploader.uploader: [live_uploader] Uploaded seq=2 (563949 bytes MP3) for 6a8af0b47340757cb34fe236
+2026-08-23 14:10:47 [INFO] server.services.live_uploader.uploader: [live_uploader] Finalised recording 6a8af0b47340757cb34fe236
+2026-08-23 14:10:47 [INFO] server.audio.session.recording: Session stopped - clearing in-memory buffers (live uploader owns persistence).
+2026-08-23 14:10:47 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-23 14:10:47 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 14:10:47 [INFO] server.audio.session.ambient: Ambient capture started (pre-roll buffer enabled).
+2026-08-23 14:11:16 [INFO] server.audio.call_detection.prompt_end: End-of-call prompt for 6a8af0b47340757cb34fe236 -> transcribe_local
+2026-08-23 14:11:18 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=cooldown consecutive_active=0/2 mic_last_speech=0.0s ago speaker_last_speech=96.2s ago speaker_sustained=96.2s ago speaker_run_len=0.0s speaker_trigger(recent=False long=False active=False)=False ambient_enabled=True detection_enabled=True recording_id=None
+2026-08-23 14:11:19 [INFO] server.services.local_transcription.deferred: [local-deferred] stereo capture for 6a8af0b47340757cb34fe236 (audio=188.8s, timeout=1133s) -> per-channel mic/speaker transcription
+2026-08-23 14:11:36 [WARNING] naplo.whisper: Failed to read whisper JSON C:\Users\Mate\AppData\Local\Temp\lh_whisper_5culftgk.json: 'utf-8' codec can't decode bytes in position 25222-25223: invalid continuation byte
+2026-08-23 14:11:48 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=cooldown consecutive_active=0/2 mic_last_speech=0.1s ago speaker_last_speech=126.3s ago speaker_sustained=126.3s ago speaker_run_len=0.0s speaker_trigger(recent=False long=False active=False)=False ambient_enabled=True detection_enabled=True recording_id=None
+2026-08-23 14:11:50 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=idle consecutive_active=0/2 mic_last_speech=0.9s ago speaker_last_speech=128.3s ago speaker_sustained=128.3s ago speaker_run_len=0.0s speaker_trigger(recent=False long=False active=False)=False ambient_enabled=True detection_enabled=True recording_id=None
+2026-08-23 14:11:50 [INFO] server.services.local_transcription.deferred: [local-deferred] hallucination filter dropped 1 chunk(s) for 6a8af0b47340757cb34fe236
+2026-08-23 14:11:51 [INFO] server.services.local_transcription.deferred: [local-deferred] transcribed 6a8af0b47340757cb34fe236 locally (939 chars, 35 chunks)
+2026-08-23 14:12:20 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=idle consecutive_active=0/2 mic_last_speech=0.7s ago speaker_last_speech=158.4s ago speaker_sustained=158.4s ago speaker_run_len=0.0s speaker_trigger(recent=False long=False active=False)=False ambient_enabled=True detection_enabled=True recording_id=None
+2026-08-23 14:12:50 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=idle consecutive_active=0/2 mic_last_speech=0.0s ago speaker_last_speech=188.5s ago speaker_sustained=188.5s ago speaker_run_len=0.0s speaker_trigger(recent=False long=False active=False)=False ambient_enabled=True detection_enabled=True recording_id=None
+2026-08-23 14:13:20 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=idle consecutive_active=0/2 mic_last_speech=0.2s ago speaker_last_speech=218.7s ago speaker_sustained=218.7s ago speaker_run_len=0.0s speaker_trigger(recent=False long=False active=False)=False ambient_enabled=True detection_enabled=True recording_id=None
+2026-08-23 14:13:28 [WARNING] server.audio.capture.dispatch: [mic] capture loop stalled 125 ms - 80 ms still queued in the driver, 45 ms dropped. Frequent occurrences mean this thread is being starved.
+2026-08-23 14:13:28 [WARNING] server.audio.capture.dispatch: [speaker] capture loop stalled 125 ms - 80 ms still queued in the driver, 45 ms dropped. Frequent occurrences mean this thread is being starved.
+2026-08-23 14:13:59 [INFO] server.audio.call_detection.actions: Call accepted by user (or auto-accepted) - starting capture-only recording
+2026-08-23 14:13:59 [INFO] server.audio.capture.loopback: Capture loop finished.
+2026-08-23 14:13:59 [INFO] server.audio.capture.microphone: Microphone capture loop finished.
+2026-08-23 14:13:59 [INFO] server.services.recordings: Creating recording (token present: True, mode=deferred, title=None, type=None)
+2026-08-23 14:13:59 [INFO] server.services.recordings: Recording created with ID: 6a8af2187340757cb34fe237
+2026-08-23 14:13:59 [INFO] server.audio.session.recording: Recording session started with ID: 6a8af2187340757cb34fe237 (transcribe=False)
+2026-08-23 14:13:59 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-23 14:13:59 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 14:13:59 [INFO] server.audio.session.preroll: Pre-roll injected: 30.0s (WAV 30.0s, transcribe 20.0s)
+2026-08-23 14:13:59 [INFO] server.services.live_uploader.uploader: [live_uploader] Started for recording 6a8af2187340757cb34fe237 at 16000 Hz (interval=60s, codec=mp3@128k)
+2026-08-23 14:13:59 [WARNING] server.audio.capture.dispatch: [mic] capture loop stalled 250 ms - 10 ms still queued in the driver, 240 ms dropped. Frequent occurrences mean this thread is being starved.
+2026-08-23 14:14:01 [INFO] server.audio.call_detection.detector: [call-detector heartbeat] state=active consecutive_active=0/2 mic_last_speech=0.0s ago speaker_last_speech=0.0s ago speaker_sustained=0.0s ago speaker_run_len=1.9s speaker_trigger(recent=True long=False active=True)=False ambient_enabled=True detection_enabled=True recording_id=6a8af2187340757cb34fe237
