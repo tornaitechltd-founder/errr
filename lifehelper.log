@@ -1,41 +1,163 @@
-===== Naplo started 2026-08-23 07:21:31 pid=17492 =====
-2026-08-23 07:21:34 [INFO] naplo: [config] No .env file found. Searched: ['C:\\Users\\Mate\\AppData\\Local\\Naplo\\.env', 'C:\\Users\\Mate\\AppData\\Local\\Programs\\Naplo\\.env', 'C:\\Users\\Mate\\AppData\\Local\\Programs\\Naplo\\_internal\\.env']
-2026-08-23 07:21:34 [INFO] naplo: [config] Using OS environment variables / defaults.
-2026-08-23 07:21:35 [INFO] naplo: [bootstrap-check] target=v1 installed=v1 root=C:\Users\Mate\AppData\Local\Naplo\assets frozen=True
-2026-08-23 07:21:35 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
-2026-08-23 07:21:35 [INFO] naplo: Port 8066 is busy; waiting in case a previous instance is still shutting down
-2026-08-23 07:21:36 [WARNING] naplo: !Port 8066 is in use switching to (<socket.socket fd=1048, family=2, type=1, proto=0, laddr=('127.0.0.1', 8067)>, 8067)
-2026-08-23 07:21:36 [WARNING] naplo: Could not publish .naplo.port: int() argument must be a string, a bytes-like object or a real number, not 'tuple'
-2026-08-23 07:21:37 [INFO] naplo: ðŸš€ Starting Naplo backend on port (<socket.socket fd=1048, family=2, type=1, proto=0, laddr=('127.0.0.1', 8067)>, 8067)...
-2026-08-23 07:21:37 [INFO] naplo: ðŸš€ Starting Naplo backend on http://127.0.0.1:(<socket.socket fd=1048, family=2, type=1, proto=0, laddr=('127.0.0.1', 8067)>, 8067)
-INFO:     Started server process [17492]
-INFO:     Waiting for application startup.
-2026-08-23 07:21:38 [INFO] naplo: [config] Using bundled ffmpeg: C:\Users\Mate\AppData\Local\Naplo\assets\ffmpeg\ffmpeg.exe
-2026-08-23 07:21:38 [INFO] naplo: [config] Using ffprobe: C:\Users\Mate\AppData\Local\Naplo\assets\ffmpeg\ffprobe.exe
-2026-08-23 07:21:38 [INFO] naplo.diarization: Preferred provider: directml (DmlExecutionProvider available in onnxruntime (['DmlExecutionProvider', 'CPUExecutionProvider']))
-2026-08-23 07:21:38 [INFO] naplo.diarization: Embedding backend preference: ort (auto, based on preferred provider=directml)
-2026-08-23 07:21:38 [INFO] naplo.diarization: Embedding extractor load plan: preferred=(ort,directml) attempts=[('ort', 'directml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
-2026-08-23 07:21:38 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
-2026-08-23 07:21:38 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
-2026-08-23 07:21:39 [INFO] naplo.diarization: Embedding model has 2 inputs: feats='audio_signal' (channels_first=True), length='length'
-2026-08-23 07:21:39 [INFO] naplo.diarization: Embedding model has 2 outputs; using 'embs' (dim=192); ignoring 'logits'
-2026-08-23 07:21:39 [INFO] naplo.diarization: DmlSpeakerEmbeddingExtractor loaded: dim=192 active_providers=['DmlExecutionProvider', 'CPUExecutionProvider']
-2026-08-23 07:21:39 [INFO] naplo.diarization: Speaker Embedding extractor loaded: dim=192 model=embedding.onnx backend=ort provider=directml
-2026-08-23 07:21:39 [INFO] server.audio.device_manager.events.source_windows: [windows-mmdevice] event source started (coalesce_window=0.50s)
-2026-08-23 07:21:39 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=windows-mmdevice, source_alive=True)
-2026-08-23 07:21:39 [INFO] naplo.diarization: Diarizer load plan: preferred=(ort,directml) attempts=[('ort', 'directml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
-2026-08-23 07:21:39 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
-2026-08-23 07:21:39 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
-2026-08-23 07:21:39 [INFO] server.audio.device_manager.events.source_windows: [windows-mmdevice] IMMNotificationClient registered; listening for OS default-device changes
-2026-08-23 07:21:39 [INFO] server.audio.device_manager.state: Loopback selection: index=16 name='Speakers (Realtek(R) Audio) [Loopback]' rate=48000Hz channels=2
-2026-08-23 07:21:39 [INFO] server.audio.device_manager.state: Microphone selection: index=14 name='Microphone Array (IntelÂ® Smart Sound Technology for Digital Microphones)' rate=48000Hz channels=2
-2026-08-23 07:21:39 [INFO] naplo.diarization: Segmentation model has symbolic input shape ['N', 1, 'T']; probing with default window=160000 samples
-2026-08-23 07:21:39 [INFO] naplo.diarization: DmlOfflineSpeakerDiarization loaded: window_samples=160000 local_speakers=3 powerset=True active_providers=['DmlExecutionProvider', 'CPUExecutionProvider']
-2026-08-23 07:21:39 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
-2026-08-23 07:21:39 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
-2026-08-23 07:21:39 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
-2026-08-23 07:21:39 [INFO] naplo.diarization: Diarizer loaded (seg=segmentation.onnx), emb=embedding.onnx), threads=8, sample_rate=16000, cluster_threshold=0.5, backend=ort, requested_provider=directml, effective_provider='directml'
-2026-08-23 07:21:39 [INFO] naplo.lifecycle: Diarization models pre-warmed
-2026-08-23 07:21:39 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
-2026-08-23 07:21:39 [INFO] server.audio.session.ambient: Ambient capture started (pre-roll buffer enabled).
-INFO:     Application startup complete.
+backend-1  | 2026-08-23 07:37:23.282 ERROR [req=f4b4d503 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/payment/create-payment-intent] [at-handler-4005] u.m.backend.payment.PaymentController    : Stripe API Error during intent creation: No such customer: 'cus_V4qLwCQ0NNiizx'; code: resource_missing; request-id: req_a6Teou1W2Lf6Br
+backend-1  |
+backend-1  | com.stripe.exception.InvalidRequestException: No such customer: 'cus_V4qLwCQ0NNiizx'; code: resource_missing; request-id: req_a6Teou1W2Lf6Br
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.exceptionFromStatus(LiveStripeResponseGetter.java:363) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.throwStripeException(LiveStripeResponseGetter.java:349) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.handleV1ApiError(LiveStripeResponseGetter.java:325) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.handleError(LiveStripeResponseGetter.java:317) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.request(LiveStripeResponseGetter.java:144) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.model.Customer.retrieve(Customer.java:652) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.model.Customer.retrieve(Customer.java:638) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at uk.magicmamaliga.backend.payment.external.StripeCustomerService.updateCustomer(StripeCustomerService.java:137) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.payment.external.StripeCustomerService.findOrCreateCustomer(StripeCustomerService.java:92) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.payment.PaymentIntentCreatorService.createIntentAndTransaction(PaymentIntentCreatorService.java:92) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+backend-1  |    at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at uk.magicmamaliga.backend.payment.PaymentIntentCreatorService$$SpringCGLIB$$0.createIntentAndTransaction(<generated>) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.payment.PaymentController.createPaymentIntent(PaymentController.java:100) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+backend-1  |    at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:82) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at uk.magicmamaliga.backend.base.logging.ControllerLoggingAspect.logAround(ControllerLoggingAspect.java:134) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+backend-1  |    at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:648) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:630) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:168) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.proceed(AuthorizationManagerBeforeMethodInterceptor.java:271) ~[spring-security-core-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.attemptAuthorization(AuthorizationManagerBeforeMethodInterceptor.java:266) ~[spring-security-core-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:197) ~[spring-security-core-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.config.annotation.method.configuration.DeferringMethodInterceptor.invoke(DeferringMethodInterceptor.java:44) ~[spring-security-config-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:96) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at uk.magicmamaliga.backend.payment.PaymentController$$SpringCGLIB$$0.createPaymentIntent(<generated>) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+backend-1  |    at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.8.jar!/:7.0.8]
+backend-1  |    at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$2(FilterChainProxy.java:235) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:376) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:132) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:86) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:181) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:207) ~[spring-security-oauth2-resource-server-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.oauth2.server.resource.web.OAuth2ProtectedResourceMetadataFilter.doFilterInternal(OAuth2ProtectedResourceMetadataFilter.java:98) ~[spring-security-oauth2-resource-server-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:118) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.1.0.jar!/:7.1.0]
+backend-1  |    at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at uk.magicmamaliga.backend.base.logging.MdcRequestContextFilter.doFilterInternal(MdcRequestContextFilter.java:104) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.22.jar!/:na]
+backend-1  |    at java.base/java.lang.VirtualThread.run(Unknown Source) ~[na:na]
+backend-1  |
+backend-1  | 2026-08-23 07:37:23.291  WARN [req=f4b4d503 user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/payment/create-payment-intent] [at-handler-4005] u.m.backend.payment.PaymentController    : !! createPaymentIntent threw BaseBadRequestException: Payment initialization failed: No such customer: 'cus_V4qLwCQ0NNiizx' in 954 ms
+backend-1  | 2026-08-23 07:37:45.056  INFO [req=91652cc6 user=- org=- GET /api/v1/pricing] [at-handler-4009] u.m.b.t.PricingController                : >> getPricing()
+backend-1  | 2026-08-23 07:37:45.056  INFO [req=91652cc6 user=- org=- GET /api/v1/pricing] [at-handler-4009] u.m.b.t.PricingController                : << getPricing -> PricingResponse in 0 ms
+backend-1  | 2026-08-23 07:37:50.281  INFO [req=3ac3281d user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/payment/create-payment-intent] [at-handler-4010] u.m.backend.payment.PaymentController    : >> createPaymentIntent(request=PaymentRequest{userId=null, orgId=null, amount=26, currency="usd", billingAddress=BillingAddress{country="GB", state="", city="gb", postalCode="G5 8JN", line1="2/2 73 Cook Street", line2=null}, billingName="Mates Tornai", businessName=null, taxId=null, taxIdType=null, idempotencyKey="4090e27f-b2e3-4314-b819-00f9b66359fe"}, jwt=Jwt{sub=t***@gmail.com})
+backend-1  | 2026-08-23 07:37:50.561 ERROR [req=3ac3281d user=t***@gmail.com org=6a6e39b4fa2173292bad5767 POST /api/v1/payment/create-payment-intent] [at-handler-4010] u.m.backend.payment.PaymentController    : Stripe API Error during intent creation: No such customer: 'cus_V4qLwCQ0NNiizx'; code: resource_missing; request-id: req_Cty9bha6tZwyC6
+backend-1  |
+backend-1  | com.stripe.exception.InvalidRequestException: No such customer: 'cus_V4qLwCQ0NNiizx'; code: resource_missing; request-id: req_Cty9bha6tZwyC6
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.exceptionFromStatus(LiveStripeResponseGetter.java:363) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.throwStripeException(LiveStripeResponseGetter.java:349) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.handleV1ApiError(LiveStripeResponseGetter.java:325) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.handleError(LiveStripeResponseGetter.java:317) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.net.LiveStripeResponseGetter.request(LiveStripeResponseGetter.java:144) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.model.Customer.retrieve(Customer.java:652) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at com.stripe.model.Customer.retrieve(Customer.java:638) ~[stripe-java-33.1.0.jar!/:33.1.0]
+backend-1  |    at uk.magicmamaliga.backend.payment.external.StripeCustomerService.updateCustomer(StripeCustomerService.java:137) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.payment.external.StripeCustomerService.findOrCreateCustomer(StripeCustomerService.java:92) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.payment.PaymentIntentCreatorService.createIntentAndTransaction(PaymentIntentCreatorService.java:92) ~[!/:0.0.1-SNAPSHOT]
