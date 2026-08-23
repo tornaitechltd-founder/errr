@@ -1,3 +1,41 @@
-2026-08-21 09:13:17 [INFO] naplo.main: Session stopped. Server stays alive for new sessions and background diarization.
-2026-08-21 09:23:17 [WARNING] server.audio.capture.dispatch: [speaker] capture loop ran 202813 ms behind - 10 ms still queued in the driver, 202803 ms dropped. Frequent occurrences mean this thread is being starved.
-2026-08-21 09:24:21 [WARNING] server.audio.capture.dispatch: [speaker] capture loop ran 62422 ms behind - 10 ms still queued in the driver, 62412 ms dropped. Frequent occurrences mean this thread is being starved.
+===== Naplo started 2026-08-23 07:21:31 pid=17492 =====
+2026-08-23 07:21:34 [INFO] naplo: [config] No .env file found. Searched: ['C:\\Users\\Mate\\AppData\\Local\\Naplo\\.env', 'C:\\Users\\Mate\\AppData\\Local\\Programs\\Naplo\\.env', 'C:\\Users\\Mate\\AppData\\Local\\Programs\\Naplo\\_internal\\.env']
+2026-08-23 07:21:34 [INFO] naplo: [config] Using OS environment variables / defaults.
+2026-08-23 07:21:35 [INFO] naplo: [bootstrap-check] target=v1 installed=v1 root=C:\Users\Mate\AppData\Local\Naplo\assets frozen=True
+2026-08-23 07:21:35 [INFO] naplo.asset_bootstrap: [bootstrap] Assets v1 already present (target v1)
+2026-08-23 07:21:35 [INFO] naplo: Port 8066 is busy; waiting in case a previous instance is still shutting down
+2026-08-23 07:21:36 [WARNING] naplo: !Port 8066 is in use switching to (<socket.socket fd=1048, family=2, type=1, proto=0, laddr=('127.0.0.1', 8067)>, 8067)
+2026-08-23 07:21:36 [WARNING] naplo: Could not publish .naplo.port: int() argument must be a string, a bytes-like object or a real number, not 'tuple'
+2026-08-23 07:21:37 [INFO] naplo: ðŸš€ Starting Naplo backend on port (<socket.socket fd=1048, family=2, type=1, proto=0, laddr=('127.0.0.1', 8067)>, 8067)...
+2026-08-23 07:21:37 [INFO] naplo: ðŸš€ Starting Naplo backend on http://127.0.0.1:(<socket.socket fd=1048, family=2, type=1, proto=0, laddr=('127.0.0.1', 8067)>, 8067)
+INFO:     Started server process [17492]
+INFO:     Waiting for application startup.
+2026-08-23 07:21:38 [INFO] naplo: [config] Using bundled ffmpeg: C:\Users\Mate\AppData\Local\Naplo\assets\ffmpeg\ffmpeg.exe
+2026-08-23 07:21:38 [INFO] naplo: [config] Using ffprobe: C:\Users\Mate\AppData\Local\Naplo\assets\ffmpeg\ffprobe.exe
+2026-08-23 07:21:38 [INFO] naplo.diarization: Preferred provider: directml (DmlExecutionProvider available in onnxruntime (['DmlExecutionProvider', 'CPUExecutionProvider']))
+2026-08-23 07:21:38 [INFO] naplo.diarization: Embedding backend preference: ort (auto, based on preferred provider=directml)
+2026-08-23 07:21:38 [INFO] naplo.diarization: Embedding extractor load plan: preferred=(ort,directml) attempts=[('ort', 'directml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
+2026-08-23 07:21:38 [INFO] server.services.local_presence: [local_presence] Heartbeat thread started
+2026-08-23 07:21:38 [INFO] server.services.auth_nudge: [auth-nudge] Started (initial grace=60s, poll=60s, reprompt=600s)
+2026-08-23 07:21:39 [INFO] naplo.diarization: Embedding model has 2 inputs: feats='audio_signal' (channels_first=True), length='length'
+2026-08-23 07:21:39 [INFO] naplo.diarization: Embedding model has 2 outputs; using 'embs' (dim=192); ignoring 'logits'
+2026-08-23 07:21:39 [INFO] naplo.diarization: DmlSpeakerEmbeddingExtractor loaded: dim=192 active_providers=['DmlExecutionProvider', 'CPUExecutionProvider']
+2026-08-23 07:21:39 [INFO] naplo.diarization: Speaker Embedding extractor loaded: dim=192 model=embedding.onnx backend=ort provider=directml
+2026-08-23 07:21:39 [INFO] server.audio.device_manager.events.source_windows: [windows-mmdevice] event source started (coalesce_window=0.50s)
+2026-08-23 07:21:39 [INFO] server.audio.device_manager.events.dispatcher: [dispatcher] started (source=windows-mmdevice, source_alive=True)
+2026-08-23 07:21:39 [INFO] naplo.diarization: Diarizer load plan: preferred=(ort,directml) attempts=[('ort', 'directml'), ('ort', 'cpu'), ('sherpa', 'cpu')]
+2026-08-23 07:21:39 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
+2026-08-23 07:21:39 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
+2026-08-23 07:21:39 [INFO] server.audio.device_manager.events.source_windows: [windows-mmdevice] IMMNotificationClient registered; listening for OS default-device changes
+2026-08-23 07:21:39 [INFO] server.audio.device_manager.state: Loopback selection: index=16 name='Speakers (Realtek(R) Audio) [Loopback]' rate=48000Hz channels=2
+2026-08-23 07:21:39 [INFO] server.audio.device_manager.state: Microphone selection: index=14 name='Microphone Array (IntelÂ® Smart Sound Technology for Digital Microphones)' rate=48000Hz channels=2
+2026-08-23 07:21:39 [INFO] naplo.diarization: Segmentation model has symbolic input shape ['N', 1, 'T']; probing with default window=160000 samples
+2026-08-23 07:21:39 [INFO] naplo.diarization: DmlOfflineSpeakerDiarization loaded: window_samples=160000 local_speakers=3 powerset=True active_providers=['DmlExecutionProvider', 'CPUExecutionProvider']
+2026-08-23 07:21:39 [INFO] server.audio.capture.loopback: Opening loopback stream (device 16) at 48000Hz
+2026-08-23 07:21:39 [INFO] naplo.diarization: cluster_threshold(): backend='ort'
+2026-08-23 07:21:39 [INFO] naplo.diarization: cluster_threshold(): backend 'ort' -> 0.500
+2026-08-23 07:21:39 [INFO] naplo.diarization: Diarizer loaded (seg=segmentation.onnx), emb=embedding.onnx), threads=8, sample_rate=16000, cluster_threshold=0.5, backend=ort, requested_provider=directml, effective_provider='directml'
+2026-08-23 07:21:39 [INFO] naplo.lifecycle: Diarization models pre-warmed
+2026-08-23 07:21:39 [INFO] server.audio.capture.microphone: Opening mic stream (device 14) at 48000Hz
+2026-08-23 07:21:39 [INFO] server.audio.session.ambient: Ambient capture started (pre-roll buffer enabled).
+INFO:     Application startup complete.
