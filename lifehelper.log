@@ -1,14 +1,1125 @@
-Traceback (most recent call last):
-  File "asyncio\runners.py", line 118, in run
-  File "asyncio\base_events.py", line 687, in run_until_complete
-asyncio.exceptions.CancelledError
+Phase 1 Outreach & Sales Scripts Playbook
 
-During handling of the above exception, another exception occurred:
+Target Audience: Independent Consultants, Life & Executive Coaches, Recruiters & Executive Search, UX & Qualitative Researchers, and Solo Freelancers.
 
-Traceback (most recent call last):
-  File "naplo.py", line 578, in <module>
-  File "naplo.py", line 574, in main
-  File "uvicorn\server.py", line 75, in run
-  File "asyncio\runners.py", line 194, in run
-  File "asyncio\runners.py", line 123, in run
-KeyboardInterrupt
+Core Hook: "AI notes for every call — without a meeting bot."
+
+1. Positioning Pillars & Origin Story Matrix
+
+1.1 The Four Positioning Pillars
+
+Every script, cold email, and community post must reinforce these core pillars:
+
+No Bot in the Room: Never invites a third-party bot into Zoom/Teams/Meet calls.
+
+Pay For What You Use: No monthly subscription. Wallet top-ups starting at $\$12$ that never expire.
+
+Your Audio, Your Machine: Local mode runs whisper.cpp on CPU; raw audio never leaves your device unless cloud processing is explicitly opted into per recording.
+
+Reaches Calls Bots Cannot Reach: Works for phone calls, in-person meetings, coffee sessions, and confidential 1-on-1s.
+
+1.2 Narrative Positioning Matrix
+
+Channel / Context
+
+Recommended Narrative Angle
+
+Strategic Objective
+
+Hacker News (Show HN) / Indie Hackers / Twitter (X)
+
+Unfiltered Founder Origin: "I built a local desktop helper to capture audio during coding interviews, which evolved into a private, bot-free meeting recorder."
+
+Builds technical credibility with developers and founders who value local-first architecture (whisper.cpp).
+
+Reddit (r/productivity, r/coaching, r/freelance, r/recruiting)
+
+Privacy & Friction Angle: "I got tired of awkward AI bots ruining confidential client calls and in-person meetings, so I built a native tray app."
+
+Highlights client resistance to bots and eliminates post-call admin work.
+
+Cold Email / Cold Calls (Coaches, Consultants, Recruiters)
+
+Economic & Workflow Angle: "Naplo saves billable hours lost to manual recap drafting without risking client trust or inviting intrusive bots."
+
+Direct focus on ROI, billable time saved, and immediate recap email generation.
+
+2. Developer & Community Outreach Messaging
+
+2.1 Hacker News / Indie Hackers Post
+
+Title Option 1: Show HN: Naplo – AI meeting notes without a bot joining the call
+
+Title Option 2: Show HN: Naplo – Local-first desktop AI recorder for confidential calls
+
+Post Body:
+
+Title: Show HN: Naplo – AI meeting notes without a bot joining the call
+
+Hey HN,
+
+A few months ago, while prepping for technical interviews, I needed real-time notes without bringing an intrusive third-party meeting bot into the call or sending sensitive audio across cloud services.
+
+I built a local desktop tray app in C++/Python that captured mic and system audio, ran whisper.cpp locally on CPU, and generated instant structured notes.
+
+After using it daily, I realized independent consultants, executive coaches, recruiters, and qualitative researchers face the exact same structural friction: they want automated AI recaps, but their clients reject meeting bots (Otter, Fireflies, Read.ai) in confidential or 1-on-1 sessions.
+
+So I turned it into a full product: Naplo (naplo.app).
+
+Technical Stack & Product Architecture:
+
+Zero Bot Footprint: Runs natively in the tray (macOS 26+ Apple Silicon / Windows 10/11 64-bit) capturing direct audio streams.
+
+Local-First Privacy: Free local mode processes audio on-device via whisper.cpp. Raw audio never leaves your machine unless you explicitly trigger cloud features.
+
+Persona Prompt Templates: One-click generation for "Client Action Items & Decisions", "Candidate Intake Breakdown", or "User Research Verbatims".
+
+Pay-As-You-Go Economics: No monthly subscription. Pre-funded wallet starting at $\$12$ (with $\$1$ signup credit and $+\$4$ bonus on the first top-up).
+
+I'd love feedback from the HN community on local audio pipeline performance and UX. If you run client calls or research interviews, give it a try!
+
+2.2 Community Post (r/productivity, r/coaching, r/freelance, r/recruiting)
+
+Title Option 1: I got tired of meeting bots intruding on confidential client calls, so I built a local desktop recorder instead.
+
+Title Option 2: Why I stopped inviting AI meeting bots to client calls (and how I automate recaps locally now)
+
+Post Body:
+
+Title: I got tired of meeting bots intruding on confidential client calls, so I built a local desktop recorder instead
+
+Hey everyone,
+
+Over the past few months, I noticed a common issue among coaches, consultants, and recruiters: counter-parties are getting tired of AI meeting bots.
+
+When an Otter, Fireflies, or Read.ai bot joins a meeting link, three things usually happen:
+
+The client feels uncomfortable or asks for the bot to be removed.
+
+The call takes place in-person (coffee shop, office) or over a standard phone call, where bots cannot join.
+
+You spend 30–60 minutes after every call manually typing recap emails because you couldn't use a bot.
+
+I wanted instant summaries and follow-up drafts without bringing a third-party bot into the room. So I built Naplo (naplo.app).
+
+How it works:
+
+No Bot in the Room: Sits in your system tray (macOS / Windows) and records audio directly from your mic and system speaker.
+
+Local-First Privacy: Free local transcription runs on your CPU. Audio stays on your machine by default.
+
+Persona Recaps: Generates follow-up drafts (e.g., "Client Action Items", "Candidate Strengths & Comp") in one click.
+
+No Subscription: Pay-as-you-go wallet ($\$1$ free signup credit, no credit card required).
+
+I'd love feedback from anyone running regular client sessions or candidate screens. If you'd like to test it on one call this week, check it out at naplo.app. Happy to answer any privacy or technical questions in the comments!
+
+3. Segment-Specific Cold Email Templates
+
+3.1 Segment A: Independent Consultants & Executive Coaches
+
+Primary Hook: Save billable hours writing recap emails; eliminate client pushback against meeting bots in sensitive calls.
+
+Subject: Quick question regarding confidential client call recaps
+
+Hi [First Name],
+
+I came across your practice while researching boutique advisory firms in [City / Niche].
+
+Quick question: when you're on confidential 1-on-1 client calls or coffee meetings, do clients ever object to third-party AI meeting bots (like Otter or Fireflies) joining the call?
+
+I built Naplo to solve this friction: it sits quietly in your system tray and records locally—providing transcriptions, decision summaries, and client recap email drafts without sending a bot into the room.
+
+Local mode runs on your machine's CPU, so raw audio never leaves your computer unless you explicitly choose cloud processing for fast summaries.
+
+Would you be open to testing it on one client call this week? Signup takes 30 seconds and includes $\$1$ in free credit (no credit card required).
+
+Best regards,
+
+[Your Name]
+
+Founder, Naplo.app
+
+P.S. If you'd prefer me to walk you through a 5-minute setup on screen share, grab a time here: [SETUP_CALL_LINK]
+
+3.2 Segment B: Recruiters & Talent Acquisition
+
+Primary Hook: Eliminate manual ATS data entry; never lose candidate compensation expectations, notice periods, or key quotes from phone screens.
+
+Subject: Candidate intake notes without the admin overhead
+
+Hi [First Name],
+
+Running back-to-back candidate intake calls usually means spending hours updating ATS records or searching through manual scribbles for salary expectations and notice periods.
+
+We built Naplo specifically for recruitment workflows. It records locally in your system tray—capturing phone, video, or in-person audio without an intrusive bot—and automatically generates structured breakdowns:
+
+Candidate strengths & red flags to probe
+
+Compensation & timeline summary
+
+Intake recap for the hiring manager
+
+Would you be open to trying it out on one intake call this week? Signup takes 30 seconds and includes free welcome credit.
+
+Best regards,
+
+[Your Name]
+
+Founder, Naplo.app
+
+3.3 Segment C: UX & Qualitative Researchers
+
+Primary Hook: Conduct sensitive participant interviews without bot TOS friction; generate paste-ready verbatim quotes for research deliverables.
+
+Subject: User research recording without third-party bot friction
+
+Hi [First Name],
+
+Have you ever had research participants hesitate or refuse to consent when a third-party AI bot joins an interview link?
+
+Naplo runs local-first transcription directly on your machine's CPU (via whisper.cpp). Audio stays on your computer unless you explicitly opt into cloud summaries, delivering verbatim quotes and topic breakdowns while maintaining participant privacy.
+
+Open to testing it on your next user interview session? I can walk you through a 5-minute setup call if helpful: [SETUP_CALL_LINK].
+
+Best regards,
+
+[Your Name]
+
+Founder, Naplo.app
+
+3.4 Warm Follow-Up: Community Leads & Signups
+
+Trigger: Prospect commented on a community post or registered without completing their first recording.
+
+Subject: Following up on your note about AI call recaps / Naplo
+
+Hi [First Name],
+
+Thanks for connecting over on [Reddit / Twitter / LinkedIn] regarding client call workflows!
+
+As promised, here is the direct link to test Naplo for your upcoming sessions.
+
+Here is how to get your first automated recap in under 3 minutes:
+
+Download the app at naplo.app/download (runs in your macOS/Windows tray).
+
+Run a quick audio diagnostic at naplo.app/test-recording to ensure mic permissions pass.
+
+Record a test sample—your account has $\$1$ in cloud credit pre-loaded to test summaries and templates like "Client recap email".
+
+If you have any setup questions or want a 10-minute walkthrough, hit reply or grab a spot here: [SETUP_CALL_LINK].
+
+Best regards,
+
+[Your Name]
+
+Founder, Naplo.app
+
+4. Cold Calling Playbook (Glencoco Outbound Framework)
+
+This cold call framework is structured around the Glencoco outbound sales methodology: a pattern-interrupt opener, peer-problem framing ("ring a bell?"), micro-value wedge, and an interest-based close, backed by Glencoco's Acknowledge, Clarify, Redirect (ACR) objection framework.
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                    GLENCOCO 4-PHASE COLD CALL ARCHITECTURE                      │
+├───────────────────┬───────────────────┬───────────────────┬─────────────────────┤
+│ Phase 1: Opener   │ Phase 2: Bridge   │ Phase 3: Wedge    │ Phase 4: Close      │
+│ Pattern Interrupt │ Peer Problem List │ Micro-Value Prop  │ Interest-Based CTA  │
+│ (Permission Ask)  │ ("Rings a bell?") │ (Zero-Bot Desk)   │ (Low Friction Ask)  │
+└───────────────────┴───────────────────┴───────────────────┴─────────────────────┘
+
+
+4.1 Master Cold Call Script (Glencoco Modular Flow)
+
+Phase 1: Pattern Interrupt & Permission Opener (Seconds 0–8)
+
+Caller: "Hi [First Name], this is [Your Name] with Naplo. I know I caught you completely out of the blue here — do you mind if I take 30 seconds to share why I dialed you, and then you can decide if you want to hang up on me?"
+
+(Pause completely. Let the prospect answer. 90%+ will laugh or say "Sure, go ahead.")
+
+Phase 2: Context Bridge & Peer Problem Framing (Seconds 8–30)
+
+Caller: "Appreciate that! I specialize in working with independent [consultants / executive recruiters / qualitative researchers] in [Niche / City].
+
+Typically, when we speak with folks running their own practice, they're dealing with one of two friction points:
+
+They spend 3–5 hours every week manually typing out follow-up recaps after client calls, OR
+
+They want AI notes, but their clients reject third-party meeting bots like Otter or Fireflies joining confidential Zoom calls or phone screens.
+
+Do either of those ring a bell for you in your current setup?"
+
+Phase 3: Micro Value Proposition & Discovery (Seconds 30–60)
+
+If Prospect confirms Pain 1 or Pain 2:
+
+Caller: "Makes complete sense. That's exactly why we built Naplo. It sits quietly in your computer's system tray and records directly from your mic and system speaker — giving you instant transcriptions and follow-up email drafts in one click, with zero meeting bots ever joining the call.
+
+Local mode runs on your machine's CPU, so client audio stays 100% confidential by default.
+
+Curious — how are you currently drafting your post-call recaps for those confidential sessions today?"
+
+Phase 4: Interest-Based Closing & Low-Friction CTA (Seconds 60–90)
+
+Caller: "Got it. Look [First Name], I know you weren't expecting my call today and I'm not asking you to buy anything right now.
+
+I'm just looking for 5 practitioners to test it on ONE client call this week and give me raw feedback. It takes 30 seconds to install and includes free credits.
+
+Would you be open to taking a quick look at a 60-second video demo over email, or grabbing 5 minutes on screen share to configure it?"
+
+4.2 Segment-Specific Pitch Variations
+
+Variant A: Independent Consultants & Executive Coaches
+
+Problem Framing: "Either they're losing billable hours every evening typing client recaps, or they get client pushback the second an Otter or Fireflies bot joins a confidential coaching call."
+
+Micro Wedge: "Naplo generates client action items and recap email drafts in one click right from your system tray — no bot in the room, zero monthly subscription."
+
+Discovery Question: "When you hit 'End Call' on a confidential client session, how much time are you usually spending writing up the recap email?"
+
+Variant B: Recruiters & Executive Search
+
+Problem Framing: "Either key candidate details like comp expectations and notice periods get buried in manual notebook scribbles, or candidates get uncomfortable when a meeting bot joins a phone screen."
+
+Micro Wedge: "Naplo captures phone, video, or in-person audio locally and auto-populates candidate intake breakdowns — candidate strengths, red flags, and compensation expectations ready to paste into your ATS."
+
+Discovery Question: "How are you currently tracking compensation expectations and notice periods across back-to-back screening calls?"
+
+Variant C: UX & Qualitative Researchers
+
+Problem Framing: "Either research participants refuse to sign consent forms when third-party meeting bots join the link, or researchers spend hours scrubbing raw audio for verbatim quotes."
+
+Micro Wedge: "Naplo runs CPU-local transcription via whisper.cpp directly on your desktop — delivering paste-ready verbatim quotes and topic tags without sending participant audio to cloud bots."
+
+Discovery Question: "Have you ever had a research participant ask you to remove a recording bot from an interview session?"
+
+4.3 Glencoco Objection Handling Framework: ACR (Acknowledge, Clarify, Redirect)
+
+When facing objections, never argue or push back immediately. Use Glencoco's Acknowledge, Clarify, Redirect framework:
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                     THE GLENCOCO ACR OBJECTION MATRIX                           │
+├────────────────────────┬────────────────────────┬───────────────────────────────┤
+│ 1. ACKNOWLEDGE         │ 2. CLARIFY             │ 3. REDIRECT                   │
+│ Validate concern &     │ Ask an open question   │ Pivot back to the core        │
+│ lower prospect's guard │ to uncover context     │ "no-bot" wedge or low-risk CTA│
+└────────────────────────┴────────────────────────┴───────────────────────────────┘
+
+
+Objection 1: "I already use Otter / Fireflies / Fathom."
+
+Acknowledge: "Totally makes sense — Otter and Fireflies are great tools, and if they're working for your standard Zoom calls, you definitely shouldn't change them."
+
+Clarify: "Curious though — when you're on confidential 1-on-1s, phone screens, or coffee meetings, do clients ever ask you to remove the bot, or do you just take manual notes for those?"
+
+Redirect: "That's actually the exact blind spot we built Naplo for. We don't replace Otter for big group meetings; Naplo sits in your tray for the confidential calls Otter can't reach — no bot in the room, local privacy, and one-click recaps. Worth testing on just one call this week?"
+
+Objection 2: "Just send me an email."
+
+Acknowledge: "I can definitely do that — I know your inbox is flooded and I want to make sure I don't send generic spam."
+
+Clarify: "So I can send over the exact right template, are you doing mostly 1-on-1 client advisory calls, or back-to-back candidate phone screens?"
+
+Redirect: "Perfect. I'll send over a 60-second video demo and the specific prompt template for [consultant recaps / candidate intake]. What's the best email to reach you directly? ... Great, I'll drop that over now along with my calendar link if you want to grab 5 minutes to test it."
+
+Objection 3: "Is my client audio safe and confidential?"
+
+Acknowledge: "100% fair question — in your line of work, client confidentiality is everything, so you can't be sending raw audio to random cloud bots."
+
+Clarify: "Are your clients under strict NDA or compliance requirements where third-party servers are completely off-limits?"
+
+Redirect: "That's why we built our local-first engine. In local mode, whisper.cpp runs processing directly on your machine's CPU. Audio never leaves your computer. Cloud processing is strictly opt-in per recording. Would you be open to running our 30-second audio diagnostic to see how local mode works?"
+
+Objection 4: "I don't want another $\$15/\text{month}$ subscription."
+
+Acknowledge: "I couldn't agree more — subscription fatigue is real, and no one needs another monthly SaaS bill."
+
+Clarify: "If you only run 5 to 10 important client calls a month, does paying $\$15$ or $\$20$ every single month feel like overkill?"
+
+Redirect: "We don't charge a subscription at all. You get free local transcription forever, plus a $\$1$ welcome credit. When you top up, it's pay-as-you-go starting at $\$12$, which covers about 40 client calls and never expires. Open to trying the free signup on your next call?"
+
+Objection 5: "I'm extremely busy / I don't have time right now."
+
+Acknowledge: "I completely hear you, I caught you right in the middle of your day."
+
+Clarify: "Would it be better if I sent a 60-second quick recap to your email, or should I try you back briefly on Thursday morning?"
+
+Redirect: "Sounds great. I'll shoot over a 60-second video showing how it sits in the desktop tray. If it looks useful for saving time on recaps, we can chat then. What's your direct email?"
+
+4.4 On-Call Transition Frameworks
+
+Path A: The Direct 1-Step Setup (If Prospect is at Desktop)
+
+Caller: "Are you sitting at your computer right now by any chance?"
+
+Prospect: "Yeah, I am."
+
+Caller: "Awesome — if you have 2 minutes, open naplo.app/download. I'll stay on the phone while it installs, run a 10-second mic test, and you'll be completely configured for your next call. Sound fair?"
+
+Path B: The 2-Step Demo Booking (If Prospect is Mobile or Busy)
+
+Caller: "I know you're on the move right now. I'm not asking you to commit to anything today. Could we set up a quick 10-minute screen share on Tuesday or Wednesday morning to run through a live test and set up your prompt templates?"
+
+5. The 15-Minute Founder-Led Onboarding & Demo Script
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                     15-MINUTE CALL STRUCTURE                            │
+├───────────────────┬───────────────────┬────────────────┬────────────────┤
+│ 00:00 - 04:00     │ 04:00 - 05:00     │ 05:00 - 11:00  │ 11:00 - 15:00  │
+│ Discovery & Pain  │ Pain Mirroring    │ Live 6-Minute  │ Diagnostic     │
+│ Listening         │ & Positioning     │ Screen Demo    │ Setup & CTA    │
+└───────────────────┴───────────────────┴────────────────┴────────────────┘
+
+
+Step 1: Discovery & Listening (4 Minutes)
+
+"Thanks for hopping on! Before showing you the app, I'd love to understand your current workflow. How many client calls or screens are you running per week, and what happens immediately after you hit 'End Call'?"
+
+Key Focus: Take detailed notes on their exact language (e.g., "spent 2 hours every evening typing notes", "client asked me to remove Otter", "forgetting salary figures").
+
+Step 2: Pain Mirroring (1 Minute)
+
+"So essentially, you're spending 3–4 hours every week manually typing recap emails because you can't have a third-party bot sitting in your confidential sessions. Does that sound right?"
+
+Step 3: Interactive Screen Demo (6 Minutes)
+
+Show your screen running Naplo:
+
+Tray Native UX: Show Naplo sitting in the system tray. "Notice there is no Zoom bot or third-party meeting participant joining."
+
+Live Test Sample: Record a 20-second sample talking about a mock client decision.
+
+Instant Transcript: Show the local transcript populating in real time.
+
+Persona Template: Click the template chip "Client recap email" (or "Comp & timeline" for recruiters). Show the structured follow-up email draft.
+
+Privacy Controls: "Local mode runs entirely on your CPU via whisper.cpp—audio stays on your PC. Cloud mode is strictly opt-in per recording."
+
+Step 4: Diagnostic Onboarding & Low-Friction Close (4 Minutes)
+
+Direct the user to open their browser: "Let me make sure your desktop is configured for your next call."
+
+Guide them to naplo.app/test-recording.
+
+Verify mic/system audio permissions and local server connection (local_server_health_ok).
+
+Closing Directive: "You have $\$1$ in credit pre-loaded, which covers your first 3–4 summaries. Try it on ONE call this week. I'll drop a 15-minute follow-up invite on your calendar for next week to check how the recap email draft worked out."
+
+6. Quick Economic Reference Card (Sales & Support Desk)
+
+Use these verified economic figures during sales conversations and user inquiries:
+
+Free Local Mode: $\$0.00$ marginal cost. Unlimited local recording and CPU transcription via whisper.cpp.
+
+Typical Call Cost: $\approx \$0.30$ per typical client session (includes cloud audio transcription + summary generation + 5 AI chat questions).
+
+Welcome Structure: $\$1.00$ credit applied instantly on signup (no card required). $+\$4.00$ bonus unlocked on first pre-funded wallet top-up of $\$12.00$ or more.
+
+Top-Up Presets: $\$12$ (covers $\approx 40$ calls), $\$26$ (recommended), and $\$58$.
+
+First Purchase Value: Spending $\$12$ yields $\$16$ total wallet balance ($\approx 53$ typical calls).
+
+No Expiration: Pre-funded wallet credits never expire, and there are no recurring monthly subscription charges.
+
+
+
+Cold Call Screenplay 
+[CAMPAIGN] Cold Outreach Screenplay
+Message Validation Phase v1 [DATE]
+© 2025 Remote Sales Nation. Micah Vu. All rights reserved.
+________________________________________
+WATCH ME: Navigating the New RSN Screenplay Template 📑  | How to Perform: [INSERT AUDIO LINK]
+________________________________________
+Intro
+Hey [NAME]? Oh…Hey [NAME]… it’s..uhh… Chris over at [COMPANY]. (downswing) I know I’m an interruption… but do you mind if I grab uhh half a minute… (Up-rising) let you know exactly why I called… and then, you can let me know if it’s relevant(?)... or not?...
+
+Great… Appreciate that… And then, umm…have you heard of [COMPANY]?... Just by the off chance?...
+IF NO:
+Ahh okay… well, feel free to cut me off if it’s not in your wheelhouse…
+← IF YES, go to “All other screenplays,” - 5. Prospect knows company
+← Go down to Objection Handling for Smokescreens
+
+Main Pitch
+
+Downsell and Close
+But super simple [NAME], [HANDLE MOST COMMON OBJECTION]… and [OPTIONAL: HANDLE SECOND MOST COMMON OBJECTION]… but wanted to see if you’d be completely opposed to carving out 14… 15 mins for a coffee break style chat, just to share our lesser-known approach to [JOB FUNCTION]… do you happen to have your calendar available?
+________________________________________
+GO TO OBJECTION HANDLING
+← Use the directory
+________________________________________
+Scheduling and Post call wrap-up (Seal the Deal!)
+How to perform:  Scheduling the Meeting 📆
+Live Scheduling in Action:  Live Meeting Scheduling 🗓️
+
+Sounds good… let me see what times we have available here…. (struggle noises).... And then what time zone are you operating in?
+
+Gotcha…so…let’s see…umm…I’m not sure what tomorrow’s looking like for you but we have a [TIME SLOT] and a [TIME SLOT] available… if not we have a few slots open on [DAY AFTER TOMORROW] as well.... [THROW OUT 3-4 TIME SLOTS IF NEEDED]
+
+Okay great, [NAME], so I’ll make it easy on you… I’ll send out an email… calendar invite that way our schedules align…(mumble, as if you’re talking to yourself) let’s see I’ve got [FIRST NAME, LAST NAME]...and uhh… best email for you, [NAME]? 
+ 
+TIE DOWN:
+Great, just sent it… if you want to do me a favor and go ahead and hit accept so I know it made it to you… (!) Oh, and I know meetings and fires can pop out of the blue. If something does come up between now and our chat on [DATE], how do you want to let us know if you can’t make it? (Shut up, let them struggle)
+
+________________________________________
+ 
+Key Questions To Ask – Goal is to get as many as these as possible!
+Okay, that works, and last thing before I cut you loose here. Just so we can keep the chat short and sweet, (and it doesn’t turn into a Star Wars marathon), I know most folks like to hone in on 1 or 2 specific areas… could be anything from:
+
+1.	[FEATURE/PAIN POINT 1]
+2.	[FEATURE/PAIN POINT 2]
+3.	[FEATURE/PAIN POINT 3]
+
+But I guess what’s most relevant to what you guys are looking at, today?
+
+1.	[OPTIONAL: REQUIRED QUALIFICATION NEEDED]: EXAMPLE: Gotcha… anddd… Ball park, do you know how many subcontractors/vendors do you collect Certificates of Insurance (COIs) from? / you manage on a yearly basis? You think it’s at least 100?
+
+2.	 Authority/Role: [If not answered previously] [Name]….have to ask…are you the lucky one on the team who drew the short straw who typically dives in and researches and recommends solutions like this? (say with chuckle)
+
+-If YES: Is there anyone else who you think I should grab/hit up/loop-in for this chat? Why should you have all the fun?!
+-If NO: Gotcha…ok…mind pointing me in the right direction for who conducts the taste-tests for this kind of compliance programs over there?
+
+3.	Timing: And last thing, [Name]…if you decide to get things cracking with some sort of extra [PRODUCT/SERVICE] firepower, you looking to get that going yesterday… today… tomorrow… Q1 of next year?...(when?…you’re looking for a timeframe here)
+
+4.	Budget: And last thing here and I’ll cut you loose… Do you all typically earmark budgets for these types of programs? Or is it a search between the couch cushions kind of thing?... more ad hoc…?
+
+Other Great Questions to ask:
+1.	Have you guys explored any [PRODUCT/SERIVCE] tools recently? Who? [LIST COMPETITORS FOR REFERENCE]
+2.	Who are you guys leveraging currently?
+3.	Got it and are you married to them for a few years or more on an annual contract? When is that up? 
+4.	Now we can agree not everyone is perfect, is there something they’re maybe firing off at like a 6 or 7 out of 10? Or are you looking to move the needle forward on something specific? I know a lot of folks have changed their [PRODUCT/SERVICE] post-covid / in the last 36 months.., I know we have.
+
+End the call:
+Great, well that’s all I got for you [NAME]… anything else before I let you get back to it? Sounds good - Look forward to chatting on [DATE] at [TIME] until then stay safe… talk then. Bye.
+________________________________________
+Expansion/Credibility Riffs (Optional)
+1.	[LIST RIFFS]
+________________________________________
+Objection Handling
+Beginning of Call
+1.	I’m busy
+2.	Who are you?
+3.	No interest (quick)
+4.	Wrong person/DNC
+Later in Call
+1.	No Interest / All set
+2.	Send Info
+3.	Timing/Budget
+4.	Not Me
+5.	Tell Me More
+________________________________________
+Beginning of Call
+I’m Busy
+How to perform: Handling Busy Prospects Effectively
+
+“I’m in a meeting” or “I’m busy” or “I’m driving” or “now’s not a good time” or ANY intro excuse:
+Gotcha, no worries - I’ll catch you later. When’s a better time to buzz you back?
+
+*Take note of why they couldn’t take the call, and use that in your follow-up intro the next time you call them. Relevance showing respect for their time may warm them up on the next convo.
+
+
+[EXCUSE] + Just send me an email:
+For sure, I’ll send you a note and catch you later. Thanks, bye.
+
+*It doesn’t really matter if you send them an email or not - 90% of the time, they won’t read it. However, you can use the Follow-up intro that implies you send them a note per their request.
+
+
+I prefer email / Linkedin: 
+Gotcha ok no worries… from now on I’ll be sure to go through email/linkedin… But I may not ever have to bug again if it’s not relevant… do you MIND if I quickly tell you why I call, and you can tell me if it’s just not in your wheelhouse?
+
+________________________________________
+
+Who are you?
+How to perform: Mastering the "Who Are You?" Question 📞
+
+Who is this? / Who? / Who are you with? / Where are you calling from?:
+Yeah… again, Micah from [COMPANY]... not sure if that rings any bells, but [CONTINUE PITCH]
+
+How did you get my contact info / personal cell?: 
+*Adjust tonality to mirror the prospect’s energy
+Yeah, my director gave it to me / slid it across my desk… My guess is he found it on LinkedIn or something… thought this could be relevant to you… [CONTINUE PITCH]
+
+Is this a cold/sales call / solicitation?:
+Option 1: No, a little different, [CONTINUE PITCH]
+Option 2: No, (chuckle) they would let me sell anything even if I tried (chuckle)… more of an intro call… [CONTINUE PITCH]
+Option 3: No, more of an intro call… [CONTINUE PITCH]
+
+Why are you calling me? / What is this about?:
+*match their tonality, go more negative!
+Yeah… [CONTINUE PITCH]
+
+________________________________________
+
+Not Interested (Quick)
+How to perform: Quick No Interest
+
+Hey, I’m not interested / we’re all set:
+*Don’t actually take them off your list.
+For sure… I’ll take you off the list here - do you mind if I grab half a minute to see if it’s even relevant?...
+
+I don’t take sales calls:
+Gotcha, not selling anything… [CONTINUE PITCH]
+
+We are not making any changes right now / we don’t have budgets / Not evaluating solutions right now:
+Gotcha… not looking (to change anything) (take up budgets) (sell anything)... [CONTINUE PITCH]
+
+________________________________________
+
+I’m not a decision maker / too low level:
+*verify > get referral
+How to perform: Handling a quick "I'm not a DM"
+Gotcha… so just to make sure… you don’t handle anything around [JOB FUNCTION]?...
+
+No I don’t: 
+Gotcha… well in that case I’ll mark you down here… and… uh… I know it may be a longshot… but do you know who… the.. BEST. person would be to handle something like this?  —  Sweet - and what a good number to reach them?...
+
+Actually yes, I do: 
+Gotcha… well in that case, I’m not sure if this would be relevant but… [CONTINUE PITCH]
+
+________________________________________
+Wrong Person / DNC
+This is not [NAME] / You got the wrong number:
+*Use your dog fighting skills to find the right person if possible
+How to perform: Handling wrong person
+Oh shoot… sorry about that, did I even call [COMPANY NAME]?
+
+Yes: Oh ok… maybe I got my wires crossed… Was looking for [NAME] in [DEPARTMENT]... 
+Option 1: Are you able to connect me?
+Option 2: Do you have their contact info?
+Option 3: Do you know who took over for them as [TITLE]?
+No: 
+Ok… sorry about that… [END CALL]
+
+
+Retired/I no longer work there:
+Ohh gotcha… sounds like I’m late to the party (chuckle)... in that case do you know who might have taken your place back at [COMPANY]? Gotcha, and just so I know do you even handle [JOB FUNCTION] at your current spot?
+
+This is my personal cell: 
+How to perform: How to handle "This is my personal cell"
+Ohh sorry about that… I can go ahead and take this number off the docket so we don’t keep bugging you… and uhh I actually might not have to call you ever again if it’s not relevant… does [COMPANY] ring a bell? [CONTINUE PITCH]
+
+I don’t take cold/business calls on my personal cell / call me on my work phone: 
+How to perform: Handling "I don't take work calls on my cell..."
+Gotcha, no worries I’ll mark you down here then so we don’t keep buggin ya… and uhh what’s a better business line for you?... ok that works... I can call you there… but maybe I won’t have to bug you ever again if it’s not relevant - do you mind if I grab 10 seconds here and you can let me know if this is even in your wheelhouse?
+
+Do not call this number / take me off your list: 
+*Legally we have to put them on our Do Not Call (DNC) list, typically best not to fight here
+
+________________________________________
+Later in Call
+
+No Interest/All Set
+“I’m not interested.”
+How to perform:Handling "No interest" after the pitch
+No worries - in that case I’ll go ahead and take you off the docket here… and if you don’t mind me asking, does [JOB FUNCTION] even fall at your feet, or am I barking up the wrong tree?
+
+(If YES) Gotcha, and do you already have something in place or is this just not a priority? 
+OR
+Okay, and are you guys even [QUALIFYING CRITERIA]?
+
+Gotcha, well like I said, we’re not a fit for every team, but I do know we’ve been able to reduce some of the headache and money pits on the [PAIN POINT/JOB FUNCTION] front. Do you think it’d be a ridiculous idea to at least share some of that, and then from there you can keep us in the back pocket for down the road?...
+
+We are using another [SOLUTION] already / we do this in-house:
+How to perform: "We are already using [SOLUTION]"
+Option 1: Gotcha, well don’t want to rip and replace what’s already working… 
+Option 2: Gotcha, well sounds like you're pretty well covered on all your bases…
+I’ll throw this out at you - feel free to take it or leave it... I know a lot of folks like to take these preliminary intro calls just to compare apples to apples and then keep us in the back pocket for down the road. But up to you, would it be a ridiculous idea to loop up just to share some of that… say… next tuesday?
+
+We have a [SOLUTION] in place already” / "Our current solution is working fine."
+How to perform: [TBD]
+Oh ok, gotcha, yeah don’t want to change anything if you guys are already covered…
+Nice! Who are you guys using if you don’t mind me asking? - Those guys are awesome…well let me ask you this [NAME], you and I can agree that nobody’s perfect, right?
+Well again, I’m sure [COMPETITOR] is rock solid. Probably a 10/10 in their [FEATURE 1], a 10/10 in their [FEATURE 2]… but, you know, if you had to rate them a 8.7 or 9.2 out of 10 in one area, I guess what would that be?
+
+[FEATURE]?... that’s interesting… How come? (dig for pain here)... Well in that case [NAME] I actually recommend you at least take the intro chat with us, that way you can have us in your back pocket for down the road when it’s time to kick the tires on other [SOLUTIONS]… you game to loop up… say next Tuesday?
+
+"[PAIN POINT] isn’t a top priority right now."
+How to perform: [TBD]
+Gotcha - well I don’t want to waste your time [NAME] (and I can probably scratch you off the list here)... I will mention this… feel free to take it or leave it… Especially with the increasing [CHANGE IN THE WORLD], a lot of folks actually like to take a peek at us just to keep us as a lifeline in the back pocket, to save them from potential [PAIN POINT] headaches and penalties (down the road)… but it’s up to you, would it be a ridiculous idea to share some of that … say… next Tuesday?
+________________________________________
+No need / too small:
+Gotcha, I will say this, our service was actually designed for smaller businesses in mind. We allow folks to get features typically only for large companies at a fraction of the cost. But again we're not a fit for every kind of team, that's exactly why we have these preliminary intro chats via teams just to share some of that... Game to loop up… tomorrow afternoon.
+
+Not looking to purchase:
+Well, I’ll throw this out at you, these chats via zoom aren’t really to make you buy this or buy that - so keep the wallet at home - But it’s more of a way for us to loop up and (re)introduce ourselves, then you can keep us in the rolodex for when the 1000 pound [JOB FUNCTION] gorilla shows up… hopefully never… haha… but yeah you game to get connected… say… Thursday?
+
+________________________________________
+
+Send Info
+Send me an email:
+Absolutely - what’s the best email for you?
+ 
+Gotcha and I’ve got a whole farmstead worth of content I can send over… anything from
+ 
+-	[FEATURE/PAIN POINT 1]
+-	[FEATURE/PAIN POINT 2]
+-	[FEATURE/PAIN POINT 3]
+ 
+But obviously I’m not gonna clog your throat with 20 white papers. I guess what’s most relevant to what you guys are looking at today?
+
+^RE-CLOSE: 
+Ok! Well I’ll send that over - oh and last thing… I know a lot of folks, LIKE to do these intro chats in tandem with the email because sometimes it can create more questions than answers… I’ll definitely send the email, and would you be against one of those intro chats as well?...
+
+
+“Send me an email/invite and I’ll forward it to the team” (close): 
+Ok [NAME] that works, to make it easy, I’ll forward some info also with my director’s calendar… and how it works is I pencil in a time and once your team has it, they can either confirm or request a new time so we don’t have to go back and forth…  
+
+
+________________________________________
+
+Timing/Budget
+
+“I don’t have the budget.” / Timing if off
+That’s fine. Look, um…I wouldn’t expect anything to happen that quickly if we met anyway.
+As you know, it’s not…(chuckle) the way it happens in this business (slowly); it takes some cycles for sure (faster). 
+BUT… that’s exactly why we host these virtual tours, just to showcase the dashboards in action, then from there, you can keep us in the back pocket when the 1000 lb [PAIN POINT] gorilla shows up… but up to you… would it be a ridiculous idea to loop up for 15 mins… say… next Tuesday?
+
+Bad time: 
+How to perform: [TBD]
+That’s fine. Look, um…I wouldn’t expect anything to happen that quickly if we met anyway.
+
+As you know, it’s not…(chuckle) the way it happens in this business (slowly); it takes some cycles for sure (faster).
+
+But that’s kind of why we have these more preliminary intro chat, just to get connected, then down the road, when it is time to kick the tires on [SOLUTION] or some extra [JOB FUNCTION] firepower, hopefully we’re at the top of your shortlist… But obviously it’s up to you - would it be a ridiculous idea to loop up… say… next Tuesday?…
+(Pause)
+Um…let’s see…ah… (slow down and mumble and talk to yourself as if looking over your BUSY schedule as you try to find )…You a morning person?...(Pause)…How’s your Wednesday look?
+
+We are in contract:
+*Make sure it’s a direct competitor. Do not book the meeting if they are outside the timeline qualification criteria
+How to perform: [TBD]
+Gotcha… well I don’t want to waste your time… how long do you have left with them?... That makes sense… well I’ll throw this out at you, feel free to take it or leave it… I know a lot of folks like to take these preliminary intro chats just to see what’s on the horizon… and then from their know what options they have for down the line… but up to you, would it be a ridiculous idea to loop up for 15 mins… say… next Tuesday?...
+
+“I’m in the middle of something, can you call me back later…” (post-pitch): 
+Yeah, no worries - well that’s exactly why I'm calling now just to set up a better time obviously when I’m not ambushing you/catching you out of the blue… What’s a better day to loop up for 15 mins?
+________________________________________
+Not me
+*Essentially verify that it’s really not them, and either reask or get the referral
+
+If you 100% know they don’t handle this:
+Gotcha, no worries then, in that case [NAME], I’ll go ahead and mark you down here so we don’t keep bugging you… and in your opinion, who do you think the… BEST… person would be to talk to about something like this?...
+
+If you’re not sure if it’s really not them: Okay, got it [NAME], I don’t want to waste your time - even if you were to take a peek at something like this, and brought it back to the mothership, would they put any weight on your word? Or is it like, “[NAME]. Stay in your swim lane and let us handle this…”? (test their ego) 
+
+If “still not me”: Gotcha, no worries then, in that case [NAME], I’ll go ahead and take you off the docket here… and uhh it may be a longshot, but do you know who… the… BEST person would be to talk to about something like this?...
+
+(If you think it’s still worth the meeting): Gotcha, well in that case [NAME], that’s exactly why we reached out to you because you’re on the frontlines living this every day… again, we’re not a fit for every team, but do you think it’d be a ridiculous idea to share some of that with you, say… next Tuesday?
+________________________________________
+We got acquired / Corporate handles this / I’m in a different department:
+Ohh gotcha… in that case I don’t want to waste your time… do you know who the… BEST person would be to talk to about something like this?
+
+You have to go through procurement / RFP:
+Gotcha - well I’ll take you off the docket here… just to be clear even if you were to take a peek at [SOLUTION], would it just NOT make sense for you to bring it up the totem pole?... [REASK or CONCLUDE]
+
+________________________________________
+
+Tell Me More
+
+“Tell Me More” Ambush Response (first question they ask):
+How to perform: [TBD]
+Hey look…I am a “Day 5” analyst here (chuckle)…if I start getting into [SOLUTION] mechanics, I’m going to confuse everybody (chuckle). But that’s exactly why we host these more preliminary intro chats via [ZOOM/TEAMS] just to share the high level and answer any questions…
+
+BUT listen… I’m going well beyond my half minute now…and…we’ve learned the hard way (wistfully) that an “ambush” conversation (chuckle) like this isn’t a fair setting to talk about something this important…(pause) so…are you a morning person?...
+
+“Tell Me More” Ambush Response (2+ questions asked by prospect):
+Good question [NAME], (wistfully) we learned the hard way that an ambush conversation like this typically isn’t a fair setting to talk about something this important.. But that’s exactly why we host these brief intro chats via [ZOOM/TEAMS] just to share the high level and answer any question… So yeah… you a morning person?
+________________________________________ 
+Big Idea Examples 
+Cold Call Big Idea Examples
+© 2025 Glecoco Inc. Micah Vu - All rights reserved.
+________________________________________
+Cybersecurity Example:
+Main Pitch
+Status Thumbnail: 
+But, quick overview… Defensive Networks, WE. ARE. currently trusted by over 1,400 companies and 87 of the Fortune 1,000 to secure their environment, think Amazon, Walt Disney, Google… (Fiserv, GE, Dupont just to name a few)
+
+Change In the World: 
+And, so the reason I pinged YOU,......... and as you probably know. 92% of attacks happen at the identity level….with email being a MASSIVE focal point of these breaches.
+
+And so what we’ve discovered with our partner Abnormal Security…..Is that most well-meaning organizations look at stopping these attacks by relying on basic authentication markers. Think…….. SPF, DKIM, DMARC…. Its….sort of the equivalent of uh bringing a leather helmet to play in a 2025 NFL-speed football game… if you will (chuckle)
+
+Abnormal UVP: 
+So to cut to it… really where Abnormal Security shines is working at the root level - THE CAUSE of these breaches……..focusing on behavioral analysis through 47,000 different signals…
+
+Optional Service Rundown:
+BUT outside of that …. besides Email…. (through our strategic partnerships)….. we also help in other areas such as ZeroTrust, Cloud Native Security…uh… Hyperscale, and Consulting… just to name a few…
+
+IT MSSP Example: 
+Status Thumbnail: (fast then medium speed after CIO’s)
+Quick background on Nopal…We are a team of Ex-CISO’s.. And… uh-CIO’s, (say quickly) that come from defending the High Stakes Legal and Compliance space,.... and we recently won The Cyber Security Excellence Award’s… Best Integrated Security Platform of 2025 …
+
+Change In the World: (slow for dramatic effect)
+So, this gives us more of a unique perspective on the current Cyber War (uptone)… where (insert job title’s) are forced to adapt to the pressure of new threats… keeping up regulatory changes... and not to mention the volatile nature of cyber insurance… And, so we’ve seen this be (drag word)… a recipe for blindspots (sliding downtone).
+
+Nopal UVP: (medium speed say with power and authority)
+So, in response…. Nopal…. we are a 360 degree tech-agnostic security services firm, that assumes the posture that… you’ve already been breached… THEN we reverse engineer the battle plan to stay out of a crisis BEFORE you even have one.
+
+Optional Service Rundown: (say fast)
+A feeww.. areas we impact the most.. are MXDR, SOC, Crisis Simulation, Advisory, Compliance, as well as pen-testing to name a few…
+
+________________________________________
+
+Nascar Sponsorship Example:
+Status alignment 2: So Kaulig Racing… we are multi-car, multi-series NASCAR Team… we’re now at 19 total xfinity wins and ONE coveted cup series win… so we’re definitely a rising player in the arena…
+
+Main Pitch 1 (serendipity):  So reason for the outreach is our race team president, Chris Rice, just gave the green light to vet out a couple more sponsors for next year's NASCAR circuit and and though you guys over at [COMPANY] would be a fun partner this season…
+
+________________________________________
+
+
+HR SoftwareExample:
+Main Pitch 1 (HR): So, Multiplier, we plant our flag in the multi-country employee management world… and what that means to us is we are able to take the international employment headaches like country specific benefits and insurance… you know… onboarding MSAs, and, and even local labor law compliance and instead take that burden from HR teams so they can focus on onboarding and managing great talent at scale.
+
+Main Pitch 2 (Talent Acquisition): So, Multiplier, we plant our flag in the global talent recruitment world… and what that means to us is we are able to bypass the traditional cross border barriers like having to set up local entities and foreign bank accounts, or even complying with local tax laws and instead take that burden from talent acquisition teams so they can focus on sourcing and onboarding great talent at scale.
+
+Main Pitch 3.1 (Payroll): So, 10 second thumbnail, and cut me off if it’s not in your wheelhouse [NAME] - but Multiplier, I believe we’ve discovered a real breakthrough that completely eliminates the waste and frustration that keeps your best Payroll folks from effectively processing taxes, invoices, and payments, especially for multi-country teams.
+
+SEO/Marketing Agency Example:
+Macro: Ok, so let me give you the high-level, big idea and see if this is even in the neighborhood of your world…and then…um…I can cut you loose. (pause) So today…um…specifically in Search, um…in setting out all the “honey pots” and adjusting all the levers for the acquisition of leads for your business, you HAVE to be at the top of the page…there is just no other way. And lots of experts and web conferences will tell you to focus on what um…maybe is broken vs focusing on the main thing that prevents the top rank – the competition. It’s a different mindset that most folks will tell you. 
+
+And traditional SEO consulting firms usually rely on a few outdated tactics and “duct tape” quick fixes that can do more harm than good. It's no longer enough to just stuff keywords into your website or build a bunch of low-quality backlinks. We see all the time how teams sometimes stumble into using some of these “black hat SEO schemes” that can get your website penalized or even banned from search engine results pages.
+
+And, um…some of the new advancements in technology, such as voice search and artificial intelligence, have also changed the way users interact with search engines. Look at ChatGPT…and with more and more people using voice assistants like Siri and Alexa, optimizing for voice search has become essential.
+
+Wealth Development Example:
+So…um…[Name] … lots of folks we speak with still may have some capital gains liabilities(?) lurking on the horizon from the sale of a either uh…a business, um…property, stock, crypto or other investments…and um… at Caliber, where I’m calling from… (uprising) we’ve discovered a real <breakthrough> in showing some new ways of deferring paying the taxes on those 2023 capital gains…… um…until the end of 2027…um…and all the while still earning an investment return on your deferred tax along the way…compared to your traditional 1031’s (pause) so… ultimately … we plant our flag… really in the Qualified Opportunity Zone world.
+________________________________________
+
+Business Brokerage / M&A Example:
+Cool — so the big idea here is super simple…We work with founders — usually doing somewhere between $500K and $20 million in revenue — who are quietly thinking about selling their business. Not tomorrow… but maybe in the next year or two.
+
+And what we’ve found is… most folks don’t have a clear, objective view of what their business is actually worth……or they’re getting random lowball offers from brokers or buyers that just don’t pass the sniff test.
+
+So, what we do is flip the power dynamic a bit. Rather than reacting to inbound offers or dancing with mystery buyers… we help position, package, and market the business in a way that gets you in front of serious buyers — private equity, strategic, high-net-worth folks — who actually have the capital and the urgency.
+(pause)
+Our deals tend to close higher than industry average — and faster — because we treat this like a proper exit, not a Craigslist post.
+
+________________________________________
+
+Investor Relations Example:
+Macro Option 1: IBN in a nutshell…we’ve partnered up with over 500 PR and corporate communications groups… And the big idea, [NAME] Over the last 18 years…working with the most robust post-IPO juggernauts - in BioTech, EV, and even Robotics…we’ve really discovered a breakthrough in how to completely eliminate the waste and mystery when it comes to developing a multi-channel investor content strategy… with the sole purpose of driving trade volume……and that’s exactly how we’ve keep a shareholder engagement rate of over 92%.... so we rocked the boat a little bit..
+
+Now, not saying we’d be a snug fit, but wanted to see if you’d be completely opposed to carving out 15 mins on the docket just to share how we’ve been able to help other small and micro-cap CFO’s increase company share value… At best, you’ll walk away from the call learning something new… Do you happen to have your calendar available? You a morning person?
+
+
+________________________________________
+
+Capital Fundraising Example:
+John, this is Micah from intersection capital. Was just emailing you. Thought I’d catch you by phone… Make sure this is a match for your portfolio before I send it over.
+
+Main Pitch: (No need to build value, You want to be in like 2 mins “Hey. Thad. Chop chop. Let’s move along.”)
+75 million dollars under contract… bp, ge, catapillar, Samsung, Toshiba, Becktel …  will be 25 million in revenue this year… 3.5 and a half million dollars in adjusted EBITDA. we’re putting it into growth mode… I feel like it’s a fit for your portfolio… reason I wanted to call, in addition to email, got a 20 million dollar anchor in the financing… looking for some participants in a 20 million dollar add on… Wanted to call cuz it wasn’t clear if you guys can participate in a super clean, super high quality, income generating deal or just early stage hyper tech…
+
+The company has strong fundamentals… you know and isn’t trying to grow 300% year over year… do you have a thesis in strong fundamental software? Or really you’re just looking for pure pure hyperventure?
+
+________________________________________
+
+3rd Party Logistics Example:
+But quick thumbnail, Manifest, we’ve been providing smart logistics and fulfillment for brands like Wholes Foods, Bala Bengals, and even Bill Murray’s Apparel Company - like THE Bill Murray from Ghostbuster (chuckle)....
+
+And so.. reason for my call [NAME], over the past 18 months…. lot of the brands we’ve been speaking with have been more frequently running into rising logistics costs whether that’s because of the tariffsss…or the China de minimus exemption closin’ up… OR they’re seeing their customer experience getting bogged down by delayed shipments, inventory mismanagement or even processing returns… 
+
+And so to cut to it, we are a (Third Wave) 3PL Partner that’s baked a TON of tech and AI into modernizing the fulfillment process - not just for the sake of it - but with the sole purpose of aggressively driving down costs for our clients - And that’s exactly why we haven’t lost a single brand in the last 4 years… pretty crazy in this space…
+
+
+________________________________________
+
+Unified Communications as a Service (UCaaS) Example:
+Um…so really simple, [NAME]: Nextiva… um…we plant our flag in the “modern company communications world” um…and what that means to us we’re able to turn your teams’ desk phones …and laptops…tablets…and, and…their smartphones (up-rising) into “mobile offices” (down-inflection)…so this is where chat, email, and… video conferencing (up-rising), all can come together under a single pane of glass (down inflection)…so - a really nice, snug fit…and of course gives folks 24/7 access anywhere really (quickly)…whether they’re staying remote (up-rising)… or… if uh everyone’s back on-prem - uh, in the office - (stammer a bit) we’ve got a pretty broad array of toolsets, uh, for both sides of the fence.
+
+
+________________________________________
+
+
+Digital Scanning Software Example:
+Ok... so um at ScanOptics we live in the Digital Document... uh microfilm, um secure
+scanning world (uprising)...(quickly) - um... and um I'm sure you already have some
+flavor of a “scanning or digital transformation” program in use over there already - um
+like a bunch of scanners in the corner or uploading docs to a server one by one,
+maybe... all solid pieces of the puzzle, by the way, [name)... BUT... the reason for my
+call is that we think we have discovered a real breakthrough that finally addresses a lot
+of the uh...confusion... and um... white noise... around all this statutory compliance on
+these new legislations with personnel data and records um... like the DATA Act and the
+Affordable Care Act.,
+And um... and for a lot of folks we chat with, the armies of file cabinets seem to be
+multiplying vs shrinking that footprint and they’re just looking for someone to “make the
+bad man stop.” (chuckle)
+So specifically... to get right to it... [name], we leverage the power of AI and Machine
+Learning to do a lot of the heavy lifting in locking down any sensitive documents that are
+emailed, stored, scanned, and sent out. Um... we do this for the State of CT
+Department of Revenue, the NBA, um... and dozens of social administrations for their
+Section 8 housing... and um a lot of police departments around the country.
+
+Like we have a large police department in the Midwest who we just finished
+securely scanning and sorting the list of all their new applicants, um... their confidential
+informants... and their sex offenders. This is all stuff - as i’m sure you know
+- that just can’t continue to live on paper.
+
+________________________________________
+
+Accounts Payable (AP) Recovery Example:
+Optional Status Alignment 1: …over the last 2 decades, we’ve been the Accounts Payable Recovery partner for folks like Starbucks, DHL, even Vistaprint…TATA Steel, FootLocker
+
+
+Main Pitch 1: And so big idea, we LIVE in the 3rd party external auditing world. Now I’m sure you guys have done financial audits in the past, but where our breakthrough lies is in our 450 AI algorithms that automatically detect and recover payment inaccuracies across AP processes, VAT, and vendor balance reconciliation. 
+
+Optional Expansion Riff:
+And so to cut to it, why we've had so many raving enterprise fans is actually don’t charge you a dime until you get the recovered funds. And on top of that, because our compliant and ERP agnostic system does all the heavy lifting, you don’t have to break your back to find those lost shekels… We will haha…
+
+But to cut to it - why so many auditors and finance folks are raving fans is we don’t charge a dime until you get the recovered funds AND a big thing is it doesn’t take away from your other priorities because we do all the heavy lifting… it’s kinda like sending out a search party to hunt for the sabre tooth tiger while you and your team keep building huts in the village…
+
+
+________________________________________
+
+Governance Risk and Compliance Example: 
+Optional Status Alignment: 
+But.. ZenGRC (EMPHASIS, plant your flag), we’re… actually… the first ever GRC company to win ISACA’s (eye-saw-cah) Global Innovation Award… 
+
+Big Idea:
+And so… really the reason I reached out to you is… we believe we’ve discovered a real breakthrough IN GRC automation (^)(Slight pause) that completely eliminates the waste and frustration that keeps your company/organizational compliance from being a resource black hole, especially with all the new regulations and updates being released constantly… BUT.. you know… the goal is to do it in a way that’s simple… and then just bolts on nicely to whatever process or frameworks you already have to adhere to - you know whether that's…umm (pick 3) NIST, PCI, ISO, SOC, … you name it…
+Healthcare: HIPAA, HITRUST
+EDU: GLBA, Title 4
+GOV contracts: FedRAMP, CMMC (for DoD) 
+ 
+All Other Screenplays 
+Every Script But the Cold Call
+© 2025 Remote Sales Nation. Micah Vu. All rights reserved.
+________________________________________
+1.	Gatekeeper/Front Desk
+2.	Robo Screeners
+3.	Inbound call intro
+4.	Follow up intros
+5.	Prospect knows company
+6.	3-way Intro Text
+7.	Reschedule Screenplay
+8.	Flip (reminder) activities
+9.	Warm handoff
+________________________________________
+Gatekeeper/Front Desk
+How to perform:  Navigating Gatekeepers on Calls 📞
+
+Thanks for calling [COMPANY], how may I help you?
+(hello) - yeah… looking for [FIRST NAME] (upswing), [LAST NAME] (downswing)... thank you.
+
+Can I tell them who’s calling?:
+Yeah, let them know it’s Micah (upswing), Vu (downswing)... thank you.
+
+Okay, what is this call regarding?:
+(frustrated) They should know. Are you able to connect me?!
+
+
+If you have to hunt for the right person:
+How to perform: How to hunt past gatekeeper
+Hey, how's it going (quickly)… um…Name’s Micah…uhh…I might have got my wires crossed here, maybe you can help me out… Do you know who handles [JOB FUNCTION] for [COMPANY]?
+
+________________________________________
+AI Call Assistant / Robo Screener
+How to perform:Getting past the robo screener
+Option 1 (formal): Hi, I’m a Google Voice assistant recording this call for the person you’re trying to reach. Can I ask what this call is about?
+Yeah, Micah with [COMPANY].
+
+“Ok, can you tell me a little more about why you’re calling?”
+Looking for [FIRST NAME, LAST NAME]...
+
+
+Option 2 (dummy up): Hi, I’m a Google Voice assistant recording this call for the person you’re trying to reach. Can I ask what this call is about?
+Uhh… connect….
+
+“Ok, can you tell me a little more about why you’re calling?”
+(pause)....Yeah… uhh connect…
+
+*Any other robo screeners (nomorobo, allstate, etc) it’s typically best to skip because they eat up too much time.
+________________________________________
+
+Inbound Call
+If you have inbound calls set up via glencoco (see Glencoco help center for instructions), you will receive callback on your mobile device. As soon as a call comes in, you’ll receive a text with the inbound contact’s details EXAMPLE: 
+
+How to perform:Inbound Call.m4a
+Hello?
+
+[“yeah returning your call” / “I got a missed call from you”]
+
+Oh yeah, this is uhh… [NAME], right?
+
+[YES]
+
+Gotcha yeah! Thanks for buzzing back [NAME], uhh name’s Micah… I’m over here at [COMPANY]. Not sure if it was relevant but wanted to run an idea by you… does [COMPANY] ring a bell?
+
+[NO]
+
+Hmm Gotcha, then… real quick - I’ll give you the 10 second thumbnail and feel free to cut me off if it’s not in your wheelhouse… - [GO INTO PITCH]
+________________________________________
+
+Follow-Up Intros
+How to perform: Effective Follow-Up Intros
+Variation 1 (previous “bad time”): Hey [NAME], This is Micah at [COMPANY]. I know we had a brief conversation on [DATE] and you were [In a meeting/last interaction] and [asked me to call back/wanted to follow through]. Is now a better time?
+
+Variation 2 (email sent): Hey [NAME], This is Micah at [COMPANY]. Super quick not sure if you had a chance to check out the email we sent around XYZ. But outside of that, I wanted to see if you’d be completely against a brief intro chat via zoom… as well… just to get acquainted? Say maybe… tomorrow afternoon?
+
+Variation 3 (previous “timing is off”): Hey [NAME], This is Micah at [COMPANY]. I know we had a brief conversation on [DATE]  around X, Y, Z and you said the timing wasn’t quite right and to circle back around this time. Wanted to see if it’d be a completely ridiculous idea to carve out 14… 15 min for a coffee break style chat, just to reconnect and share what’s new on our end… you game?
+
+Variation 4 (referral): Hey [NAME], This is Micah at [COMPANY]. [REFERRER] told me to darken your door so blame them for the interruption (chuckle) - but do you mind if I grab half a minute, tell you why I called?... then I can let you get back to it?...
+________________________________________
+
+Prospect knows company
+How to perform: Ecosystem pitch (they know your company)
+After intro:
+Great… Appreciate that… And then, umm…have you heard of [COMPANY]?... Just by the off chance?...
+If YES:
+(Oh where, From…?)
+
+Gotcha, in that case, did you want the 10 second refresher [GO TO MAIN PITCH]? Or can I just cut to the chase?
+
+Sweet - so yeah, the reason for the call is we’ve come out with some changes and updates on our end, especially around [FEATURES] approaches… and so what we’re doing NOW is circling with folks in our ecosystem, just to share some of that [OR BENEFITS] - and then from there… see if we can lend a hand to any future projects you and the folks might be working on… most likely down the road… so yeah.. You game to loop up say… next Tuesday?
+
+________________________________________
+
+Three-way Intro Text
+How to perform: Three-way text intro
+*Increases show rates by 15-30%. Must have AEs phone number) Immediately after sending out booked meeting calendar invites, set up a group chat with the [CAMPAIGN’s] company logo as the profile pic titled (prospect name) & (campaign company name) - Then send this text:
+
+Text Template: Hi [AE NAME], I’d like to introduce you to [PROSPECT NAME]. His/Her demo with you is [DATE] at [TIME].
+
+COPY AND PASTE: Hi , I’d like to introduce you to . His demo with you is on  at .
+
+________________________________________
+
+Reschedule Call
+How to perform: Reschedule Call
+
+Hi [NAME], this is Mark at [COMPANY] Hey..uh.. I saw that we didn’t connect as planned yesterday to talk about the [SERVICE/NEED], maybe a fire or meeting came up for you… so just calling to see if we can get this back on the docket… Do you have any open slots for later tomorrow or [DAY AFTER]?…
+
+________________________________________
+
+24hr Flip (Reminder)
+*This needs to be said in one sentence to be effective and not take their time and irritate them. It's a quick 3 second line. The incorporation of serendipity gives a valid reason for the call rather than a “dentist reminder” vibe. - the goal is to get them NOT to pick up and leave a voicemail, that way it’s the first thing they hear the next morning.
+________________________________________
+How to perform: Mastering the Flip Call Strategy 📞
+24hr Call/VM: Hi [NAME], this is Mark from [COMPANY]. Hey just a heads up for our call tomorrow at [TIME], we are good to go but [REP] may be on the hook wrapping a client onboarding - so he may be 1-2 mins late. So if he is, just hang out on the call bridge for a sec, and he’ll be there shortly. If a fire pops up for you, just text me and we can juggle some things around. (Fair?) Great/Outside of that, look forward to chatting tomorrow, until then stay safe.
+ 
+Or
+
+Hi [NAME], this is Mark from [COMPANY]. Just a friendly reminder of our call tomorrow at [TIME] - [REP] may be 1-2 mins late wrapping up a client onboarding, but we’ll be there. Look forward to chatting then. Take care.
+
+24hr Flip Text (send if VM not left):
+Hey [PROSPECT NAME], it’s Micah from [COMPANY] - just a heads up for our chat at 10:30AM ET tmrw - we are good to go but [AE] may be on the hook wrapping a client onboarding - so he/she may be 1-2 mins late. So if he/she is, just hang out on the [Zoom/Teams] bridge for a sec, and he’ll/she’ll be there shortly. If a fire pops up for you, just text me and we can juggle some things around. Outside of that, look forward to chatting tomorrow - Micah
+
+24hr Flip Text COPY AND PASTE:
+Hey , it’s  from - just a heads up for our chat at  tmrw - we are good to go but  may be on the hook wrapping a client onboarding - so he may be 1-2 mins late. So if he is, just hang out on the  bridge for a sec, and  be there shortly. If a fire pops up for you, just text me and we can juggle some things around. Outside of that, look forward to chatting tomorrow - 
+
+24hr Call/VM (VA version 1): Hi [NAME], this is John, Micah’s assistant from [COMPANY]. Just a heads up for our call tomorrow at [TIME], we are good to go but [REP], our director, may be on the hook wrapping a client onboarding - so he may be 1-2 mins late. So if he is, just hang out on the call bridge for a sec, and he’ll be there shortly. If a fire pops up for you, just give me a buzz and we can juggle some things around. (Fair?) Great/Outside of that, look forward to chatting tomorrow, until then stay safe.
+
+24hr Call/VM (VA version 1): Hi [NAME], this is John, Micah’s assistant from [COMPANY]. Just a heads up for our call tomorrow at [TIME], Micah’s was double booked, but he caught me up with your conversation with him the other day, and I’ll be able to intro you to our director Jose for a productive conversation tomorrow. Outside of that we are good to go on our end and if any fires pop up, feel free to buzz me here or reply via the calendar invite. Sound good? Great/Outside of that, look forward to chatting tomorrow, until then stay safe.
+________________________________________
+
+10-min Flip (Reminder)
+*This is another tactic to massively increase your show rates and save the AEs time as well. 10 mins prior to the scheduled time, you’re going to hit the prospect on all channels to make sure they show up, or at the very least request to reschedule. Do this instead of, or with the 24hr flip.
+________________________________________
+
+10-min flip call/VM:
+How to perform: 10-Minute Flip Call
+[PROSPECT], it’s Micah from [CAMPAIGN]. We had to switch around the [Zoom/Teams] link internally for our chat in 8 mins. It should be good now, but let me know if you have any trouble accessing it - I’ll text and email it to you just in case, but we’ll chat shortly here. Thanks.
+
+10-min Text: [PROSPECT], just left you a voicemail, but we had to switch our [ZOOM/TEAMS] link for our chat in 6 mins, let me know if you have trouble accessing it: [INSERT LINK]
+
+10-min Email:
+[PROSPECT], here’s the current [ZOOM/TEAMS] link in 4 mins, let me know if you have trouble accessing it: [INSERT LINK]
+________________________________________
+^ Copy and paste versions:
+Text: , just left you a voicemail, but we had to switch our  link for our chat in  mins, let me know if you have trouble accessing it: 
+
+Email: , here’s the current  link in  mins, let me know if you have trouble accessing it: 
+
+10-min flip call/VM (VA version):
+Hey, [PROSPECT], it’s John, Micah’s assistant from [CAMPAIGN]. Just a heads up - we had to switch around the [Zoom/Teams] link internally for our chat in 8 mins. I believe… the original link should still work, but let me know if you have any trouble accessing it - I’ll email it to you just in case but we should be good to go shortly here… thanks
+
+[If they have a schedule conflict, take steps to reschedule]
+
+
+
+________________________________________
+Warm Handoff
+*When you hop on the discovery call with the AE/prospect you have several objectives:
+1.	Build rapport with the AE. This is done by showing professionalism, optimism for working on the campaign, and respect for their time.
+2.	To do everything in your power to get the prospect to show.
+3.	Smoothly introduce the prospect to the AE and give light context for the call.
+Note: Hop on the call 1-2 mins early to arrive before the prospect. 
+________________________________________
+As soon as the prospect connects:
+How to perform: Mastering the Warm Handoff in Sales 🚀
+LIVE warm handoff: Warm Handoff Introduction 🌟
+
+Hey [NAME], how are ya?
+
+Great, we’ll thanks for joining us today. I know we had 30 mins carved out and want to make best use of our time…
+
+Wanted to introduce you to my director [REP NAME], she’ll be able to share a little more about what we chatted on [LAST WEEK]... I know you mentioned XYZ, so we’ll be sure to touch on that today. But outside of that, I do have to jump on another call here - so I’ll leave you and [AE] to connect…
+
+If staying on the call:
+But outside of that, I’ll turn it over to [AE] to share the high level and ask the right questions…
+
+Warm Handoff (VA Version):
+Hey [NAME], how are ya?
+
+Great, we’ll thanks for joining us today. I’m John, Micah’s assistant - Micah, who got everyone connected here was double booked, but regardless, I know we had 30 mins carved out and want to make best use of our time…
+
+Wanted to introduce you to our director [REP NAME], she’ll be able to share a little more about what you and Micah chatted on [LAST WEEK]... I know you mentioned XYZ, so we’ll be sure to touch on that today. But outside of that, I’ll turn it over to [AE] to share the high level and ask the right questions… Thanks… 
+
+[Wait 5 seconds, then turn off your camera and mic - sit on the remainder of the call with Loom recording.
+
+
+“Get on the Line!” Call/VM, Text and Email:
+*After around 5 mins, if the prospect doesn’t show up, blow them up on all channels - do this 2-3 mins after the meeting start time if you did the “10-min flip.”
+________________________________________
+How to perform: Handling Late/Missing Prospects 📞
+Get on the Line! Call/VM:
+Hey [PROSPECT], it’s Micah from [COMPANY] - I’m on the line here with my director for our scheduled meeting. Let me know if you have trouble accessing the [ZOOM/TEAM] link, but we are here ready for you. Thanks.
+
+Get on the Line! Text:
+Hey [PROSPECT NAME] - Micah from [COMPANY] - we are on the [ZOOM] bridge ready for you. Let me know if you have trouble accessing the link: [INSERT LINK]
+
+Get on the Line! Email:
+Hey [PROSPECT NAME],
+
+Micah from [COMPANY] - we are on the [ZOOM] bridge ready for you. Let me know if you have trouble accessing the link: [INSERT LINK]
+
+M
+________________________________________
+^Copy and paste versions:
+Text: 
+Hey -  from - we are on the call bridge ready for you. Let me know if you have trouble accessing the link: 
+
+Email:
+Hey ,
+
+ from - we are on the call bridge ready for you. Let me know if you have trouble accessing the link: 
+
+ 
+Data Sheet 
+Instructions: Put any relevant campaign information that will help with building the screenplay or common talking points with prospects.
+
+
+Data sheet:
+
+ 
+Director's Notes 
+WATCH ME: Navigating the New RSN Screenplay Template 📑
+
+How to use this document:
+1.	Everything already written out are lines you want to stick to. If you’re in a Jazz band, some lines are sheet music, some sections you can riff a bit, then head back to the lines.
+2.	Treat the document like a “choose your own adventure.” Some sections give you multiple options for variation and to keep it fresh. A lot of times the prospect will take you off course - that’s okay and a normal part of the process. It is a conversation after all. Just be sure to find your way back on course.
+____________________________________________________________________________________
+Director’s Notes
+Tone: Non supplicative, confident without pushy…to be delivered authentically and with just enough of a stammer and a thoughtful grasping for words so it feels non-scripted. Deliver with slightly above a monotone hitting the emphasis on the highlighted words…(your status alignment will come from this tone). This is NOT to be delivered with overt enthusiasm. 
+We should come across on our calls as - 
+1. Thought leaders – punctuate [COMPANY]…don’t be lazy with the syllables. This is a brand name to be said as if it’s a household name.
+2. Seasoned professionals – utilize deeper tones, slower pace, more “banking/tech-like,” and less small talk…BUT speak with low modulation and consistent confidence. 
+3. Be very collaborative in setting up any next steps or passing on “one pager executive briefing documents” (Nurture leads). “Struggle” around the process to set any meeting because we want to convey WE ARE BUSY 
+ 
+Pace: Tease this with a slow and “careful” pace out of the gate and then proceed faster with each paragraph up until the “nurture” step when asking for the meeting.
+Key Markets: [TITLES, SENORITY, EMPLOYEE COUNT, REV RANGE, INDUSTRY]
+Region: [North America]
+Have [WEBSITE] up in your browser for additional reference and soundbites.
+____________________________________________________________________________________
+For Qualification Questions
+Cushion your high level discovery by saying, “If I'm not prying too much…” OR…”Real quick, can I ask…” OR “Just out of curiosity…” Make sure you use enough instances of their name, plenty of verbal disfluencies (ahs, uh-huh…ums, ‘ers, ‘sighs,’ etc.) to generate trust and eliminate any commission breath. Be very mindful not to interrupt…remember, pausing a bit longer than normal after their answer *may* lead to the prospect continuing to talk even more! People generally hate silence so use it as your friend. 
+
+
