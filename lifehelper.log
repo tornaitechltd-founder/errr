@@ -1,14 +1,8 @@
-===== Naplo started 2026-08-29 18:13:58 pid=58043 =====
-2026-08-29 18:13:59 [INFO] naplo: [config] No .env file found. Searched: ['/Users/tornaitechltd/Library/Application Support/Naplo/.env', '/Applications/Naplo.app/Contents/MacOS/.env', '/Applications/Naplo.app/Contents/Frameworks/.env']
-2026-08-29 18:13:59 [INFO] naplo: [config] Using OS environment variables / defaults.
-2026-08-29 18:13:59 [INFO] naplo: [bootstrap-check] target=v1 installed=vNone root=/Users/tornaitechltd/Library/Application Support/Naplo/assets frozen=True
-2026-08-29 18:13:59 [INFO] naplo: [bootstrap-check] Assets out of date; downloading v1
-2026-08-29 18:13:59 [INFO] naplo.asset_bootstrap: [bootstrap] Asset bundle out of date (installed=None, target=1) - downloading
-2026-08-29 18:14:00 [INFO] server.download.http: HTTP 200 https://download.naplo.app/assets-v1-macos-arm64.zip content-length='222428633' content-type='application/zip' content-encoding=None transfer-encoding=None etag='"0722c6d090c77621682dfe97fc6ecd3c"' cf-ray='a32d3089ee30f422-LHR' cf-cache-status='MISS'
-2026-08-29 18:16:15 [INFO] server.download.http: wrote 222428633 bytes to assets-v1.zip.part, first 32 bytes = 504b03040a00000000006da60f5db7efdc8301000000010000000e001c004153
-2026-08-29 18:16:15 [WARNING] server.download.http: [bootstrap] size mismatch on attempt 1:2 (expected 222427471 bytes, got 222428633)
-2026-08-29 18:16:17 [INFO] server.download.http: HTTP 200 https://download.naplo.app/assets-v1-macos-arm64.zip?_cb=18d05626f5d4775a content-length='222428633' content-type='application/zip' content-encoding=None transfer-encoding=None etag='"0722c6d090c77621682dfe97fc6ecd3c"' cf-ray='a32d33e3d9b7d094-LHR' cf-cache-status='MISS'
-2026-08-29 18:18:34 [INFO] server.download.http: wrote 222428633 bytes to assets-v1.zip.part, first 32 bytes = 504b03040a00000000006da60f5db7efdc8301000000010000000e001c004153
-2026-08-29 18:18:34 [WARNING] server.download.http: [bootstrap] size mismatch on attempt 2:2 (expected 222427471 bytes, got 222428633)
-2026-08-29 18:18:34 [ERROR] naplo.asset_bootstrap: [bootstrap] Asset download failed: download failed after 2 attempts: size mismatch: expected 222427471 bytes, got 222428633
-2026-08-29 18:18:34 [ERROR] naplo: Asset bootstrap failed; aborting startup.
+# 1. confirm the skew
+curl -s https://download.naplo.app/latest-macos.json | python3 -m json.tool
+curl -sL -o /tmp/r2.zip https://download.naplo.app/assets-v1-macos-arm64.zip
+shasum -a 256 /tmp/r2.zip && stat -f%z /tmp/r2.zip
+
+# 2. the local artifact the manifest was generated from
+shasum -a 256 installer_output/assets-v1-macos-arm64.zip
+stat -f%z installer_output/assets-v1-macos-arm64.zip
