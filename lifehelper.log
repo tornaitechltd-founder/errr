@@ -1,21 +1,9 @@
-# 1. make sure nothing is still running (it holds .naplo.lock)
-pkill -f Naplo; sleep 1
-
-# 2. all app state: assets, updates, settings.json, scratch/, .naplo.port, .naplo.lock, .env
-rm -rf ~/Library/Application\ Support/Naplo
-
-# 3. logs
-rm -rf ~/Library/Logs/Naplo
-
-# 4. macOS per-bundle leftovers (may or may not exist)
-rm -rf ~/Library/Caches/uk.magicmamaliga.naplo
-rm -rf ~/Library/Saved\ Application\ State/uk.magicmamaliga.naplo.savedState
-rm -f ~/Library/Preferences/uk.magicmamaliga.naplo.plist
-
-# 5. the app itself
-rm -rf /Applications/Naplo.app
-rm -rf ~/Downloads/Naplo.app         # if you ever copied it there
-hdiutil detach /Volumes/Naplo 2>/dev/null
-
-# 6. reset Microphone + Screen Recording grants so the prompts come back
-tccutil reset All uk.magicmamaliga.naplo
+===== Naplo started 2026-08-29 13:22:48 pid=2708 =====
+2026-08-29 13:22:48 [INFO] naplo: [config] No .env file found. Searched: ['/Users/Julia/Library/Application Support/Naplo/.env', '/Applications/Naplo.app/Contents/MacOS/.env', '/Applications/Naplo.app/Contents/Frameworks/.env']
+2026-08-29 13:22:48 [INFO] naplo: [config] Using OS environment variables / defaults.
+2026-08-29 13:22:48 [INFO] naplo: [bootstrap-check] target=v1 installed=vNone root=/Users/Julia/Library/Application Support/Naplo/assets frozen=True
+2026-08-29 13:22:48 [INFO] naplo: [bootstrap-check] Assets out of date; downloading v1
+2026-08-29 13:22:48 [INFO] naplo.asset_bootstrap: [bootstrap] Asset bundle out of date (installed=None, target=1) - downloading
+2026-08-29 13:22:48 [ERROR] naplo.asset_bootstrap: [bootstrap] Could not fetch manifest: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>
+2026-08-29 13:22:49 [ERROR] naplo: Asset bootstrap failed; aborting startup.
+(base) Julia@Julias-MacBook-Pro ~ %
