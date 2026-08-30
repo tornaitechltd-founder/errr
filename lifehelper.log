@@ -1,16 +1,25 @@
-PS C:\Users\Mate\Desktop\Project\naplo\e2e> .\run.ps1
-[e2e] ensuring the Chromium build is present
-[e2e] resetting the stack
-[e2e] starting services (first run builds both application images)
-[+] Running 4/4
- ✘ minio Error      failed to copy: httpReadSeeker: failed open: failed to do request: Get "https:...              1.5s
- ✘ minio-init Error failed to copy: httpReadSeeker: failed open: failed to do request: Get "h...                   1.5s
- ✘ mailpit Error    failed to copy: httpReadSeeker: failed open: failed to do request: Get "http...                1.5s
- ✘ mongo Error      failed to copy: httpReadSeeker: failed open: failed to do request: Get "https:...              1.5s
-Error response from daemon: failed to copy: httpReadSeeker: failed open: failed to do request: Get "https://registry-1.docker.io/v2/library/mongo/manifests/sha256:e0ce8c35124d4a9f9785532d1f268f39e9728ffa1cb38f46fa482436424c4bd3": EOF
-docker compose up -d failed with exit code 1
-At C:\Users\Mate\Desktop\Project\naplo\e2e\run.ps1:67 char:9
-+         throw "docker compose $($Arguments -join ' ') failed with exi ...
-+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : OperationStopped: (docker compose ...ith exit code 1:String) [], RuntimeException
-    + FullyQualifiedErrorId : docker compose up -d failed with exit code 1
+  385) [api] › tests\features\transcription\local.api.spec.js:110:5 › Transcription > Local › aborting reverts to deferred with the title the desktop echoes back
+
+    TypeError: response.request is not a function
+
+       at support\api.js:15
+
+      13 |         const body = (await response.text()).slice(0, 600);
+      14 |         throw new Error(
+    > 15 |             `${response.request().method()} ${response.url()} -> ${response.status()}, ` +
+         |                         ^
+      16 |             `expected ${allowed.length ? allowed.join('/') : '2xx'}. Body: ${body}`,
+      17 |         );
+      18 |     }
+        at expectStatus (C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\api.js:15:25)
+        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\fixtures.js:103:13
+        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\fixtures.js:115:47
+        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\transcription\local.api.spec.js:114:21
+
+    Error Context: test-results\features-transcription-loc-e9c1e-tle-the-desktop-echoes-back-api\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\features-transcription-loc-e9c1e-tle-the-desktop-echoes-back-api\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\features-transcription-loc-e9c1e-tle-the-desktop-echoes-back-api\trace.zip
