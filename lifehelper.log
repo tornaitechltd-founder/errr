@@ -1,20 +1,14 @@
-==> Submission id: de248b4e-a345-41f9-b546-5927e3e023dd
-==> Polling for notary status (up to ~60 min)
-    status: In Progress
-    status: In Progress
-    status: Accepted
-==> Stapling the notarization ticket
-Processing: /Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app
-Processing: /Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app
-The staple and validate action worked!
-==> Stapling the notarization ticket
-Processing: /Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app
-Processing: /Users/tornaitechltd/Desktop/naplo/local-server/dist/Naplo.app
-The staple and validate action worked!
-==> Verifying Gatekeeper acceptance
-dist/Naplo.app: accepted
-source=Notarized Developer ID
-origin=Developer ID Application: TORNAI TECH LTD (3WJW5B744F)
-OK: dist/Naplo.app signed + notarized + stapled
-==> Building signed + notarized .dmg
-ERROR: dist/Naplo.app/Contents/Resources/updater.sh missing – run sign-and-notarize.sh first
+cd ~/Desktop/naplo/local-server
+
+# 1. Does the build machine have MY version of the script?
+grep -c "Stapling the notarization ticket" build-scripts/mac/sign-and-notarize.sh  # expect 1
+grep -n "updater.sh"                       build-scripts/mac/sign-and-notarize.sh
+grep -n "Restoring exec bits"              build-scripts/mac/sign-and-notarize.sh  # my edit - expect a hit
+
+# 2. Where did updater.sh actually go?
+find dist/Naplo.app -name 'updater.sh'
+ls -la dist/Naplo.app/Contents/Resources/ | head
+ls -la dist/Naplo.app/Contents/ | head
+
+# 3. Did the assets make it in?
+find dist/Naplo.app -name 'ggml-base.en.bin' -o -name 'whisper-cli' | sed "s|$PWD/||"
