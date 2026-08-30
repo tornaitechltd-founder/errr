@@ -1,40 +1,16 @@
-ornaitechltd@Mates-MacBook-Air Desktop % curl -s https://download.naplo.app/latest-macos.json | python3 -m json.tool
-
-{
-    "schema": 1,
-    "app": {
-        "version": "1.0.36",
-        "released": "2026-08-29T17:00:13Z",
-        "min_supported": "1.0.36",
-        "mandatory": false,
-        "installer": {
-            "url": "https://download.naplo.app/Naplo-1.0.36-arm64.dmg",
-            "size": 64238285,
-            "sha256": "5a6343d9b6f27e81a7c851193b82562037229528e086b5639fb1097b8336b994",
-            "min_os": "26.0"
-        }
-    },
-    "assets": {
-        "version": 1,
-        "url": "https://download.naplo.app/assets-v1-macos-arm64.zip",
-        "size": 222427471,
-        "sha256": "d0a1593ffda151f9cfcfba244ae583d75d4d906f37b8efe43c34c004aae04254"
-    }
-}
-tornaitechltd@Mates-MacBook-Air Desktop % curl -sL -o /tmp/r2.zip https://download.naplo.app/assets-v1-macos-arm64.zip
-
-
-tornaitechltd@Mates-MacBook-Air Desktop % 
-tornaitechltd@Mates-MacBook-Air Desktop % shasum -a 256 /tmp/r2.zip && stat -f%z /tmp/r2.zip
-
-dba42284c3011e403346483c8699611263ed8081478bf5bf3c73070d258fff90  /tmp/r2.zip
-222428633
-tornaitechltd@Mates-MacBook-Air Desktop % shasum -a 256 installer_output/assets-v1-macos-arm64.zip
-
-shasum: installer_output/assets-v1-macos-arm64.zip: No such file or directory
-tornaitechltd@Mates-MacBook-Air Desktop % cd naplo/local-server 
-tornaitechltd@Mates-MacBook-Air local-server % shasum -a 256 installer_output/assets-v1-macos-arm64.zip
-
-d0a1593ffda151f9cfcfba244ae583d75d4d906f37b8efe43c34c004aae04254  installer_output/assets-v1-macos-arm64.zip
-tornaitechltd@Mates-MacBook-Air local-server % stat -f%z installer_output/assets-v1-macos-arm64.zip
-222427471
+PS C:\Users\Mate\Desktop\Project\naplo\e2e> .\run.ps1
+[e2e] ensuring the Chromium build is present
+[e2e] resetting the stack
+[e2e] starting services (first run builds both application images)
+[+] Running 4/4
+ ✘ minio Error      failed to copy: httpReadSeeker: failed open: failed to do request: Get "https:...              1.5s
+ ✘ minio-init Error failed to copy: httpReadSeeker: failed open: failed to do request: Get "h...                   1.5s
+ ✘ mailpit Error    failed to copy: httpReadSeeker: failed open: failed to do request: Get "http...                1.5s
+ ✘ mongo Error      failed to copy: httpReadSeeker: failed open: failed to do request: Get "https:...              1.5s
+Error response from daemon: failed to copy: httpReadSeeker: failed open: failed to do request: Get "https://registry-1.docker.io/v2/library/mongo/manifests/sha256:e0ce8c35124d4a9f9785532d1f268f39e9728ffa1cb38f46fa482436424c4bd3": EOF
+docker compose up -d failed with exit code 1
+At C:\Users\Mate\Desktop\Project\naplo\e2e\run.ps1:67 char:9
++         throw "docker compose $($Arguments -join ' ') failed with exi ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (docker compose ...ith exit code 1:String) [], RuntimeException
+    + FullyQualifiedErrorId : docker compose up -d failed with exit code 1
