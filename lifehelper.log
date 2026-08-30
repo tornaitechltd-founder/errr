@@ -1,25 +1,5 @@
-  385) [api] › tests\features\transcription\local.api.spec.js:110:5 › Transcription > Local › aborting reverts to deferred with the title the desktop echoes back
-
-    TypeError: response.request is not a function
-
-       at support\api.js:15
-
-      13 |         const body = (await response.text()).slice(0, 600);
-      14 |         throw new Error(
-    > 15 |             `${response.request().method()} ${response.url()} -> ${response.status()}, ` +
-         |                         ^
-      16 |             `expected ${allowed.length ? allowed.join('/') : '2xx'}. Body: ${body}`,
-      17 |         );
-      18 |     }
-        at expectStatus (C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\api.js:15:25)
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\fixtures.js:103:13
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\fixtures.js:115:47
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\transcription\local.api.spec.js:114:21
-
-    Error Context: test-results\features-transcription-loc-e9c1e-tle-the-desktop-echoes-back-api\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-transcription-loc-e9c1e-tle-the-desktop-echoes-back-api\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-transcription-loc-e9c1e-tle-the-desktop-echoes-back-api\trace.zip
+backend-1  | 2026-08-30 16:46:23.640 ERROR [req=33f827b4 user=- org=- POST /api/public/register] [at-handler-3132] u.m.b.b.exception.SystemExceptionAdvice  : Unhandled RuntimeException: Could not derive a unique slug for 'E's Account' after 25 attempts
+backend-1  |
+backend-1  | java.lang.IllegalStateException: Could not derive a unique slug for 'E's Account' after 25 attempts
+backend-1  |    at uk.magicmamaliga.backend.organization.service.OrganizationService.saveWithUniqueSlug(OrganizationService.java:819) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.organization.service.OrganizationService.createPersonalOrgForSignup(OrganizationService.java:170) ~[!/:0.0.1-SNAPSHOT]
