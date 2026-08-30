@@ -1,14 +1,43 @@
-cd ~/Desktop/naplo/local-server
+tornaitechltd@Mates-MacBook-Air local-server % grep -c "Stapling the notarization ticket" build-scripts/mac/sign-and-notarize.sh  # expect 1
 
-# 1. Does the build machine have MY version of the script?
-grep -c "Stapling the notarization ticket" build-scripts/mac/sign-and-notarize.sh  # expect 1
-grep -n "updater.sh"                       build-scripts/mac/sign-and-notarize.sh
-grep -n "Restoring exec bits"              build-scripts/mac/sign-and-notarize.sh  # my edit - expect a hit
+build-scripts/mac/sign-and-notarize.sh:2
+grep: #: No such file or directory
+grep: expect: No such file or directory
+grep: 1: No such file or directory
+tornaitechltd@Mates-MacBook-Air local-server % grep -c "Stapling the notarization ticket" build-scripts/mac/sign-and-notarize.sh            
+2
+tornaitechltd@Mates-MacBook-Air local-server % grep -n "updater.sh"                       build-scripts/mac/sign-and-notarize.sh
 
-# 2. Where did updater.sh actually go?
-find dist/Naplo.app -name 'updater.sh'
-ls -la dist/Naplo.app/Contents/Resources/ | head
-ls -la dist/Naplo.app/Contents/ | head
+59:UPDATER="$SCRIPT_DIR/updater.sh"
+tornaitechltd@Mates-MacBook-Air local-server % grep -n "Restoring exec bits"              build-scripts/mac/sign-and-notarize.sh                          
+65:echo "==> Restoring exec bits on bundled asset binaries"
+tornaitechltd@Mates-MacBook-Air local-server % find dist/Naplo.app -name 'updater.sh'
 
-# 3. Did the assets make it in?
-find dist/Naplo.app -name 'ggml-base.en.bin' -o -name 'whisper-cli' | sed "s|$PWD/||"
+tornaitechltd@Mates-MacBook-Air local-server % ls -la dist/Naplo.app/Contents/Resources/ | head
+
+total 3768
+lrwxr-xr-x   1 tornaitechltd  staff       49 30 Aug 19:12 _cffi_backend.cpython-312-darwin.so -> ../Frameworks/_cffi_backend.cpython-312-darwin.so
+lrwxr-xr-x   1 tornaitechltd  staff       55 30 Aug 19:12 _kaldi_native_fbank.cpython-312-darwin.so -> ../Frameworks/_kaldi_native_fbank.cpython-312-darwin.so
+drwxr-xr-x   4 tornaitechltd  staff      128 30 Aug 19:12 _soundfile_data
+lrwxr-xr-x   1 tornaitechltd  staff       46 30 Aug 19:12 _webrtcvad.cpython-312-darwin.so -> ../Frameworks/_webrtcvad.cpython-312-darwin.so
+drwxr-xr-x  68 tornaitechltd  staff     2176 30 Aug 19:12 .
+drwxr-xr-x   8 tornaitechltd  staff      256 30 Aug 19:21 ..
+lrwxr-xr-x   1 tornaitechltd  staff       63 30 Aug 19:12 81d243bd2c585b0f4821__mypyc.cpython-312-darwin.so -> ../Frameworks/81d243bd2c585b0f4821__mypyc.cpython-312-darwin.so
+lrwxr-xr-x   1 tornaitechltd  staff       20 30 Aug 19:12 AppKit -> ../Frameworks/AppKit
+drwxr-xr-x   5 tornaitechltd  staff      160 30 Aug 19:12 assets
+tornaitechltd@Mates-MacBook-Air local-server % ls -la dist/Naplo.app/Contents/ | head
+
+total 24
+drwxr-xr-x   3 tornaitechltd  staff    96 30 Aug 19:12 _CodeSignature
+drwxr-xr-x   8 tornaitechltd  staff   256 30 Aug 19:21 .
+drwxr-xr-x   3 tornaitechltd  staff    96 30 Aug 19:12 ..
+-rw-r--r--   1 tornaitechltd  staff  4677 30 Aug 19:21 CodeResources
+drwxr-xr-x  68 tornaitechltd  staff  2176 30 Aug 19:14 Frameworks
+-rw-r--r--   1 tornaitechltd  staff  1671 30 Aug 19:12 Info.plist
+drwxr-xr-x   3 tornaitechltd  staff    96 30 Aug 19:14 MacOS
+drwxr-xr-x  68 tornaitechltd  staff  2176 30 Aug 19:12 Resources
+tornaitechltd@Mates-MacBook-Air local-server % find dist/Naplo.app -name 'ggml-base.en.bin' -o -name 'whisper-cli' | sed "s|$PWD/||"
+dist/Naplo.app/Contents/Resources/assets/whisper/whisper-cli
+dist/Naplo.app/Contents/Resources/assets/whisper/models/ggml-base.en.bin
+dist/Naplo.app/Contents/Frameworks/assets/whisper/whisper-cli
+tornaitechltd@Mates-MacBook-Air local-server % 
