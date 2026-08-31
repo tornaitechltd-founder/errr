@@ -1,43 +1,154 @@
-tornaitechltd@Mates-MacBook-Air local-server % grep -c "Stapling the notarization ticket" build-scripts/mac/sign-and-notarize.sh  # expect 1
+backend-1  | 2026-08-31 07:21:51.386  INFO [req=819b2c99 user=- org=- POST /api/public/register] [at-handler-6220] u.m.b.o.service.OrganizationService      : Created personal org 6a952b8f7b26a378dc26c394 for user 6a952b8f7b26a378dc26c393 (credit=1.00)
+backend-1  | 2026-08-31 07:21:51.396  INFO [req=819b2c99 user=- org=- POST /api/public/register] [at-handler-6220] u.m.b.s.r.RegistrationController         : << registerUser -> ResponseEntity{status=201, body=Map1[1 entries]} in 95 ms
+backend-1  | 2026-08-31 07:21:51.405  INFO [req=819b2c99 user=- org=- POST /api/public/register] [        async-1] u.m.b.s.registration.EmailService        : Verification email sent from noreply@naplo.app to ecykottujoyv-e2e-stranger-2@naplo-e2e.test
+backend-1  | 2026-08-31 07:21:51.517  INFO [req=4ed5176c user=- org=- POST /api/public/auth/login] [at-handler-6223] u.m.backend.security.AuthController      : >> authenticateAndGenerateToken(loginRequest=LoginRequest{email=u***@naplo-e2e.test, password=<redacted>, captchaToken=<redacted>})
+backend-1  | 2026-08-31 07:21:51.605  INFO [req=4ed5176c user=- org=- POST /api/public/auth/login] [at-handler-6223] u.m.backend.security.AuthController      : << authenticateAndGenerateToken -> ResponseEntity{status=200, body=LoginResponse} in 87 ms
+backend-1  | 2026-08-31 07:21:51.615  INFO [req=78a49393 user=u***@naplo-e2e.test org=6a952b8e7b26a378dc26c390 POST /api/v1/recordings] [at-handler-6224] u.m.backend.record.RecordingController   : >> createInitialRecording(jwt=Jwt{sub=u***@naplo-e2e.test}, group="E2E local", transcriptionMode="deferred", title="Q3 pipeline review", recordingTypeRaw=null)
+backend-1  | 2026-08-31 07:21:51.621  INFO [req=78a49393 user=u***@naplo-e2e.test org=6a952b8e7b26a378dc26c390 POST /api/v1/recordings] [at-handler-6224] u.m.backend.record.RecordingController   : << createInitialRecording -> ResponseEntity{status=202, body=RecordingDto} in 5 ms
+backend-1  | 2026-08-31 07:21:51.947  INFO [req=b270ba09 user=u***@naplo-e2e.test org=6a952b8e7b26a378dc26c390 POST /api/v1/recordings/6a952b8f7b26a378dc26c398/transcribe-locally] [at-handler-6226] u.m.b.r.ai.LocalTranscriptionController  : >> start(recordingId="6a952b8f7b26a378dc26c398", body=null, jwt=Jwt{sub=u***@naplo-e2e.test})
+backend-1  | 2026-08-31 07:21:51.953  WARN [req=b270ba09 user=u***@naplo-e2e.test org=6a952b8e7b26a378dc26c390 POST /api/v1/recordings/6a952b8f7b26a378dc26c398/transcribe-locally] [at-handler-6226] u.m.b.r.ai.LocalTranscriptionController  : !! start threw ResponseStatusException: 409 CONFLICT "Recording has no stored audio yet - cannot transcribe." in 6 ms
+backend-1  | 2026-08-31 07:21:51.955 ERROR [req=b270ba09 user=u***@naplo-e2e.test org=6a952b8e7b26a378dc26c390 POST /api/v1/recordings/6a952b8f7b26a378dc26c398/transcribe-locally] [at-handler-6226] u.m.b.b.exception.SystemExceptionAdvice  : Unhandled RuntimeException: 409 CONFLICT "Recording has no stored audio yet - cannot transcribe."
+backend-1  |
+backend-1  | org.springframework.web.server.ResponseStatusException: 409 CONFLICT "Recording has no stored audio yet - cannot transcribe."
+backend-1  |    at uk.magicmamaliga.backend.record.ai.LocalTranscriptionController.start(LocalTranscriptionController.java:100) ~[!/:0.0.1-SNAPSHOT]
 
-build-scripts/mac/sign-and-notarize.sh:2
-grep: #: No such file or directory
-grep: expect: No such file or directory
-grep: 1: No such file or directory
-tornaitechltd@Mates-MacBook-Air local-server % grep -c "Stapling the notarization ticket" build-scripts/mac/sign-and-notarize.sh            
-2
-tornaitechltd@Mates-MacBook-Air local-server % grep -n "updater.sh"                       build-scripts/mac/sign-and-notarize.sh
 
-59:UPDATER="$SCRIPT_DIR/updater.sh"
-tornaitechltd@Mates-MacBook-Air local-server % grep -n "Restoring exec bits"              build-scripts/mac/sign-and-notarize.sh                          
-65:echo "==> Restoring exec bits on bundled asset binaries"
-tornaitechltd@Mates-MacBook-Air local-server % find dist/Naplo.app -name 'updater.sh'
+backend-1  | 2026-08-31 07:21:37.989  INFO [req=3b67193c user=j***@naplo-e2e.test org=6a952b817b26a378dc26c352 POST /api/v1/recordings] [at-handler-6051] u.m.backend.record.RecordingController   : >> createInitialRecording(jwt=Jwt{sub=j***@naplo-e2e.test}, group="E2E group", transcriptionMode=null, title="E2E recording", recordingTypeRaw=null)
+backend-1  | 2026-08-31 07:21:37.995  INFO [req=3b67193c user=j***@naplo-e2e.test org=6a952b817b26a378dc26c352 POST /api/v1/recordings] [at-handler-6051] u.m.backend.record.RecordingController   : << createInitialRecording -> ResponseEntity{status=202, body=RecordingDto} in 6 ms
+backend-1  | 2026-08-31 07:21:38.216 ERROR [req=c9df4a13 user=t***@naplo-e2e.test org=6a952b807b26a378dc26c34e POST /api/v1/recordings/6a952b817b26a378dc26c356/transcribe] [at-handler-6050] u.m.b.r.a.s.AiTranscriptionService       : AI transcription failed for user slice.wav: 401 - {
+backend-1  |   "error": {
+backend-1  |     "message": "Incorrect API key provided: sk-e2e-n*********-key. You can find your API key at https://platform.openai.com/account/api-keys.",
+backend-1  |     "type": "invalid_request_error",
+backend-1  |     "code": "invalid_api_key",
+backend-1  |     "param": null
+backend-1  |   },
+backend-1  |   "status": 401
+backend-1  | }
+backend-1  | 2026-08-31 07:21:38.216  WARN [req=c9df4a13 user=t***@naplo-e2e.test org=6a952b807b26a378dc26c34e POST /api/v1/recordings/6a952b817b26a378dc26c356/transcribe] [at-handler-6050] u.m.b.r.ai.AiTranscriptionController     : !! transcribe threw ExternalAiException: AI transcription failed: 401 - {
+backend-1  |   "error": {
+backend-1  |     "message": "Incorrect API key provided: sk-e2e-n*********-key. You can find your API key at https://platform.openai.com/account/api-keys.",
+backend-1  |     "type": "invalid_request_error",
+backend-1  |     "code": "invalid_api_key",
+backend-1  |     "param": null
+backend-1  |   },
+backend-1  |   "status": 401
+backend-1  | } in 305 ms
+backend-1  | 2026-08-31 07:21:38.321  INFO [req=c4ea1609 user=j***@naplo-e2e.test org=6a952b817b26a378dc26c352 POST /api/v1/recordings/6a952b817b26a378dc26c358/transcribe] [at-handler-6053] u.m.b.r.ai.AiTranscriptionController     : >> transcribe(recordingId="6a952b817b26a378dc26c358", file=MultipartFile{name='slice.wav', size=32044}, prompt=null, offsetSeconds=0.0, source="mic", jwt=Jwt{sub=j***@naplo-e2e.test})
+backend-1  | 2026-08-31 07:21:38.609 ERROR [req=c4ea1609 user=j***@naplo-e2e.test org=6a952b817b26a378dc26c352 POST /api/v1/recordings/6a952b817b26a378dc26c358/transcribe] [at-handler-6053] u.m.b.r.a.s.AiTranscriptionService       : AI transcription failed for user slice.wav: 401 - {
+backend-1  |   "error": {
+backend-1  |     "message": "Incorrect API key provided: sk-e2e-n*********-key. You can find your API key at https://platform.openai.com/account/api-keys.",
+backend-1  |     "type": "invalid_request_error",
+backend-1  |     "code": "invalid_api_key",
+backend-1  |     "param": null
+backend-1  |   },
+backend-1  |   "status": 401
+backend-1  | }
+backend-1  | 2026-08-31 07:21:38.609  WARN [req=c4ea1609 user=j***@naplo-e2e.test org=6a952b817b26a378dc26c352 POST /api/v1/recordings/6a952b817b26a378dc26c358/transcribe] [at-handler-6053] u.m.b.r.ai.AiTranscriptionController     : !! transcribe threw ExternalAiException: AI transcription failed: 401 - {
+backend-1  |   "error": {
+backend-1  |     "message": "Incorrect API key provided: sk-e2e-n*********-key. You can find your API key at https://platform.openai.com/account/api-keys.",
+backend-1  |     "type": "invalid_request_error",
+backend-1  |     "code": "invalid_api_key",
+backend-1  |     "param": null
+backend-1  |   },
+backend-1  |   "status": 401
+backend-1  | } in 287 ms
+backend-1  | 2026-08-31 07:21:39.201  INFO [req=d5db2e8f user=f***@naplo-e2e.test org=6a952b527b26a378dc26c32b GET /api/v1/recordings/6a952b527b26a378dc26c32f] [at-handler-6054] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=f***@naplo-e2e.test}, recordingId="6a952b527b26a378dc26c32f")
 
-tornaitechltd@Mates-MacBook-Air local-server % ls -la dist/Naplo.app/Contents/Resources/ | head
 
-total 3768
-lrwxr-xr-x   1 tornaitechltd  staff       49 30 Aug 19:12 _cffi_backend.cpython-312-darwin.so -> ../Frameworks/_cffi_backend.cpython-312-darwin.so
-lrwxr-xr-x   1 tornaitechltd  staff       55 30 Aug 19:12 _kaldi_native_fbank.cpython-312-darwin.so -> ../Frameworks/_kaldi_native_fbank.cpython-312-darwin.so
-drwxr-xr-x   4 tornaitechltd  staff      128 30 Aug 19:12 _soundfile_data
-lrwxr-xr-x   1 tornaitechltd  staff       46 30 Aug 19:12 _webrtcvad.cpython-312-darwin.so -> ../Frameworks/_webrtcvad.cpython-312-darwin.so
-drwxr-xr-x  68 tornaitechltd  staff     2176 30 Aug 19:12 .
-drwxr-xr-x   8 tornaitechltd  staff      256 30 Aug 19:21 ..
-lrwxr-xr-x   1 tornaitechltd  staff       63 30 Aug 19:12 81d243bd2c585b0f4821__mypyc.cpython-312-darwin.so -> ../Frameworks/81d243bd2c585b0f4821__mypyc.cpython-312-darwin.so
-lrwxr-xr-x   1 tornaitechltd  staff       20 30 Aug 19:12 AppKit -> ../Frameworks/AppKit
-drwxr-xr-x   5 tornaitechltd  staff      160 30 Aug 19:12 assets
-tornaitechltd@Mates-MacBook-Air local-server % ls -la dist/Naplo.app/Contents/ | head
+backend-1  | 2026-08-31 07:21:32.720  INFO [req=56cdeb34 user=q***@naplo-e2e.test org=6a952b417b26a378dc26c2d6 GET /api/v1/recordings/6a952b417b26a378dc26c2de] [at-handler-6012] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=q***@naplo-e2e.test}, recordingId="6a952b417b26a378dc26c2de")
+backend-1  | 2026-08-31 07:21:32.723  INFO [req=56cdeb34 user=q***@naplo-e2e.test org=6a952b417b26a378dc26c2d6 GET /api/v1/recordings/6a952b417b26a378dc26c2de] [at-handler-6012] u.m.backend.record.RecordingController   : << getRecordingDetails -> ResponseEntity{status=200, body=RecordingDto} in 3 ms
+backend-1  | 2026-08-31 07:21:32.860  INFO [req=67f54ec6 user=- org=- POST /api/public/auth/login] [at-handler-6014] u.m.backend.security.AuthController      : >> authenticateAndGenerateToken(loginRequest=LoginRequest{email=s***@naplo-e2e.test, password=<redacted>, captchaToken=<redacted>})
+backend-1  | 2026-08-31 07:21:32.954  INFO [req=67f54ec6 user=- org=- POST /api/public/auth/login] [at-handler-6014] u.m.backend.security.AuthController      : << authenticateAndGenerateToken -> ResponseEntity{status=200, body=LoginResponse} in 93 ms
+backend-1  | 2026-08-31 07:21:32.964  INFO [req=62c025c4 user=s***@naplo-e2e.test org=6a952b7c7b26a378dc26c348 POST /api/v1/recordings] [at-handler-6015] u.m.backend.record.RecordingController   : >> createInitialRecording(jwt=Jwt{sub=s***@naplo-e2e.test}, group="E2E group", transcriptionMode=null, title="E2E recording", recordingTypeRaw=null)
+backend-1  | 2026-08-31 07:21:32.971  INFO [req=62c025c4 user=s***@naplo-e2e.test org=6a952b7c7b26a378dc26c348 POST /api/v1/recordings] [at-handler-6015] u.m.backend.record.RecordingController   : << createInitialRecording -> ResponseEntity{status=202, body=RecordingDto} in 7 ms
+backend-1  | 2026-08-31 07:21:33.640  INFO [req=8d0ac905 user=s***@naplo-e2e.test org=6a952b7c7b26a378dc26c348 POST /api/v1/recordings/6a952b7c7b26a378dc26c34c/transcribe] [at-handler-6018] u.m.b.r.ai.AiTranscriptionController     : >> transcribe(recordingId="6a952b7c7b26a378dc26c34c", file=MultipartFile{name='slice.wav', size=32044}, prompt=null, offsetSeconds=0.0, source=null, jwt=Jwt{sub=s***@naplo-e2e.test})
+backend-1  | 2026-08-31 07:21:34.308 ERROR [req=8d0ac905 user=s***@naplo-e2e.test org=6a952b7c7b26a378dc26c348 POST /api/v1/recordings/6a952b7c7b26a378dc26c34c/transcribe] [at-handler-6018] u.m.b.r.a.s.AiTranscriptionService       : AI transcription failed for user slice.wav: 401 - {
+backend-1  |   "error": {
+backend-1  |     "message": "Incorrect API key provided: sk-e2e-n*********-key. You can find your API key at https://platform.openai.com/account/api-keys.",
+backend-1  |     "type": "invalid_request_error",
+backend-1  |     "code": "invalid_api_key",
+backend-1  |     "param": null
+backend-1  |   },
+backend-1  |   "status": 401
+backend-1  | }
+backend-1  | 2026-08-31 07:21:34.308  WARN [req=8d0ac905 user=s***@naplo-e2e.test org=6a952b7c7b26a378dc26c348 POST /api/v1/recordings/6a952b7c7b26a378dc26c34c/transcribe] [at-handler-6018] u.m.b.r.ai.AiTranscriptionController     : !! transcribe threw ExternalAiException: AI transcription failed: 401 - {
+backend-1  |   "error": {
+backend-1  |     "message": "Incorrect API key provided: sk-e2e-n*********-key. You can find your API key at https://platform.openai.com/account/api-keys.",
+backend-1  |     "type": "invalid_request_error",
+backend-1  |     "code": "invalid_api_key",
+backend-1  |     "param": null
+backend-1  |   },
+backend-1  |   "status": 401
+backend-1  | } in 668 ms
+backend-1  | 2026-08-31 07:21:34.528  INFO [req=dc58479a user=f***@naplo-e2e.test org=6a952b527b26a378dc26c32b GET /api/v1/recordings/6a952b527b26a378dc26c32f] [at-handler-6019] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=f***@naplo-e2e.test}, recordingId="6a952b527b26a378dc26c32f")
 
-total 24
-drwxr-xr-x   3 tornaitechltd  staff    96 30 Aug 19:12 _CodeSignature
-drwxr-xr-x   8 tornaitechltd  staff   256 30 Aug 19:21 .
-drwxr-xr-x   3 tornaitechltd  staff    96 30 Aug 19:12 ..
--rw-r--r--   1 tornaitechltd  staff  4677 30 Aug 19:21 CodeResources
-drwxr-xr-x  68 tornaitechltd  staff  2176 30 Aug 19:14 Frameworks
--rw-r--r--   1 tornaitechltd  staff  1671 30 Aug 19:12 Info.plist
-drwxr-xr-x   3 tornaitechltd  staff    96 30 Aug 19:14 MacOS
-drwxr-xr-x  68 tornaitechltd  staff  2176 30 Aug 19:12 Resources
-tornaitechltd@Mates-MacBook-Air local-server % find dist/Naplo.app -name 'ggml-base.en.bin' -o -name 'whisper-cli' | sed "s|$PWD/||"
-dist/Naplo.app/Contents/Resources/assets/whisper/whisper-cli
-dist/Naplo.app/Contents/Resources/assets/whisper/models/ggml-base.en.bin
-dist/Naplo.app/Contents/Frameworks/assets/whisper/whisper-cli
-tornaitechltd@Mates-MacBook-Air local-server % 
+
+
+
+1[1 entries]} in 12 ms
+backend-1  | 2026-08-31 07:21:27.638  INFO [req=a3147acc user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a GET /api/v1/recordings/6a952b4e7b26a378dc26c31e] [at-handler-5967] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=s***@naplo-e2e.test}, recordingId="6a952b4e7b26a378dc26c31e")
+backend-1  | 2026-08-31 07:21:27.642  INFO [req=a3147acc user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a GET /api/v1/recordings/6a952b4e7b26a378dc26c31e] [at-handler-5967] u.m.backend.record.RecordingController   : << getRecordingDetails -> ResponseEntity{status=200, body=RecordingDto} in 4 ms
+backend-1  | 2026-08-31 07:21:27.644  INFO [req=684b29c8 user=- org=- GET /api/public/verify-email] [        async-2] u.m.b.s.registration.EmailService        : Welcome email sent to fjhhxgxznmva-e2e-deferrer-1@naplo-e2e.test
+backend-1  | 2026-08-31 07:21:27.962  INFO [req=3eb26ee8 user=- org=- POST /api/public/auth/login] [at-handler-5970] u.m.backend.security.AuthController      : >> authenticateAndGenerateToken(loginRequest=LoginRequest{email=f***@naplo-e2e.test, password=<redacted>, captchaToken=<redacted>})
+backend-1  | 2026-08-31 07:21:28.053  INFO [req=3eb26ee8 user=- org=- POST /api/public/auth/login] [at-handler-5970] u.m.backend.security.AuthController      : << authenticateAndGenerateToken -> ResponseEntity{status=200, body=LoginResponse} in 90 ms
+backend-1  | 2026-08-31 07:21:28.066  INFO [req=88e80639 user=q***@naplo-e2e.test org=6a952b417b26a378dc26c2d6 GET /api/v1/recordings/6a952b417b26a378dc26c2de] [at-handler-5971] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=q***@naplo-e2e.test}, recordingId="6a952b417b26a378dc26c2de")
+backend-1  | 2026-08-31 07:21:28.066  INFO [req=80a299e7 user=f***@naplo-e2e.test org=6a952b777b26a378dc26c337 POST /api/v1/recordings] [at-handler-5972] u.m.backend.record.RecordingController   : >> createInitialRecording(jwt=Jwt{sub=f***@naplo-e2e.test}, group="E2E deferred", transcriptionMode="deferred", title="Q3 pipeline review", recordingTypeRaw=null)
+backend-1  | 2026-08-31 07:21:28.069  INFO [req=88e80639 user=q***@naplo-e2e.test org=6a952b417b26a378dc26c2d6 GET /api/v1/recordings/6a952b417b26a378dc26c2de] [at-handler-5971] u.m.backend.record.RecordingController   : << getRecordingDetails -> ResponseEntity{status=200, body=RecordingDto} in 3 ms
+backend-1  | 2026-08-31 07:21:28.077  INFO [req=80a299e7 user=f***@naplo-e2e.test org=6a952b777b26a378dc26c337 POST /api/v1/recordings] [at-handler-5972] u.m.backend.record.RecordingController   : << createInitialRecording -> ResponseEntity{status=202, body=RecordingDto} in 10 ms
+backend-1  | 2026-08-31 07:21:28.399  INFO [req=3b40025e user=f***@naplo-e2e.test org=6a952b777b26a378dc26c337 POST /api/v1/recordings/6a952b787b26a378dc26c33b/transcribe-from-storage] [at-handler-5975] .m.b.r.a.DeferredTranscriptionController : >> transcribe(recordingId="6a952b787b26a378dc26c33b", body=null, jwt=Jwt{sub=f***@naplo-e2e.test})
+backend-1  | 2026-08-31 07:21:28.402  WARN [req=3b40025e user=f***@naplo-e2e.test org=6a952b777b26a378dc26c337 POST /api/v1/recordings/6a952b787b26a378dc26c33b/transcribe-from-storage] [at-handler-5975] .m.b.r.a.DeferredTranscriptionController : !! transcribe threw ResponseStatusException: 409 CONFLICT "Recording has no stored audio yet - cannot transcribe." in 2 ms
+backend-1  | 2026-08-31 07:21:28.402 ERROR [req=3b40025e user=f***@naplo-e2e.test org=6a952b777b26a378dc26c337 POST /api/v1/recordings/6a952b787b26a378dc26c33b/transcribe-from-storage] [at-handler-5975] u.m.b.b.exception.SystemExceptionAdvice  : Unhandled RuntimeException: 409 CONFLICT "Recording has no stored audio yet - cannot transcribe."
+backend-1  |
+backend-1  | org.springframework.web.server.ResponseStatusException: 409 CONFLICT "Recording has no stored audio yet - cannot transcribe."
+backend-1  |    at uk.magicmamaliga.backend.record.ai.DeferredTranscriptionController.transcribe(DeferredTranscriptionController.java:113) ~[!/:0.0.1-SNAPSHOT]
+
+
+
+backend-1  | 2026-08-31 07:20:47.601  INFO [req=537a3cc8 user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a POST /api/v1/recordings/6a952b4e7b26a378dc26c31e/transcribe-from-storage] [at-handler-5769] .m.b.r.a.DeferredTranscriptionController : Re-derived AI flags for recording 6a952b4e7b26a378dc26c31e: aiSummary=true, aiTitle=true
+backend-1  | 2026-08-31 07:20:47.605  INFO [req=537a3cc8 user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a POST /api/v1/recordings/6a952b4e7b26a378dc26c31e/transcribe-from-storage] [at-handler-5769] .m.b.r.a.DeferredTranscriptionController : << transcribe -> ResponseEntity{status=202, body=MapN[2 entries]} in 17 ms
+backend-1  | 2026-08-31 07:20:47.605  INFO [req=537a3cc8 user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a POST /api/v1/recordings/6a952b4e7b26a378dc26c31e/transcribe-from-storage] [        media-2] u.m.b.r.event.RecordingEventListener     : Handling RecordingFinishedEvent for recording 6a952b4e7b26a378dc26c31e
+backend-1  | 2026-08-31 07:20:47.606  INFO [req=537a3cc8 user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a POST /api/v1/recordings/6a952b4e7b26a378dc26c31e/transcribe-from-storage] [        media-2] u.m.b.r.event.RecordingEventListener     : No transcript found for recording 6a952b4e7b26a378dc26c31e - attempting AI transcription from audio
+backend-1  | 2026-08-31 07:20:47.920  INFO [req=4c4dafef user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a GET /api/v1/recordings/6a952b4e7b26a378dc26c31e] [at-handler-5773] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=s***@naplo-e2e.test}, recordingId="6a952b4e7b26a378dc26c31e")
+backend-1  | 2026-08-31 07:20:47.921  INFO [req=c435a408 user=- org=- POST /api/public/register] [at-handler-5774] u.m.b.s.r.RegistrationController         : >> registerUser(request=UserRegistrationRequest{email=f***@naplo-e2e.test, password=<redacted>, termsAcceptedVersion="2026-08-08", privacyAcceptedVersion="2026-08-28", captchaToken=<redacted>, signupSource="e2e"})
+backend-1  | 2026-08-31 07:20:47.923  INFO [req=4c4dafef user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a GET /api/v1/recordings/6a952b4e7b26a378dc26c31e] [at-handler-5773] u.m.backend.record.RecordingController   : << getRecordingDetails -> ResponseEntity{status=200, body=RecordingDto} in 2 ms
+backend-1  | 2026-08-31 07:20:47.976 ERROR [req=537a3cc8 user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a POST /api/v1/recordings/6a952b4e7b26a378dc26c31e/transcribe-from-storage] [        media-2] u.m.b.r.a.s.AiTranscriptionService       : AI transcription failed for user session_audio.wav: 401 - {
+backend-1  |   "error": {
+backend-1  |     "message": "Incorrect API key provided: sk-e2e-n*********-key. You can find your API key at https://platform.openai.com/account/api-keys.",
+backend-1  |     "type": "invalid_request_error",
+backend-1  |     "code": "invalid_api_key",
+backend-1  |     "param": null
+backend-1  |   },
+backend-1  |   "status": 401
+backend-1  | }
+backend-1  | 2026-08-31 07:20:47.976 ERROR [req=537a3cc8 user=s***@naplo-e2e.test org=6a952b4d7b26a378dc26c31a POST /api/v1/recordings/6a952b4e7b26a378dc26c31e/transcribe-from-storage] [        media-2] u.m.b.r.event.RecordingEventListener     : Auto-transcription failed for recording 6a952b4e7b26a378dc26c31e
+backend-1  |
+backend-1  | uk.magicmamaliga.backend.record.ai.exception.ExternalAiException: AI transcription failed: 401 - {
+backend-1  |   "error": {
+backend-1  |     "message": "Incorrect API key provided: sk-e2e-n*********-key. You can find your API key at https://platform.openai.com/account/api-keys.",
+backend-1  |     "type": "invalid_request_error",
+backend-1  |     "code": "invalid_api_key",
+backend-1  |     "param": null
+backend-1  |   },
+backend-1  |   "status": 401
+backend-1  | }
+backend-1  |    at uk.magicmamaliga.backend.record.ai.service.AiTranscriptionService.performTranscription(AiTranscriptionService.java:481) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.record.ai.service.AiTranscriptionService.transcribeBytesDetailed(AiTranscriptionService.java:279) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.record.event.RecordingEventListener.transcribeWithOptionalChunking(RecordingEventListener.java:510) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.record.event.RecordingEventListener.transcribeStereoAware(RecordingEventListener.java:406) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at uk.magicmamaliga.backend.record.event.RecordingEventListener.handleFinishedRecording(RecordingEventListener.java:144) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+backend-1  |    at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at org.springframework.aop.interceptor.AsyncExecutionInterceptor.lambda$invoke$0(AsyncExecutionInterceptor.java:112) ~[spring-aop-7.0.8.jar!/:7.0.8]
+backend-1  |    at java.base/java.util.concurrent.FutureTask.run(Unknown Source) ~[na:na]
+backend-1  |    at uk.magicmamaliga.backend.base.logging.MdcTaskDecorator.lambda$decorate$0(MdcTaskDecorator.java:80) ~[!/:0.0.1-SNAPSHOT]
+backend-1  |    at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[na:na]
+backend-1  |    at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[na:na]
+backend-1  |    at java.base/java.lang.Thread.run(Unknown Source) ~[na:na]
+backend-1  |
+backend-1  | 2026-08-31 07:20:48.012  INFO [req=c435a408 user=- org=- POST /api/public/register] [at-handler-5774] u.m.b.o.service.OrganizationService      : Created personal org 6a952b507b26a378dc26c325 for user 6a952b507b26a378dc26c324 (credit=1.00)
+
+
+
