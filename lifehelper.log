@@ -1,320 +1,222 @@
- x  1 [api] › tests\features\recording\permissions.api.spec.js:115:5 › Recording > Permissions › an OWNER is refused the transcript while the toggle is off (31ms)
-  ok 2 [api] › tests\features\recording\permissions.api.spec.js:54:5 › Recording > Permissions › a caller outside the recordings org gets 404 everywhere (9.2s)
-  x  3 [api] › tests\features\recording\permissions.api.spec.js:151:5 › Recording > Permissions › an OWNER reads the transcript once the org opts in (35ms)
-  x  4 [api] › tests\features\recording\permissions.api.spec.js:73:5 › Recording > Permissions › a peer MEMBER is refused every read and every mutation (31ms)
-  ok 5 [api] › tests\features\recording\permissions.api.spec.js:227:5 › Recording > Permissions › a peer cannot delete the recording (3.3s)
-  x  6 [api] › tests\features\recording\permissions.api.spec.js:169:5 › Recording > Permissions › the opted-in listing sideloads creator identity onto peer rows only (42ms)
-  x  7 [api] › tests\features\recording\permissions.api.spec.js:200:5 › Recording > Permissions › an ADMIN gets the same access as an OWNER does (37ms)
+import { test, expect, expectStatus } from '../../support/fixtures.js';
+import { TRANSCRIPT, appendSlice, createRecording } from '../../support/recordings.js';
+import { membershipId, orgWithMember } from '../../support/org.js';
 
+/**
+ * RecordingPermissionValidator.assertFullAccess, end to end. Three outcomes,
+ * and the status code is the tell:
+ *
+ * - creator                  -> 200
+ * - caller with no membership in
+ *   the recording's org     -> 404, via requireMemberOr404, so a
+ *                              tenant boundary never leaks the fact
+ *                              that the recording exists
+ * - peer MEMBER of the same org -> 403 "You do not have access"
+ * - OWNER/ADMIN, toggle off  -> 403 "requires enabling ..."
+ * - OWNER/ADMIN, toggle on   -> 200, transcript included
+ */
+const detailsOf = (api, id) => api.json(api.get(`/api/v1/recordings/${id}`), 200);
 
-  1) [api] › tests\features\recording\permissions.api.spec.js:73:5 › Recording > Permissions › a peer MEMBER is refused every read and every mutation
+/** The single-recording patches a raw text body, not JSON. */
+const AS_TEXT = { 'Content-Type': 'text/plain' };
 
-    TypeError: createAccount is not a function
+const setTranscriptVisibility = async (owner, orgId, value) =>
+  expectStatus(
+    await owner.put(`/api/v1/organizations/${orgId}/enforcement-settings`, {
+      data: { transcriptsVisibleToAdmins: value },
+    }),
+    200,
+  );
 
-       at support\org.js:27
+/** Every read/write the controller guards behind assertFullAccess. */
+const guardedCalls = (api, id) => [
+  ['GET details', () => api.get(`/api/v1/recordings/${id}`)],
+  ['GET audio url', () => api.get(`/api/v1/recordings/${id}/audio`)],
+  ['GET audio stream', () => api.get(`/api/v1/recordings/${id}/audio/stream`)],
+  ['PATCH title', () => api.patch(`/api/v1/recordings/${id}/title`, { data: 'x', headers: AS_TEXT })],
+  ['PATCH group', () => api.patch(`/api/v1/recordings/${id}/group`, { data: 'x', headers: AS_TEXT })],
+  [
+    'PATCH transcript',
+    () => api.patch(`/api/v1/recordings/${id}/transcript`, { data: 'x', headers: AS_TEXT }),
+  ],
+  ['POST summary', () => api.post(`/api/v1/recordings/${id}/summary`)],
+  ['POST generate-title', () => api.post(`/api/v1/recordings/${id}/generate-title`)],
+  ['POST live-finalize', () => api.post(`/api/v1/recordings/${id}/live-finalize`)],
+  ['POST restore', () => api.post(`/api/v1/recordings/${id}/restore`)],
+  ['DELETE', () => api.delete(`/api/v1/recordings/${id}`)],
+  ['DELETE forever', () => api.delete(`/api/v1/recordings/${id}/forever`)],
+];
 
-      25 |  */
-      26 | export async function orgWithMember(createAccount, mailpit, name = 'Naplo E2E HQ') {
-    > 27 |     const owner = await createAccount('owner');
-         |                         ^
-      28 |     const unique = `${name} ${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
-      29 |     const org = await owner.api.json(
-      30 |         owner.api.post('/api/v1/organizations', { data: { name: unique } }),
-        at orgWithMember (C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\org.js:27:25)
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\recording\permissions.api.spec.js:77:48
+test.describe('Recording > Permissions', () => {
+  test('a caller outside the recordings org gets 404 everywhere', async ({ newUser }) => {
+    const owner = await newUser('recorder');
+    const { id } = await createRecording(owner, 'Owner group', 'Owner title');
+    await expectStatus(await appendSlice(owner, id, `${TRANSCRIPT} `), 200);
 
-    Error Context: test-results\features-recording-permiss-cf7e0-ery-read-and-every-mutation-api\error-context.md
+    const stranger = await newUser('stranger');
+    for (const [label, call] of guardedCalls(stranger, id)) {
+      const refused = await call();
+      expect(refused.status(), `${label} must not leak across tenants`).toBe(404);
+      expect((await refused.json()).message).toBe('Not found.');
+    }
 
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-recording-permiss-cf7e0-ery-read-and-every-mutation-api\trace.zip
-    Usage:
+    // Untouched for its owner.
+    const after = await detailsOf(owner, id);
+    expect(after.title).toBe('Owner title');
+    expect(after.group).toBe('Owner group');
+    expect(after.transcript).toContain(TRANSCRIPT);
+  });
 
-        npx playwright show-trace test-results\features-recording-permiss-cf7e0-ery-read-and-every-mutation-api\trace.zip
+  test('a peer MEMBER is refused every read and every mutation', async ({
+    createAccount,
+    mailpit,
+  }) => {
+    const { owner, member, orgId } = await orgWithMember(
+      createAccount,
+      mailpit,
+      'Naplo E2E Peer Read',
+    );
+    const { id } = await createRecording(owner.api, 'Owner group', 'Owner title');
+    await expectStatus(await appendSlice(owner.api, id, `${TRANSCRIPT} `), 200);
 
-    ────────────────────────────────────────────────────────────────────────────────────────────────
+    // Sharing an employer is not a reason to read - or retitle, or delete -
+    // a colleague's recording, and the toggle below never applies to a plain
+    // MEMBER. 403 not 404: the membership exists, the access does not.
+    for (const [label, call] of guardedCalls(member.api, id)) {
+      const refused = await call();
+      expect(refused.status(), `${label} must be refused for a peer MEMBER`).toBe(403);
+      expect((await refused.json()).message).toBe('You do not have access to this recording');
+    }
 
-  2) [api] › tests\features\recording\permissions.api.spec.js:115:5 › Recording > Permissions › an OWNER is refused the transcript while the toggle is off
+    await setTranscriptVisibility(owner.api, orgId, true);
+    const stillRefused = await member.api.get(`/api/v1/recordings/${id}`);
+    expect(stillRefused.status()).toBe(403);
 
-    TypeError: createAccount is not a function
+    // And the peer's own dashboard never widens either.
+    expect(await member.api.json(member.api.get('/api/v1/recordings'), 200)).toHaveLength(0);
 
-       at support\org.js:27
+    // Every mutation above ran through assertFullAccess before touching Mongo,
+    // so the owner's copy is byte-identical to what they left.
+    const after = await detailsOf(owner.api, id);
+    expect(after.title).toBe('Owner title');
+    expect(after.group).toBe('Owner group');
+    expect(after.transcript).toContain(TRANSCRIPT);
+    expect(after.deletedAt).toBeNull();
+  });
 
-      25 |  */
-      26 | export async function orgWithMember(createAccount, mailpit, name = 'Naplo E2E HQ') {
-    > 27 |     const owner = await createAccount('owner');
-         |                         ^
-      28 |     const unique = `${name} ${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
-      29 |     const org = await owner.api.json(
-      30 |         owner.api.post('/api/v1/organizations', { data: { name: unique } }),
-        at orgWithMember (C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\org.js:27:25)
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\recording\permissions.api.spec.js:119:48
+  test('an OWNER is refused the transcript while the toggle is off', async ({
+    createAccount,
+    mailpit,
+  }) => {
+    const { owner, member, orgId } = await orgWithMember(
+      createAccount,
+      mailpit,
+      'Naplo E2E Admin Gate',
+    );
+    const { id } = await createRecording(member.api, 'Member group', 'Member title');
+    await expectStatus(await appendSlice(member.api, id, `${TRANSCRIPT} `), 200);
 
-    Error Context: test-results\features-recording-permiss-0ef04-ipt-while-the-toggle-is-off-api\error-context.md
+    const refused = await owner.api.get(`/api/v1/recordings/${id}`);
+    expect(refused.status()).toBe(403);
+    expect((await refused.json()).message).toContain('Transcripts visible to admins');
+    expect((await owner.api.get(`/api/v1/recordings/${id}/audio/stream`)).status()).toBe(403);
 
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-recording-permiss-0ef04-ipt-while-the-toggle-is-off-api\trace.zip
-    Usage:
+    // The member's recording is invisible on the owner's dashboard too -
+    // canSeePeerRecordings needs the same opt-in.
+    const listed = await owner.api.json(owner.api.get('/api/v1/recordings'), 200);
+    expect(listed.map((row) => row.id)).not.toContain(id);
 
-        npx playwright show-trace test-results\features-recording-permiss-0ef04-ipt-while-the-toggle-is-off-api\trace.zip
+    // Metadata is still fair game: the spend report reads through
+    // canReadMetadata, which the toggle does not gate.
+    const targetMembership = await membershipId(owner.api, orgId, member.email);
+    const usage = await owner.api.json(
+      owner.api.get(`/api/v1/organizations/${orgId}/members/${targetMembership}/usage`),
+      200,
+    );
+    const reported = usage.recentRecordings.find((row) => row.id === id);
+    expect(reported.title).toBe('Member title');
+    expect(reported.transcript).toBeUndefined();
+  });
 
-    ────────────────────────────────────────────────────────────────────────────────────────────────
+  test('an OWNER reads the transcript once the org opts in', async ({ createAccount, mailpit }) => {
+    const { owner, member, orgId } = await orgWithMember(
+      createAccount,
+      mailpit,
+      'Naplo E2E Admin Opt In',
+    );
+    const { id } = await createRecording(member.api, 'Member group', 'Member title');
+    await expectStatus(await appendSlice(member.api, id, `${TRANSCRIPT} `), 200);
 
-  3) [api] › tests\features\recording\permissions.api.spec.js:151:5 › Recording > Permissions › an OWNER reads the transcript once the org opts in
+    await setTranscriptVisibility(owner.api, orgId, true);
 
-    TypeError: createAccount is not a function
+    const seen = await detailsOf(owner.api, id);
+    expect(seen.id).toBe(id);
+    expect(seen.title).toBe('Member title');
+    expect(seen.transcript).toContain(TRANSCRIPT);
+  });
 
-       at support\org.js:27
+  test('the opted-in listing sideloads creator identity onto peer rows only', async ({
+    createAccount,
+    mailpit,
+  }) => {
+    const { owner, member, orgId } = await orgWithMember(
+      createAccount,
+      mailpit,
+      'Naplo E2E Admin Listing',
+    );
+    const { id: memberRecording } = await createRecording(member.api, 'Member group', 'By member');
+    const { id: ownRecording } = await createRecording(owner.api, 'Owner group', 'By owner');
 
-      25 |  */
-      26 | export async function orgWithMember(createAccount, mailpit, name = 'Naplo E2E HQ') {
-    > 27 |     const owner = await createAccount('owner');
-         |                         ^
-      28 |     const unique = `${name} ${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
-      29 |     const org = await owner.api.json(
-      30 |         owner.api.post('/api/v1/organizations', { data: { name: unique } }),
-        at orgWithMember (C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\org.js:27:25)
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\recording\permissions.api.spec.js:152:48
+    await setTranscriptVisibility(owner.api, orgId, true);
 
-    Error Context: test-results\features-recording-permiss-b6d13-script-once-the-org-opts-in-api\error-context.md
+    const listed = await owner.api.json(owner.api.get('/api/v1/recordings'), 200);
+    expect(listed.map((row) => row.id).sort()).toEqual([memberRecording, ownRecording].sort());
 
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-recording-permiss-b6d13-script-once-the-org-opts-in-api\trace.zip
-    Usage:
+    const peerRow = listed.find((row) => row.id === memberRecording);
+    // Sideloaded so the SPA can render a "by Alice" byline without a second fetch.
+    expect(peerRow.creatorEmail).toBe(member.email);
+    expect(peerRow.creatorId).toBeTruthy();
 
-        npx playwright show-trace test-results\features-recording-permiss-b6d13-script-once-the-org-opts-in-api\trace.zip
+    const ownRow = listed.find((row) => row.id === ownRecording);
+    // Nulled on the caller's own rows - that absence is how the SPA tells
+    // "mine" from "theirs".
+    expect(ownRow.creatorEmail).toBeNull();
+    expect(ownRow.creatorId).toBeTruthy();
+    expect(ownRow.creatorId).not.toBe(peerRow.creatorId);
+  });
 
-    ────────────────────────────────────────────────────────────────────────────────────────────────
+  test('an ADMIN gets the same access an OWNER does', async ({ createAccount, mailpit }) => {
+    const { owner, member, orgId } = await orgWithMember(
+      createAccount,
+      mailpit,
+      'Naplo E2E Admin Role',
+    );
+    const { id } = await createRecording(owner.api, 'Owner group', 'Owner title');
+    await expectStatus(await appendSlice(owner.api, id, `${TRANSCRIPT} `), 200);
 
-  4) [api] › tests\features\recording\permissions.api.spec.js:169:5 › Recording > Permissions › the opted-in listing sideloads creator identity onto peer rows only
+    const targetMembership = await membershipId(owner.api, orgId, member.email);
+    await expectStatus(
+      await owner.api.put(`/api/v1/organizations/${orgId}/members/${targetMembership}/role`, {
+        data: { role: 'ADMIN' },
+      }),
+      200,
+    );
 
-    TypeError: createAccount is not a function
+    // hasAtLeast(ADMIN), so promotion alone lifts the 403 to the toggle gate.
+    const stillGated = await member.api.get(`/api/v1/recordings/${id}`);
+    expect(stillGated.status()).toBe(403);
 
-       at support\org.js:27
+    await setTranscriptVisibility(owner.api, orgId, true);
+    // The role is read from Mongo on every call, so no re-login is needed.
+    expect((await detailsOf(member.api, id)).transcript).toContain(TRANSCRIPT);
+  });
 
-      25 |  */
-      26 | export async function orgWithMember(createAccount, mailpit, name = 'Naplo E2E HQ') {
-    > 27 |     const owner = await createAccount('owner');
-         |                         ^
-      28 |     const unique = `${name} ${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
-      29 |     const org = await owner.api.json(
-      30 |         owner.api.post('/api/v1/organizations', { data: { name: unique } }),
-        at orgWithMember (C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\org.js:27:25)
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\recording\permissions.api.spec.js:173:48
+  test('a peer cannot delete the recording', async ({ newUser }) => {
+    const owner = await newUser('recorder');
+    const { id } = await createRecording(owner);
 
-    Error Context: test-results\features-recording-permiss-679ab-dentity-onto-peer-rows-only-api\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-recording-permiss-679ab-dentity-onto-peer-rows-only-api\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-recording-permiss-679ab-dentity-onto-peer-rows-only-api\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  5) [api] › tests\features\recording\permissions.api.spec.js:200:5 › Recording > Permissions › an ADMIN gets the same access as an OWNER does
-
-    TypeError: createAccount is not a function
-
-       at support\org.js:27
-
-      25 |  */
-      26 | export async function orgWithMember(createAccount, mailpit, name = 'Naplo E2E HQ') {
-    > 27 |     const owner = await createAccount('owner');
-         |                         ^
-      28 |     const unique = `${name} ${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
-      29 |     const org = await owner.api.json(
-      30 |         owner.api.post('/api/v1/organizations', { data: { name: unique } }),
-        at orgWithMember (C:\Users\Mate\Desktop\Project\naplo\e2e\tests\support\org.js:27:25)
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\recording\permissions.api.spec.js:201:48
-
-    Error Context: test-results\features-recording-permiss-a6e40-ame-access-as-an-OWNER-does-api\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-recording-permiss-a6e40-ame-access-as-an-OWNER-does-api\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-recording-permiss-a6e40-ame-access-as-an-OWNER-does-api\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  5 failed
-    [api] › tests\features\recording\permissions.api.spec.js:73:5 › Recording > Permissions › a peer MEMBER is refused every read and every mutation
-    [api] › tests\features\recording\permissions.api.spec.js:115:5 › Recording > Permissions › an OWNER is refused the transcript while the toggle is off
-    [api] › tests\features\recording\permissions.api.spec.js:151:5 › Recording > Permissions › an OWNER reads the transcript once the org opts in
-    [api] › tests\features\recording\permissions.api.spec.js:169:5 › Recording > Permissions › the opted-in listing sideloads creator identity onto peer rows only
-    [api] › tests\features\recording\permissions.api.spec.js:200:5 › Recording > Permissions › an ADMIN gets the same access as an OWNER does
-  2 passed (11.1s)
-
-To open last HTML report run:
-
-  npx playwright show-report
-
-[e2e] backend logs (tail) -----------------------------------
-backend-1  |
-backend-1  |   .   ____          _            __ _ _
-backend-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-backend-1  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
-backend-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-backend-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
-backend-1  |  =========|_|==============|___/=/_/_/_/
-backend-1  |
-backend-1  |  :: Spring Boot ::                (v4.1.0)
-backend-1  |
-backend-1  | 2026-09-01 07:01:55.217  INFO [req=- user=- org=- - -] [           main] u.m.backend.BackendApplication           : Starting BackendApplication v0.0.1-SNAPSHOT using Java 21.0.12 with PID 1 (/app/app.jar started by appuser in /app)
-backend-1  | 2026-09-01 07:01:55.223  INFO [req=- user=- org=- - -] [           main] u.m.backend.BackendApplication           : The following 1 profile is active: "e2e"
-backend-1  | 2026-09-01 07:01:56.926  INFO [req=- user=- org=- - -] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-backend-1  | 2026-09-01 07:01:57.142  INFO [req=- user=- org=- - -] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 208 ms. Found 19 MongoDB repository interfaces.
-backend-1  | 2026-09-01 07:01:58.376  INFO [req=- user=- org=- - -] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
-backend-1  | 2026-09-01 07:01:58.402  INFO [req=- user=- org=- - -] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-backend-1  | 2026-09-01 07:01:58.403  INFO [req=- user=- org=- - -] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
-backend-1  | 2026-09-01 07:01:58.442  INFO [req=- user=- org=- - -] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3091 ms
-backend-1  | 2026-09-01 07:01:58.670  INFO [req=- user=- org=- - -] [           main] u.m.b.base.logging.MdcContextRegistrar   : Registered MdcThreadLocalAccessor with Micrometer ContextRegistry - SLF4J MDC will propagate through Reactor operators
-backend-1  | 2026-09-01 07:01:58.973  INFO [req=- user=- org=- - -] [           main] org.mongodb.driver.cluster               : Adding discovered server mongo:27017 to client view of cluster
-backend-1  | 2026-09-01 07:01:59.072  INFO [req=- user=- org=- - -] [           main] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|spring-boot|sync", "version": "5.8.0"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.6.87.2-microsoft-standard-WSL2"}, "platform": "Java/Eclipse Adoptium/21.0.12+8-LTS", "env": {"container": {"runtime": "docker"}}} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@584136c1, com.mongodb.Jep395RecordCodecProvider@51d88c38, com.mongodb.KotlinCodecProvider@3ea2f72e, EnumCodecProvider{}]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[mongo:27017], srvServiceName=mongodb, mode=MULTIPLE, requiredClusterType=REPLICA_SET, requiredReplicaSetName='rs0', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
-backend-1  | 2026-09-01 07:01:59.105  INFO [req=- user=- org=- - -] [b7f-mongo:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=mongo:27017, type=REPLICA_SET_PRIMARY, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=34787048, minRoundTripTimeNanos=0, setName='rs0', canonicalAddress=mongo:27017, hosts=[mongo:27017], passives=[], arbiters=[], primary='mongo:27017', tagSet=TagSet{[]}, electionId=7fffffff0000000000000001, setVersion=1, topologyVersion=TopologyVersion{processId=6a9678562550d3b8c9b36084, counter=6}, lastWriteDate=Tue Sep 01 07:01:53 GMT 2026, lastUpdateTimeNanos=185776497361039}
-backend-1  | 2026-09-01 07:01:59.112  INFO [req=- user=- org=- - -] [b7f-mongo:27017] org.mongodb.driver.cluster               : Discovered replica set primary mongo:27017 with max election id 7fffffff0000000000000001 and max set version 1
-backend-1  | 2026-09-01 07:01:59.961  INFO [req=- user=- org=- - -] [           main] u.m.b.security.config.RsaKeyConfig       : JWT signing key loaded from file:/etc/naplo/keys/private.key
-backend-1  | 2026-09-01 07:02:01.895  WARN [req=- user=- org=- - -] [           main] u.m.backend.rag.service.LuceneAnalyzers  : LuceneAnalyzers: synonyms resource /rag/synonyms.txt not found on classpath, running without query-time synonyms
-backend-1  | 2026-09-01 07:02:01.900  INFO [req=- user=- org=- - -] [           main] u.m.backend.rag.service.LuceneAnalyzers  : LuceneAnalyzers ready: synonyms=0 entries, fields=[text, text_phonetic, userId, recordingId, chunkId, fingerprint, vector]
-backend-1  | WARNING: A restricted method in java.lang.foreign.Linker has been called
-backend-1  | WARNING: java.lang.foreign.Linker::downcallHandle has been called by the unnamed module
-backend-1  | WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for this module
-backend-1  |
-backend-1  | 2026-09-01 07:02:02.012  INFO [req=- user=- org=- - -] [           main] o.a.l.s.MemorySegmentIndexInputProvider  : Using MemorySegmentIndexInput and native madvise support with Java 21 or later; to disable start with -Dorg.apache.lucene.store.MMapDirectory.enableMemorySegments=false
-backend-1  | 2026-09-01 07:02:02.161  WARN [req=- user=- org=- - -] [           main] o.a.l.i.v.VectorizationProvider          : Java vector incubator module is not readable. For optimal vector performance, pass '--add-modules jdk.incubator.vector' to enable Vector API.
-backend-1  | 2026-09-01 07:02:02.268  INFO [req=- user=- org=- - -] [           main] u.m.backend.rag.service.LuceneBmIndex    : LuceneBmIndex ready: MMapDirectory docs, dims=0, BM25(k1=512, b=1.2), phonetic boost=0.75
-backend-1  | 2026-09-01 07:02:02.952  INFO [req=- user=- org=- - -] [           main] u.m.b.r.a.s.TranscriptionCostCalculator  : Price multiplier is 1.6
-backend-1  | 2026-09-01 07:02:03.053  INFO [req=- user=- org=- - -] [           main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-backend-1  | 2026-09-01 07:02:03.054  WARN [req=- user=- org=- - -] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-backend-1  | 2026-09-01 07:02:03.071  INFO [req=- user=- org=- - -] [           main] u.m.backend.security.JwksController      : JWKS endpoint initialized with key ID: naplo-rsa
-backend-1  | 2026-09-01 07:02:04.646  INFO [req=- user=- org=- - -] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
-backend-1  | 2026-09-01 07:02:04.664  INFO [req=- user=- org=- - -] [           main] u.m.backend.BackendApplication           : Started BackendApplication in 10.212 seconds (process running for 11.069)
-backend-1  | 2026-09-01 07:02:08.917  INFO [req=- user=- org=- - -] [omcat-handler-0] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-backend-1  | 2026-09-01 07:02:08.918  INFO [req=- user=- org=- - -] [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-backend-1  | 2026-09-01 07:02:08.920  INFO [req=- user=- org=- - -] [omcat-handler-0] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-backend-1  | 2026-09-01 07:02:12.587  INFO [req=b663fbe8 user=- org=- GET /api/public/legal/versions] [omcat-handler-8] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:12.587  INFO [req=099d4132 user=- org=- GET /api/public/legal/versions] [omcat-handler-9] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:12.587  INFO [req=1cfbc077 user=- org=- GET /api/public/legal/versions] [omcat-handler-6] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:12.587  INFO [req=70885bf8 user=- org=- GET /api/public/legal/versions] [omcat-handler-7] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:12.588  INFO [req=b663fbe8 user=- org=- GET /api/public/legal/versions] [omcat-handler-8] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:12.588  INFO [req=1cfbc077 user=- org=- GET /api/public/legal/versions] [omcat-handler-6] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:12.588  INFO [req=70885bf8 user=- org=- GET /api/public/legal/versions] [omcat-handler-7] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 1 ms
-backend-1  | 2026-09-01 07:02:12.589  INFO [req=099d4132 user=- org=- GET /api/public/legal/versions] [omcat-handler-9] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:13.085  INFO [req=b3b52894 user=- org=- GET /api/public/legal/versions] [mcat-handler-10] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:13.085  INFO [req=b3b52894 user=- org=- GET /api/public/legal/versions] [mcat-handler-10] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:13.990  INFO [req=598a1a52 user=- org=- POST /api/public/register] [mcat-handler-12] u.m.b.s.r.RegistrationController         : >> registerUser(request=UserRegistrationRequest{email=v***@naplo-e2e.test, password=<redacted>, termsAcceptedVersion="2026-08-08", privacyAcceptedVersion="2026-08-28", captchaToken=<redacted>, signupSource="e2e"})
-backend-1  | 2026-09-01 07:02:14.378  INFO [req=598a1a52 user=- org=- POST /api/public/register] [mcat-handler-12] u.m.b.o.service.OrganizationService      : Created personal org 6a9678763dc4e411db825b81 for user 6a9678763dc4e411db825b80 (credit=1.00)
-backend-1  | 2026-09-01 07:02:14.423  INFO [req=598a1a52 user=- org=- POST /api/public/register] [mcat-handler-12] u.m.b.s.r.RegistrationController         : << registerUser -> ResponseEntity{status=201, body=Map1[1 entries]} in 432 ms
-backend-1  | 2026-09-01 07:02:14.512  INFO [req=038d049f user=- org=- GET /api/public/legal/versions] [mcat-handler-18] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:14.512  INFO [req=038d049f user=- org=- GET /api/public/legal/versions] [mcat-handler-18] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:14.513  INFO [req=2f7fd19d user=- org=- GET /api/public/legal/versions] [mcat-handler-19] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:14.513  INFO [req=2f7fd19d user=- org=- GET /api/public/legal/versions] [mcat-handler-19] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:14.524  INFO [req=598a1a52 user=- org=- POST /api/public/register] [        async-2] u.m.b.s.registration.EmailService        : Verification email sent from noreply@naplo.app to vjflxtwwktqd-e2e-recorder-1@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:14.528  INFO [req=3bdc30d3 user=- org=- GET /api/public/legal/versions] [mcat-handler-22] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:14.528  INFO [req=3bdc30d3 user=- org=- GET /api/public/legal/versions] [mcat-handler-22] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:14.775  INFO [req=ed60a660 user=- org=- GET /api/public/verify-email] [mcat-handler-23] u.m.b.s.r.RegistrationController         : >> verifyEmail(token=<redacted>)
-backend-1  | 2026-09-01 07:02:14.809  INFO [req=ed60a660 user=- org=- GET /api/public/verify-email] [mcat-handler-23] u.m.b.s.r.UserRegistrationService        : Email verified for user: v***@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:14.814  INFO [req=ed60a660 user=- org=- GET /api/public/verify-email] [mcat-handler-23] u.m.b.s.r.RegistrationController         : << verifyEmail -> ResponseEntity{status=200, body=Map1[1 entries]} in 39 ms
-backend-1  | 2026-09-01 07:02:14.826  INFO [req=ed60a660 user=- org=- GET /api/public/verify-email] [        async-1] u.m.b.s.registration.EmailService        : Welcome email sent to vjflxtwwktqd-e2e-recorder-1@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:14.964  INFO [req=ec44058b user=- org=- GET /api/public/legal/versions] [mcat-handler-24] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:14.964  INFO [req=ec44058b user=- org=- GET /api/public/legal/versions] [mcat-handler-24] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:15.149  INFO [req=f68a011c user=- org=- POST /api/public/auth/login] [mcat-handler-25] u.m.backend.security.AuthController      : >> authenticateAndGenerateToken(loginRequest=LoginRequest{email=v***@naplo-e2e.test, password=<redacted>, captchaToken=<redacted>})
-backend-1  | 2026-09-01 07:02:15.297  INFO [req=6dc6b301 user=- org=- POST /api/public/register] [mcat-handler-26] u.m.b.s.r.RegistrationController         : >> registerUser(request=UserRegistrationRequest{email=m***@naplo-e2e.test, password=<redacted>, termsAcceptedVersion="2026-08-08", privacyAcceptedVersion="2026-08-28", captchaToken=<redacted>, signupSource="e2e"})
-backend-1  | 2026-09-01 07:02:15.402  INFO [req=6dc6b301 user=- org=- POST /api/public/register] [mcat-handler-26] u.m.b.o.service.OrganizationService      : Created personal org 6a9678773dc4e411db825b85 for user 6a9678773dc4e411db825b84 (credit=1.00)
-backend-1  | 2026-09-01 07:02:15.420  INFO [req=6dc6b301 user=- org=- POST /api/public/register] [mcat-handler-26] u.m.b.s.r.RegistrationController         : << registerUser -> ResponseEntity{status=201, body=Map1[1 entries]} in 122 ms
-backend-1  | 2026-09-01 07:02:15.429  INFO [req=6dc6b301 user=- org=- POST /api/public/register] [        async-2] u.m.b.s.registration.EmailService        : Verification email sent from noreply@naplo.app to mlgyjusuhofz-e2e-recorder-1@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:15.481  INFO [req=f68a011c user=- org=- POST /api/public/auth/login] [mcat-handler-25] u.m.backend.security.AuthController      : << authenticateAndGenerateToken -> ResponseEntity{status=200, body=LoginResponse} in 332 ms
-backend-1  | 2026-09-01 07:02:15.557  INFO [req=e699a72d user=v***@naplo-e2e.test org=6a9678763dc4e411db825b81 POST /api/v1/recordings] [mcat-handler-27] u.m.backend.record.RecordingController   : >> createInitialRecording(jwt=Jwt{sub=v***@naplo-e2e.test}, group="Owner group", transcriptionMode=null, title="Owner title", recordingTypeRaw=null)
-backend-1  | 2026-09-01 07:02:15.606  INFO [req=e699a72d user=v***@naplo-e2e.test org=6a9678763dc4e411db825b81 POST /api/v1/recordings] [mcat-handler-27] u.m.backend.record.RecordingController   : << createInitialRecording -> ResponseEntity{status=202, body=RecordingDto} in 48 ms
-backend-1  | 2026-09-01 07:02:15.787  INFO [req=a41ba7db user=- org=- GET /api/public/verify-email] [mcat-handler-28] u.m.b.s.r.RegistrationController         : >> verifyEmail(token=<redacted>)
-backend-1  | 2026-09-01 07:02:15.804  INFO [req=a41ba7db user=- org=- GET /api/public/verify-email] [mcat-handler-28] u.m.b.s.r.UserRegistrationService        : Email verified for user: m***@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:15.810  INFO [req=a41ba7db user=- org=- GET /api/public/verify-email] [mcat-handler-28] u.m.b.s.r.RegistrationController         : << verifyEmail -> ResponseEntity{status=200, body=Map1[1 entries]} in 23 ms
-backend-1  | 2026-09-01 07:02:15.821  INFO [req=a41ba7db user=- org=- GET /api/public/verify-email] [        async-1] u.m.b.s.registration.EmailService        : Welcome email sent to mlgyjusuhofz-e2e-recorder-1@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:15.961  INFO [req=adec7e0b user=v***@naplo-e2e.test org=6a9678763dc4e411db825b81 POST /api/v1/recordings/6a9678773dc4e411db825b89/transcript/append] [mcat-handler-29] u.m.b.record.TranscriptAppendController  : >> append(recordingId="6a9678773dc4e411db825b89", request=TranscriptAppendRequest{offsetSeconds=0.0, text="This is the naplo end to end suite speaking into a synthetic recording.", chunks=ArrayList, source=null}, jwt=Jwt{sub=v***@naplo-e2e.test})
-backend-1  | 2026-09-01 07:02:15.983  INFO [req=adec7e0b user=v***@naplo-e2e.test org=6a9678763dc4e411db825b81 POST /api/v1/recordings/6a9678773dc4e411db825b89/transcript/append] [mcat-handler-29] u.m.b.record.TranscriptAppendController  : Transcript append for recording 6a9678773dc4e411db825b89 by v***@naplo-e2e.test: offset=0.0s, text=71 chars, chunks=0, source=null
-backend-1  | 2026-09-01 07:02:15.983  INFO [req=adec7e0b user=v***@naplo-e2e.test org=6a9678763dc4e411db825b81 POST /api/v1/recordings/6a9678773dc4e411db825b89/transcript/append] [mcat-handler-29] u.m.b.record.TranscriptAppendController  : << append -> ResponseEntity{status=200, body=Map1[1 entries]} in 22 ms
-backend-1  | 2026-09-01 07:02:16.138  INFO [req=4e91c9ec user=- org=- POST /api/public/auth/login] [mcat-handler-30] u.m.backend.security.AuthController      : >> authenticateAndGenerateToken(loginRequest=LoginRequest{email=m***@naplo-e2e.test, password=<redacted>, captchaToken=<redacted>})
-backend-1  | 2026-09-01 07:02:16.239  INFO [req=4e91c9ec user=- org=- POST /api/public/auth/login] [mcat-handler-30] u.m.backend.security.AuthController      : << authenticateAndGenerateToken -> ResponseEntity{status=200, body=LoginResponse} in 100 ms
-backend-1  | 2026-09-01 07:02:16.254  INFO [req=da08fb40 user=m***@naplo-e2e.test org=6a9678773dc4e411db825b85 POST /api/v1/recordings] [mcat-handler-31] u.m.backend.record.RecordingController   : >> createInitialRecording(jwt=Jwt{sub=m***@naplo-e2e.test}, group="E2E group", transcriptionMode=null, title="E2E recording", recordingTypeRaw=null)
-backend-1  | 2026-09-01 07:02:16.265  INFO [req=da08fb40 user=m***@naplo-e2e.test org=6a9678773dc4e411db825b85 POST /api/v1/recordings] [mcat-handler-31] u.m.backend.record.RecordingController   : << createInitialRecording -> ResponseEntity{status=202, body=RecordingDto} in 11 ms
-backend-1  | 2026-09-01 07:02:16.309  INFO [req=0f13394d user=- org=- GET /api/public/legal/versions] [mcat-handler-32] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:16.309  INFO [req=0f13394d user=- org=- GET /api/public/legal/versions] [mcat-handler-32] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:16.588  INFO [req=45810f72 user=- org=- GET /api/public/legal/versions] [mcat-handler-33] u.m.b.security.legal.LegalController     : >> currentVersions()
-backend-1  | 2026-09-01 07:02:16.588  INFO [req=45810f72 user=- org=- GET /api/public/legal/versions] [mcat-handler-33] u.m.b.security.legal.LegalController     : << currentVersions -> ResponseEntity{status=200, body=CurrentLegalVersions} in 0 ms
-backend-1  | 2026-09-01 07:02:16.645  INFO [req=f7a6e73a user=- org=- POST /api/public/register] [mcat-handler-34] u.m.b.s.r.RegistrationController         : >> registerUser(request=UserRegistrationRequest{email=r***@naplo-e2e.test, password=<redacted>, termsAcceptedVersion="2026-08-08", privacyAcceptedVersion="2026-08-28", captchaToken=<redacted>, signupSource="e2e"})
-backend-1  | 2026-09-01 07:02:16.748  INFO [req=f7a6e73a user=- org=- POST /api/public/register] [mcat-handler-34] u.m.b.o.service.OrganizationService      : Created personal org 6a9678783dc4e411db825b8d for user 6a9678783dc4e411db825b8c (credit=1.00)
-backend-1  | 2026-09-01 07:02:16.764  INFO [req=f7a6e73a user=- org=- POST /api/public/register] [mcat-handler-34] u.m.b.s.r.RegistrationController         : << registerUser -> ResponseEntity{status=201, body=Map1[1 entries]} in 119 ms
-backend-1  | 2026-09-01 07:02:16.777  INFO [req=f7a6e73a user=- org=- POST /api/public/register] [        async-2] u.m.b.s.registration.EmailService        : Verification email sent from noreply@naplo.app to rkihhzjidflp-e2e-stranger-2@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:16.919  INFO [req=0ce65052 user=- org=- POST /api/public/register] [mcat-handler-35] u.m.b.s.r.RegistrationController         : >> registerUser(request=UserRegistrationRequest{email=f***@naplo-e2e.test, password=<redacted>, termsAcceptedVersion="2026-08-08", privacyAcceptedVersion="2026-08-28", captchaToken=<redacted>, signupSource="e2e"})
-backend-1  | 2026-09-01 07:02:17.016  INFO [req=0ce65052 user=- org=- POST /api/public/register] [mcat-handler-35] u.m.b.o.service.OrganizationService      : Created personal org 6a9678793dc4e411db825b91 for user 6a9678793dc4e411db825b90 (credit=1.00)
-backend-1  | 2026-09-01 07:02:17.029  INFO [req=0ce65052 user=- org=- POST /api/public/register] [mcat-handler-35] u.m.b.s.r.RegistrationController         : << registerUser -> ResponseEntity{status=201, body=Map1[1 entries]} in 109 ms
-backend-1  | 2026-09-01 07:02:17.041  INFO [req=0ce65052 user=- org=- POST /api/public/register] [        async-1] u.m.b.s.registration.EmailService        : Verification email sent from noreply@naplo.app to fggboqzhmrmh-e2e-stranger-2@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:17.069  INFO [req=54ec6d67 user=- org=- GET /api/public/verify-email] [mcat-handler-36] u.m.b.s.r.RegistrationController         : >> verifyEmail(token=<redacted>)
-backend-1  | 2026-09-01 07:02:17.079  INFO [req=54ec6d67 user=- org=- GET /api/public/verify-email] [mcat-handler-36] u.m.b.s.r.UserRegistrationService        : Email verified for user: f***@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:17.083  INFO [req=54ec6d67 user=- org=- GET /api/public/verify-email] [mcat-handler-36] u.m.b.s.r.RegistrationController         : << verifyEmail -> ResponseEntity{status=200, body=Map1[1 entries]} in 13 ms
-backend-1  | 2026-09-01 07:02:17.093  INFO [req=54ec6d67 user=- org=- GET /api/public/verify-email] [        async-2] u.m.b.s.registration.EmailService        : Welcome email sent to fggboqzhmrmh-e2e-stranger-2@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:17.304  INFO [req=b8107764 user=- org=- GET /api/public/verify-email] [mcat-handler-37] u.m.b.s.r.RegistrationController         : >> verifyEmail(token=<redacted>)
-backend-1  | 2026-09-01 07:02:17.317  INFO [req=b8107764 user=- org=- GET /api/public/verify-email] [mcat-handler-37] u.m.b.s.r.UserRegistrationService        : Email verified for user: r***@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:17.323  INFO [req=b8107764 user=- org=- GET /api/public/verify-email] [mcat-handler-37] u.m.b.s.r.RegistrationController         : << verifyEmail -> ResponseEntity{status=200, body=Map1[1 entries]} in 18 ms
-backend-1  | 2026-09-01 07:02:17.335  INFO [req=b8107764 user=- org=- GET /api/public/verify-email] [        async-1] u.m.b.s.registration.EmailService        : Welcome email sent to rkihhzjidflp-e2e-stranger-2@naplo-e2e.test
-backend-1  | 2026-09-01 07:02:17.410  INFO [req=eb03f024 user=- org=- POST /api/public/auth/login] [mcat-handler-39] u.m.backend.security.AuthController      : >> authenticateAndGenerateToken(loginRequest=LoginRequest{email=f***@naplo-e2e.test, password=<redacted>, captchaToken=<redacted>})
-backend-1  | 2026-09-01 07:02:17.505  INFO [req=eb03f024 user=- org=- POST /api/public/auth/login] [mcat-handler-39] u.m.backend.security.AuthController      : << authenticateAndGenerateToken -> ResponseEntity{status=200, body=LoginResponse} in 94 ms
-backend-1  | 2026-09-01 07:02:17.519  INFO [req=2dde952a user=f***@naplo-e2e.test org=6a9678793dc4e411db825b91 DELETE /api/v1/recordings/6a9678783dc4e411db825b8b] [mcat-handler-40] u.m.backend.record.RecordingController   : >> deleteRecording(jwt=Jwt{sub=f***@naplo-e2e.test}, recordingId="6a9678783dc4e411db825b8b")
-backend-1  | 2026-09-01 07:02:17.540  WARN [req=2dde952a user=f***@naplo-e2e.test org=6a9678793dc4e411db825b91 DELETE /api/v1/recordings/6a9678783dc4e411db825b8b] [mcat-handler-40] u.m.backend.record.RecordingController   : !! deleteRecording threw ResourceNotFoundException: Not found. in 21 ms
-backend-1  | 2026-09-01 07:02:17.542  WARN [req=2dde952a user=f***@naplo-e2e.test org=6a9678793dc4e411db825b91 DELETE /api/v1/recordings/6a9678783dc4e411db825b8b] [mcat-handler-40] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678783dc4e411db825b8b): Not found.
-backend-1  | 2026-09-01 07:02:17.575  WARN [req=2dde952a user=f***@naplo-e2e.test org=6a9678793dc4e411db825b91 DELETE /api/v1/recordings/6a9678783dc4e411db825b8b] [mcat-handler-40] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:17.645  INFO [req=55c6c570 user=- org=- POST /api/public/auth/login] [mcat-handler-41] u.m.backend.security.AuthController      : >> authenticateAndGenerateToken(loginRequest=LoginRequest{email=r***@naplo-e2e.test, password=<redacted>, captchaToken=<redacted>})
-backend-1  | 2026-09-01 07:02:17.741  INFO [req=55c6c570 user=- org=- POST /api/public/auth/login] [mcat-handler-41] u.m.backend.security.AuthController      : << authenticateAndGenerateToken -> ResponseEntity{status=200, body=LoginResponse} in 96 ms
-backend-1  | 2026-09-01 07:02:17.756  INFO [req=9212e726 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-42] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:17.764  WARN [req=9212e726 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-42] u.m.backend.record.RecordingController   : !! getRecordingDetails threw ResourceNotFoundException: Not found. in 7 ms
-backend-1  | 2026-09-01 07:02:17.765  WARN [req=9212e726 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-42] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89): Not found.
-backend-1  | 2026-09-01 07:02:17.767  WARN [req=9212e726 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-42] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:17.901  INFO [req=23e9d059 user=m***@naplo-e2e.test org=6a9678773dc4e411db825b85 GET /api/v1/recordings/6a9678783dc4e411db825b8b] [mcat-handler-43] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=m***@naplo-e2e.test}, recordingId="6a9678783dc4e411db825b8b")
-backend-1  | 2026-09-01 07:02:17.916  INFO [req=23e9d059 user=m***@naplo-e2e.test org=6a9678773dc4e411db825b85 GET /api/v1/recordings/6a9678783dc4e411db825b8b] [mcat-handler-43] u.m.backend.record.RecordingController   : << getRecordingDetails -> ResponseEntity{status=200, body=RecordingDto} in 15 ms
-backend-1  | 2026-09-01 07:02:18.105  INFO [req=c7c25cca user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89/audio] [mcat-handler-45] u.m.backend.record.RecordingController   : >> getRecordingAudio(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:18.124  WARN [req=c7c25cca user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89/audio] [mcat-handler-45] u.m.backend.record.RecordingController   : !! getRecordingAudio threw ResourceNotFoundException: Not found. in 18 ms
-backend-1  | 2026-09-01 07:02:18.124  WARN [req=c7c25cca user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89/audio] [mcat-handler-45] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/audio): Not found.
-backend-1  | 2026-09-01 07:02:18.126  WARN [req=c7c25cca user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89/audio] [mcat-handler-45] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:18.454  INFO [req=47fa698d user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89/audio/stream] [mcat-handler-46] u.m.backend.record.RecordingController   : >> streamRecordingAudio(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:18.461  WARN [req=47fa698d user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89/audio/stream] [mcat-handler-46] u.m.backend.record.RecordingController   : !! streamRecordingAudio threw ResourceNotFoundException: Not found. in 6 ms
-backend-1  | 2026-09-01 07:02:18.462  WARN [req=47fa698d user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89/audio/stream] [mcat-handler-46] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/audio/stream): Not found.
-backend-1  | 2026-09-01 07:02:18.463  WARN [req=47fa698d user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d GET /api/v1/recordings/6a9678773dc4e411db825b89/audio/stream] [mcat-handler-46] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:18.790  INFO [req=1e263a7d user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/title] [mcat-handler-47] u.m.backend.record.RecordingController   : >> updateRecordingTitle(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89", title="x")
-backend-1  | 2026-09-01 07:02:18.808  WARN [req=1e263a7d user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/title] [mcat-handler-47] u.m.backend.record.RecordingController   : !! updateRecordingTitle threw ResourceNotFoundException: Not found. in 18 ms
-backend-1  | 2026-09-01 07:02:18.805  WARN [req=1e263a7d user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/title] [mcat-handler-47] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/title): Not found.
-backend-1  | 2026-09-01 07:02:18.807  WARN [req=1e263a7d user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/title] [mcat-handler-47] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:19.138  INFO [req=35c4d628 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/group] [mcat-handler-48] u.m.backend.record.RecordingController   : >> updateGroup(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89", group="x")
-backend-1  | 2026-09-01 07:02:19.156  WARN [req=35c4d628 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/group] [mcat-handler-48] u.m.backend.record.RecordingController   : !! updateGroup threw ResourceNotFoundException: Not found. in 18 ms
-backend-1  | 2026-09-01 07:02:19.157  WARN [req=35c4d628 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/group] [mcat-handler-48] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/group): Not found.
-backend-1  | 2026-09-01 07:02:19.158  WARN [req=35c4d628 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/group] [mcat-handler-48] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:19.487  INFO [req=86d36f17 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/transcript] [mcat-handler-51] u.m.backend.record.RecordingController   : >> updateTranscript(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89", transcript="x")
-backend-1  | 2026-09-01 07:02:19.488  INFO [req=86d36f17 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/transcript] [mcat-handler-51] u.m.backend.record.RecordingController   : Entering updateTranscript with recording ID: 6a9678773dc4e411db825b89
-backend-1  | 2026-09-01 07:02:19.498  WARN [req=86d36f17 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/transcript] [mcat-handler-51] u.m.backend.record.RecordingController   : !! updateTranscript threw ResourceNotFoundException: Not found. in 10 ms
-backend-1  | 2026-09-01 07:02:19.499  WARN [req=86d36f17 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/transcript] [mcat-handler-51] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/transcript): Not found.
-backend-1  | 2026-09-01 07:02:19.500  WARN [req=86d36f17 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d PATCH /api/v1/recordings/6a9678773dc4e411db825b89/transcript] [mcat-handler-51] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:19.825  INFO [req=647a0ac4 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/summary] [mcat-handler-52] u.m.backend.record.RecordingController   : >> generateRecordingSummary(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:19.840  WARN [req=647a0ac4 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/summary] [mcat-handler-52] u.m.backend.record.RecordingController   : !! generateRecordingSummary threw ResourceNotFoundException: Not found. in 15 ms
-backend-1  | 2026-09-01 07:02:19.841  WARN [req=647a0ac4 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/summary] [mcat-handler-52] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/summary): Not found.
-backend-1  | 2026-09-01 07:02:19.842  WARN [req=647a0ac4 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/summary] [mcat-handler-52] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:20.172  INFO [req=61f725c8 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/generate-title] [mcat-handler-54] u.m.backend.record.RecordingController   : >> generateRecordingTitle(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:20.195  WARN [req=61f725c8 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/generate-title] [mcat-handler-54] u.m.backend.record.RecordingController   : !! generateRecordingTitle threw ResourceNotFoundException: Not found. in 22 ms
-backend-1  | 2026-09-01 07:02:20.197  WARN [req=61f725c8 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/generate-title] [mcat-handler-54] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/generate-title): Not found.
-backend-1  | 2026-09-01 07:02:20.199  WARN [req=61f725c8 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/generate-title] [mcat-handler-54] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:20.532  INFO [req=c448ec71 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/live-finalize] [mcat-handler-55] u.m.backend.record.RecordingController   : >> finalizeLiveRecording(recordingId="6a9678773dc4e411db825b89", jwt=Jwt{sub=r***@naplo-e2e.test})
-backend-1  | 2026-09-01 07:02:20.556  WARN [req=c448ec71 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/live-finalize] [mcat-handler-55] u.m.backend.record.RecordingController   : !! finalizeLiveRecording threw ResourceNotFoundException: Not found. in 23 ms
-backend-1  | 2026-09-01 07:02:20.557  WARN [req=c448ec71 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/live-finalize] [mcat-handler-55] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/live-finalize): Not found.
-backend-1  | 2026-09-01 07:02:20.559  WARN [req=c448ec71 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/live-finalize] [mcat-handler-55] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:20.882  INFO [req=ac5c2c3f user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/restore] [mcat-handler-56] u.m.backend.record.RecordingController   : >> restoreRecording(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:20.892  WARN [req=ac5c2c3f user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/restore] [mcat-handler-56] u.m.backend.record.RecordingController   : !! restoreRecording threw ResourceNotFoundException: Not found. in 9 ms
-backend-1  | 2026-09-01 07:02:20.892  WARN [req=ac5c2c3f user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/restore] [mcat-handler-56] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/restore): Not found.
-backend-1  | 2026-09-01 07:02:20.894  WARN [req=ac5c2c3f user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d POST /api/v1/recordings/6a9678773dc4e411db825b89/restore] [mcat-handler-56] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:21.224  INFO [req=7866df3a user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d DELETE /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-57] u.m.backend.record.RecordingController   : >> deleteRecording(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:21.236  WARN [req=7866df3a user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d DELETE /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-57] u.m.backend.record.RecordingController   : !! deleteRecording threw ResourceNotFoundException: Not found. in 12 ms
-backend-1  | 2026-09-01 07:02:21.237  WARN [req=7866df3a user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d DELETE /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-57] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89): Not found.
-backend-1  | 2026-09-01 07:02:21.238  WARN [req=7866df3a user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d DELETE /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-57] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:21.569  INFO [req=31469515 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d DELETE /api/v1/recordings/6a9678773dc4e411db825b89/forever] [mcat-handler-58] u.m.backend.record.RecordingController   : >> hardDeleteRecording(jwt=Jwt{sub=r***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:21.586  WARN [req=31469515 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d DELETE /api/v1/recordings/6a9678773dc4e411db825b89/forever] [mcat-handler-58] u.m.backend.record.RecordingController   : !! hardDeleteRecording threw ResourceNotFoundException: Not found. in 17 ms
-backend-1  | 2026-09-01 07:02:21.587  WARN [req=31469515 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d DELETE /api/v1/recordings/6a9678773dc4e411db825b89/forever] [mcat-handler-58] u.m.b.b.e.BusinessExceptionAdvice        : 404 Not Found (uri=/api/v1/recordings/6a9678773dc4e411db825b89/forever): Not found.
-backend-1  | 2026-09-01 07:02:21.588  WARN [req=31469515 user=r***@naplo-e2e.test org=6a9678783dc4e411db825b8d DELETE /api/v1/recordings/6a9678773dc4e411db825b89/forever] [mcat-handler-58] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [uk.magicmamaliga.backend.base.ResourceNotFoundException: Not found.]
-backend-1  | 2026-09-01 07:02:21.923  INFO [req=2416088d user=v***@naplo-e2e.test org=6a9678763dc4e411db825b81 GET /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-59] u.m.backend.record.RecordingController   : >> getRecordingDetails(jwt=Jwt{sub=v***@naplo-e2e.test}, recordingId="6a9678773dc4e411db825b89")
-backend-1  | 2026-09-01 07:02:21.932  INFO [req=2416088d user=v***@naplo-e2e.test org=6a9678763dc4e411db825b81 GET /api/v1/recordings/6a9678773dc4e411db825b89] [mcat-handler-59] u.m.backend.record.RecordingController   : << getRecordingDetails -> ResponseEntity{status=200, body=RecordingDto} in 8 ms
+    const stranger = await newUser('stranger');
+    expect((await stranger.delete(`/api/v1/recordings/${id}`)).status()).toBe(404);
+    expect((await owner.get(`/api/v1/recordings/${id}`)).status()).toBe(200);
+  });
+});
