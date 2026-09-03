@@ -1,3 +1,29 @@
+To open last HTML report run:
+
+  npx playwright show-report
+
+[e2e] stopping the backend so the JaCoCo agent flushes its dump
+[+] Stopping 1/1
+ ✔ Container naplo-e2e-backend-1  Stopped                                                                                                                                              3.0s
+[e2e] extracting the classes the backend actually ran
+[+] Copying 1/1
+ ✔ naplo-e2e-backend-1 copy naplo-e2e-backend-1:/app/app.jar to C:\Users\Mate\Desktop\Project\naplo\e2e\.jacoco\app.jar Copied                                                         2.4s
+[e2e] generating the JaCoCo report
+[INFO] Loading execution data file C:\Users\Mate\Desktop\Project\naplo\e2e\.jacoco\e2e.exec.
+[INFO] Analyzing 255 classes.
+[e2e] line coverage: 5832/8937 (65.3%)
+[e2e] coverage report: C:\Users\Mate\Desktop\Project\naplo\e2e\.jacoco\report\index.html
+[+] Running 10/10
+ ✔ Container naplo-e2e-web-ui-1       Removed                                                                                                                                          0.7s
+ ✔ Container naplo-e2e-backend-1      Removed                                                                                                                                          0.3s
+ ✔ Container naplo-e2e-mailpit-1      Removed                                                                                                                                          1.3s
+ ✔ Container naplo-e2e-mongo-init-1   Removed                                                                                                                                          0.2s
+ ✔ Container naplo-e2e-fake-openai-1  Removed                                                                                                                                         10.6s
+ ✔ Container naplo-e2e-minio-init-1   Removed                                                                                                                                          0.3s
+ ✔ Container naplo-e2e-mongo-1        Removed                                                                                                                                          1.7s
+ ✔ Container naplo-e2e-minio-1        Removed                                                                                                                                          0.8s
+ ✔ Network naplo-e2e_default          Removed                                                                                                                                          0.4s
+ ✔ Volume naplo-e2e_rag_index         Removed                                                                                                                                          0.0s
 PS C:\Users\Mate\Desktop\Project\naplo\e2e> $x = [xml]((Get-Content -Raw ..\web-server\target\site\jacoco\jacoco.xml) -replace '<!DOCTYPE.*?>'); $x.report.package | ForEach-Object { $p = $_.name -replace '/','.'; foreach ($c in @($_.class)) { foreach ($m in @($c.method)) { if ((@($m.counter) | Where-Object type -eq 'METHOD').covered -eq '0') { [pscustomobject]@{ Missed = [int](@($m.counter) | Where-Object type -eq 'LINE').missed; Class = $c.name -replace '.*/'; Method = $m.name; Pkg = $p } } } } } | Sort-Object Missed -Descending | Format-Table -AutoSize
 
 Missed Class                                                  Method                                  Pkg
