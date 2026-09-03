@@ -1,20 +1,245 @@
-{
-  "recordingId": "6a98f89318bc2a7755c2b52d",
-  "totalSegments": 3,
-  "matchedSpeakers": [
-    {
-      "diarizationSpeakerId": "SPEAKER_L_00",
-      "speakerId": null,
-      "name": null,
-      "confidence": 0,
-      "newPrototype": false
-    },
-    {
-      "diarizationSpeakerId": "SPEAKER_L_01",
-      "speakerId": null,
-      "name": null,
-      "confidence": 0,
-      "newPrototype": false
+/**
+ * Generates API-COVERAGE.md: every Spring endpoint in web-server, and which
+ * spec covers it.
+ *
+ * Run with `npm run coverage` from e2e/. Re-run after adding specs - a
+ * hand-maintained version of this table is stale the day it is written.
+ *
+ * Matching is by PATH SHAPE, not by the enclosing call expression: many specs
+ * reach an endpoint through a local helper or a `const BASE`, and pairing a URL
+ * with the nearest `.post(` misses all of those.
+ */
+import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { dirname, join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const E2E = dirname(dirname(fileURLToPath(import.meta.url)));
+const REPO = dirname(E2E);
+const JAVA = join(REPO, 'web-server', 'src', 'main', 'java');
+const SPECS = join(E2E, 'tests');
+const OUT = join(E2E, 'API-COVERAGE.md');
+
+const walk = (dir, ext) =>
+    readdirSync(dir).flatMap((e) => {
+        const full = join(dir, e);
+        return statSync(full).isDirectory() ? walk(full, ext) : full.endsWith(ext) ? [full] : [];
+    });
+
+/** Collapse every variable-ish path segment to {} so shapes compare equal. */
+const norm = (p) =>
+    p
+        .replace(/\$\{[^}]*\}/g, '/{}/')
+        .split('?')[0]
+        .split('/')
+        .map((seg) => {
+            if (!seg) return seg;
+            if (/^\{.*\}$/.test(seg)) return '{}';
+            if (/^[a-f0-9]{24}$/i.test(seg)) return '{}';
+            if (/^-/.test(seg) && /^[0-9a-f-]{8,}$/i.test(seg)) return '{}';
+            if (/^\d+$/.test(seg)) return '{}';
+            if (/^(not-a-real-id|not-a-recording-id|new|SPEAKER_[A-Z0-9_]+)$/.test(seg)) return '{}';
+            return seg;
+        })
+        .join('/')
+        .replace(/\/{2,}/g, '/')
+        .replace(/\/$/, '');
+
+// ---- 1. The routing table ---------------------------------------------------
+const VERBS = ['Get', 'Post', 'Put', 'Delete', 'Patch'];
+// The parens are optional (a bare `@GetMapping` maps to the class base path) and
+// the args may be positional, named, or carry only consumes/produces.
+const MAPPING = new RegExp(`@(${VERBS.join('|')})Mapping\\b[ \\t]*(?:\\(([^)]*)\\))?`, 'g');
+
+const mappingPath = (args) => {
+    if (!args) return '';
+    const named = /(?:path|value)\s*=\s*"([^"]*)"/.exec(args);
+    if (named) return named[1];
+    const positional = /^\s*"([^"]*)"/.exec(args);
+    return positional ? positional[1] : '';
+};
+
+/** @type {Map<string, {method: string, path: string, controller: string}>} */
+const routes = new Map();
+for (const file of walk(JAVA, 'Controller.java')) {
+    const src = readFileSync(file, 'utf8');
+    const base = (/@RequestMapping\s*\("([^"]*)"/.exec(src) ?? ['', ''])[1];
+    const controller = file.split(/[\/\\]/).pop().replace('.java', '');
+    for (const m of src.matchAll(MAPPING)) {
+        const path = norm(base + mappingPath(m[2])) || '/';
+        const key = `${m[1].toUpperCase()} ${path}`;
+        if (!routes.has(key)) routes.set(key, { method: m[1].toUpperCase(), path, controller });
     }
-  ]
+}
+
+// ---- 2. What the specs call -------------------------------------------------
+/** @type {Map<string, Set<string>>} "METHOD path" -> "file :: test" */
+const hits = new Map();
+/** @type {Map<string, Set<string>>} path -> labels, regardless of verb */
+const pathHits = new Map();
+// Either a literal /api/... path, or a `${THING}/rest` template where THING is
+// a module-scope constant or a single-expression arrow helper returning a URL.
+// Both forms are common; without the second, a spec that routes every call
+// through a `sessionsUrl(id)` helper looks like it covers nothing.
+const URL_LITERAL = /["'`](?:\$\{([A-Za-z_$][\w]*)(?:\([^}]*\))?\}|\/)[^"'`\s]*["'`]/g;
+// Group 1 is the opening quote so the backreference can find the matching close.
+const TEST_HEAD = /\btest(?:\.\w+)?\(\s*(["'`])\s*(.+?)\1/gs;
+
+for (const file of walk(SPECS, '.js')) {
+    if (file.endsWith('Mailpit.js')) continue; // Mailpit's own API, not the backend
+    const src = readFileSync(file, 'utf8');
+    const rel = relative(E2E, file).replace(/\\/g, '/');
+    const isSupport = rel.includes('/support/');
+
+    // Module-scope string constants and URL-returning arrow helpers, so both
+    // `${BASE}/status` and `${sessionsUrl(id)}/${sid}` resolve.
+    const consts = new Map();
+    for (const c of src.matchAll(/^const\s+([A-Za-z_$][\w]*)\s*=\s*["'`]([^"'`]+)["'`]/gm)) {
+        consts.set(c[1], c[2]);
+    }
+    for (const f of src.matchAll(
+        /^const\s+([A-Za-z_$][\w]*)\s*=\s*\([^)]*\)\s*=>\s*`([^`]+)`/gm,
+    )) {
+        consts.set(f[1], f[2]);
+    }
+
+    const testHeads = [...src.matchAll(TEST_HEAD)].map((m) => ({ index: m.index, name: m[2] }));
+
+    for (const m of src.matchAll(URL_LITERAL)) {
+        let raw = m[0].slice(1, -1);
+        const ref = /^\$\{([A-Za-z_$][\w]*)(?:\([^}]*\))?\}/.exec(raw);
+        if (ref) {
+            if (!consts.has(ref[1])) continue; // not a resolvable base path
+            raw = consts.get(ref[1]) + raw.slice(ref[0].length);
+        }
+        if (!raw.startsWith('/api/') && !raw.startsWith('/webhook/')) continue;
+        const path = norm(raw);
+
+        // The verb is whatever call the URL sits in. Undeterminable when the URL
+        // is passed through a variable, in which case it only counts as a weaker
+        // path-level hit.
+        const before = src.slice(Math.max(0, m.index - 60), m.index);
+        const verb = /\.(get|post|put|patch|delete)\(\s*$/i.exec(before);
+
+        let label;
+        if (isSupport) {
+            label = `${rel} _(shared helper)_`;
+        } else {
+            const owner = [...testHeads].reverse().find((t) => t.index < m.index);
+            label = owner ? `${rel} :: ${owner.name}` : rel;
+        }
+
+        if (!pathHits.has(path)) pathHits.set(path, new Set());
+        pathHits.get(path).add(label);
+
+        if (verb) {
+            const key = `${verb[1].toUpperCase()} ${path}`;
+            if (!hits.has(key)) hits.set(key, new Set());
+            hits.get(key).add(label);
+        }
+    }
+}
+
+// ---- 3. Render --------------------------------------------------------------
+const byController = new Map();
+for (const r of routes.values()) {
+    if (!byController.has(r.controller)) byController.set(r.controller, []);
+    byController.get(r.controller).push(r);
+}
+
+const keyOf = (r) => `${r.method} ${r.path}`;
+const state = (r) => {
+    if (hits.has(keyOf(r))) return 'exact';
+    if (pathHits.has(r.path)) return 'path';
+    return 'none';
+};
+/**
+ * For a verb match, name the exact tests. For a path-only match, name only the
+ * files: the labels behind that path belong to whichever verb happened to be
+ * readable, and crediting a GET test to a DELETE row would be worse than
+ * saying less.
+ */
+const coveredBy = (r) => {
+    if (hits.has(keyOf(r))) return [...hits.get(keyOf(r))].sort();
+    const files = new Set(
+        [...(pathHits.get(r.path) ?? [])].map((l) => l.split(' :: ')[0]),
+    );
+    return [...files].sort();
+};
+
+const all = [...routes.values()];
+const exact = all.filter((r) => state(r) === 'exact');
+const pathOnly = all.filter((r) => state(r) === 'path');
+const uncovered = all.filter((r) => state(r) === 'none');
+const pct = ((exact.length / routes.size) * 100).toFixed(1);
+
+const esc = (s) => s.replace(/\|/g, '\\|');
+const lines = [];
+
+lines.push('# API endpoint coverage');
+lines.push('');
+lines.push('<!-- GENERATED FILE - do not edit by hand. Regenerate with `npm run coverage`. -->');
+lines.push('');
+lines.push(`Endpoints declared in \`web-server\`: **${routes.size}** `);
+lines.push(`Exercised with the matching HTTP verb: **${exact.length}** (${pct}%) `);
+lines.push(`Path reached, verb not confirmed: **${pathOnly.length}** `);
+lines.push(`Not exercised: **${uncovered.length}**`);
+lines.push('');
+lines.push('Legend:');
+lines.push('');
+lines.push('- **OK** - a spec calls this path with this HTTP verb.');
+lines.push(
+    '- **path only** - a spec calls this path but the verb could not be read statically',
+);
+lines.push(
+    '  (the URL goes through a variable). Usually still covered; verify by hand before trusting.',
+);
+lines.push('- **none** - nothing in the suite touches this path.');
+lines.push('');
+lines.push(
+    'Matching is by path shape, so `{}` stands for any path variable. Calls made through a',
+);
+lines.push(
+    'shared helper in `tests/support/` are listed as _(shared helper)_ rather than a single test.',
+);
+lines.push('');
+
+if (uncovered.length || pathOnly.length) {
+    lines.push('## Needs attention');
+    lines.push('');
+    lines.push('| Status | Method | Path | Controller |');
+    lines.push('| --- | --- | --- | --- |');
+    for (const r of [...uncovered, ...pathOnly].sort((a, b) => a.path.localeCompare(b.path))) {
+        lines.push(
+            `| ${state(r) === 'none' ? '**none**' : 'path only'} | ${r.method} | \`${esc(r.path)}\` | ${r.controller} |`,
+        );
+    }
+    lines.push('');
+}
+
+lines.push('## By controller');
+lines.push('');
+for (const name of [...byController.keys()].sort()) {
+    const rs = byController.get(name).sort((a, b) => a.path.localeCompare(b.path));
+    const done = rs.filter((r) => state(r) === 'exact').length;
+    lines.push(`### ${name} - ${done}/${rs.length}`);
+    lines.push('');
+    lines.push('| Method | Path | Status | Covered by |');
+    lines.push('| --- | --- | --- | --- |');
+    for (const r of rs) {
+        const s = state(r);
+        const badge = s === 'exact' ? 'OK' : s === 'path' ? 'path only' : '**none**';
+        const tests = coveredBy(r);
+        const cell = tests.length ? tests.map((t) => `\`${esc(t)}\``).join('<br>') : '-';
+        lines.push(`| ${r.method} | \`${esc(r.path)}\` | ${badge} | ${cell} |`);
+    }
+    lines.push('');
+}
+
+writeFileSync(OUT, lines.join('\n'), 'utf8');
+console.log(
+    `${relative(REPO, OUT)}: ${exact.length}/${routes.size} verb-matched (${pct}%), ` +
+    `${pathOnly.length} path-only, ${uncovered.length} uncovered`,
+);
+for (const r of [...uncovered, ...pathOnly]) {
+    console.log(`  ${state(r) === 'none' ? 'NONE    ' : 'path-only'} ${r.method} ${r.path}`);
 }
