@@ -1,303 +1,664 @@
-# API endpoint coverage
-
-<!-- GENERATED FILE - do not edit by hand. Regenerate with `npm run coverage`. -->
-
-Endpoints declared in `web-server`: **124** 
-Exercised with the matching HTTP verb: **116** (93.5%) 
-Path reached, verb not confirmed: **8** 
-Not exercised: **0**
-
-Legend:
-
-- **OK** - a spec calls this path with this HTTP verb.
-- **path only** - a spec calls this path but the verb could not be read statically
-  (the URL goes through a variable). Usually still covered; verify by hand before trusting.
-- **none** - nothing in the suite touches this path.
-
-Matching is by path shape, so `{}` stands for any path variable. Calls made through a
-shared helper in `tests/support/` are listed as _(shared helper)_ rather than a single test.
-
-## Needs attention
-
-| Status | Method | Path | Controller |
-| --- | --- | --- | --- |
-| path only | POST | `/api/public/account/restore` | AccountRestoreController |
-| path only | POST | `/api/public/email-change/confirm` | EmailChangeController |
-| path only | PATCH | `/api/v1/chat-collections/{}/chat-sessions/{}` | ChatCollectionSessionController |
-| path only | DELETE | `/api/v1/chat-collections/{}/chat-sessions/{}` | ChatCollectionSessionController |
-| path only | POST | `/api/v1/payment/create-payment-intent` | PaymentController |
-| path only | GET | `/api/v1/recordings/{}/chat-sessions` | AIChatSessionController |
-| path only | DELETE | `/api/v1/recordings/{}/chat-sessions/{}` | AIChatSessionController |
-| path only | POST | `/webhook/stripe` | StripeWebhookController |
-
-## By controller
-
-### AIChatSessionController - 2/4
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/v1/recordings/{}/chat-sessions` | path only | `tests/features/ai/chat.api.spec.js`<br>`tests/features/ai/sessions.api.spec.js` |
-| GET | `/api/v1/recordings/{}/chat-sessions/{}` | OK | `tests/features/ai/chat.api.spec.js :: a follow-up continues the same session`<br>`tests/features/ai/chat.api.spec.js :: the session is persisted and replayable` |
-| PATCH | `/api/v1/recordings/{}/chat-sessions/{}` | OK | `tests/features/ai/sessions.api.spec.js :: renaming trims and truncates at 80 characters` |
-| DELETE | `/api/v1/recordings/{}/chat-sessions/{}` | path only | `tests/features/ai/chat.api.spec.js`<br>`tests/features/ai/sessions.api.spec.js` |
-
-### AIController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/recordings/{}/chat-sessions/{}/ask` | OK | `tests/support/recordings.js _(shared helper)_` |
-
-### AccountRestoreController - 0/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/public/account/restore` | path only | `tests/features/profile/account-deletion.api.spec.js` |
-
-### AiModelsController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/v1/ai/models` | OK | `tests/features/ai/catalogue.api.spec.js :: chat models are listed`<br>`tests/features/ai/catalogue.api.spec.js :: pricing is published to authenticated clients`<br>`tests/features/ai/catalogue.api.spec.js :: retired and embedding models never appear in the chat dropdown`<br>`tests/features/profile/profile.api.spec.js`<br>`tests/features/profile/profile.api.spec.js :: a retired chat model cannot be pinned`<br>`tests/features/profile/profile.api.spec.js :: the embedding model is not selectable either` |
-
-### AiTranscriptionController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/recordings/{}/transcribe` | OK | `tests/features/transcription/live-slice.api.spec.js`<br>`tests/features/transcription/live-slice.api.spec.js :: a non multipart body never reaches the handler` |
-
-### AuditLogController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/v1/organizations/{}/audit-events` | OK | `tests/features/organization/usage-and-audit.api.spec.js`<br>`tests/features/organization/usage-and-audit.api.spec.js :: a member cannot read the audit trail`<br>`tests/features/organization/usage-and-audit.api.spec.js :: a window in the past returns nothing`<br>`tests/features/organization/usage-and-audit.api.spec.js :: membership and invitation events are attributed to their actor` |
-
-### AuthController - 2/2
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/public/auth/login` | OK | `tests/features/auth/login.api.spec.js`<br>`tests/support/api.js _(shared helper)_` |
-| POST | `/api/public/auth/logout` | OK | `tests/features/auth/login.api.spec.js :: logout is reachable without a session`<br>`tests/support/api.js _(shared helper)_` |
-
-### ChatCollectionController - 5/5
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/chat-collections` | OK | `tests/features/rag/collection-chat.api.spec.js`<br>`tests/features/rag/collections.api.spec.js :: a peer is refused on get, rename and delete, and never sees it listed`<br>`tests/features/rag/collections.api.spec.js :: create rejects an empty, oversized or malformed recording list`<br>`tests/features/rag/collections.api.spec.js :: create, list, rename and delete`<br>`tests/features/rag/sessions.api.spec.js` |
-| GET | `/api/v1/chat-collections` | OK | `tests/features/rag/collections.api.spec.js :: a peer is refused on get, rename and delete, and never sees it listed`<br>`tests/features/rag/collections.api.spec.js :: create, list, rename and delete` |
-| GET | `/api/v1/chat-collections/{}` | OK | `tests/features/rag/collections.api.spec.js :: create, list, rename and delete` |
-| PATCH | `/api/v1/chat-collections/{}` | OK | `tests/features/rag/collections.api.spec.js :: create, list, rename and delete` |
-| DELETE | `/api/v1/chat-collections/{}` | OK | `tests/features/rag/collections.api.spec.js :: create, list, rename and delete` |
-
-### ChatCollectionSessionController - 2/4
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/v1/chat-collections/{}/chat-sessions` | OK | `tests/features/rag/collection-chat.api.spec.js :: a follow-up appends to the same session` |
-| GET | `/api/v1/chat-collections/{}/chat-sessions/{}` | OK | `tests/features/rag/collection-chat.api.spec.js :: a follow-up appends to the same session`<br>`tests/features/rag/collection-chat.api.spec.js :: the streamed turn is persisted with its citations and model`<br>`tests/features/rag/sessions.api.spec.js :: a session is auto-titled, listed with its message count and replayable` |
-| PATCH | `/api/v1/chat-collections/{}/chat-sessions/{}` | path only | `tests/features/rag/collection-chat.api.spec.js`<br>`tests/features/rag/sessions.api.spec.js` |
-| DELETE | `/api/v1/chat-collections/{}/chat-sessions/{}` | path only | `tests/features/rag/collection-chat.api.spec.js`<br>`tests/features/rag/sessions.api.spec.js` |
-
-### CollectionAIController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/chat-collections/{}/chat-sessions/{}/ask` | OK | `tests/features/rag/collection-chat.api.spec.js`<br>`tests/features/rag/sessions.api.spec.js` |
-
-### DeferredTranscriptionController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/recordings/{}/transcribe-from-storage` | OK | `tests/features/transcription/deferred.api.spec.js` |
-
-### DiarizationController - 22/22
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/recordings/{}/diarization` | OK | `tests/features/diarization/prototypes.api.spec.js`<br>`tests/features/diarization/segments.api.spec.js`<br>`tests/features/diarization/segments.api.spec.js :: a stranger can neither submit nor edit another user\`<br>`tests/features/diarization/segments.api.spec.js :: an unknown recording id is a 404 on every segment route`<br>`tests/features/diarization/speakers.api.spec.js` |
-| PATCH | `/api/v1/recordings/{}/diarization/options` | OK | `tests/features/diarization/segments.api.spec.js`<br>`tests/features/diarization/segments.api.spec.js :: a stranger can neither submit nor edit another user\`<br>`tests/features/diarization/segments.api.spec.js :: an unknown recording id is a 404 on every segment route`<br>`tests/features/diarization/segments.api.spec.js :: re-diarization keeps manually assigned segments when preserveManual is set` |
-| PATCH | `/api/v1/recordings/{}/diarization/status` | OK | `tests/features/diarization/segments.api.spec.js :: a stranger can neither submit nor edit another user\`<br>`tests/features/diarization/segments.api.spec.js :: an unknown or missing diarization status is rejected`<br>`tests/features/diarization/segments.api.spec.js :: an unknown recording id is a 404 on every segment route`<br>`tests/features/diarization/segments.api.spec.js :: the desktop can push the diarization status through every state` |
-| PATCH | `/api/v1/recordings/{}/segments/assign-speaker` | OK | `tests/features/diarization/segments.api.spec.js`<br>`tests/features/diarization/segments.api.spec.js :: a stranger can neither submit nor edit another user\`<br>`tests/features/diarization/segments.api.spec.js :: an unknown recording id is a 404 on every segment route`<br>`tests/features/diarization/segments.api.spec.js :: assign-speaker is a 404 with no matching segment, none at all, or no such speaker`<br>`tests/features/diarization/segments.api.spec.js :: assign-speaker names every segment inside the range and trains the matcher`<br>`tests/features/diarization/segments.api.spec.js :: assign-speaker only takes segments fully inside the range`<br>`tests/features/diarization/segments.api.spec.js :: assign-speaker refuses a speaker owned by somebody else`<br>`tests/features/diarization/segments.api.spec.js :: assign-speaker rejects a body without start, end or speaker id`<br>`tests/features/diarization/segments.api.spec.js :: re-diarization keeps manually assigned segments when preserveManual is set` |
-| POST | `/api/v1/recordings/{}/segments/split` | OK | `tests/features/diarization/segments.api.spec.js :: a stranger can neither submit nor edit another user\`<br>`tests/features/diarization/segments.api.spec.js :: an unknown recording id is a 404 on every segment route`<br>`tests/features/diarization/segments.api.spec.js :: split cuts a bubble into contiguous pieces and reassigns one of them`<br>`tests/features/diarization/segments.api.spec.js :: split is a 404 with no matching segment and a 403 with a foreign speaker`<br>`tests/features/diarization/segments.api.spec.js :: split rejects a malformed body`<br>`tests/features/diarization/segments.api.spec.js :: split rejects pieces that do not cover the original range`<br>`tests/features/diarization/segments.api.spec.js :: split snaps to word boundaries and slices the text when word timings exist` |
-| DELETE | `/api/v1/recordings/{}/speakers/{}` | OK | `tests/features/diarization/speakers.api.spec.js :: a stranger cannot see or mutate another user speakers`<br>`tests/features/diarization/speakers.api.spec.js :: scrapping a speaker clears their segments and samples from that recording`<br>`tests/features/diarization/speakers.api.spec.js :: scrapping refuses an unknown speaker and a foreign one` |
-| GET | `/api/v1/recordings/{}/speakers/local/{}/audio` | OK | `tests/features/diarization/segments.api.spec.js :: a submission with no speaker data still writes bubbles but parks no samples`<br>`tests/features/diarization/speakers.api.spec.js :: a stranger cannot see or mutate another user speakers`<br>`tests/features/diarization/speakers.api.spec.js :: an Unknown bubble streams its parked reference clip` |
-| GET | `/api/v1/recordings/{}/speakers/local/{}/prototypes` | OK | `tests/features/diarization/prototypes.api.spec.js`<br>`tests/features/diarization/segments.api.spec.js`<br>`tests/features/diarization/speakers.api.spec.js :: merging two Unknown bubbles re-keys their segments and their parked samples`<br>`tests/features/diarization/speakers.api.spec.js :: naming an Unknown bubble promotes its parked voice sample` |
-| DELETE | `/api/v1/recordings/{}/speakers/local/{}/prototypes/{}` | OK | `tests/features/diarization/prototypes.api.spec.js :: a parked sample cannot be reached through the wrong bubble label`<br>`tests/features/diarization/prototypes.api.spec.js :: a parked sample streams as wav and can be deleted individually` |
-| GET | `/api/v1/recordings/{}/speakers/local/{}/prototypes/{}/audio` | OK | `tests/features/diarization/prototypes.api.spec.js :: a parked sample cannot be reached through the wrong bubble label`<br>`tests/features/diarization/prototypes.api.spec.js :: a parked sample stored without audio has nothing to stream`<br>`tests/features/diarization/prototypes.api.spec.js :: a parked sample streams as wav and can be deleted individually` |
-| POST | `/api/v1/recordings/{}/speakers/local/merge` | OK | `tests/features/diarization/speakers.api.spec.js :: a stranger cannot see or mutate another user speakers`<br>`tests/features/diarization/speakers.api.spec.js :: merging two Unknown bubbles re-keys their segments and their parked samples` |
-| GET | `/api/v1/speakers` | OK | `tests/features/diarization/prototypes.api.spec.js :: deleting a prototype keeps the speaker and its other samples`<br>`tests/features/diarization/segments.api.spec.js :: assign-speaker names every segment inside the range and trains the matcher`<br>`tests/features/diarization/speakers.api.spec.js` |
-| POST | `/api/v1/speakers` | OK | `tests/features/diarization/prototypes.api.spec.js`<br>`tests/features/diarization/segments.api.spec.js`<br>`tests/features/diarization/speakers.api.spec.js`<br>`tests/features/diarization/speakers.api.spec.js :: a speaker always needs a name` |
-| PATCH | `/api/v1/speakers/{}` | OK | `tests/features/diarization/speakers.api.spec.js :: a speaker always needs a name`<br>`tests/features/diarization/speakers.api.spec.js :: a stranger cannot see or mutate another user speakers`<br>`tests/features/diarization/speakers.api.spec.js :: create, list, rename and delete a named speaker` |
-| DELETE | `/api/v1/speakers/{}` | OK | `tests/features/diarization/speakers.api.spec.js :: a stranger cannot see or mutate another user speakers`<br>`tests/features/diarization/speakers.api.spec.js :: create, list, rename and delete a named speaker`<br>`tests/features/diarization/speakers.api.spec.js :: deleting a speaker detaches its segments instead of dropping them` |
-| GET | `/api/v1/speakers/{}/audio` | OK | `tests/features/diarization/speakers.api.spec.js :: a named speaker streams back the wav sample it was promoted from`<br>`tests/features/diarization/speakers.api.spec.js :: a speaker with no voice samples has no audio to stream`<br>`tests/features/diarization/speakers.api.spec.js :: a stranger cannot see or mutate another user speakers`<br>`tests/features/diarization/speakers.api.spec.js :: scrapping a speaker clears their segments and samples from that recording` |
-| POST | `/api/v1/speakers/{}/merge` | OK | `tests/features/diarization/speakers.api.spec.js :: merge folds the source speaker, its samples and its segments into the target`<br>`tests/features/diarization/speakers.api.spec.js :: merge rejects a missing target and refuses to merge a speaker into itself`<br>`tests/features/diarization/speakers.api.spec.js :: merging into a speaker owned by somebody else is refused` |
-| GET | `/api/v1/speakers/{}/prototypes` | OK | `tests/features/diarization/prototypes.api.spec.js`<br>`tests/features/diarization/speakers.api.spec.js :: create, list, rename and delete a named speaker`<br>`tests/features/diarization/speakers.api.spec.js :: deleting a speaker detaches its segments instead of dropping them`<br>`tests/features/diarization/speakers.api.spec.js :: merge folds the source speaker, its samples and its segments into the target`<br>`tests/features/diarization/speakers.api.spec.js :: scrapping a speaker clears their segments and samples from that recording` |
-| DELETE | `/api/v1/speakers/{}/prototypes/{}` | OK | `tests/features/diarization/prototypes.api.spec.js :: a prototype cannot be reached through the wrong speaker`<br>`tests/features/diarization/prototypes.api.spec.js :: deleting a prototype keeps the speaker and its other samples` |
-| PATCH | `/api/v1/speakers/{}/prototypes/{}/approve` | OK | `tests/features/diarization/prototypes.api.spec.js :: a confident re-match parks a pending sample the user can approve`<br>`tests/features/diarization/prototypes.api.spec.js :: a prototype cannot be reached through the wrong speaker`<br>`tests/features/diarization/prototypes.api.spec.js :: approving an already-settled sample is a no-op` |
-| GET | `/api/v1/speakers/{}/prototypes/{}/audio` | OK | `tests/features/diarization/prototypes.api.spec.js :: a promoted sample becomes a prototype of the named speaker`<br>`tests/features/diarization/prototypes.api.spec.js :: a prototype cannot be reached through the wrong speaker` |
-| POST | `/api/v1/speakers/{}/prototypes/approve-all` | OK | `tests/features/diarization/prototypes.api.spec.js :: approve-all settles every pending sample for a speaker` |
-
-### EmailChangeController - 1/2
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/public/email-change/confirm` | path only | `tests/features/account/email-change.api.spec.js` |
-| GET | `/api/public/email-change/confirm` | OK | `tests/features/account/email-change.api.spec.js :: a blank token never reaches the token store` |
-
-### HealthController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/public/health` | OK | `tests/features/platform/health.api.spec.js :: health is public and reports UP`<br>`tests/support/fixtures.js _(shared helper)_` |
-
-### JwksController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/public/jwks` | OK | `tests/features/platform/health.api.spec.js :: jwks exposes a verification key but no private material`<br>`tests/features/platform/health.api.spec.js :: the published key is the one that actually signs tokens` |
-
-### LegalController - 2/2
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/public/legal/versions` | OK | `tests/features/platform/legal.api.spec.js :: the current versions are published anonymously`<br>`tests/features/platform/legal.api.spec.js :: the published versions are the ones registration will accept`<br>`tests/features/profile/profile.api.spec.js :: the anonymous versions endpoint is what a client echoes back`<br>`tests/support/api.js _(shared helper)_`<br>`tests/support/fixtures.js _(shared helper)_` |
-| POST | `/api/v1/user/legal-acceptance` | OK | `tests/features/profile/profile.api.spec.js :: accepting the current versions is recorded`<br>`tests/features/profile/profile.api.spec.js :: blank versions are refused`<br>`tests/features/profile/profile.api.spec.js :: every profile write refuses an anonymous caller`<br>`tests/features/profile/profile.api.spec.js :: the anonymous versions endpoint is what a client echoes back`<br>`tests/features/profile/profile.api.spec.js :: the versions echoed back must be the current ones` |
-
-### LocalPresenceController - 5/5
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/public/local-presence/announce` | OK | `tests/features/desktop/presence.api.spec.js`<br>`tests/features/platform/access-control.api.spec.js :: the public surface is deliberately outside the csrf gate` |
-| GET | `/api/v1/local-presence` | OK | `tests/features/desktop/presence.api.spec.js :: a claimed nonce only registers the user who minted it`<br>`tests/features/desktop/presence.api.spec.js :: a heartbeat on a fresh desktop token gets no refreshed token`<br>`tests/features/desktop/presence.api.spec.js :: a nonce is burned by the announce that claims it`<br>`tests/features/desktop/presence.api.spec.js :: a nonce nobody minted cannot register a desktop`<br>`tests/features/desktop/presence.api.spec.js :: a user with no desktop running reads back an empty presence`<br>`tests/features/desktop/presence.api.spec.js :: an authenticated heartbeat publishes and then moves the address`<br>`tests/features/desktop/presence.api.spec.js :: announce validates the address before it spends the nonce`<br>`tests/features/desktop/presence.api.spec.js :: clearing presence removes it and tolerates a second attempt`<br>`tests/features/desktop/presence.api.spec.js :: presence is closed to anonymous callers`<br>`tests/features/desktop/presence.api.spec.js :: the heartbeat validates the address it is given`<br>`tests/features/desktop/presence.api.spec.js :: the nonce handshake publishes an address the SPA can find` |
-| DELETE | `/api/v1/local-presence` | OK | `tests/features/desktop/presence.api.spec.js :: clearing presence removes it and tolerates a second attempt`<br>`tests/features/desktop/presence.api.spec.js :: csrf guards the authenticated presence writes`<br>`tests/features/desktop/presence.api.spec.js :: presence is closed to anonymous callers` |
-| POST | `/api/v1/local-presence/expect` | OK | `tests/features/desktop/presence.api.spec.js`<br>`tests/features/desktop/presence.api.spec.js :: csrf guards the authenticated presence writes`<br>`tests/features/desktop/presence.api.spec.js :: expect mints a fresh nonce with a published lifetime`<br>`tests/features/desktop/presence.api.spec.js :: presence is closed to anonymous callers` |
-| POST | `/api/v1/local-presence/heartbeat` | OK | `tests/features/desktop/presence.api.spec.js :: a heartbeat on a fresh desktop token gets no refreshed token`<br>`tests/features/desktop/presence.api.spec.js :: a heartbeat whose org claim went stale gets a re-minted token`<br>`tests/features/desktop/presence.api.spec.js :: an authenticated heartbeat publishes and then moves the address`<br>`tests/features/desktop/presence.api.spec.js :: clearing presence removes it and tolerates a second attempt`<br>`tests/features/desktop/presence.api.spec.js :: csrf guards the authenticated presence writes`<br>`tests/features/desktop/presence.api.spec.js :: presence is closed to anonymous callers`<br>`tests/features/desktop/presence.api.spec.js :: the heartbeat validates the address it is given` |
-
-### LocalTokenController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/auth/local-token` | OK | `tests/features/desktop/local-token.api.spec.js :: a tampered desktop token buys nothing`<br>`tests/features/desktop/local-token.api.spec.js :: anonymous callers cannot mint a desktop token`<br>`tests/features/desktop/local-token.api.spec.js :: csrf guards the hand-off`<br>`tests/features/desktop/local-token.api.spec.js :: the desktop token carries the active org so org-scoped work keeps passing`<br>`tests/features/desktop/local-token.api.spec.js :: the desktop token is far shorter-lived than the session cookie`<br>`tests/features/desktop/local-token.api.spec.js :: the hand-off mints a bearer credential the desktop can use on its own`<br>`tests/features/desktop/presence.api.spec.js :: a heartbeat on a fresh desktop token gets no refreshed token`<br>`tests/features/desktop/presence.api.spec.js :: a heartbeat whose org claim went stale gets a re-minted token`<br>`tests/features/platform/access-control.api.spec.js :: protected endpoints reject anonymous callers`<br>`tests/features/platform/health.api.spec.js :: the published key is the one that actually signs tokens` |
-
-### LocalTranscriptionController - 2/2
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/recordings/{}/transcribe-locally` | OK | `tests/features/transcription/local.api.spec.js` |
-| POST | `/api/v1/recordings/{}/transcribe-locally/abort` | OK | `tests/features/transcription/local.api.spec.js` |
-
-### OrganizationController - 24/24
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/v1/organizations` | OK | `tests/features/platform/access-control.api.spec.js :: protected endpoints reject anonymous callers`<br>`tests/support/api.js _(shared helper)_` |
-| POST | `/api/v1/organizations` | OK | `tests/features/billing/stripe-webhook.api.spec.js :: a signed event is accepted without a csrf header`<br>`tests/features/desktop/local-token.api.spec.js :: the desktop token carries the active org so org-scoped work keeps passing`<br>`tests/features/desktop/presence.api.spec.js :: a heartbeat whose org claim went stale gets a re-minted token`<br>`tests/features/organization/administration.api.spec.js`<br>`tests/features/organization/domains.api.spec.js`<br>`tests/features/organization/domains.api.spec.js :: a claim cannot be driven through another org's path`<br>`tests/features/organization/lifecycle.api.spec.js :: a non-member cannot read an org`<br>`tests/features/organization/lifecycle.api.spec.js :: activating an org rebinds the session`<br>`tests/features/organization/lifecycle.api.spec.js :: creating a business org leaves the personal one alone`<br>`tests/features/organization/membership-status.api.spec.js`<br>`tests/features/organization/usage-and-audit.api.spec.js`<br>`tests/features/profile/account-deletion.api.spec.js :: a business org with no other members never blocks deletion`<br>`tests/features/recording/listing.api.spec.js :: the listing is scoped to the active org and follows the switcher`<br>`tests/features/recording/metadata.api.spec.js :: rename-group ignores org and trash boundaries`<br>`tests/features/recording/trash.api.spec.js :: the trash listing is org-scoped but emptying it is not`<br>`tests/support/org.js _(shared helper)_` |
-| GET | `/api/v1/organizations/{}` | OK | `tests/features/organization/administration.api.spec.js :: a business org cannot be promoted again`<br>`tests/features/organization/administration.api.spec.js :: a member cannot change enforcement settings`<br>`tests/features/organization/administration.api.spec.js :: a personal org becomes a business`<br>`tests/features/organization/administration.api.spec.js :: a personal org cannot be deleted through this endpoint`<br>`tests/features/organization/administration.api.spec.js :: an omitted field is left alone`<br>`tests/features/organization/administration.api.spec.js :: both confirmation fields are mandatory`<br>`tests/features/organization/administration.api.spec.js :: promotion requires a business name`<br>`tests/features/organization/administration.api.spec.js :: the confirmation name must match the letters`<br>`tests/features/organization/administration.api.spec.js :: the current password must match`<br>`tests/features/organization/administration.api.spec.js :: the owner erases a business org`<br>`tests/features/organization/administration.api.spec.js :: the owner flips a single toggle`<br>`tests/features/organization/lifecycle.api.spec.js :: a non-member cannot read an org`<br>`tests/features/organization/membership-status.api.spec.js :: a suspended member is locked out of the org`<br>`tests/features/organization/membership-status.api.spec.js :: reactivating gives the seat back`<br>`tests/features/organization/membership-status.api.spec.js :: the seat carries the owner-only powers with it`<br>`tests/features/organization/spend-caps.api.spec.js :: a cap constrains the effective balance`<br>`tests/features/organization/spend-caps.api.spec.js :: a null cap clears it, and so does an omitted one`<br>`tests/features/organization/spend-caps.api.spec.js :: an owner is exempt even with a cap on their row`<br>`tests/features/organization/spend-caps.api.spec.js :: promoting a capped member to ADMIN lifts the cap` |
-| DELETE | `/api/v1/organizations/{}` | OK | `tests/features/organization/administration.api.spec.js :: a personal org cannot be deleted through this endpoint`<br>`tests/features/organization/administration.api.spec.js :: both confirmation fields are mandatory`<br>`tests/features/organization/administration.api.spec.js :: the confirmation name must match the letters`<br>`tests/features/organization/administration.api.spec.js :: the current password must match`<br>`tests/features/organization/administration.api.spec.js :: the owner erases a business org`<br>`tests/features/organization/membership-status.api.spec.js :: the seat carries the owner-only powers with it` |
-| POST | `/api/v1/organizations/{}/activate` | OK | `tests/features/organization/membership-status.api.spec.js :: a suspended member is locked out of the org`<br>`tests/features/organization/membership-status.api.spec.js :: reactivating gives the seat back`<br>`tests/support/api.js _(shared helper)_` |
-| GET | `/api/v1/organizations/{}/domains` | OK | `tests/features/organization/domains.api.spec.js`<br>`tests/features/organization/domains.api.spec.js :: a stranger cannot read or claim another org's domains` |
-| POST | `/api/v1/organizations/{}/domains` | OK | `tests/features/organization/domains.api.spec.js` |
-| POST | `/api/v1/organizations/{}/domains/{}/revoke` | OK | `tests/features/organization/domains.api.spec.js` |
-| POST | `/api/v1/organizations/{}/domains/{}/verify` | OK | `tests/features/organization/domains.api.spec.js` |
-| PUT | `/api/v1/organizations/{}/enforcement-settings` | OK | `tests/features/organization/administration.api.spec.js :: a member cannot change enforcement settings`<br>`tests/features/organization/administration.api.spec.js :: a personal org has no enforcement settings`<br>`tests/features/organization/administration.api.spec.js :: an omitted field is left alone`<br>`tests/features/organization/administration.api.spec.js :: the owner flips a single toggle`<br>`tests/features/organization/usage-and-audit.api.spec.js :: a window in the past returns nothing`<br>`tests/features/organization/usage-and-audit.api.spec.js :: an enforcement change is recorded with its resolved values`<br>`tests/features/recording/permissions.api.spec.js` |
-| POST | `/api/v1/organizations/{}/invitations` | OK | `tests/features/organization/administration.api.spec.js`<br>`tests/features/organization/administration.api.spec.js :: a member can read pending invitations but cannot revoke them`<br>`tests/features/organization/administration.api.spec.js :: a pending invitation is listed, then revoked`<br>`tests/support/org.js _(shared helper)_` |
-| GET | `/api/v1/organizations/{}/invitations` | OK | `tests/features/organization/administration.api.spec.js :: a member can read pending invitations but cannot revoke them`<br>`tests/features/organization/administration.api.spec.js :: a non-member cannot read pending invitations`<br>`tests/features/organization/administration.api.spec.js :: a pending invitation is listed, then revoked`<br>`tests/features/organization/administration.api.spec.js :: only the addressee can decline`<br>`tests/features/organization/administration.api.spec.js :: the invitee declines and the slot frees up` |
-| DELETE | `/api/v1/organizations/{}/invitations/{}` | OK | `tests/features/organization/administration.api.spec.js :: a member can read pending invitations but cannot revoke them`<br>`tests/features/organization/administration.api.spec.js :: a pending invitation is listed, then revoked`<br>`tests/features/organization/administration.api.spec.js :: a revoked invitation cannot be redeemed`<br>`tests/features/organization/administration.api.spec.js :: an accepted invitation can no longer be revoked` |
-| GET | `/api/v1/organizations/{}/members` | OK | `tests/features/organization/administration.api.spec.js :: the owner erases a business org`<br>`tests/features/organization/invitations.api.spec.js :: a consumed invitation token cannot be redeemed again`<br>`tests/features/organization/invitations.api.spec.js :: a member can leave`<br>`tests/features/organization/invitations.api.spec.js :: an invited member joins and is listed`<br>`tests/features/organization/membership-status.api.spec.js :: a member cannot change another member\`<br>`tests/features/organization/membership-status.api.spec.js :: a member cannot promote themselves to owner`<br>`tests/features/organization/membership-status.api.spec.js :: a suspended member cannot inherit the org`<br>`tests/features/organization/membership-status.api.spec.js :: a suspended member is locked out of the org`<br>`tests/features/organization/membership-status.api.spec.js :: reactivating gives the seat back`<br>`tests/features/organization/membership-status.api.spec.js :: the owner hands the seat to a member`<br>`tests/features/organization/membership-status.api.spec.js :: the owner suspends a member`<br>`tests/features/organization/roles.api.spec.js`<br>`tests/features/organization/spend-caps.api.spec.js :: a member cannot set their own cap`<br>`tests/features/organization/spend-caps.api.spec.js :: a negative cap is refused`<br>`tests/support/org.js _(shared helper)_` |
-| DELETE | `/api/v1/organizations/{}/members/{}` | OK | `tests/features/organization/roles.api.spec.js :: a member cannot evict anyone` |
-| PUT | `/api/v1/organizations/{}/members/{}/role` | OK | `tests/features/organization/domains.api.spec.js :: claiming and revoking are OWNER-only, verifying is open to an ADMIN`<br>`tests/features/organization/membership-status.api.spec.js :: an admin cannot suspend the owner`<br>`tests/features/organization/roles.api.spec.js :: a member cannot change roles`<br>`tests/features/organization/spend-caps.api.spec.js :: promoting a capped member to ADMIN lifts the cap`<br>`tests/features/recording/permissions.api.spec.js :: an ADMIN gets the same access an OWNER does` |
-| PUT | `/api/v1/organizations/{}/members/{}/spend-cap` | OK | `tests/features/organization/spend-caps.api.spec.js :: a member cannot set their own cap`<br>`tests/features/organization/spend-caps.api.spec.js :: a negative cap is refused`<br>`tests/features/organization/spend-caps.api.spec.js :: a null cap clears it, and so does an omitted one`<br>`tests/support/org.js _(shared helper)_` |
-| PUT | `/api/v1/organizations/{}/members/{}/status` | OK | `tests/features/organization/membership-status.api.spec.js`<br>`tests/features/organization/membership-status.api.spec.js :: the status field is required` |
-| GET | `/api/v1/organizations/{}/members/{}/usage` | OK | `tests/features/billing/wallet.api.spec.js`<br>`tests/features/organization/usage-and-audit.api.spec.js :: a member cannot read a usage report`<br>`tests/features/organization/usage-and-audit.api.spec.js :: a membership from another org is refused`<br>`tests/features/organization/usage-and-audit.api.spec.js :: an unknown membership is a 404`<br>`tests/features/organization/usage-and-audit.api.spec.js :: the owner reads a member usage report`<br>`tests/features/organization/usage-and-audit.api.spec.js :: the window bounds the report and is echoed back`<br>`tests/features/recording/permissions.api.spec.js :: an OWNER is refused the transcript while the toggle is off` |
-| DELETE | `/api/v1/organizations/{}/members/me` | OK | `tests/features/organization/invitations.api.spec.js :: a member can leave`<br>`tests/features/organization/roles.api.spec.js :: the owner cannot walk out of their own org` |
-| POST | `/api/v1/organizations/{}/promote` | OK | `tests/features/organization/administration.api.spec.js :: a business org cannot be promoted again`<br>`tests/features/organization/administration.api.spec.js :: a member cannot promote the org they were invited to`<br>`tests/features/organization/administration.api.spec.js :: a personal org becomes a business`<br>`tests/features/organization/administration.api.spec.js :: promotion requires a business name` |
-| POST | `/api/v1/organizations/{}/transfer-ownership` | OK | `tests/features/organization/membership-status.api.spec.js :: a member cannot promote themselves to owner`<br>`tests/features/organization/membership-status.api.spec.js :: a suspended member cannot inherit the org`<br>`tests/features/organization/membership-status.api.spec.js :: a transfer needs a real target`<br>`tests/features/organization/membership-status.api.spec.js :: the owner hands the seat to a member`<br>`tests/features/organization/membership-status.api.spec.js :: the seat carries the owner-only powers with it` |
-| POST | `/api/v1/organizations/invitations/accept` | OK | `tests/features/organization/administration.api.spec.js :: a revoked invitation cannot be redeemed`<br>`tests/features/organization/administration.api.spec.js :: an accepted invitation can no longer be revoked`<br>`tests/features/organization/administration.api.spec.js :: the invitee declines and the slot frees up`<br>`tests/features/organization/invitations.api.spec.js :: a consumed invitation token cannot be redeemed again`<br>`tests/support/org.js _(shared helper)_` |
-| POST | `/api/v1/organizations/invitations/decline` | OK | `tests/features/organization/administration.api.spec.js :: an accepted invitation cannot be declined afterwards`<br>`tests/features/organization/administration.api.spec.js :: an unknown token cannot be declined`<br>`tests/features/organization/administration.api.spec.js :: only the addressee can decline`<br>`tests/features/organization/administration.api.spec.js :: the invitee declines and the slot frees up` |
-
-### PaymentController - 0/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/payment/create-payment-intent` | path only | `tests/features/billing/payment-intent.api.spec.js` |
-
-### PendingClaimController - 4/4
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/public/pending-claim/accept` | OK | `tests/features/account-conversion/pending-claim.api.spec.js :: accept is refused when there is nothing to accept`<br>`tests/features/account-conversion/pending-claim.api.spec.js :: credentials are checked before the pending state` |
-| POST | `/api/public/pending-claim/change-email` | OK | `tests/features/account-conversion/pending-claim.api.spec.js :: a malformed body never reaches the credential check`<br>`tests/features/account-conversion/pending-claim.api.spec.js :: change-email is refused and the address is left alone` |
-| POST | `/api/public/pending-claim/delete` | OK | `tests/features/account-conversion/pending-claim.api.spec.js :: delete leaves the account standing when no claim is pending` |
-| POST | `/api/public/pending-claim/status` | OK | `tests/features/account-conversion/pending-claim.api.spec.js :: a malformed body never reaches the credential check`<br>`tests/features/account-conversion/pending-claim.api.spec.js :: a wrong password is indistinguishable from an unknown account`<br>`tests/features/account-conversion/pending-claim.api.spec.js :: status reports no claim on an ordinary account` |
-
-### PendingDepartureController - 3/3
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/public/pending-departure/change-email` | OK | `tests/features/account-conversion/pending-departure.api.spec.js :: a malformed body never reaches the credential check`<br>`tests/features/account-conversion/pending-departure.api.spec.js :: change-email is refused and the address is left alone` |
-| POST | `/api/public/pending-departure/delete` | OK | `tests/features/account-conversion/pending-departure.api.spec.js :: credentials are checked before the pending state`<br>`tests/features/account-conversion/pending-departure.api.spec.js :: delete leaves the account standing when no departure is pending` |
-| POST | `/api/public/pending-departure/status` | OK | `tests/features/account-conversion/pending-departure.api.spec.js :: a malformed body never reaches the credential check`<br>`tests/features/account-conversion/pending-departure.api.spec.js :: a wrong password is indistinguishable from an unknown account`<br>`tests/features/account-conversion/pending-departure.api.spec.js :: status reports no departure on an ordinary account`<br>`tests/features/account-conversion/pending-departure.api.spec.js :: there is no accept path out of a departure` |
-
-### PricingController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/v1/pricing` | OK | `tests/features/ai/catalogue.api.spec.js :: pricing is published to authenticated clients`<br>`tests/features/ai/catalogue.api.spec.js :: pricing requires authentication`<br>`tests/features/ai/catalogue.api.spec.js :: retired and embedding models never appear in the chat dropdown`<br>`tests/features/billing/payment-intent.api.spec.js` |
-
-### RecordingController - 20/20
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/recordings` | OK | `tests/features/desktop/local-token.api.spec.js :: the desktop token carries the active org so org-scoped work keeps passing`<br>`tests/features/organization/lifecycle.api.spec.js :: activating an org rebinds the session`<br>`tests/features/platform/access-control.api.spec.js :: protected endpoints reject anonymous callers`<br>`tests/features/recording/lifecycle.api.spec.js`<br>`tests/features/recording/live-chunks.api.spec.js :: finalizing a recording that never got a chunk marks it empty`<br>`tests/features/recording/transcript.api.spec.js :: live slices stop finalize paying for a second whisper pass`<br>`tests/features/recording/transcript.api.spec.js :: with no live slices, finalize does run the paid backstop`<br>`tests/features/transcription/deferred.api.spec.js`<br>`tests/features/transcription/local.api.spec.js`<br>`tests/support/recordings.js _(shared helper)_` |
-| GET | `/api/v1/recordings` | OK | `tests/features/desktop/local-token.api.spec.js :: the desktop token carries the active org so org-scoped work keeps passing`<br>`tests/features/organization/lifecycle.api.spec.js :: activating an org rebinds the session`<br>`tests/features/platform/access-control.api.spec.js :: protected endpoints reject anonymous callers`<br>`tests/features/recording/lifecycle.api.spec.js :: an over-long group is rejected before anything is stored`<br>`tests/features/recording/lifecycle.api.spec.js :: an over-long title is rejected before anything is stored`<br>`tests/features/recording/listing.api.spec.js`<br>`tests/features/recording/metadata.api.spec.js`<br>`tests/features/recording/permissions.api.spec.js :: a peer MEMBER is refused every read and every mutation`<br>`tests/features/recording/permissions.api.spec.js :: an OWNER is refused the transcript while the toggle is off`<br>`tests/features/recording/permissions.api.spec.js :: the opted-in listing sideloads creator identity onto peer rows only`<br>`tests/features/recording/trash.api.spec.js`<br>`tests/features/recording/upload.api.spec.js` |
-| GET | `/api/v1/recordings/{}` | OK | `tests/features/ai/artifacts.api.spec.js :: a summary can be regenerated on demand`<br>`tests/features/ai/artifacts.api.spec.js :: finalize generates a title and summary`<br>`tests/features/diarization/segments.api.spec.js`<br>`tests/features/diarization/speakers.api.spec.js`<br>`tests/features/recording/ai-artifacts.api.spec.js`<br>`tests/features/recording/lifecycle.api.spec.js`<br>`tests/features/recording/lifecycle.api.spec.js :: a malformed id is rejected by @ValidRecordingId`<br>`tests/features/recording/lifecycle.api.spec.js :: a well-formed id that does not exist is a 404`<br>`tests/features/recording/live-chunks.api.spec.js`<br>`tests/features/recording/metadata.api.spec.js`<br>`tests/features/recording/permissions.api.spec.js`<br>`tests/features/recording/permissions.api.spec.js :: a peer MEMBER is refused every read and every mutation`<br>`tests/features/recording/permissions.api.spec.js :: a peer cannot delete the recording`<br>`tests/features/recording/permissions.api.spec.js :: an ADMIN gets the same access an OWNER does`<br>`tests/features/recording/permissions.api.spec.js :: an OWNER is refused the transcript while the toggle is off`<br>`tests/features/recording/transcript.api.spec.js`<br>`tests/features/recording/trash.api.spec.js :: delete forever works straight from the active list`<br>`tests/features/recording/trash.api.spec.js :: delete moves to trash and restore brings it back`<br>`tests/features/recording/trash.api.spec.js :: permanent delete is irreversible`<br>`tests/features/recording/trash.api.spec.js :: the trash listing is org-scoped but emptying it is not`<br>`tests/features/recording/upload.api.spec.js`<br>`tests/features/transcription/deferred.api.spec.js`<br>`tests/features/transcription/live-slice.api.spec.js`<br>`tests/features/transcription/local.api.spec.js` |
-| DELETE | `/api/v1/recordings/{}` | OK | `tests/features/recording/metadata.api.spec.js :: metadata patches refuse a trashed recording`<br>`tests/features/recording/metadata.api.spec.js :: rename-group ignores org and trash boundaries`<br>`tests/features/recording/permissions.api.spec.js`<br>`tests/features/recording/permissions.api.spec.js :: a peer cannot delete the recording`<br>`tests/features/recording/trash.api.spec.js :: delete moves to trash and restore brings it back`<br>`tests/features/recording/trash.api.spec.js :: deleting an already-trashed recording is a 404`<br>`tests/features/recording/trash.api.spec.js :: emptying the trash reports how many recordings it erased`<br>`tests/features/recording/trash.api.spec.js :: one users empty-trash cannot reach another users bin`<br>`tests/features/recording/trash.api.spec.js :: permanent delete is irreversible`<br>`tests/features/recording/trash.api.spec.js :: the trash listing is org-scoped but emptying it is not` |
-| GET | `/api/v1/recordings/{}/audio` | OK | `tests/features/recording/live-chunks.api.spec.js :: finalize assembles the chunks byte-for-byte into one object`<br>`tests/features/recording/live-chunks.api.spec.js :: finalizing a recording that never got a chunk marks it empty`<br>`tests/features/recording/permissions.api.spec.js` |
-| POST | `/api/v1/recordings/{}/audio/chunk` | OK | `tests/features/recording/upload.api.spec.js`<br>`tests/features/recording/upload.api.spec.js :: the chunk parameters are all mandatory` |
-| GET | `/api/v1/recordings/{}/audio/stream` | OK | `tests/features/recording/live-chunks.api.spec.js :: a repeated chunk is not stored twice`<br>`tests/features/recording/live-chunks.api.spec.js :: finalize assembles the chunks byte-for-byte into one object`<br>`tests/features/recording/live-chunks.api.spec.js :: finalize is safe to retry and does not re-assemble`<br>`tests/features/recording/permissions.api.spec.js`<br>`tests/features/recording/permissions.api.spec.js :: an OWNER is refused the transcript while the toggle is off`<br>`tests/features/recording/transcript.api.spec.js :: live slices stop finalize paying for a second whisper pass`<br>`tests/features/recording/upload.api.spec.js :: a chunked upload assembles into playable audio`<br>`tests/features/recording/upload.api.spec.js :: an uploaded file is stored and transcribed` |
-| DELETE | `/api/v1/recordings/{}/forever` | OK | `tests/features/recording/permissions.api.spec.js`<br>`tests/features/recording/trash.api.spec.js :: delete forever works straight from the active list`<br>`tests/features/recording/trash.api.spec.js :: permanent delete is irreversible` |
-| POST | `/api/v1/recordings/{}/generate-title` | OK | `tests/features/recording/ai-artifacts.api.spec.js :: a peer cannot spend someone elses wallet on either button`<br>`tests/features/recording/ai-artifacts.api.spec.js :: generate-title refuses a recording with no transcript`<br>`tests/features/recording/ai-artifacts.api.spec.js :: generate-title rewrites the title from the transcript`<br>`tests/features/recording/permissions.api.spec.js` |
-| PATCH | `/api/v1/recordings/{}/group` | OK | `tests/features/recording/permissions.api.spec.js` |
-| POST | `/api/v1/recordings/{}/live-chunk` | OK | `tests/features/recording/live-chunks.api.spec.js :: only the first chunk is content-checked, and a bad one poisons nothing`<br>`tests/features/recording/live-chunks.api.spec.js :: the seq parameter is mandatory`<br>`tests/support/recordings.js _(shared helper)_` |
-| POST | `/api/v1/recordings/{}/live-finalize` | OK | `tests/features/ai/artifacts.api.spec.js :: finalize generates a title and summary`<br>`tests/features/recording/live-chunks.api.spec.js`<br>`tests/features/recording/permissions.api.spec.js`<br>`tests/features/recording/transcript.api.spec.js`<br>`tests/features/transcription/deferred.api.spec.js`<br>`tests/features/transcription/local.api.spec.js` |
-| POST | `/api/v1/recordings/{}/restore` | OK | `tests/features/recording/permissions.api.spec.js`<br>`tests/features/recording/trash.api.spec.js :: delete moves to trash and restore brings it back`<br>`tests/features/recording/trash.api.spec.js :: permanent delete is irreversible`<br>`tests/features/recording/trash.api.spec.js :: restoring an active recording is an idempotent no-op` |
-| POST | `/api/v1/recordings/{}/summary` | OK | `tests/features/ai/artifacts.api.spec.js :: a summary can be regenerated on demand`<br>`tests/features/recording/ai-artifacts.api.spec.js :: a peer cannot spend someone elses wallet on either button`<br>`tests/features/recording/ai-artifacts.api.spec.js :: summary refuses a recording with no transcript, before touching the wallet`<br>`tests/features/recording/ai-artifacts.api.spec.js :: summary writes a summary, preserves the title and resurfaces the recording`<br>`tests/features/recording/permissions.api.spec.js`<br>`tests/features/transcription/local.api.spec.js :: force wipes the transcript, keeps the summary and returns the user title` |
-| PATCH | `/api/v1/recordings/{}/title` | OK | `tests/features/recording/permissions.api.spec.js` |
-| PATCH | `/api/v1/recordings/{}/transcript` | OK | `tests/features/recording/permissions.api.spec.js` |
-| PATCH | `/api/v1/recordings/rename-group` | OK | `tests/features/recording/metadata.api.spec.js`<br>`tests/features/recording/metadata.api.spec.js :: rename-group validates both of its parameters` |
-| GET | `/api/v1/recordings/trash` | OK | `tests/features/recording/metadata.api.spec.js :: rename-group ignores org and trash boundaries`<br>`tests/features/recording/trash.api.spec.js` |
-| DELETE | `/api/v1/recordings/trash` | OK | `tests/features/recording/trash.api.spec.js :: emptying the trash reports how many recordings it erased`<br>`tests/features/recording/trash.api.spec.js :: one users empty-trash cannot reach another users bin`<br>`tests/features/recording/trash.api.spec.js :: the trash listing is org-scoped but emptying it is not` |
-| POST | `/api/v1/recordings/upload` | OK | `tests/features/recording/upload.api.spec.js`<br>`tests/features/recording/upload.api.spec.js :: an upload with no file is rejected` |
-
-### RegistrationController - 5/5
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/public/forgot-password` | OK | `tests/features/account/email-change.api.spec.js :: a password-reset token cannot be spent as an email-change token`<br>`tests/features/auth/password-reset.api.spec.js :: a valid token still cannot install a weak password`<br>`tests/features/auth/password-reset.api.spec.js :: forgot-password validates the address it is given`<br>`tests/features/auth/password-reset.api.spec.js :: requesting a reset does not leak account existence`<br>`tests/features/auth/password-reset.api.spec.js :: requesting a second link invalidates the first`<br>`tests/features/auth/password-reset.api.spec.js :: the reset round trip rotates the password` |
-| POST | `/api/public/register` | OK | `tests/features/auth/registration.api.spec.js`<br>`tests/support/api.js _(shared helper)_` |
-| POST | `/api/public/resend-verification` | OK | `tests/features/auth/registration.api.spec.js :: an unverified account can request a fresh verification email`<br>`tests/features/auth/registration.api.spec.js :: resend-verification validates the address it is given`<br>`tests/features/auth/registration.api.spec.js :: resending answers identically for unknown and already-verified addresses` |
-| POST | `/api/public/reset-password` | OK | `tests/features/auth/password-reset.api.spec.js :: a valid token still cannot install a weak password`<br>`tests/features/auth/password-reset.api.spec.js :: requesting a second link invalidates the first`<br>`tests/features/auth/password-reset.api.spec.js :: reset-password validates the token before looking it up`<br>`tests/features/auth/password-reset.api.spec.js :: the reset round trip rotates the password` |
-| GET | `/api/public/verify-email` | OK | `tests/features/auth/registration.api.spec.js :: verify-email refuses an unknown token and a missing one`<br>`tests/support/api.js _(shared helper)_` |
-
-### StripeWebhookController - 0/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/webhook/stripe` | path only | `tests/features/billing/stripe-webhook.api.spec.js` |
-
-### TranscriptAppendController - 1/1
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| POST | `/api/v1/recordings/{}/transcript/append` | OK | `tests/features/diarization/segments.api.spec.js`<br>`tests/features/recording/transcript.api.spec.js`<br>`tests/features/recording/transcript.api.spec.js :: a partly filtered slice is rebuilt from the surviving chunks`<br>`tests/support/recordings.js _(shared helper)_` |
-
-### UserController - 6/6
-
-| Method | Path | Status | Covered by |
-| --- | --- | --- | --- |
-| GET | `/api/v1/user` | OK | `tests/features/auth/login.api.spec.js :: logout ends the session and clears the cookie`<br>`tests/features/desktop/local-token.api.spec.js :: a tampered desktop token buys nothing`<br>`tests/features/desktop/local-token.api.spec.js :: the hand-off mints a bearer credential the desktop can use on its own`<br>`tests/features/desktop/local-token.api.spec.js :: the session cookie outranks any Authorization header`<br>`tests/features/desktop/presence.api.spec.js :: a heartbeat whose org claim went stale gets a re-minted token`<br>`tests/features/platform/access-control.api.spec.js :: protected endpoints reject anonymous callers`<br>`tests/features/profile/account-deletion.api.spec.js :: a blank password is rejected by validation`<br>`tests/features/profile/account-deletion.api.spec.js :: a request with no body at all cannot erase the account`<br>`tests/features/profile/account-deletion.api.spec.js :: a stolen cookie alone cannot erase the account`<br>`tests/features/profile/account-deletion.api.spec.js :: an owner of a populated business org must hand it over first`<br>`tests/features/profile/account-deletion.api.spec.js :: deletion ends the session and blocks login`<br>`tests/features/profile/account-deletion.api.spec.js :: deletion must be explicitly confirmed`<br>`tests/features/profile/profile.api.spec.js :: reading the profile refuses an anonymous caller`<br>`tests/features/profile/profile.api.spec.js :: the caller keeps their own session after rotating the password`<br>`tests/support/api.js _(shared helper)_` |
-| PUT | `/api/v1/user` | OK | `tests/features/platform/access-control.api.spec.js :: csrf is enforced on authenticated writes`<br>`tests/features/profile/profile.api.spec.js :: a PUT that omits the model cannot reset it`<br>`tests/features/profile/profile.api.spec.js :: a PUT that omits the segment cannot clear it`<br>`tests/features/profile/profile.api.spec.js :: a body with no fields at all is a legal no-op`<br>`tests/features/profile/profile.api.spec.js :: a free-text persona answer over 120 characters is refused`<br>`tests/features/profile/profile.api.spec.js :: a name outside 1..50 characters is rejected`<br>`tests/features/profile/profile.api.spec.js :: a partial group override leaves the other toggle unset`<br>`tests/features/profile/profile.api.spec.js :: a persona segment and its free-text answer round-trip`<br>`tests/features/profile/profile.api.spec.js :: a retired chat model cannot be pinned`<br>`tests/features/profile/profile.api.spec.js :: a selectable chat model can be pinned`<br>`tests/features/profile/profile.api.spec.js :: a sent group map replaces the stored one wholesale`<br>`tests/features/profile/profile.api.spec.js :: an empty group map clears every group`<br>`tests/features/profile/profile.api.spec.js :: an empty string is not a way to reset either preference`<br>`tests/features/profile/profile.api.spec.js :: an explicit null is the same as omitting the field`<br>`tests/features/profile/profile.api.spec.js :: an omitted field is left alone rather than cleared`<br>`tests/features/profile/profile.api.spec.js :: an omitted group map is left alone`<br>`tests/features/profile/profile.api.spec.js :: an over-long model id is rejected before the enum lookup`<br>`tests/features/profile/profile.api.spec.js :: an over-long transcription mode is rejected before the engine lookup`<br>`tests/features/profile/profile.api.spec.js :: an unknown chat model is refused`<br>`tests/features/profile/profile.api.spec.js :: an unknown persona segment is refused`<br>`tests/features/profile/profile.api.spec.js :: email and roles are not user-settable`<br>`tests/features/profile/profile.api.spec.js :: every enum constant the survey offers is accepted`<br>`tests/features/profile/profile.api.spec.js :: every profile write refuses an anonymous caller`<br>`tests/features/profile/profile.api.spec.js :: moving off OTHER wipes the stale free-text answer`<br>`tests/features/profile/profile.api.spec.js :: names round-trip through the partial PUT`<br>`tests/features/profile/profile.api.spec.js :: per-group transcription settings round-trip`<br>`tests/features/profile/profile.api.spec.js :: resetting leaves the persona segment untouched`<br>`tests/features/profile/profile.api.spec.js :: the chat-model guard matches case-insensitively`<br>`tests/features/profile/profile.api.spec.js :: the embedding model is not selectable either`<br>`tests/features/profile/profile.api.spec.js :: the free-text answer can be edited without re-sending the segment`<br>`tests/features/profile/profile.api.spec.js :: the reset endpoint clears the segment and its free-text answer`<br>`tests/features/profile/profile.api.spec.js :: the reset endpoint drops the pinned model back to the preset`<br>`tests/features/profile/profile.api.spec.js :: the reset touches nothing but the two persona fields`<br>`tests/features/profile/profile.api.spec.js :: the transcription default accepts only the selectable engines`<br>`tests/features/profile/profile.api.spec.js :: the transcription default has no reset endpoint and survives this one` |
-| DELETE | `/api/v1/user/default-chat-model` | OK | `tests/features/profile/profile.api.spec.js :: every profile write refuses an anonymous caller`<br>`tests/features/profile/profile.api.spec.js :: resetting an already-preset model is harmless`<br>`tests/features/profile/profile.api.spec.js :: resetting leaves the persona segment untouched`<br>`tests/features/profile/profile.api.spec.js :: the reset endpoint drops the pinned model back to the preset`<br>`tests/features/profile/profile.api.spec.js :: the transcription default has no reset endpoint and survives this one` |
-| DELETE | `/api/v1/user/me` | OK | `tests/features/profile/account-deletion.api.spec.js :: a blank password is rejected by validation`<br>`tests/features/profile/account-deletion.api.spec.js :: a business org with no other members never blocks deletion`<br>`tests/features/profile/account-deletion.api.spec.js :: a personal org alone never blocks deletion`<br>`tests/features/profile/account-deletion.api.spec.js :: a request with no body at all cannot erase the account`<br>`tests/features/profile/account-deletion.api.spec.js :: a restored account cannot be restored a second time`<br>`tests/features/profile/account-deletion.api.spec.js :: a scheduled deletion can be undone within the grace window`<br>`tests/features/profile/account-deletion.api.spec.js :: a stolen cookie alone cannot erase the account`<br>`tests/features/profile/account-deletion.api.spec.js :: an owner of a populated business org must hand it over first`<br>`tests/features/profile/account-deletion.api.spec.js :: deletion ends the session and blocks login`<br>`tests/features/profile/account-deletion.api.spec.js :: deletion must be explicitly confirmed`<br>`tests/features/profile/account-deletion.api.spec.js :: restore refuses a wrong password without revealing the account state`<br>`tests/features/profile/profile.api.spec.js :: every profile write refuses an anonymous caller` |
-| PUT | `/api/v1/user/password` | OK | `tests/features/profile/profile.api.spec.js :: a blank current password is refused`<br>`tests/features/profile/profile.api.spec.js :: a mismatched confirmation is refused`<br>`tests/features/profile/profile.api.spec.js :: a missing new password is refused`<br>`tests/features/profile/profile.api.spec.js :: a weak new password is refused`<br>`tests/features/profile/profile.api.spec.js :: every profile write refuses an anonymous caller`<br>`tests/features/profile/profile.api.spec.js :: rotating the password invalidates the old one`<br>`tests/features/profile/profile.api.spec.js :: the caller keeps their own session after rotating the password`<br>`tests/features/profile/profile.api.spec.js :: the current password must be correct` |
-| DELETE | `/api/v1/user/persona-segment` | OK | `tests/features/profile/profile.api.spec.js :: every profile write refuses an anonymous caller`<br>`tests/features/profile/profile.api.spec.js :: resetting an already-empty segment is harmless`<br>`tests/features/profile/profile.api.spec.js :: the reset endpoint clears the segment and its free-text answer`<br>`tests/features/profile/profile.api.spec.js :: the reset touches nothing but the two persona fields` |
-
+Missed Class                                                  Method                                  Pkg
+------ -----                                                  ------                                  ---
+    69 CollectionContextBuilder                               renderSystemMessage                     uk.magicmamaliga.backend.rag.service
+    51 SegmentEditor                                          splitSegment                            uk.magicmamaliga.backend.diarization.service
+    50 SpeakerMatcher                                         ingestPrototype                         uk.magicmamaliga.backend.diarization.service
+    46 InvitationService                                      invite                                  uk.magicmamaliga.backend.organization.service
+    41 OrphanPrototypeService                                 parkOrphanPrototypes                    uk.magicmamaliga.backend.diarization.service
+    41 LuceneBmIndex                                          ensureIndexed                           uk.magicmamaliga.backend.rag.service
+    38 WalletRefundService                                    refundOrgUpTo                           uk.magicmamaliga.backend.payment
+    38 WalletRefundService                                    refundUpTo                              uk.magicmamaliga.backend.payment
+    37 OrphanPrototypeService                                 ingestUserConfirmation                  uk.magicmamaliga.backend.diarization.service
+    37 PaymentFulfillmentService                              fulfillPayment                          uk.magicmamaliga.backend.payment
+    36 DisputeService                                         handleDisputeCreated                    uk.magicmamaliga.backend.payment
+    36 AccountDeletionService                                 eraseRecordings                         uk.magicmamaliga.backend.user.service
+    35 SpeakerMatcher                                         evictExcessPrototypes                   uk.magicmamaliga.backend.diarization.service
+    35 RecordingService                                       uploadFullRecording                     uk.magicmamaliga.backend.record.service
+    35 OrganizationDomainService                              verify                                  uk.magicmamaliga.backend.organization.service
+    34 LocalPresenceController                                heartbeat                               uk.magicmamaliga.backend.localpresence
+    34 RecordingService                                       createInitialRecording                  uk.magicmamaliga.backend.record.service
+    33 MembershipService                                      removeMember                            uk.magicmamaliga.backend.organization.service
+    31 FileStorageService                                     finalizeLiveFile                        uk.magicmamaliga.backend.record.service
+    30 InvitationService                                      accept                                  uk.magicmamaliga.backend.organization.service
+    29 OrganizationDomainService                              claim                                   uk.magicmamaliga.backend.organization.service
+    29 TranscriptChunker                                      packLines                               uk.magicmamaliga.backend.rag.service
+    29 SpeakerMatcher                                         matchOne                                uk.magicmamaliga.backend.diarization.service
+    29 CollectionContextBuilder                               toCitations                             uk.magicmamaliga.backend.rag.service
+    28 PendingClaimReminderJob                                fireEligibleReminders                   uk.magicmamaliga.backend.security.pendingclaim
+    28 FluxAIService                                          processAiQuery                          uk.magicmamaliga.backend.record.ai.service
+    27 SpeakerLibrary                                         mergeSpeakers                           uk.magicmamaliga.backend.diarization.service
+    27 ControllerLoggingAspect                                logAround                               uk.magicmamaliga.backend.base.logging
+    26 AccountDeletionService                                 hardDeleteNow                           uk.magicmamaliga.backend.user.service
+    26 EmailChangeService                                     confirmChange                           uk.magicmamaliga.backend.security.emailchange
+    26 AccountDeletionService                                 scheduleDeletion                        uk.magicmamaliga.backend.user.service
+    26 AudioTranscoder                                        runFfmpeg                               uk.magicmamaliga.backend.record.service.storage
+    26 R2MultipartUploadOrchestrator$PartUploader             flushPart                               uk.magicmamaliga.backend.record.service.storage
+    26 SegmentEditor                                          scrapSpeakerFromRecording               uk.magicmamaliga.backend.diarization.service
+    26 MembershipService                                      transferOwnership                       uk.magicmamaliga.backend.organization.service
+    26 LuceneBmIndex                                          search                                  uk.magicmamaliga.backend.rag.service
+    25 MembershipService                                      changeRole                              uk.magicmamaliga.backend.organization.service
+    25 IdleWalletAlertJob                                     flagIdleWallets                         uk.magicmamaliga.backend.organization.service
+    25 AudioChunker                                           planRanges                              uk.magicmamaliga.backend.record.service.storage
+    25 OrganizationService                                    createPersonalOrgForSignup              uk.magicmamaliga.backend.organization.service
+    24 UserRegistrationService                                registerNewUser                         uk.magicmamaliga.backend.security.registration
+    24 DomainReVerifyJob                                      reVerifyStaleClaims                     uk.magicmamaliga.backend.organization.service
+    24 AccountConversionService                               markPendingForNonMembers                uk.magicmamaliga.backend.organization.service
+    23 AudioChunker                                           split                                   uk.magicmamaliga.backend.record.service.storage
+    23 ChatCollectionService                                  loadAndValidateRecordings               uk.magicmamaliga.backend.rag.service
+    23 OrganizationService                                    applyBalanceChange                      uk.magicmamaliga.backend.organization.service
+    22 SegmentEditor                                          assignSegmentSpeaker                    uk.magicmamaliga.backend.diarization.service
+    22 LuceneBmIndex                                          isIndexed                               uk.magicmamaliga.backend.rag.service
+    22 AccountConversionService                               convertOne                              uk.magicmamaliga.backend.organization.service
+    22 ChatCollectionService                                  createCollection                        uk.magicmamaliga.backend.rag.service
+    21 CollectionContextBuilder                               build                                   uk.magicmamaliga.backend.rag.service
+    21 InvitationService                                      decline                                 uk.magicmamaliga.backend.organization.service
+    21 SpeakerLibrary                                         createSpeaker                           uk.magicmamaliga.backend.diarization.service
+    21 OrganizationService                                    applyDelta                              uk.magicmamaliga.backend.organization.service
+    20 OrganizationDomainService                              autoRevokeLosingClaims                  uk.magicmamaliga.backend.organization.service
+    20 DisputeService                                         handleDisputeWon                        uk.magicmamaliga.backend.payment
+    20 OrganizationDomainService                              revoke                                  uk.magicmamaliga.backend.organization.service
+    20 RecordingService                                       getRecordingHistory                     uk.magicmamaliga.backend.record.service
+    20 UserRegistrationService                                registerAsPersonal                      uk.magicmamaliga.backend.security.registration
+    19 RecordingService                                       enrichWithCreatorIdentity               uk.magicmamaliga.backend.record.service
+    19 FileStorageService                                     saveLiveChunk                           uk.magicmamaliga.backend.record.service
+    19 ChatCollectionService                                  updateCollection                        uk.magicmamaliga.backend.rag.service
+    19 ChatCollectionService                                  warnIfApproachingDocumentLimit          uk.magicmamaliga.backend.rag.service
+    19 OrganizationService                                    hasSpendAllowance                       uk.magicmamaliga.backend.organization.service
+    19 LuceneBmIndex                                          searchDense                             uk.magicmamaliga.backend.rag.service
+    18 PendingDeletionSweepJob                                sweep                                   uk.magicmamaliga.backend.user.service
+    18 TranscriptChunker                                      renderChunks                            uk.magicmamaliga.backend.rag.service
+    18 MembershipService                                      setMembershipStatus                     uk.magicmamaliga.backend.organization.service
+    18 EmailChangeService                                     requestChange                           uk.magicmamaliga.backend.security.emailchange
+    18 PaymentFulfillmentService                              recordTerminalFailure                   uk.magicmamaliga.backend.payment
+    18 RecordingService                                       completeLiveRecording                   uk.magicmamaliga.backend.record.service
+    18 DisputeService                                         handleDisputeClosed                     uk.magicmamaliga.backend.payment
+    18 EmailService                                           sendPendingDomainClaimReminderEmail     uk.magicmamaliga.backend.security.registration
+    18 EmailService                                           sendEmployeeDepartureEmail              uk.magicmamaliga.backend.security.registration
+    18 EmailService                                           sendPendingDomainClaimEmail             uk.magicmamaliga.backend.security.registration
+    18 EmailService                                           sendEmailChangeVerification             uk.magicmamaliga.backend.security.registration
+    17 FileStorageService                                     finalizeFile                            uk.magicmamaliga.backend.record.service
+    17 AudioTranscoder                                        decodeToPcmS16leStereo                  uk.magicmamaliga.backend.record.service.storage
+    17 EmailChangeService                                     applyStateSideEffects                   uk.magicmamaliga.backend.security.emailchange
+    17 StripeCustomerService                                  syncTaxId                               uk.magicmamaliga.backend.payment.external
+    17 UserRegistrationService                                registerAsEmployee                      uk.magicmamaliga.backend.security.registration
+    17 UserRegistrationService                                resolveSignupCredit                     uk.magicmamaliga.backend.security.registration
+    17 RecordingEventListener                                 shiftChunk                              uk.magicmamaliga.backend.record.event
+    16 RecordingService                                       emptyTrash                              uk.magicmamaliga.backend.record.service
+    16 EmailService                                           sendChargebackNoticeEmail               uk.magicmamaliga.backend.security.registration
+    16 OrganizationController                                 updateEnforcementSettings               uk.magicmamaliga.backend.organization
+    16 InvitationService                                      revoke                                  uk.magicmamaliga.backend.organization.service
+    16 AudioTranscoder                                        extractChannelMp3                       uk.magicmamaliga.backend.record.service.storage
+    16 AccountDeletionService                                 eraseOrgFootprint                       uk.magicmamaliga.backend.user.service
+    16 AudioTranscoder                                        transcodeToMp3                          uk.magicmamaliga.backend.record.service.storage
+    16 FileStorageService                                     saveChunk                               uk.magicmamaliga.backend.record.service
+    16 MembershipService                                      leaveOrganization                       uk.magicmamaliga.backend.organization.service
+    16 OrganizationService                                    promoteToBusiness                       uk.magicmamaliga.backend.organization.service
+    16 FileStorageService                                     discardLiveChunks                       uk.magicmamaliga.backend.record.service
+    15 AccountDeletionService                                 burnSignupCreditIfConsumed              uk.magicmamaliga.backend.user.service
+    15 RecordingService                                       uploadLiveChunk                         uk.magicmamaliga.backend.record.service
+    15 FileStorageService                                     listAllUnderPrefix                      uk.magicmamaliga.backend.record.service
+    15 UserService                                            updateUserDetails                       uk.magicmamaliga.backend.user.service
+    15 EmailService                                           sendEmailChangeConfirmation             uk.magicmamaliga.backend.security.registration
+    14 ExternalPaymentValidator                               verifyPayment                           uk.magicmamaliga.backend.payment.external
+    14 SpeakerLibrary                                         detachSpeakerFromAllRecordings          uk.magicmamaliga.backend.diarization.service
+    14 LuceneBmIndex                                          prepareIndexDirectory                   uk.magicmamaliga.backend.rag.service
+    14 SegmentEditor                                          snapToWordBoundary                      uk.magicmamaliga.backend.diarization.service
+    14 OrganizationDomainService                              reVerifyForCron                         uk.magicmamaliga.backend.organization.service
+    14 MembershipService                                      addMember                               uk.magicmamaliga.backend.organization.service
+    14 MembershipService                                      setSpendCap                             uk.magicmamaliga.backend.organization.service
+    14 OrganizationService                                    saveWithUniqueSlug                      uk.magicmamaliga.backend.organization.service
+    13 PendingClaimService                                    accept                                  uk.magicmamaliga.backend.security.pendingclaim
+    13 PaymentFulfillmentService                              maybeGrantFirstTopupBonus               uk.magicmamaliga.backend.payment
+    13 DisputeService                                         notifyOwnersOfDispute                   uk.magicmamaliga.backend.payment
+    13 UserRegistrationService                                verifyEmail                             uk.magicmamaliga.backend.security.registration
+    13 LuceneBmIndex                                          init                                    uk.magicmamaliga.backend.rag.service
+    13 ChatCollectionService                                  getOrCreateSession                      uk.magicmamaliga.backend.rag.service
+    13 AccountDeletionService                                 restoreScheduledDeletion                uk.magicmamaliga.backend.user.service
+    13 OrganizationService                                    createBusinessOrg                       uk.magicmamaliga.backend.organization.service
+    13 AccountDeletionService                                 eraseRagArtifacts                       uk.magicmamaliga.backend.user.service
+    13 RecordingService                                       deleteAudioBytes                        uk.magicmamaliga.backend.record.service
+    13 RecordingService                                       assertExportAllowed                     uk.magicmamaliga.backend.record.service
+    13 RecordingPermissionValidator                           assertFullAccess                        uk.magicmamaliga.backend.record.service
+    13 LuceneBmIndex                                          close                                   uk.magicmamaliga.backend.rag.service
+    13 AIChatSessionService                                   getOrCreate                             uk.magicmamaliga.backend.record.ai.service
+    13 RecordingDto                                           toString                                uk.magicmamaliga.backend.record.dto
+    13 EmailChangeService                                     displayHandle                           uk.magicmamaliga.backend.security.emailchange
+    12 PendingClaimService                                    delete                                  uk.magicmamaliga.backend.security.pendingclaim
+    12 TranscriptChunker                                      linesFromSegments                       uk.magicmamaliga.backend.rag.service
+    12 FileStorageService                                     deleteObject                            uk.magicmamaliga.backend.record.service
+    12 ControllerLoggingAspect                                enrichMdcWithUser                       uk.magicmamaliga.backend.base.logging
+    12 StripeWebhookController                                handleDisputeClosed                     uk.magicmamaliga.backend.payment
+    12 StripeWebhookController                                handleDisputeCreated                    uk.magicmamaliga.backend.payment
+    12 SecurityConfiguration                                  securityFilterChain                     uk.magicmamaliga.backend.security.config
+    12 Recording                                              toString                                uk.magicmamaliga.backend.record.model
+    12 SpeakerLibrary                                         getSpeakerAudioSample                   uk.magicmamaliga.backend.diarization.service
+    12 OrganizationService                                    updateEnforcementSettings               uk.magicmamaliga.backend.organization.service
+    12 OrganizationService                                    grantFirstTopupBonus                    uk.magicmamaliga.backend.organization.service
+    12 SpeakerLibrary                                         computeSpeakerLastUsed                  uk.magicmamaliga.backend.diarization.service
+    12 SegmentEditor                                          collectWordsInRange                     uk.magicmamaliga.backend.diarization.service
+    12 SegmentEditor                                          relabelOrphanSegments                   uk.magicmamaliga.backend.diarization.service
+    12 DisputeService                                         handleDisputeLost                       uk.magicmamaliga.backend.payment
+    12 AudioTranscoder                                        probeDurationSeconds                    uk.magicmamaliga.backend.record.service.storage
+    12 CollectionContextBuilder                               toBriefMap                              uk.magicmamaliga.backend.rag.service
+    12 ChatCollectionService                                  requireOwnedCollection                  uk.magicmamaliga.backend.rag.service
+    12 PasswordResetService                                   resetPassword                           uk.magicmamaliga.backend.security.registration
+    11 AccountDeletionService                                 eraseAuthTokens                         uk.magicmamaliga.backend.user.service
+    11 LuceneBmIndex                                          parseUserQuery                          uk.magicmamaliga.backend.rag.service
+    11 LuceneBmIndex                                          buildLuceneDoc                          uk.magicmamaliga.backend.rag.service
+    11 SegmentEditor                                          validateContiguous                      uk.magicmamaliga.backend.diarization.service
+    11 FileStorageService                                     saveFullFile                            uk.magicmamaliga.backend.record.service
+    11 AccountConversionService                               convertExistingMembers                  uk.magicmamaliga.backend.organization.service
+    11 ChatCollectionService                                  renameSession                           uk.magicmamaliga.backend.rag.service
+    11 AiPricingEnum                                          findByModelName                         uk.magicmamaliga.backend.transactionledger
+    11 SpeakerLibrary                                         approvePrototype                        uk.magicmamaliga.backend.diarization.service
+    11 SignupAbuseGuard                                       recordAttempt                           uk.magicmamaliga.backend.security.registration
+    11 PasswordResetService                                   lambda$requestPasswordReset$0           uk.magicmamaliga.backend.security.registration
+    11 RecordingService                                       getTrash                                uk.magicmamaliga.backend.record.service
+    11 SpeakerLibrary                                         approveAllPrototypes                    uk.magicmamaliga.backend.diarization.service
+    11 SpeakerLibrary                                         getUserSpeakers                         uk.magicmamaliga.backend.diarization.service
+    11 OrganizationService                                    bumpMemberSpend                         uk.magicmamaliga.backend.organization.service
+    11 LuceneBmIndex$1                                        removeEldestEntry                       uk.magicmamaliga.backend.rag.service
+    10 OrphanPrototypeService                                 deleteOrphanPrototype                   uk.magicmamaliga.backend.diarization.service
+    10 AccountConversionService                               convertMatchingPersonalMembers          uk.magicmamaliga.backend.organization.service
+    10 OrphanPrototypeService                                 getOrphanPrototypeAudio                 uk.magicmamaliga.backend.diarization.service
+    10 MembershipService                                      lambda$seedOwnerMembership$0            uk.magicmamaliga.backend.organization.service
+    10 FileStorageService                                     <init>                                  uk.magicmamaliga.backend.record.service
+    10 AIChatSessionService                                   renameSession                           uk.magicmamaliga.backend.record.ai.service
+    10 SpeakerMatcher                                         cosineSimilarity                        uk.magicmamaliga.backend.diarization.service
+    10 MembershipService                                      lambda$seedEmployeeMembership$0         uk.magicmamaliga.backend.organization.service
+    10 OrganizationService                                    isRetryableWalletFailure                uk.magicmamaliga.backend.organization.service
+    10 OrganizationController                                 createBusinessOrganization              uk.magicmamaliga.backend.organization
+    10 SpeakerLibrary                                         listPrototypes                          uk.magicmamaliga.backend.diarization.service
+    10 ChatCollection                                         toString                                uk.magicmamaliga.backend.rag.model
+    10 LuceneBmIndex                                          openDirectory                           uk.magicmamaliga.backend.rag.service
+    10 RecordingService                                       uploadRecordingChunk                    uk.magicmamaliga.backend.record.service
+    10 TranscriptChunker                                      extractLines                            uk.magicmamaliga.backend.rag.service
+    10 LuceneBmIndex                                          invalidateAllForUser                    uk.magicmamaliga.backend.rag.service
+    10 LuceneBmIndex                                          invalidate                              uk.magicmamaliga.backend.rag.service
+    10 ChatCollectionService                                  listCollections                         uk.magicmamaliga.backend.rag.service
+    10 OrphanPrototypeService                                 mergeOrphanLabels                       uk.magicmamaliga.backend.diarization.service
+    10 AiInteractionDeduplicator                              saveInteraction                         uk.magicmamaliga.backend.record.ai.service
+    10 AiInteractionDeduplicator                              addIfNotExists                          uk.magicmamaliga.backend.record.ai.service
+     9 LuceneBmIndex                                          deleteDirectoryContents                 uk.magicmamaliga.backend.rag.service
+     9 StripeWebhookController                                markFailedAndAck                        uk.magicmamaliga.backend.payment
+     9 StripeWebhookController                                markCanceledAndAck                      uk.magicmamaliga.backend.payment
+     9 LuceneBmIndex                                          toHits                                  uk.magicmamaliga.backend.rag.service
+     9 UserRegistrationService                                sendVerificationToken                   uk.magicmamaliga.backend.security.registration
+     9 OrganizationService                                    rollExpiredSpendPeriods                 uk.magicmamaliga.backend.organization.service
+     9 LuceneAnalyzers$1                                      createComponents                        uk.magicmamaliga.backend.rag.service
+     9 SpeakerMatcher                                         match                                   uk.magicmamaliga.backend.diarization.service
+     9 UserRegistrationService                                extractDisplayHandleFromEmail           uk.magicmamaliga.backend.security.registration
+     9 ChatCollectionService                                  deleteSession                           uk.magicmamaliga.backend.rag.service
+     9 AudioChunker                                           detectSilenceEnds                       uk.magicmamaliga.backend.record.service.storage
+     9 TranscriptIndexService                                 cloneAsNeighbour                        uk.magicmamaliga.backend.rag.service
+     9 OrgAccessGuard                                         requireMember                           uk.magicmamaliga.backend.organization.guard
+     9 TranscriptChunker                                      chunk                                   uk.magicmamaliga.backend.rag.service
+     9 FileStorageService                                     downloadFile                            uk.magicmamaliga.backend.record.service
+     9 SegmentEditor                                          sliceTextByWords                        uk.magicmamaliga.backend.diarization.service
+     9 StripeCustomerService                                  updateCustomer                          uk.magicmamaliga.backend.payment.external
+     9 OrganizationService                                    applySettlement                         uk.magicmamaliga.backend.organization.service
+     9 FluxAIService                                          autoTitleIfNeeded                       uk.magicmamaliga.backend.record.ai.service
+     8 SpeakerLibrary                                         getPrototypeAudio                       uk.magicmamaliga.backend.diarization.service
+     8 OrganizationService                                    retryWalletWrite                        uk.magicmamaliga.backend.organization.service
+     8 LuceneBmIndex                                          <init>                                  uk.magicmamaliga.backend.rag.service
+     8 SpeakerLibrary                                         deletePrototype                         uk.magicmamaliga.backend.diarization.service
+     8 SpeakerLibrary                                         lambda$listPrototypes$1                 uk.magicmamaliga.backend.diarization.service
+     8 RecordingPermissionValidator                           canReadContent                          uk.magicmamaliga.backend.record.service
+     8 OrganizationService                                    settleOrgDebit                          uk.magicmamaliga.backend.organization.service
+     8 EmailChangeService                                     validateNewEmail                        uk.magicmamaliga.backend.security.emailchange
+     8 AudioChunker                                           extractRange                            uk.magicmamaliga.backend.record.service.storage
+     8 FileStorageService                                     normalizeIfNeeded                       uk.magicmamaliga.backend.record.service
+     8 StripeCustomerService                                  toStripeUpdateAddress                   uk.magicmamaliga.backend.payment.external
+     8 SpeakerLibrary                                         lambda$getUserSpeakers$0                uk.magicmamaliga.backend.diarization.service
+     8 AccountDeletionService                                 eraseSpeakerData                        uk.magicmamaliga.backend.user.service
+     8 AIChatSession                                          toString                                uk.magicmamaliga.backend.record.ai.model
+     8 OrganizationController                                 switchActiveOrgAndMintCookie            uk.magicmamaliga.backend.organization
+     8 InvitationService                                      lambda$invite$4                         uk.magicmamaliga.backend.organization.service
+     8 UserService                                            changePassword                          uk.magicmamaliga.backend.user.service
+     8 OrphanPrototypeService                                 listOrphanPrototypes                    uk.magicmamaliga.backend.diarization.service
+     8 AiPricingEnum                                          <clinit>                                uk.magicmamaliga.backend.transactionledger
+     8 OrphanPrototypeService                                 clearNearbyNegatives                    uk.magicmamaliga.backend.diarization.service
+     8 BurnedSignupCreditService                              burn                                    uk.magicmamaliga.backend.security.registration
+     8 SpeakerMatcher                                         groupBySpeaker                          uk.magicmamaliga.backend.diarization.service
+     8 TranscriptChunker                                      renderBody                              uk.magicmamaliga.backend.rag.service
+     8 OrphanPrototypeService                                 getOrphanAudioSample                    uk.magicmamaliga.backend.diarization.service
+     8 OrphanPrototypeService                                 lambda$listOrphanPrototypes$1           uk.magicmamaliga.backend.diarization.service
+     8 User                                                   toString                                uk.magicmamaliga.backend.user.model
+     8 CollectionChatSession                                  toString                                uk.magicmamaliga.backend.rag.model
+     8 CollectionContextBuilder                               lambda$toCitations$0                    uk.magicmamaliga.backend.rag.service
+     8 UserRegistrationRequest                                toString                                uk.magicmamaliga.backend.security.registration
+     7 AccountDeletionService                                 anonymisePaymentHistory                 uk.magicmamaliga.backend.user.service
+     7 RagEmbeddingCache$1                                    removeEldestEntry                       uk.magicmamaliga.backend.rag.service
+     7 SignupAbuseGuard                                       currentIp                               uk.magicmamaliga.backend.security.registration
+     7 AiTranscriptionService                                 transcribe                              uk.magicmamaliga.backend.record.ai.service
+     7 RecordingPermissionValidator                           requireOwnedBy                          uk.magicmamaliga.backend.record.service
+     7 CollectionContextBuilder                               firstLine                               uk.magicmamaliga.backend.rag.service
+     7 InvitationService                                      lambda$invite$1                         uk.magicmamaliga.backend.organization.service
+     7 TranscriptChunker                                      linesFromPlainText                      uk.magicmamaliga.backend.rag.service
+     7 TranscriptChunker                                      endsWithQuestion                        uk.magicmamaliga.backend.rag.service
+     7 LuceneBmIndex                                          deleteRecordingDocs                     uk.magicmamaliga.backend.rag.service
+     7 RecordingService                                       restoreRecording                        uk.magicmamaliga.backend.record.service
+     7 TranscriptChunker                                      resolveSegmentSpeaker                   uk.magicmamaliga.backend.rag.service
+     7 TranscriptChunker                                      linesFromRawChunks                      uk.magicmamaliga.backend.rag.service
+     7 RecordingService                                       canSeePeerRecordings                    uk.magicmamaliga.backend.record.service
+     7 CustomRecordingRepositoryImpl                          reassignOrgForUserRecordings            uk.magicmamaliga.backend.record.model
+     7 LuceneBmIndex                                          recordingIdSetQuery                     uk.magicmamaliga.backend.rag.service
+     7 PendingClaimReminderJob                                sendReminders                           uk.magicmamaliga.backend.security.pendingclaim
+     7 RecordingService                                       getRecordingAudioBytes                  uk.magicmamaliga.backend.record.service
+     7 AccountConversionService                               findPersonalOrg                         uk.magicmamaliga.backend.organization.service
+     7 AiPricingEnum                                          findModelName                           uk.magicmamaliga.backend.transactionledger
+     7 SpeakerLibrary                                         toSpeakerDto                            uk.magicmamaliga.backend.diarization.service
+     7 ControllerLoggingAspect                                lambda$traceMono$0                      uk.magicmamaliga.backend.base.logging
+     7 AIChatSessionService                                   deleteSession                           uk.magicmamaliga.backend.record.ai.service
+     7 SpeakerMatcher                                         maxCosine                               uk.magicmamaliga.backend.diarization.service
+     7 SpeakerMatcher                                         groupNegativesBySpeaker                 uk.magicmamaliga.backend.diarization.service
+     7 AudioTranscoder                                        probeDurationSeconds                    uk.magicmamaliga.backend.record.service.storage
+     7 SecurityConfiguration                                  jwtCookie                               uk.magicmamaliga.backend.security.config
+     7 ControllerLoggingAspect                                lambda$traceFlux$1                      uk.magicmamaliga.backend.base.logging
+     7 OrganizationService                                    backoffBeforeWalletRetry                uk.magicmamaliga.backend.organization.service
+     7 IdleWalletAlertJob                                     scan                                    uk.magicmamaliga.backend.organization.service
+     6 TranscriptChunker                                      formatMmSs                              uk.magicmamaliga.backend.rag.service
+     6 SpeakerMatcher                                         isVetoedByNegative                      uk.magicmamaliga.backend.diarization.service
+     6 RecordingService                                       extractExtension                        uk.magicmamaliga.backend.record.service
+     6 CollectionContextBuilder                               loadRecordings                          uk.magicmamaliga.backend.rag.service
+     6 LocalPresenceController                                lambda$get$0                            uk.magicmamaliga.backend.localpresence
+     6 SpeakerLibrary                                         deleteSpeaker                           uk.magicmamaliga.backend.diarization.service
+     6 FluxAIService                                          buildMetaJson                           uk.magicmamaliga.backend.record.ai.service
+     6 AIChatSessionService                                   listSessions                            uk.magicmamaliga.backend.record.ai.service
+     6 RecordingService                                       hardDeleteRecording                     uk.magicmamaliga.backend.record.service
+     6 SpeakerLibrary                                         renameSpeaker                           uk.magicmamaliga.backend.diarization.service
+     6 UserService                                            clearPersonaSegment                     uk.magicmamaliga.backend.user.service
+     6 PendingClaimService                                    changeEmail                             uk.magicmamaliga.backend.security.pendingclaim
+     6 PendingClaimController                                 delete                                  uk.magicmamaliga.backend.security.pendingclaim
+     6 LuceneBmIndex                                          releaseQuietly                          uk.magicmamaliga.backend.rag.service
+     6 PendingClaimService                                    getStatus                               uk.magicmamaliga.backend.security.pendingclaim
+     6 RecordingService                                       getRecordingAudioUrl                    uk.magicmamaliga.backend.record.service
+     6 ChatCollectionService                                  listSessions                            uk.magicmamaliga.backend.rag.service
+     6 ChatCollectionService                                  walletGate                              uk.magicmamaliga.backend.rag.service
+     6 OrganizationController                                 listMyOrganizations                     uk.magicmamaliga.backend.organization
+     6 OrganizationController                                 activateOrganization                    uk.magicmamaliga.backend.organization
+     6 DisputeService                                         debitWithoutFloor                       uk.magicmamaliga.backend.payment
+     6 UserRegistrationService                                sanitiseSignupSource                    uk.magicmamaliga.backend.security.registration
+     6 ControllerLoggingAspect                                traceFlux                               uk.magicmamaliga.backend.base.logging
+     6 RecordingPermissionValidator                           canReadMetadata                         uk.magicmamaliga.backend.record.service
+     6 ControllerLoggingAspect                                findJwt                                 uk.magicmamaliga.backend.base.logging
+     6 CollectionContextBuilder                               metaDouble                              uk.magicmamaliga.backend.rag.service
+     6 FluxCollectionAiService                                lambda$processQuery$3                   uk.magicmamaliga.backend.rag.service
+     6 OrganizationController                                 promoteToBusiness                       uk.magicmamaliga.backend.organization
+     6 SignupAbuseGuard                                       hashOrNull                              uk.magicmamaliga.backend.security.registration
+     6 CollectionContextBuilder                               formatMmSs                              uk.magicmamaliga.backend.rag.service
+     6 OrgAccessGuard                                         requireRoleAtLeast                      uk.magicmamaliga.backend.organization.guard
+     5 UserRegistrationService                                lambda$resendVerificationEmail$0        uk.magicmamaliga.backend.security.registration
+     5 InvitationService                                      extractDomain                           uk.magicmamaliga.backend.organization.service
+     5 RecordingEventListener                                 ensureFallbackTitle                     uk.magicmamaliga.backend.record.event
+     5 UserService                                            clearDefaultChatModel                   uk.magicmamaliga.backend.user.service
+     5 UserRegistrationService                                extractEmailDomain                      uk.magicmamaliga.backend.security.registration
+     5 AiPricingEnum                                          isSelectableChatModel                   uk.magicmamaliga.backend.transactionledger
+     5 DisputeService                                         hasOtherOpenDispute                     uk.magicmamaliga.backend.payment
+     5 SignupAbuseGuard                                       currentUserAgent                        uk.magicmamaliga.backend.security.registration
+     5 AIInteraction                                          toString                                uk.magicmamaliga.backend.record.ai.model
+     5 PaymentTransaction$Status                              <clinit>                                uk.magicmamaliga.backend.payment.model
+     5 OrgAccessGuard                                         requireMemberOr404                      uk.magicmamaliga.backend.organization.guard
+     5 RegistrationEmailListener                              onEmployeeDeparture                     uk.magicmamaliga.backend.security.registration
+     5 OrganizationController                                 listPendingInvitations                  uk.magicmamaliga.backend.organization
+     5 RegistrationEmailListener                              onDomainClaimAffectsUser                uk.magicmamaliga.backend.security.registration
+     5 OrganizationController                                 listMembers                             uk.magicmamaliga.backend.organization
+     5 AccountConversionService                               emailMatchesDomain                      uk.magicmamaliga.backend.organization.service
+     5 AccountConversionService                               lambda$revokeStaleInvitation$0          uk.magicmamaliga.backend.organization.service
+     5 OrganizationController                                 listDomains                             uk.magicmamaliga.backend.organization
+     5 OwnershipGuard                                         requireOwnedSpeaker                     uk.magicmamaliga.backend.diarization.service
+     5 AudioChunker                                           deleteQuietly                           uk.magicmamaliga.backend.record.service.storage
+     5 AiInteractionDeduplicator                              lambda$saveInteraction$0                uk.magicmamaliga.backend.record.ai.service
+     5 FileStorageService                                     lambda$evictStaleChunkBuffers$0         uk.magicmamaliga.backend.record.service
+     5 OwnershipGuard                                         requireOwnedRecording                   uk.magicmamaliga.backend.diarization.service
+     5 FileStorageService                                     generatePresignedUrl                    uk.magicmamaliga.backend.record.service
+     5 LocalPresenceController                                <init>                                  uk.magicmamaliga.backend.localpresence
+     5 SecurityConfiguration                                  authenticationProvider                  uk.magicmamaliga.backend.security.config
+     5 AIInteractionDto                                       toString                                uk.magicmamaliga.backend.record.dto
+     5 ChatCollectionService                                  deriveTitle                             uk.magicmamaliga.backend.rag.service
+     5 ChatCollectionService                                  deleteCollection                        uk.magicmamaliga.backend.rag.service
+     5 AiTranscriptionService                                 debitFor                                uk.magicmamaliga.backend.record.ai.service
+     5 RecordingPermissionValidator                           requireOwnedByIncludingDeleted          uk.magicmamaliga.backend.record.service
+     5 OrganizationDomainService                              normaliseDomain                         uk.magicmamaliga.backend.organization.service
+     5 FluxAIService                                          lambda$processAiQuery$1                 uk.magicmamaliga.backend.record.ai.service
+     5 RecordingService                                       updateTranscript                        uk.magicmamaliga.backend.record.service
+     5 RecordingService                                       findById                                uk.magicmamaliga.backend.record.service
+     5 LuceneBmIndex                                          assertVectorWidth                       uk.magicmamaliga.backend.rag.service
+     5 FluxAIService                                          lambda$autoTitleIfNeeded$2              uk.magicmamaliga.backend.record.ai.service
+     5 TranscriptChunker                                      distinctSpeakers                        uk.magicmamaliga.backend.rag.service
+     5 RecordingEventListener                                 tagSource                               uk.magicmamaliga.backend.record.event
+     4 ChatCollectionService                                  findSessionOrThrow                      uk.magicmamaliga.backend.rag.service
+     4 DomainVerificationService                              normaliseTxtValue                       uk.magicmamaliga.backend.organization.service
+     4 OrganizationService                                    slugify                                 uk.magicmamaliga.backend.organization.service
+     4 RecordingEventListener                                 channelFilename                         uk.magicmamaliga.backend.record.event
+     4 OrganizationController                                 getMemberUsage                          uk.magicmamaliga.backend.organization
+     4 OrganizationController                                 inviteMember                            uk.magicmamaliga.backend.organization
+     4 OrganizationController                                 acceptInvitation                        uk.magicmamaliga.backend.organization
+     4 OrganizationController                                 deleteBusinessOrganization              uk.magicmamaliga.backend.organization
+     4 RecaptchaVerifier                                      maybeDeny                               uk.magicmamaliga.backend.security.captcha
+     4 AIChatSessionService                                   findOrThrow                             uk.magicmamaliga.backend.record.ai.service
+     4 CollectionContextBuilder                               truncate                                uk.magicmamaliga.backend.rag.service
+     4 UserRegistrationService                                indexOfFirstNonWord                     uk.magicmamaliga.backend.security.registration
+     4 ControllerLoggingAspect                                traceMono                               uk.magicmamaliga.backend.base.logging
+     4 LocalPresenceController                                announce                                uk.magicmamaliga.backend.localpresence
+     4 UserService                                            setDefaultOrgId                         uk.magicmamaliga.backend.user.service
+     4 CollectionContextBuilder                               metaStringList                          uk.magicmamaliga.backend.rag.service
+     4 RecordingEventListener                                 chunkFilename                           uk.magicmamaliga.backend.record.event
+     4 QueryRewriter                                          containsIgnoreCase                      uk.magicmamaliga.backend.rag.service
+     4 IdleWalletAlertJob                                     stampAlerted                            uk.magicmamaliga.backend.organization.service
+     4 CollectionContextBuilder                               isExpansionNeighbour                    uk.magicmamaliga.backend.rag.service
+     4 PendingClaimService                                    requireClaimingOrg                      uk.magicmamaliga.backend.security.pendingclaim
+     4 OrganizationController                                 transferOwnership                       uk.magicmamaliga.backend.organization
+     4 SecurityConfiguration                                  <init>                                  uk.magicmamaliga.backend.security.config
+     4 SecurityConfiguration                                  lambda$securityFilterChain$1            uk.magicmamaliga.backend.security.config
+     4 RecordingService                                       updateTitle                             uk.magicmamaliga.backend.record.service
+     4 EmailChangeService                                     lambda$validateNewEmail$1               uk.magicmamaliga.backend.security.emailchange
+     4 PaymentTransaction$DisputeStatus                       <clinit>                                uk.magicmamaliga.backend.payment.model
+     4 AccountConversionService                               revokeStaleInvitation                   uk.magicmamaliga.backend.organization.service
+     4 OrganizationController                                 getOrganization                         uk.magicmamaliga.backend.organization
+     4 OrganizationService                                    updateOrgBalance                        uk.magicmamaliga.backend.organization.service
+     4 RecordingService                                       softDeleteRecording                     uk.magicmamaliga.backend.record.service
+     4 OrganizationController                                 setMembershipStatus                     uk.magicmamaliga.backend.organization
+     4 OrganizationController                                 setSpendCap                             uk.magicmamaliga.backend.organization
+     4 OrganizationController                                 changeRole                              uk.magicmamaliga.backend.organization
+     4 RecordingService                                       updateGroup                             uk.magicmamaliga.backend.record.service
+     3 FileStorageService                                     normaliseExtension                      uk.magicmamaliga.backend.record.service
+     3 AIChatSessionService                                   getSession                              uk.magicmamaliga.backend.record.ai.service
+     3 LocalPresenceController                                expect                                  uk.magicmamaliga.backend.localpresence
+     3 FileStorageService                                     evictStaleChunkBuffers                  uk.magicmamaliga.backend.record.service
+     3 ControllerLoggingAspect                                lambda$traceFlux$2                      uk.magicmamaliga.backend.base.logging
+     3 EmailChangeService                                     lambda$confirmChange$2                  uk.magicmamaliga.backend.security.emailchange
+     3 CollectionContextBuilder                               metaString                              uk.magicmamaliga.backend.rag.service
+     3 UserRegistrationService                                resendVerificationEmail                 uk.magicmamaliga.backend.security.registration
+     3 ChatCollectionService                                  getSession                              uk.magicmamaliga.backend.rag.service
+     3 TranscriptChunker                                      tailOverlap                             uk.magicmamaliga.backend.rag.service
+     3 TranscriptChunker                                      totalRenderedLength                     uk.magicmamaliga.backend.rag.service
+     3 TranscriptChunker                                      renderedLineLength                      uk.magicmamaliga.backend.rag.service
+     3 OrganizationDomainService                              <clinit>                                uk.magicmamaliga.backend.organization.service
+     3 RecordingService                                       finalizeLiveRecording                   uk.magicmamaliga.backend.record.service
+     3 TranscriptChunker                                      resolveSourcePseudoLabel                uk.magicmamaliga.backend.rag.service
+     3 TranscriptIndexService                                 deleteAllForUser                        uk.magicmamaliga.backend.rag.service
+     3 LegalService                                           hasAcceptedCurrent                      uk.magicmamaliga.backend.security.legal
+     3 LocalPresenceController                                get                                     uk.magicmamaliga.backend.localpresence
+     3 FileStorageService                                     extensionOf                             uk.magicmamaliga.backend.record.service
+     3 PendingClaimController                                 changeEmail                             uk.magicmamaliga.backend.security.pendingclaim
+     3 OrganizationDomainService                              findVerifiedByDomain                    uk.magicmamaliga.backend.organization.service
+     3 OrganizationDomainService                              lambda$claim$0                          uk.magicmamaliga.backend.organization.service
+     3 OrganizationService                                    setSuspended                            uk.magicmamaliga.backend.organization.service
+     3 ChatCollectionService                                  saveCollection                          uk.magicmamaliga.backend.rag.service
+     3 ChatCollectionService                                  trimToNull                              uk.magicmamaliga.backend.rag.service
+     3 AIInteraction                                          maskSensitiveData                       uk.magicmamaliga.backend.record.ai.model
+     3 InvitationService                                      listPending                             uk.magicmamaliga.backend.organization.service
+     3 PendingDepartureController                             changeEmail                             uk.magicmamaliga.backend.security.pendingdeparture
+     3 OrganizationService                                    verifySpendAllowance                    uk.magicmamaliga.backend.organization.service
+     3 OrganizationController                                 leaveOrganization                       uk.magicmamaliga.backend.organization
+     3 OrganizationController                                 declineInvitation                       uk.magicmamaliga.backend.organization
+     3 OrganizationController                                 claimDomain                             uk.magicmamaliga.backend.organization
+     3 OrganizationController                                 removeMember                            uk.magicmamaliga.backend.organization
+     3 OrganizationController                                 revokeInvitation                        uk.magicmamaliga.backend.organization
+     3 SecurityConfiguration$2                                getHeaderNames                          uk.magicmamaliga.backend.security.config
+     3 InvitationService                                      lambda$invite$3                         uk.magicmamaliga.backend.organization.service
+     3 OrganizationController                                 verifyDomain                            uk.magicmamaliga.backend.organization
+     3 OrganizationController                                 revokeDomain                            uk.magicmamaliga.backend.organization
+     3 SecurityConfiguration                                  lambda$securityFilterChain$2            uk.magicmamaliga.backend.security.config
+     3 UserService                                            getUserDetails                          uk.magicmamaliga.backend.user.service
+     3 RagEmbeddingCache                                      invalidateAllForUser                    uk.magicmamaliga.backend.rag.service
+     3 ControllerLoggingAspect                                lambda$traceMono$1                      uk.magicmamaliga.backend.base.logging
+     3 PasswordResetService                                   requestPasswordReset                    uk.magicmamaliga.backend.security.registration
+     3 OrganizationService                                    lambda$applySettlement$0                uk.magicmamaliga.backend.organization.service
+     3 SpeakerLibrary                                         loadSpeakerNamesById                    uk.magicmamaliga.backend.diarization.service
+     2 ControllerLoggingAspect                                lambda$traceMono$2                      uk.magicmamaliga.backend.base.logging
+     2 MembershipService                                      listForOrg                              uk.magicmamaliga.backend.organization.service
+     2 UserService                                            findById                                uk.magicmamaliga.backend.user.service
+     2 FreeMailDomains                                        isDisposable                            uk.magicmamaliga.backend.organization.service
+     2 InvitationService                                      <clinit>                                uk.magicmamaliga.backend.organization.service
+     2 MembershipService                                      seedEmployeeMembership                  uk.magicmamaliga.backend.organization.service
+     2 MembershipService                                      seedOwnerMembership                     uk.magicmamaliga.backend.organization.service
+     2 OrganizationDomainService                              listForOrg                              uk.magicmamaliga.backend.organization.service
+     2 FluxAIService                                          <clinit>                                uk.magicmamaliga.backend.record.ai.service
+     2 ControllerLoggingAspect                                lambda$traceFlux$3                      uk.magicmamaliga.backend.base.logging
+     2 OrganizationService                                    findById                                uk.magicmamaliga.backend.organization.service
+     2 AiPricingEnum                                          lambda$isSelectableChatModel$0          uk.magicmamaliga.backend.transactionledger
+     2 AiInteractionDeduplicator                              lambda$addIfNotExists$0                 uk.magicmamaliga.backend.record.ai.service
+     2 AiTranscriptionService                                 normalizeForRepeat                      uk.magicmamaliga.backend.record.ai.service
+     2 OrganizationService                                    <clinit>                                uk.magicmamaliga.backend.organization.service
+     2 UserService                                            findByEmail                             uk.magicmamaliga.backend.user.service
+     2 OrganizationDomainService                              lambda$claim$1                          uk.magicmamaliga.backend.organization.service
+     2 OrganizationService$RetryableUpdateException           <init>                                  uk.magicmamaliga.backend.organization.service
+     2 AccountDeletionService                                 <clinit>                                uk.magicmamaliga.backend.user.service
+     2 LocalPresenceController                                clear                                   uk.magicmamaliga.backend.localpresence
+     2 TransactionLedgerService                               lambda$createAiQueryTransaction$1       uk.magicmamaliga.backend.transactionledger.service
+     2 BusinessExceptionAdvice                                handlePaymentVerification               uk.magicmamaliga.backend.base.exception
+     2 PendingDepartureController                             delete                                  uk.magicmamaliga.backend.security.pendingdeparture
+     2 LuceneBmIndex$UncheckedLuceneException                 <init>                                  uk.magicmamaliga.backend.rag.service
+     2 EmailChangeService                                     <clinit>                                uk.magicmamaliga.backend.security.emailchange
+     2 DiarizationService                                     getDiarizationStatus                    uk.magicmamaliga.backend.diarization.service
+     2 SignupAbuseGuard                                       currentRequest                          uk.magicmamaliga.backend.security.registration
+     2 PaymentFulfillmentService                              markPaymentCanceled                     uk.magicmamaliga.backend.payment
+     2 PaymentFulfillmentService                              lambda$fulfillPayment$0                 uk.magicmamaliga.backend.payment
+     2 PaymentFulfillmentService$PaymentVerificationException <init>                                  uk.magicmamaliga.backend.payment
+     2 PaymentIntentCreatorService                            centsToDollars                          uk.magicmamaliga.backend.payment
+     2 PaymentIntentCreatorService                            lambda$createIntentAndTransaction$0     uk.magicmamaliga.backend.payment
+     2 PaymentFulfillmentService                              markPaymentFailed                       uk.magicmamaliga.backend.payment
+     2 FileStorageService                                     validateAudioContent                    uk.magicmamaliga.backend.record.service
+     2 FileStorageService                                     liveChunkKey                            uk.magicmamaliga.backend.record.service
+     2 CollectionContextBuilder                               topKFor                                 uk.magicmamaliga.backend.rag.service
+     2 ChatCollectionService                                  <clinit>                                uk.magicmamaliga.backend.rag.service
+     2 RecordingService                                       getRecordingDetails                     uk.magicmamaliga.backend.record.service
+     2 RecordingService                                       renameGroup                             uk.magicmamaliga.backend.record.service
+     2 EmailChangeController                                  confirmViaLink                          uk.magicmamaliga.backend.security.emailchange
+     2 AuthController$LoginRequest                            toString                                uk.magicmamaliga.backend.security
+     2 SecurityConfiguration                                  withBearerHeader                        uk.magicmamaliga.backend.security.config
+     2 SecurityConfiguration                                  lambda$securityFilterChain$4            uk.magicmamaliga.backend.security.config
+     2 SpendCapExceededException                              <init>                                  uk.magicmamaliga.backend.organization.exception
+     2 EmailChangeController                                  confirm                                 uk.magicmamaliga.backend.security.emailchange
+     2 InsufficientFundsException                             <init>                                  uk.magicmamaliga.backend.record.ai.exception
+     2 ExternalAiException                                    <init>                                  uk.magicmamaliga.backend.record.ai.exception
+     2 PaymentFulfillmentService$PaymentFulfillmentException  <init>                                  uk.magicmamaliga.backend.payment
+     2 SpeakerMatcher                                         decodeAudioSample                       uk.magicmamaliga.backend.diarization.service
+     2 PendingClaimController                                 accept                                  uk.magicmamaliga.backend.security.pendingclaim
+     2 OrgAccessGuard                                         lambda$requireMember$0                  uk.magicmamaliga.backend.organization.guard
+     2 RecordingEventListener                                 markTranscriptionFailed                 uk.magicmamaliga.backend.record.event
+     2 StripeWebhookController                                fromMinorUnits                          uk.magicmamaliga.backend.payment
+     2 PaymentFulfillmentService$PaymentFulfillmentException  <init>                                  uk.magicmamaliga.backend.payment
+     2 UserRegistrationService                                <clinit>                                uk.magicmamaliga.backend.security.registration
+     1 LocalPresenceController                                lambda$get$1                            uk.magicmamaliga.backend.localpresence
+     1 AiTranscriptionService                                 transcribeBytes                         uk.magicmamaliga.backend.record.ai.service
+     1 AiTranscriptionService                                 verifyFundsFor                          uk.magicmamaliga.backend.record.ai.service
+     1 AiTranscriptionService                                 transcribeBytes                         uk.magicmamaliga.backend.record.ai.service
+     1 OrphanPrototypeService                                 lambda$listOrphanPrototypes$0           uk.magicmamaliga.backend.diarization.service
+     1 MembershipService                                      <clinit>                                uk.magicmamaliga.backend.organization.service
+     1 OrphanPrototypeService                                 lambda$getOrphanAudioSample$2           uk.magicmamaliga.backend.diarization.service
+     1 CollectionContextBuilder                               lambda$renderSystemMessage$1            uk.magicmamaliga.backend.rag.service
+     1 AiTranscriptionService                                 transcribe                              uk.magicmamaliga.backend.record.ai.service
+     1 MembershipService                                      lambda$addMember$0                      uk.magicmamaliga.backend.organization.service
+     1 CollectionContextBuilder                               build                                   uk.magicmamaliga.backend.rag.service
+     1 MembershipService                                      lambda$setSpendCap$0                    uk.magicmamaliga.backend.organization.service
+     1 RagEmbeddingCache                                      size                                    uk.magicmamaliga.backend.rag.service
+     1 QueryRewriter                                          rewrite                                 uk.magicmamaliga.backend.rag.service
+     1 QueryRewriter                                          rewrite                                 uk.magicmamaliga.backend.rag.service
+     1 MembershipService                                      lambda$changeRole$0                     uk.magicmamaliga.backend.organization.service
+     1 AiTranscriptionService                                 transcribePrecharged                    uk.magicmamaliga.backend.record.ai.service
+     1 AiTranscriptionService                                 lambda$performTranscription$0           uk.magicmamaliga.backend.record.ai.service
+     1 MembershipService                                      lambda$transferOwnership$1              uk.magicmamaliga.backend.organization.service
+     1 MembershipService                                      lambda$transferOwnership$0              uk.magicmamaliga.backend.organization.service
+     1 OrphanPrototypeService                                 lambda$getOrphanPrototypeAudio$0        uk.magicmamaliga.backend.diarization.service
+     1 PreserveManualMerger                                   lambda$mergePreservingManual$1          uk.magicmamaliga.backend.diarization.service
+     1 FluxAIService                                          lambda$autoTitleIfNeeded$1              uk.magicmamaliga.backend.record.ai.service
+     1 FluxAIService                                          lambda$autoTitleIfNeeded$0              uk.magicmamaliga.backend.record.ai.service
+     1 OwnershipGuard                                         lambda$requireOwnedSpeaker$0            uk.magicmamaliga.backend.diarization.service
+     1 RagEmbeddingCache$1                                    <init>                                  uk.magicmamaliga.backend.rag.service
+     1 LocalPresenceController                                lambda$heartbeat$0                      uk.magicmamaliga.backend.localpresence
+     1 LocalPresenceController                                <clinit>                                uk.magicmamaliga.backend.localpresence
+     1 TranscriptChunker                                      <clinit>                                uk.magicmamaliga.backend.rag.service
+     1 TranscriptChunker                                      lambda$resolveSegmentSpeaker$0          uk.magicmamaliga.backend.rag.service
+     1 TranscriptChunker                                      lambda$linesFromSegments$0              uk.magicmamaliga.backend.rag.service
+     1 FluxAIService                                          lambda$processAiQuery$0                 uk.magicmamaliga.backend.record.ai.service
+     1 AiInteractionDeduplicator                              <clinit>                                uk.magicmamaliga.backend.record.ai.service
+     1 OwnershipGuard                                         lambda$requireOwnedRecording$0          uk.magicmamaliga.backend.diarization.service
+     1 TranscriptionCostCalculator                            fallbackCost                            uk.magicmamaliga.backend.record.ai.service
+     1 CollectionContextBuilder                               lambda$renderSystemMessage$0            uk.magicmamaliga.backend.rag.service
+     1 OrphanPrototypeService                                 lambda$deleteOrphanPrototype$0          uk.magicmamaliga.backend.diarization.service
+     1 TranscriptIndexService                                 search                                  uk.magicmamaliga.backend.rag.service
+     1 TranscriptIndexService                                 lambda$rrfFuse$1                        uk.magicmamaliga.backend.rag.service
+     1 TranscriptIndexService                                 search                                  uk.magicmamaliga.backend.rag.service
+     1 CollectionContextBuilder                               lambda$build$0                          uk.magicmamaliga.backend.rag.service
+     1 CollectionContextBuilder                               <clinit>                                uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  lambda$deleteSession$0                  uk.magicmamaliga.backend.rag.service
+     1 PasswordResetService                                   lambda$resetPassword$1                  uk.magicmamaliga.backend.security.registration
+     1 PasswordResetService                                   lambda$resetPassword$0                  uk.magicmamaliga.backend.security.registration
+     1 AccountDeletionService                                 lambda$scheduleDeletion$0               uk.magicmamaliga.backend.user.service
+     1 UserRegistrationService                                normaliseEmail                          uk.magicmamaliga.backend.security.registration
+     1 UserRegistrationService                                lambda$verifyEmail$1                    uk.magicmamaliga.backend.security.registration
+     1 UserRegistrationService                                lambda$verifyEmail$0                    uk.magicmamaliga.backend.security.registration
+     1 AccountDeletionService                                 lambda$hardDeleteNow$0                  uk.magicmamaliga.backend.user.service
+     1 AccountDeletionService                                 lambda$eraseRecordings$1                uk.magicmamaliga.backend.user.service
+     1 AccountDeletionService                                 lambda$eraseRecordings$2                uk.magicmamaliga.backend.user.service
+     1 PasswordResetService                                   <clinit>                                uk.magicmamaliga.backend.security.registration
+     1 AccountDeletionService                                 lambda$burnSignupCreditIfConsumed$0     uk.magicmamaliga.backend.user.service
+     1 AccountDeletionService                                 lambda$burnSignupCreditIfConsumed$1     uk.magicmamaliga.backend.user.service
+     1 AccountDeletionService                                 lambda$eraseRecordings$0                uk.magicmamaliga.backend.user.service
+     1 UserService                                            lambda$updateUserDetails$0              uk.magicmamaliga.backend.user.service
+     1 UserService                                            lambda$clearPersonaSegment$0            uk.magicmamaliga.backend.user.service
+     1 UserService                                            lambda$clearDefaultChatModel$0          uk.magicmamaliga.backend.user.service
+     1 EmailChangeService                                     lambda$validateNewEmail$0               uk.magicmamaliga.backend.security.emailchange
+     1 UserService                                            <clinit>                                uk.magicmamaliga.backend.user.service
+     1 UserService                                            lambda$getUserDetails$0                 uk.magicmamaliga.backend.user.service
+     1 UserService                                            lambda$changePassword$0                 uk.magicmamaliga.backend.user.service
+     1 AuthController$LoginResponse                           pendingDeparture                        uk.magicmamaliga.backend.security
+     1 UserService                                            findByEmailOptional                     uk.magicmamaliga.backend.user.service
+     1 SignupAbuseGuard$Verdict                               suppress                                uk.magicmamaliga.backend.security.registration
+     1 UserService                                            lambda$findByEmail$0                    uk.magicmamaliga.backend.user.service
+     1 UserService                                            lambda$findById$0                       uk.magicmamaliga.backend.user.service
+     1 AuthController$LoginResponse                           pendingClaim                            uk.magicmamaliga.backend.security
+     1 OrganizationMapper                                     toDto                                   uk.magicmamaliga.backend.organization.dto
+     1 ChatCollectionService                                  lambda$loadAndValidateRecordings$0      uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  lambda$getOrCreateSession$1             uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  lambda$getOrCreateSession$0             uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  lambda$findSessionOrThrow$1             uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  lambda$findSessionOrThrow$0             uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  lambda$loadAndValidateRecordings$1      uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  lambda$requireOwnedCollection$0         uk.magicmamaliga.backend.rag.service
+     1 AIChatSessionService                                   lambda$getOrCreate$1                    uk.magicmamaliga.backend.record.ai.service
+     1 AIChatSessionService                                   lambda$findOrThrow$0                    uk.magicmamaliga.backend.record.ai.service
+     1 AIChatSessionService                                   lambda$findOrThrow$1                    uk.magicmamaliga.backend.record.ai.service
+     1 AIChatSessionService                                   <clinit>                                uk.magicmamaliga.backend.record.ai.service
+     1 AIChatSessionService                                   lambda$deleteSession$0                  uk.magicmamaliga.backend.record.ai.service
+     1 AIChatSessionService                                   lambda$getOrCreate$0                    uk.magicmamaliga.backend.record.ai.service
+     1 LuceneBmIndex                                          size                                    uk.magicmamaliga.backend.rag.service
+     1 LuceneBmIndex                                          lambda$ensureIndexed$0                  uk.magicmamaliga.backend.rag.service
+     1 LuceneBmIndex                                          lambda$deleteDirectoryContents$0        uk.magicmamaliga.backend.rag.service
+     1 StripeCustomerService                                  lambda$syncTaxId$0                      uk.magicmamaliga.backend.payment.external
+     1 LuceneBmIndex$1                                        <init>                                  uk.magicmamaliga.backend.rag.service
+     1 LuceneAnalyzers$1                                      <init>                                  uk.magicmamaliga.backend.rag.service
+     1 LuceneBmIndex                                          <clinit>                                uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  listCollections                         uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  getCollection                           uk.magicmamaliga.backend.rag.service
+     1 ChatCollectionService                                  getAutoTitleMax                         uk.magicmamaliga.backend.rag.service
+     1 QueryRewriter$1                                        <init>                                  uk.magicmamaliga.backend.rag.service
+     1 AudioChunker                                           formatSeconds                           uk.magicmamaliga.backend.record.service.storage
+     1 FluxCollectionAiService                                buildErrorJson                          uk.magicmamaliga.backend.rag.service
+     1 MembershipService                                      lambda$removeMember$0                   uk.magicmamaliga.backend.organization.service
+     1 OrganizationController                                 lambda$switchActiveOrgAndMintCookie$0   uk.magicmamaliga.backend.organization
+     1 OrganizationController                                 lambda$listMyOrganizations$0            uk.magicmamaliga.backend.organization
+     1 InvitationService                                      lambda$revoke$0                         uk.magicmamaliga.backend.organization.service
+     1 EmailChangeService                                     lambda$confirmChange$0                  uk.magicmamaliga.backend.security.emailchange
+     1 InvitationService                                      lambda$invite$0                         uk.magicmamaliga.backend.organization.service
+     1 InvitationService                                      lambda$invite$2                         uk.magicmamaliga.backend.organization.service
+     1 InvitationService                                      normaliseEmail                          uk.magicmamaliga.backend.organization.service
+     1 BusinessExceptionAdvice                                handleInsufficientFunds                 uk.magicmamaliga.backend.base.exception
+     1 BusinessExceptionAdvice                                handleSpendCapExceeded                  uk.magicmamaliga.backend.base.exception
+     1 InvitationService                                      lambda$decline$0                        uk.magicmamaliga.backend.organization.service
+     1 InvitationService                                      lambda$accept$0                         uk.magicmamaliga.backend.organization.service
+     1 SystemExceptionAdvice                                  handleExternalAiError                   uk.magicmamaliga.backend.base.exception
+     1 EmailChangeService                                     lambda$confirmChange$1                  uk.magicmamaliga.backend.security.emailchange
+     1 RecordingService                                       lambda$enrichWithCreatorIdentity$0      uk.magicmamaliga.backend.record.service
+     1 AccountConversionService                               <clinit>                                uk.magicmamaliga.backend.organization.service
+     1 AccountConversionService                               lambda$markPendingForNonMembers$0       uk.magicmamaliga.backend.organization.service
+     1 RecordingService                                       getRecordingHistory                     uk.magicmamaliga.backend.record.service
+     1 RecordingService                                       getTrash                                uk.magicmamaliga.backend.record.service
+     1 RecordingService                                       lambda$findById$0                       uk.magicmamaliga.backend.record.service
+     1 AccountConversionService                               lambda$findPersonalOrg$2                uk.magicmamaliga.backend.organization.service
+     1 JwtService                                             generateDesktopToken                    uk.magicmamaliga.backend.security.service
+     1 EmailChangeService                                     normalise                               uk.magicmamaliga.backend.security.emailchange
+     1 RecordingService                                       <clinit>                                uk.magicmamaliga.backend.record.service
+     1 AccountConversionService                               lambda$findPersonalOrg$0                uk.magicmamaliga.backend.organization.service
+     1 AccountConversionService                               lambda$findPersonalOrg$1                uk.magicmamaliga.backend.organization.service
+     1 PendingDepartureService                                lambda$requireDepartingOrg$0            uk.magicmamaliga.backend.security.pendingdeparture
+     1 AiPricingEnum                                          lambda$findByModelName$1                uk.magicmamaliga.backend.transactionledger
+     1 AiPricingEnum                                          lambda$findByModelName$2                uk.magicmamaliga.backend.transactionledger
+     1 LegalService                                           lambda$recordAcceptance$0               uk.magicmamaliga.backend.security.legal
+     1 ControllerLoggingAspect                                <init>                                  uk.magicmamaliga.backend.base.logging
+     1 OrgAccessGuard                                         <clinit>                                uk.magicmamaliga.backend.organization.guard
+     1 AiPricingEnum                                          lambda$findByModelName$0                uk.magicmamaliga.backend.transactionledger
+     1 PendingClaimService                                    lambda$accept$0                         uk.magicmamaliga.backend.security.pendingclaim
+     1 PendingClaimService                                    <clinit>                                uk.magicmamaliga.backend.security.pendingclaim
+     1 PendingClaimService$PendingClaimStatus                 <init>                                  uk.magicmamaliga.backend.security.pendingclaim
+     1 PendingClaimController                                 status                                  uk.magicmamaliga.backend.security.pendingclaim
+     1 PendingClaimService                                    authenticate                            uk.magicmamaliga.backend.security.pendingclaim
+     1 PendingClaimService                                    lambda$requireClaimingOrg$0             uk.magicmamaliga.backend.security.pendingclaim
+     1 ControllerLoggingAspect                                restController                          uk.magicmamaliga.backend.base.logging
+     1 AccountConversionService$ConversionOutcome             <init>                                  uk.magicmamaliga.backend.organization.service
+     1 MemberUsageService                                     lambda$getUsage$1                       uk.magicmamaliga.backend.organization.service
+     1 ControllerLoggingAspect                                lambda$traceFlux$0                      uk.magicmamaliga.backend.base.logging
+     1 PendingDepartureService$PendingDepartureStatus         <init>                                  uk.magicmamaliga.backend.security.pendingdeparture
+     1 OrganizationDeletionService                            lambda$deleteBusinessOrg$0              uk.magicmamaliga.backend.organization.service
+     1 OrganizationDeletionService                            lambda$deleteBusinessOrg$1              uk.magicmamaliga.backend.organization.service
+     1 OrgAccessGuard                                         lambda$requireMemberOr404$1             uk.magicmamaliga.backend.organization.guard
+     1 OrgAccessGuard                                         lambda$requireMemberOr404$0             uk.magicmamaliga.backend.organization.guard
+     1 ControllerLoggingAspect                                noLog                                   uk.magicmamaliga.backend.base.logging
+     1 DisputeService                                         lambda$notifyOwnersOfDispute$0          uk.magicmamaliga.backend.payment
+     1 StripeWebhookController                                extractPaymentIntent                    uk.magicmamaliga.backend.payment
+     1 ControllerLoggingAspect                                elapsedMs                               uk.magicmamaliga.backend.base.logging
+     1 RecordingService                                       createInitialRecording                  uk.magicmamaliga.backend.record.service
+     1 SpeakerLibrary                                         lambda$approveAllPrototypes$0           uk.magicmamaliga.backend.diarization.service
+     1 SpeakerLibrary                                         lambda$approvePrototype$0               uk.magicmamaliga.backend.diarization.service
+     1 DomainClaimAffectsUserEvent                            <init>                                  uk.magicmamaliga.backend.organization.service
+     1 SpeakerMatcher                                         lambda$groupNegativesBySpeaker$0        uk.magicmamaliga.backend.diarization.service
+     1 SpeakerMatcher                                         lambda$groupBySpeaker$0                 uk.magicmamaliga.backend.diarization.service
+     1 SpeakerMatcher                                         <clinit>                                uk.magicmamaliga.backend.diarization.service
+     1 OrganizationService                                    lambda$findById$0                       uk.magicmamaliga.backend.organization.service
+     1 OrganizationService                                    lambda$updateOrgBalance$0               uk.magicmamaliga.backend.organization.service
+     1 OrganizationService                                    lambda$settleOrgDebit$0                 uk.magicmamaliga.backend.organization.service
+     1 EmployeeDepartureEvent                                 <init>                                  uk.magicmamaliga.backend.organization.service
+     1 SpeakerLibrary                                         lambda$deletePrototype$0                uk.magicmamaliga.backend.diarization.service
+     1 SpeakerLibrary                                         lambda$getPrototypeAudio$0              uk.magicmamaliga.backend.diarization.service
+     1 SpeakerMatcher                                         lambda$matchOne$0                       uk.magicmamaliga.backend.diarization.service
+     1 MembershipService                                      actorEmail                              uk.magicmamaliga.backend.organization.service
+     1 OrphanPrototypeService                                 lambda$getOrphanAudioSample$1           uk.magicmamaliga.backend.diarization.service
+     1 OrphanPrototypeService                                 lambda$getOrphanAudioSample$0           uk.magicmamaliga.backend.diarization.service
+     1 MembershipService                                      lambda$removeMember$1                   uk.magicmamaliga.backend.organization.service
+     1 MembershipService                                      lambda$leaveOrganization$0              uk.magicmamaliga.backend.organization.service
+     1 MembershipService                                      lambda$setMembershipStatus$0            uk.magicmamaliga.backend.organization.service
+     1 SegmentEditor                                          lambda$collectWordsInRange$0            uk.magicmamaliga.backend.diarization.service
+     1 SegmentEditor                                          <clinit>                                uk.magicmamaliga.backend.diarization.service
+     1 MembershipService                                      listForUser                             uk.magicmamaliga.backend.organization.service
+     1 OrphanPrototypeService                                 lambda$ingestUserConfirmation$0         uk.magicmamaliga.backend.diarization.service
+     1 OrphanPrototypeService                                 <clinit>                                uk.magicmamaliga.backend.diarization.service
+     1 SegmentEditor                                          lambda$splitSegment$0                   uk.magicmamaliga.backend.diarization.service
+     1 SpeakerLibrary                                         lambda$listPrototypes$0                 uk.magicmamaliga.backend.diarization.service
+     1 FileStorageService                                     lambda$generatePresignedUrl$0           uk.magicmamaliga.backend.record.service
+     1 FileStorageService                                     lambda$saveChunk$0                      uk.magicmamaliga.backend.record.service
+     1 FileStorageService                                     <clinit>                                uk.magicmamaliga.backend.record.service
+     1 RecordingPermissionValidator                           lambda$requireOwnedBy$0                 uk.magicmamaliga.backend.record.service
+     1 RecordingPermissionValidator                           <clinit>                                uk.magicmamaliga.backend.record.service
+     1 FileStorageService                                     stripDot                                uk.magicmamaliga.backend.record.service
+     1 OrganizationDomainService                              actorEmail                              uk.magicmamaliga.backend.organization.service
+     1 OrganizationDomainService                              generateVerificationToken               uk.magicmamaliga.backend.organization.service
+     1 RecordingService                                       createInitialRecording                  uk.magicmamaliga.backend.record.service
+     1 RecordingService                                       createInitialRecording                  uk.magicmamaliga.backend.record.service
+     1 OrganizationDomainService                              lambda$verify$0                         uk.magicmamaliga.backend.organization.service
+     1 OrganizationDomainService                              lambda$revoke$0                         uk.magicmamaliga.backend.organization.service
+     1 RecordingPermissionValidator                           lambda$requireOwnedByIncludingDeleted$0 uk.magicmamaliga.backend.record.service
+     1 SpeakerLibrary                                         <clinit>                                uk.magicmamaliga.backend.diarization.service
+     1 CaptchaVerdict                                         deny                                    uk.magicmamaliga.backend.security.captcha
+     1 RecaptchaVerifier$SiteverifyResponse                   <init>                                  uk.magicmamaliga.backend.security.captcha
+     1 SpeakerLibrary                                         lambda$getSpeakerAudioSample$2          uk.magicmamaliga.backend.diarization.service
+     1 SpeakerLibrary                                         lambda$getSpeakerAudioSample$1          uk.magicmamaliga.backend.diarization.service
+     1 SpeakerLibrary                                         lambda$getSpeakerAudioSample$0          uk.magicmamaliga.backend.diarization.service
+     1 SecurityConfiguration                                  lambda$securityFilterChain$3            uk.magicmamaliga.backend.security.config
+     1 SecurityConfiguration                                  lambda$securityFilterChain$0            uk.magicmamaliga.backend.security.config
+     1 OrganizationService                                    updateOrgBalance                        uk.magicmamaliga.backend.organization.service
+     1 SecurityConfiguration                                  jwtCookieAsBearerHeader                 uk.magicmamaliga.backend.security.config
+     1 SecurityConfiguration                                  authenticationManager                   uk.magicmamaliga.backend.security.config
+     1 SecurityConfiguration                                  lambda$authenticationProvider$0         uk.magicmamaliga.backend.security.config
