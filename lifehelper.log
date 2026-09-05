@@ -1,25 +1,27 @@
   1) [ui] › tests\features\auth\routing.ui.spec.js:78:5 › Auth > Routing (browser) › a relative returnTo lands the user where the deep link started
 
-    Error: expect(locator).toBeVisible() failed
+    Error: expect(page).toHaveURL(expected) failed
 
-    Locator: getByRole('heading', { name: 'Trash', level: 1 })
-    Expected: visible
-    Timeout: 15000ms
-    Error: element(s) not found
+    Expected: "http://localhost:8081/trash"
+    Received: "http://localhost:8081/dashboard"
+    Timeout:  15000ms
 
     Call log:
-      - Expect "toBeVisible" with timeout 15000ms
-      - waiting for getByRole('heading', { name: 'Trash', level: 1 })
+      - Expect "toHaveURL" with timeout 15000ms
+        - locator resolved to <html lang="en">…</html>
+        - unexpected value "http://localhost:8081/login?returnTo=%2Ftrash"
+        32 × locator resolved to <html lang="en">…</html>
+           - unexpected value "http://localhost:8081/dashboard"
 
 
+      84 |         expect((await signInWithReturnTo(page, '/trash', email, password)).status()).toBe(200);
       85 |
-      86 |         await expect(page).toHaveURL('/trash');
-    > 87 |         await expect(page.getByRole('heading', { level: 1, name: 'Trash' })).toBeVisible();
-         |                                                                              ^
+    > 86 |         await expect(page).toHaveURL('/trash');
+         |                            ^
+      87 |         await expect(page.getByRole('heading', { level: 1, name: 'Trash' })).toBeVisible();
       88 |     });
       89 |
-      90 |     test('an off-site returnTo is refused and falls back to the dashboard', async ({
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\auth\routing.ui.spec.js:87:78
+        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\auth\routing.ui.spec.js:86:28
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     test-results\features-auth-routing.ui-A-4ec58-where-the-deep-link-started-ui\test-failed-1.png
@@ -35,147 +37,5 @@
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  2) [ui] › tests\features\auth\routing.ui.spec.js:90:5 › Auth > Routing (browser) › an off-site returnTo is refused and falls back to the dashboard
-
-    Error: expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 1
-    + Received  + 6
-
-    - Array []
-    + Array [
-    +   "http://localhost:8081/login?returnTo=%2F%2Fexample.com",
-    +   "http://localhost:8081/login?returnTo=%2F%2Fexample.com",
-    +   "http://localhost:8081/login?returnTo=https%3A%2F%2Fexample.com%2Fevil",
-    +   "http://localhost:8081/login?returnTo=https%3A%2F%2Fexample.com%2Fevil",
-    + ]
-
-      114 |         }
-      115 |
-    > 116 |         expect(visited.filter((url) => url.includes('example.com'))).toEqual([]);
-          |                                                                      ^
-      117 |     });
-      118 |
-      119 |     test('a 401 mid-session signs the user out and says so', async ({
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\auth\routing.ui.spec.js:116:70
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\features-auth-routing.ui-A-7dc4f-falls-back-to-the-dashboard-ui\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\features-auth-routing.ui-A-7dc4f-falls-back-to-the-dashboard-ui\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-auth-routing.ui-A-7dc4f-falls-back-to-the-dashboard-ui\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-auth-routing.ui-A-7dc4f-falls-back-to-the-dashboard-ui\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  3) [ui] › tests\features\recording\trash.ui.spec.js:167:5 › Recordings > Trash (browser) › empties the whole bin after a dialog that quotes the count
-
-    Test timeout of 90000ms exceeded.
-
-    Error: locator.click: Test timeout of 90000ms exceeded.
-    Call log:
-      - waiting for locator('main').getByRole('button', { name: 'Empty trash?' })
-
-
-      180 |         // The Modal renders outside <main>, so scoping the trigger this way
-      181 |         // keeps it unambiguous once the panel adds a second "Empty trash".
-    > 182 |         await page.locator('main').getByRole('button', { name: 'Empty trash?' }).click();
-          |                                                                                  ^
-      183 |
-      184 |         const dialog = page.getByRole('dialog');
-      185 |         await expect(dialog.getByRole('heading', { name: 'Empty trash' })).toBeVisible();
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\recording\trash.ui.spec.js:182:82
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\features-recording-trash.u-65713-ialog-that-quotes-the-count-ui\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\features-recording-trash.u-65713-ialog-that-quotes-the-count-ui\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-recording-trash.u-65713-ialog-that-quotes-the-count-ui\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-recording-trash.u-65713-ialog-that-quotes-the-count-ui\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  3 failed
+  1 failed
     [ui] › tests\features\auth\routing.ui.spec.js:78:5 › Auth > Routing (browser) › a relative returnTo lands the user where the deep link started
-    [ui] › tests\features\auth\routing.ui.spec.js:90:5 › Auth > Routing (browser) › an off-site returnTo is refused and falls back to the dashboard
-    [ui] › tests\features\recording\trash.ui.spec.js:167:5 › Recordings > Trash (browser) › empties the whole bin after a dialog that quotes the count
-  37 passed (2.5m)
-
-To open last HTML report run:
-
-  npx playwright show-report
-
-[e2e] full backend log saved to C:\Users\Mate\Desktop\Project\naplo\e2e\test-results\backend.log
-[e2e] distinct rejected requests -----------------------------------
-org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/status for request '/api/status'.
-uk.magicmamaliga.backend.base.BaseBadRequestException: Invalid or expired verification token. Please request a new one
-[e2e] backend logs (tail) -----------------------------------
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:229) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1769) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1225) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1191) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1121) ~[spring-beans-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:994) ~[spring-context-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar!/:7.0.8]
-backend-1  |    at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.1.0.jar!/:4.1.0]
-backend-1  |    at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.1.0.jar!/:4.1.0]
-backend-1  |    at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.1.0.jar!/:4.1.0]
-backend-1  |    at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.1.0.jar!/:4.1.0]
-backend-1  |    at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar!/:4.1.0]
-backend-1  |    at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar!/:4.1.0]
-backend-1  |    at uk.magicmamaliga.backend.BackendApplication.main(BackendApplication.java:13) ~[!/:0.0.1-SNAPSHOT]
-backend-1  |    at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-backend-1  |    at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-backend-1  |    at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:106) ~[app.jar:0.0.1-SNAPSHOT]
-backend-1  |    at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64) ~[app.jar:0.0.1-SNAPSHOT]
-backend-1  |    at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40) ~[app.jar:0.0.1-SNAPSHOT]
-backend-1  | Caused by: java.lang.IllegalArgumentException: term: statement of work analyzed to a token (work) with position increment != 1 (got: 2)
-backend-1  |    at org.apache.lucene.analysis.synonym.SynonymMap$Parser.analyze(SynonymMap.java:342) ~[lucene-analysis-common-9.11.1.jar!/:9.11.1 0c087dfdd10e0f6f3f6faecc6af4415e671a9e69 - 2024-06-23 12:31:02]
-backend-1  |    at org.apache.lucene.analysis.synonym.SolrSynonymParser.addInternal(SolrSynonymParser.java:117) ~[lucene-analysis-common-9.11.1.jar!/:9.11.1 0c087dfdd10e0f6f3f6faecc6af4415e671a9e69 - 2024-06-23 12:31:02]
-backend-1  |    at org.apache.lucene.analysis.synonym.SolrSynonymParser.parse(SolrSynonymParser.java:71) ~[lucene-analysis-common-9.11.1.jar!/:9.11.1 0c087dfdd10e0f6f3f6faecc6af4415e671a9e69 - 2024-06-23 12:31:02]
-backend-1  |    ... 116 common frames omitted
-backend-1  |
-backend-1  | 2026-09-05 15:21:46.149  INFO [req=- user=- org=- - -] [           main] u.m.backend.rag.service.LuceneAnalyzers  : LuceneAnalyzers ready: synonyms=0 entries, fields=[text, text_phonetic, userId, recordingId, chunkId, fingerprint, vector]
-backend-1  | WARNING: A restricted method in java.lang.foreign.Linker has been called
-backend-1  | WARNING: java.lang.foreign.Linker::downcallHandle has been called by the unnamed module
-backend-1  | WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for this module
