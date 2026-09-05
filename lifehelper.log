@@ -1,39 +1,3539 @@
-  1) [ui] › tests\features\auth\routing.ui.spec.js:78:5 › Auth > Routing (browser) › a relative returnTo lands the user where the deep link started
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'Trash', level: 1 })
-    Expected: visible
-    Timeout: 15000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" with timeout 15000ms
-      - waiting for getByRole('heading', { name: 'Trash', level: 1 })
-
-
-      85 |
-      86 |         await expect(page).toHaveURL('/trash');
-    > 87 |         await expect(page.getByRole('heading', { level: 1, name: 'Trash' })).toBeVisible();
-         |                                                                              ^
-      88 |     });
-      89 |
-      90 |     test('an off-site returnTo is refused and falls back to the dashboard', async ({
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\auth\routing.ui.spec.js:87:78
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\features-auth-routing.ui-A-4ec58-where-the-deep-link-started-ui\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\features-auth-routing.ui-A-4ec58-where-the-deep-link-started-ui\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-auth-routing.ui-A-4ec58-where-the-deep-link-started-ui\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-auth-routing.ui-A-4ec58-where-the-deep-link-started-ui\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  1 failed
-    [ui] › tests\features\auth\routing.ui.spec.js:78:5 › Auth > Routing (browser) › a relative returnTo lands the user where the deep link started
+{
+    "aiSummary": true,
+    "aiTitle": true,
+    "audioUrl": "6a9a6e3032e2aa34a3670792_audio.mp3",
+    "createdAt": "2026-09-04T07:07:28.619Z",
+    "deletedAt": null,
+    "diarizationStatus": "COMPLETED",
+    "finalizedBy": null,
+    "group": "Default group",
+    "id": "6a9a6e3032e2aa34a3670792",
+    "originalAudioFileName": "Online Meeting Onboarding.mp3",
+    "recordingType": "FILE_UPLOAD",
+    "segments": [
+        {
+            "start": 12.42,
+            "end": 23.86,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_00",
+            "text": "Thank you all for joining If you haven't met yet we have our two newly hired customer care team members Ken and Maria Hi guys Welcome to the team",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 24.9,
+            "end": 27.8,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_01",
+            "text": "Thanks Angela It's great to be here Hi everyone",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 28.96,
+            "end": 33.6,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_00",
+            "text": "And Tarek from the customer care team Maria from human resources is joining us for a brief period of time Hi Tarek",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 34.64,
+            "end": 35.68,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_02",
+            "text": "Morning everyone",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 37.14,
+            "end": 49.88,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_00",
+            "text": "I scheduled this meeting to introduce our new team members to our training process Tarek requested to be part of this meeting because he has some information for you as well Tarek would you like to begin Sure Thank you Angela",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 50.92,
+            "end": 51.44,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_03",
+            "text": "So Maria",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 52.3,
+            "end": 73.56,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_02",
+            "text": "Ken welcome to Lock A team I want to talk to you about some forms that you need to fill out before you can begin work You have received an email last week with our liability policy and our confidentiality agreement The one about you agreeing not to share any confidential information about our company with any third parties",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 74.48,
+            "end": 77.16,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_02",
+            "text": "Have you received it Yes I have",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 78.04,
+            "end": 80.42,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_01",
+            "text": "I don't think I received that I'm sorry",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 81.18,
+            "end": 83.76,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_02",
+            "text": "No problem I will send it to you today",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 84.62,
+            "end": 85.68,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_04",
+            "text": "Once you have the document",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 86.38,
+            "end": 139.14,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_02",
+            "text": "please read it carefully and sign electronically There are four places where you will need to insert your initials and two where we need your signature Once signed and saved please send the document directly to me My email address is Tarek godas at mail ca That is T A R E K dot G U L D U Z at mail ca This is very important because you cannot work until I have the signed document on file Do you have any questions No I'll send it to you this afternoon Perfect Thank you Ken please send me an email so I can double check the email address I have in your file",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 140.08,
+            "end": 141.38,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_01",
+            "text": "Absolutely Thanks",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 142.26,
+            "end": 152.32,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_02",
+            "text": "Okay that's it Thank you Angela for giving me the time I will leave the meeting now Have a good day everyone Maria Ken good luck with your training",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 153.62,
+            "end": 185.88,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_00",
+            "text": "Thanks Tarek Speak to you soon Thanks Thanks Bye Great So let's get back to our business Maria and Ken you were both hired for the customer care positions This means that you'll deal with our clients team leads and other companies who have purchased our software You will answer some of their questions or provide a short demo of how our software and its features work First let me tell you a little bit about our product and our company Then we'll go through your duties and responsibilities And finally you can ask me questions if you have any",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 186.66,
+            "end": 187.76,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_01",
+            "text": "Sounds good",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 188.92,
+            "end": 229.78,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_00",
+            "text": "So the two owners Jen and Nina created our company three years ago They created software for training work teams called Logiteam It became an instant success and now we have 43 employees 82 customers and five different product packages Our product is simple to use with some training and that's where you come into the picture In the next two weeks you'll become experts of Logiteam We'll make sure that you're familiar with all basic functions security features add ons and the most common glitches too By the end of this training you'll be able to assist our clients with using the software to its full potential Do you guys have any questions so far",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 230.66,
+            "end": 235.66,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_01",
+            "text": "Yes I have a question Do we use our own devices or the company's laptop during the training",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 236.52,
+            "end": 245.9,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_00",
+            "text": "Great question You don't need your own device We will set up your account on the computer you'll be using for work so it's better to start working on that Great thanks",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        },
+        {
+            "start": 246.86,
+            "end": 258.18,
+            "kind": "orphan",
+            "speakerId": null,
+            "localLabel": "SPEAKER_L_00",
+            "text": "I have a question Will I be interacting with clients over the phone or video conference We use a video conferencing tool that will be covered during your training Okay thank you",
+            "source": "speaker",
+            "editSource": "AUTO",
+            "manuallyEdited": false,
+            "named": false,
+            "orphan": true
+        }
+    ],
+    "summary": "# Meeting Summary\n\n## Participants\n- Angela\n- New customer care team members: **Ken and Maria**\n- Tarek from Customer Care\n- Maria from Human Resources\n\n## Administrative Requirements\n- Ken and Maria must complete and sign the company’s:\n  - Liability policy\n  - Confidentiality agreement\n- The agreement requires **four sets of initials and two signatures**.\n- **Maria received the document** and will sign and return it to Tarek.\n- **Ken did not receive the document**; Tarek will resend it today.\n- Signed documents must be emailed directly to Tarek at **tarek.gulduz@mail.ca**.\n- Employees **cannot begin working until the signed agreement is on file**.\n- Ken will email Tarek so he can verify Ken’s contact information.\n\n## Training and Responsibilities\n- Angela explained that Ken and Maria will support:\n  - Clients\n  - Team leads\n  - Companies using the software\n- Their duties include answering questions and providing brief software demonstrations.\n- They will receive two weeks of training on **Logiteam**, including:\n  - Basic functions\n  - Security features\n  - Add-ons\n  - Common technical issues\n- Training will also cover the company’s video-conferencing tool, which will be used to interact with clients.\n\n## Company and Product Information\n- Logiteam was created three years ago by owners **Jen and Nina**.\n- The company currently has **43 employees, 82 customers, and five product packages**.\n\n## Equipment\n- Ken and Maria do **not** need to use personal devices.\n- Their work accounts will be set up on company computers.",
+    "title": "New Customer Care Team Onboarding and Training",
+    "transcript": "Thank you all for joining. If you haven't met yet, we have our two newly hired customer care team members, Ken and Maria. Hi, guys. Welcome to the team. Thanks, Angela. It's great to be here. Hi, everyone. And Tarek from the customer care team. Maria from human resources is joining us for a brief period of time. Hi, Tarek. Morning, everyone. I scheduled this meeting to introduce our new team members to our training process. Tarek requested to be part of this meeting because he has some information for you as well. Tarek, would you like to begin? Sure. Thank you, Angela. So Maria, Ken, welcome to Lock A team. I want to talk to you about some forms that you need to fill out before you can begin work. You have received an email last week with our liability policy and our confidentiality agreement. The one about you agreeing not to share any confidential information about our company with any third parties. Have you received it? Yes, I have. I don't think I received that. I'm sorry. No problem. I will send it to you today. Once you have the document, please read it carefully and sign electronically. There are four places where you will need to insert your initials and two where we need your signature. Once signed and saved, please send the document directly to me. My email address is Tarek.godas at mail.ca. That is T-A-R-E-K dot G-U-L-D-U-Z at mail.ca. This is very important because you cannot work until I have the signed document on file. Do you have any questions? No, I'll send it to you this afternoon. Perfect. Thank you. Ken, please send me an email so I can double check the email address I have in your file. Absolutely. Thanks. Okay, that's it. Thank you, Angela, for giving me the time. I will leave the meeting now. Have a good day, everyone. Maria, Ken, good luck with your training. Thanks, Tarek. Speak to you soon. Thanks. Thanks. Bye. Great. So let's get back to our business. Maria and Ken, you were both hired for the customer care positions. This means that you'll deal with our clients, team leads, and other companies who have purchased our software. You will answer some of their questions or provide a short demo of how our software and its features work. First, let me tell you a little bit about our product and our company. Then we'll go through your duties and responsibilities. And finally, you can ask me questions if you have any. Sounds good. So the two owners, Jen and Nina, created our company three years ago. They created software for training work teams called Logiteam. It became an instant success, and now we have 43 employees, 82 customers, and five different product packages. Our product is simple to use with some training, and that's where you come into the picture. In the next two weeks, you'll become experts of Logiteam. We'll make sure that you're familiar with all basic functions, security features, add-ons, and the most common glitches too. By the end of this training, you'll be able to assist our clients with using the software to its full potential. Do you guys have any questions so far? Yes, I have a question. Do we use our own devices or the company's laptop during the training? Great question. You don't need your own device. We will set up your account on the computer you'll be using for work, so it's better to start working on that. Great, thanks. I have a question. Will I be interacting with clients over the phone or video conference? We use a video conferencing tool that will be covered during your training. Okay, thank you.",
+    "transcriptChunks": [
+        {
+            "start": 12.420000076293945,
+            "end": 23.860000610351562,
+            "text": "Thank you all for joining If you haven't met yet we have our two newly hired customer care team members Ken and Maria Hi guys Welcome to the team",
+            "words": [
+                {
+                    "start": 12.420000076293945,
+                    "end": 12.880000114440918,
+                    "text": "Thank"
+                },
+                {
+                    "start": 12.880000114440918,
+                    "end": 13.34000015258789,
+                    "text": "you"
+                },
+                {
+                    "start": 13.34000015258789,
+                    "end": 13.34000015258789,
+                    "text": "all"
+                },
+                {
+                    "start": 13.34000015258789,
+                    "end": 15.5600004196167,
+                    "text": "for"
+                },
+                {
+                    "start": 15.5600004196167,
+                    "end": 15.859999656677246,
+                    "text": "joining"
+                },
+                {
+                    "start": 16.440000534057617,
+                    "end": 16.540000915527344,
+                    "text": "If"
+                },
+                {
+                    "start": 16.540000915527344,
+                    "end": 16.719999313354492,
+                    "text": "you"
+                },
+                {
+                    "start": 16.719999313354492,
+                    "end": 17.020000457763672,
+                    "text": "haven't"
+                },
+                {
+                    "start": 17.020000457763672,
+                    "end": 17.260000228881836,
+                    "text": "met"
+                },
+                {
+                    "start": 17.260000228881836,
+                    "end": 17.479999542236328,
+                    "text": "yet"
+                },
+                {
+                    "start": 17.639999389648438,
+                    "end": 17.639999389648438,
+                    "text": "we"
+                },
+                {
+                    "start": 17.639999389648438,
+                    "end": 17.799999237060547,
+                    "text": "have"
+                },
+                {
+                    "start": 17.799999237060547,
+                    "end": 18.0,
+                    "text": "our"
+                },
+                {
+                    "start": 18.0,
+                    "end": 18.719999313354492,
+                    "text": "two"
+                },
+                {
+                    "start": 18.719999313354492,
+                    "end": 18.84000015258789,
+                    "text": "newly"
+                },
+                {
+                    "start": 18.84000015258789,
+                    "end": 19.100000381469727,
+                    "text": "hired"
+                },
+                {
+                    "start": 19.100000381469727,
+                    "end": 19.559999465942383,
+                    "text": "customer"
+                },
+                {
+                    "start": 19.559999465942383,
+                    "end": 19.959999084472656,
+                    "text": "care"
+                },
+                {
+                    "start": 19.959999084472656,
+                    "end": 20.420000076293945,
+                    "text": "team"
+                },
+                {
+                    "start": 20.420000076293945,
+                    "end": 20.979999542236328,
+                    "text": "members"
+                },
+                {
+                    "start": 21.5,
+                    "end": 21.700000762939453,
+                    "text": "Ken"
+                },
+                {
+                    "start": 21.700000762939453,
+                    "end": 21.959999084472656,
+                    "text": "and"
+                },
+                {
+                    "start": 21.959999084472656,
+                    "end": 22.15999984741211,
+                    "text": "Maria"
+                },
+                {
+                    "start": 22.579999923706055,
+                    "end": 22.719999313354492,
+                    "text": "Hi"
+                },
+                {
+                    "start": 22.719999313354492,
+                    "end": 22.940000534057617,
+                    "text": "guys"
+                },
+                {
+                    "start": 23.079999923706055,
+                    "end": 23.1200008392334,
+                    "text": "Welcome"
+                },
+                {
+                    "start": 23.1200008392334,
+                    "end": 23.31999969482422,
+                    "text": "to"
+                },
+                {
+                    "start": 23.31999969482422,
+                    "end": 23.459999084472656,
+                    "text": "the"
+                },
+                {
+                    "start": 23.459999084472656,
+                    "end": 23.860000610351562,
+                    "text": "team"
+                }
+            ],
+            "source": null
+        },
+        {
+            "start": 24.899999618530273,
+            "end": 27.799999237060547,
+            "text": "Thanks Angela It's great to be here Hi everyone",
+            "words": [
+                {
+                    "start": 24.899999618530273,
+                    "end": 25.0,
+                    "text": "Thanks"
+                },
+                {
+                    "start": 25.200000762939453,
+                    "end": 25.34000015258789,
+                    "text": "Angela"
+                },
+                {
+                    "start": 25.440000534057617,
+                    "end": 25.65999984741211,
+                    "text": "It's"
+                },
+                {
+                    "start": 25.65999984741211,
+                    "end": 25.719999313354492,
+                    "text": "great"
+                },
+                {
+                    "start": 25.719999313354492,
+                    "end": 25.8799991607666,
+                    "text": "to"
+                },
+                {
+                    "start": 25.8799991607666,
+                    "end": 26.0,
+                    "text": "be"
+                },
+                {
+                    "start": 26.0,
+                    "end": 26.420000076293945,
+                    "text": "here"
+                },
+                {
+                    "start": 26.8799991607666,
+                    "end": 27.34000015258789,
+                    "text": "Hi"
+                },
+                {
+                    "start": 27.34000015258789,
+                    "end": 27.799999237060547,
+                    "text": "everyone"
+                }
+            ],
+            "source": null
+        },
+        {
+            "start": 28.959999084472656,
+            "end": 33.599998474121094,
+            "text": "And Tarek from the customer care team Maria from human resources is joining us for a brief period of time Hi Tarek",
+            "words": [
+                {
+                    "start": 28.959999084472656,
+                    "end": 29.420000076293945,
+                    "text": "And"
+                },
+                {
+                    "start": 29.420000076293945,
+                    "end": 29.799999237060547,
+                    "text": "Tarek"
+                },
+                {
+                    "start": 29.799999237060547,
+                    "end": 29.979999542236328,
+                    "text": "from"
+                },
+                {
+                    "start": 29.979999542236328,
+                    "end": 29.979999542236328,
+                    "text": "the"
+                },
+                {
+                    "start": 29.979999542236328,
+                    "end": 29.979999542236328,
+                    "text": "customer"
+                },
+                {
+                    "start": 29.979999542236328,
+                    "end": 29.979999542236328,
+                    "text": "care"
+                },
+                {
+                    "start": 29.979999542236328,
+                    "end": 29.979999542236328,
+                    "text": "team"
+                },
+                {
+                    "start": 29.979999542236328,
+                    "end": 30.139999389648438,
+                    "text": "Maria"
+                },
+                {
+                    "start": 30.139999389648438,
+                    "end": 30.139999389648438,
+                    "text": "from"
+                },
+                {
+                    "start": 30.139999389648438,
+                    "end": 30.399999618530273,
+                    "text": "human"
+                },
+                {
+                    "start": 30.399999618530273,
+                    "end": 30.899999618530273,
+                    "text": "resources"
+                },
+                {
+                    "start": 30.899999618530273,
+                    "end": 31.239999771118164,
+                    "text": "is"
+                },
+                {
+                    "start": 31.239999771118164,
+                    "end": 31.459999084472656,
+                    "text": "joining"
+                },
+                {
+                    "start": 31.459999084472656,
+                    "end": 31.68000030517578,
+                    "text": "us"
+                },
+                {
+                    "start": 31.68000030517578,
+                    "end": 31.84000015258789,
+                    "text": "for"
+                },
+                {
+                    "start": 31.84000015258789,
+                    "end": 32.040000915527344,
+                    "text": "a"
+                },
+                {
+                    "start": 32.040000915527344,
+                    "end": 32.220001220703125,
+                    "text": "brief"
+                },
+                {
+                    "start": 32.220001220703125,
+                    "end": 32.58000183105469,
+                    "text": "period"
+                },
+                {
+                    "start": 32.58000183105469,
+                    "end": 32.70000076293945,
+                    "text": "of"
+                },
+                {
+                    "start": 32.70000076293945,
+                    "end": 33.0,
+                    "text": "time"
+                },
+                {
+                    "start": 33.279998779296875,
+                    "end": 33.29999923706055,
+                    "text": "Hi"
+                },
+                {
+                    "start": 33.380001068115234,
+                    "end": 33.599998474121094,
+                    "text": "Tarek"
+                }
+            ],
+            "source": null
+        },
+        {
+            "start": 34.63999938964844,
+            "end": 35.68000030517578,
+            "text": "Morning everyone",
+            "words": [
+                {
+                    "start": 34.63999938964844,
+                    "end": 35.15999984741211,
+                    "text": "Morning"
+                },
+                {
+                    "start": 35.15999984741211,
+                    "end": 35.68000030517578,
+                    "text": "everyone"
+                }
+            ],
+            "source": null
+        },
+        {
+            "start": 37.13999938964844,
+            "end": 49.880001068115234,
+            "text": "I scheduled this meeting to introduce our new team members to our training process Tarek requested to be part of this meeting because he has some information for you as well Tarek would you like to begin Sure Thank you Angela",
+            "words": [
+                {
+                    "start": 37.13999938964844,
+                    "end": 37.15999984741211,
+                    "text": "I"
+                },
+                {
+                    "start": 37.15999984741211,
+                    "end": 37.400001525878906,
+                    "text": "scheduled"
+                },
+                {
+                    "start": 37.400001525878906,
+                    "end": 37.7400016784668,
+                    "text": "this"
+                },
+                {
+                    "start": 37.7400016784668,
+                    "end": 37.900001525878906,
+                    "text": "meeting"
+                },
+                {
+                    "start": 37.900001525878906,
+                    "end": 38.540000915527344,
+                    "text": "to"
+                },
+                {
+                    "start": 38.540000915527344,
+                    "end": 38.540000915527344,
+                    "text": "introduce"
+                },
+                {
+                    "start": 38.540000915527344,
+                    "end": 38.900001525878906,
+                    "text": "our"
+                },
+                {
+                    "start": 38.900001525878906,
+                    "end": 39.2400016784668,
+                    "text": "new"
+                },
+                {
+                    "start": 39.2400016784668,
+                    "end": 39.70000076293945,
+                    "text": "team"
+                },
+                {
+                    "start": 39.70000076293945,
+                    "end": 39.959999084472656,
+                    "text": "members"
+                },
+                {
+                    "start": 39.959999084472656,
+                    "end": 40.20000076293945,
+                    "text": "to"
+                },
+                {
+                    "start": 40.20000076293945,
+                    "end": 40.599998474121094,
+                    "text": "our"
+                },
+                {
+                    "start": 40.599998474121094,
+                    "end": 40.779998779296875,
+                    "text": "training"
+                },
+                {
+                    "start": 40.779998779296875,
+                    "end": 41.400001525878906,
+                    "text": "process"
+                },
+                {
+                    "start": 42.18000030517578,
+                    "end": 42.18000030517578,
+                    "text": "Tarek"
+                },
+                {
+                    "start": 42.18000030517578,
+                    "end": 42.52000045776367,
+                    "text": "requested"
+                },
+                {
+                    "start": 42.52000045776367,
+                    "end": 42.7400016784668,
+                    "text": "to"
+                },
+                {
+                    "start": 42.7400016784668,
+                    "end": 42.91999816894531,
+                    "text": "be"
+                },
+                {
+                    "start": 42.91999816894531,
+                    "end": 43.040000915527344,
+                    "text": "part"
+                },
+                {
+                    "start": 43.040000915527344,
+                    "end": 43.15999984741211,
+                    "text": "of"
+                },
+                {
+                    "start": 43.15999984741211,
+                    "end": 43.34000015258789,
+                    "text": "this"
+                },
+                {
+                    "start": 43.34000015258789,
+                    "end": 43.599998474121094,
+                    "text": "meeting"
+                },
+                {
+                    "start": 43.599998474121094,
+                    "end": 43.97999954223633,
+                    "text": "because"
+                },
+                {
+                    "start": 43.97999954223633,
+                    "end": 44.20000076293945,
+                    "text": "he"
+                },
+                {
+                    "start": 44.20000076293945,
+                    "end": 44.34000015258789,
+                    "text": "has"
+                },
+                {
+                    "start": 44.34000015258789,
+                    "end": 44.84000015258789,
+                    "text": "some"
+                },
+                {
+                    "start": 44.84000015258789,
+                    "end": 44.84000015258789,
+                    "text": "information"
+                },
+                {
+                    "start": 44.84000015258789,
+                    "end": 45.20000076293945,
+                    "text": "for"
+                },
+                {
+                    "start": 45.20000076293945,
+                    "end": 45.279998779296875,
+                    "text": "you"
+                },
+                {
+                    "start": 45.279998779296875,
+                    "end": 45.58000183105469,
+                    "text": "as"
+                },
+                {
+                    "start": 45.58000183105469,
+                    "end": 45.81999969482422,
+                    "text": "well"
+                },
+                {
+                    "start": 46.220001220703125,
+                    "end": 46.5,
+                    "text": "Tarek"
+                },
+                {
+                    "start": 46.58000183105469,
+                    "end": 46.63999938964844,
+                    "text": "would"
+                },
+                {
+                    "start": 46.63999938964844,
+                    "end": 46.7400016784668,
+                    "text": "you"
+                },
+                {
+                    "start": 46.7400016784668,
+                    "end": 46.84000015258789,
+                    "text": "like"
+                },
+                {
+                    "start": 46.84000015258789,
+                    "end": 47.02000045776367,
+                    "text": "to"
+                },
+                {
+                    "start": 47.02000045776367,
+                    "end": 47.70000076293945,
+                    "text": "begin"
+                },
+                {
+                    "start": 48.08000183105469,
+                    "end": 48.599998474121094,
+                    "text": "Sure"
+                },
+                {
+                    "start": 49.18000030517578,
+                    "end": 49.41999816894531,
+                    "text": "Thank"
+                },
+                {
+                    "start": 49.41999816894531,
+                    "end": 49.540000915527344,
+                    "text": "you"
+                },
+                {
+                    "start": 49.65999984741211,
+                    "end": 49.880001068115234,
+                    "text": "Angela"
+                }
+            ],
+            "source": null
+        },
+        {
+            "start": 50.91999816894531,
+            "end": 152.32000732421875,
+            "text": "So Maria Ken welcome to Lock A team I want to talk to you about some forms that you need to fill out before you can begin work You have received an email last week with our liability policy and our confidentiality agreement The one about you agreeing not to share any confidential information about our company with any third parties Have you received it Yes I have I don't think I received that I'm sorry No problem I will send it to you today Once you have the document please read it carefully and sign electronically There are four places where you will need to insert your initials and two where we need your signature Once signed and saved please send the document directly to me My email address is Tarek godas at mail ca That is T A R E K dot G U L D U Z at mail ca This is very important because you cannot work until I have the signed document on file Do you have any questions No I'll send it to you this afternoon Perfect Thank you Ken please send me an email so I can double check the email address I have in your file Absolutely Thanks Okay that's it Thank you Angela for giving me the time I will leave the meeting now Have a good day everyone Maria Ken good luck with your training",
+            "words": [
+                {
+                    "start": 50.91999816894531,
+                    "end": 51.439998626708984,
+                    "text": "So"
+                },
+                {
+                    "start": 51.439998626708984,
+                    "end": 51.439998626708984,
+                    "text": "Maria"
+                },
+                {
+                    "start": 52.29999923706055,
+                    "end": 52.29999923706055,
+                    "text": "Ken"
+                },
+                {
+                    "start": 52.599998474121094,
+                    "end": 52.97999954223633,
+                    "text": "welcome"
+                },
+                {
+                    "start": 52.97999954223633,
+                    "end": 53.31999969482422,
+                    "text": "to"
+                },
+                {
+                    "start": 53.31999969482422,
+                    "end": 53.459999084472656,
+                    "text": "Lock"
+                },
+                {
+                    "start": 53.459999084472656,
+                    "end": 53.619998931884766,
+                    "text": "A"
+                },
+                {
+                    "start": 53.619998931884766,
+                    "end": 53.91999816894531,
+                    "text": "team"
+                },
+                {
+                    "start": 53.91999816894531,
+                    "end": 55.02000045776367,
+                    "text": "I"
+                },
+                {
+                    "start": 55.02000045776367,
+                    "end": 55.279998779296875,
+                    "text": "want"
+                },
+                {
+                    "start": 55.279998779296875,
+                    "end": 55.47999954223633,
+                    "text": "to"
+                },
+                {
+                    "start": 55.47999954223633,
+                    "end": 55.720001220703125,
+                    "text": "talk"
+                },
+                {
+                    "start": 55.720001220703125,
+                    "end": 55.900001525878906,
+                    "text": "to"
+                },
+                {
+                    "start": 55.900001525878906,
+                    "end": 55.939998626708984,
+                    "text": "you"
+                },
+                {
+                    "start": 55.939998626708984,
+                    "end": 56.15999984741211,
+                    "text": "about"
+                },
+                {
+                    "start": 56.15999984741211,
+                    "end": 56.52000045776367,
+                    "text": "some"
+                },
+                {
+                    "start": 56.52000045776367,
+                    "end": 56.779998779296875,
+                    "text": "forms"
+                },
+                {
+                    "start": 56.779998779296875,
+                    "end": 57.36000061035156,
+                    "text": "that"
+                },
+                {
+                    "start": 57.36000061035156,
+                    "end": 57.58000183105469,
+                    "text": "you"
+                },
+                {
+                    "start": 57.58000183105469,
+                    "end": 57.70000076293945,
+                    "text": "need"
+                },
+                {
+                    "start": 57.70000076293945,
+                    "end": 58.02000045776367,
+                    "text": "to"
+                },
+                {
+                    "start": 58.02000045776367,
+                    "end": 58.040000915527344,
+                    "text": "fill"
+                },
+                {
+                    "start": 58.040000915527344,
+                    "end": 58.41999816894531,
+                    "text": "out"
+                },
+                {
+                    "start": 58.41999816894531,
+                    "end": 58.65999984741211,
+                    "text": "before"
+                },
+                {
+                    "start": 58.65999984741211,
+                    "end": 58.79999923706055,
+                    "text": "you"
+                },
+                {
+                    "start": 58.79999923706055,
+                    "end": 58.97999954223633,
+                    "text": "can"
+                },
+                {
+                    "start": 58.97999954223633,
+                    "end": 59.20000076293945,
+                    "text": "begin"
+                },
+                {
+                    "start": 59.20000076293945,
+                    "end": 59.7599983215332,
+                    "text": "work"
+                },
+                {
+                    "start": 60.040000915527344,
+                    "end": 60.58000183105469,
+                    "text": "You"
+                },
+                {
+                    "start": 60.58000183105469,
+                    "end": 60.79999923706055,
+                    "text": "have"
+                },
+                {
+                    "start": 60.79999923706055,
+                    "end": 61.099998474121094,
+                    "text": "received"
+                },
+                {
+                    "start": 61.099998474121094,
+                    "end": 61.540000915527344,
+                    "text": "an"
+                },
+                {
+                    "start": 61.540000915527344,
+                    "end": 61.58000183105469,
+                    "text": "email"
+                },
+                {
+                    "start": 61.58000183105469,
+                    "end": 61.97999954223633,
+                    "text": "last"
+                },
+                {
+                    "start": 61.97999954223633,
+                    "end": 62.18000030517578,
+                    "text": "week"
+                },
+                {
+                    "start": 62.18000030517578,
+                    "end": 62.65999984741211,
+                    "text": "with"
+                },
+                {
+                    "start": 62.65999984741211,
+                    "end": 62.959999084472656,
+                    "text": "our"
+                },
+                {
+                    "start": 62.959999084472656,
+                    "end": 63.400001525878906,
+                    "text": "liability"
+                },
+                {
+                    "start": 63.400001525878906,
+                    "end": 64.0199966430664,
+                    "text": "policy"
+                },
+                {
+                    "start": 64.0199966430664,
+                    "end": 64.77999877929688,
+                    "text": "and"
+                },
+                {
+                    "start": 64.77999877929688,
+                    "end": 65.18000030517578,
+                    "text": "our"
+                },
+                {
+                    "start": 65.18000030517578,
+                    "end": 66.04000091552734,
+                    "text": "confidentiality"
+                },
+                {
+                    "start": 66.04000091552734,
+                    "end": 66.41999816894531,
+                    "text": "agreement"
+                },
+                {
+                    "start": 66.73999786376953,
+                    "end": 67.33999633789062,
+                    "text": "The"
+                },
+                {
+                    "start": 67.33999633789062,
+                    "end": 67.45999908447266,
+                    "text": "one"
+                },
+                {
+                    "start": 67.45999908447266,
+                    "end": 67.73999786376953,
+                    "text": "about"
+                },
+                {
+                    "start": 67.73999786376953,
+                    "end": 68.05999755859375,
+                    "text": "you"
+                },
+                {
+                    "start": 68.05999755859375,
+                    "end": 68.4800033569336,
+                    "text": "agreeing"
+                },
+                {
+                    "start": 68.4800033569336,
+                    "end": 68.76000213623047,
+                    "text": "not"
+                },
+                {
+                    "start": 68.76000213623047,
+                    "end": 69.12000274658203,
+                    "text": "to"
+                },
+                {
+                    "start": 69.12000274658203,
+                    "end": 69.18000030517578,
+                    "text": "share"
+                },
+                {
+                    "start": 69.18000030517578,
+                    "end": 69.77999877929688,
+                    "text": "any"
+                },
+                {
+                    "start": 69.77999877929688,
+                    "end": 70.16000366210938,
+                    "text": "confidential"
+                },
+                {
+                    "start": 70.16000366210938,
+                    "end": 70.80000305175781,
+                    "text": "information"
+                },
+                {
+                    "start": 70.80000305175781,
+                    "end": 71.26000213623047,
+                    "text": "about"
+                },
+                {
+                    "start": 71.26000213623047,
+                    "end": 71.66000366210938,
+                    "text": "our"
+                },
+                {
+                    "start": 71.66000366210938,
+                    "end": 71.91999816894531,
+                    "text": "company"
+                },
+                {
+                    "start": 71.91999816894531,
+                    "end": 72.5199966430664,
+                    "text": "with"
+                },
+                {
+                    "start": 72.5199966430664,
+                    "end": 72.95999908447266,
+                    "text": "any"
+                },
+                {
+                    "start": 72.95999908447266,
+                    "end": 73.0999984741211,
+                    "text": "third"
+                },
+                {
+                    "start": 73.0999984741211,
+                    "end": 73.55999755859375,
+                    "text": "parties"
+                },
+                {
+                    "start": 74.4800033569336,
+                    "end": 74.73999786376953,
+                    "text": "Have"
+                },
+                {
+                    "start": 74.73999786376953,
+                    "end": 74.95999908447266,
+                    "text": "you"
+                },
+                {
+                    "start": 74.95999908447266,
+                    "end": 75.18000030517578,
+                    "text": "received"
+                },
+                {
+                    "start": 75.18000030517578,
+                    "end": 75.62000274658203,
+                    "text": "it"
+                },
+                {
+                    "start": 76.08000183105469,
+                    "end": 76.4000015258789,
+                    "text": "Yes"
+                },
+                {
+                    "start": 76.4000015258789,
+                    "end": 76.68000030517578,
+                    "text": "I"
+                },
+                {
+                    "start": 76.68000030517578,
+                    "end": 77.16000366210938,
+                    "text": "have"
+                },
+                {
+                    "start": 78.04000091552734,
+                    "end": 78.68000030517578,
+                    "text": "I"
+                },
+                {
+                    "start": 78.68000030517578,
+                    "end": 78.86000061035156,
+                    "text": "don't"
+                },
+                {
+                    "start": 78.86000061035156,
+                    "end": 79.08000183105469,
+                    "text": "think"
+                },
+                {
+                    "start": 79.08000183105469,
+                    "end": 79.37999725341797,
+                    "text": "I"
+                },
+                {
+                    "start": 79.37999725341797,
+                    "end": 79.58000183105469,
+                    "text": "received"
+                },
+                {
+                    "start": 79.58000183105469,
+                    "end": 79.80000305175781,
+                    "text": "that"
+                },
+                {
+                    "start": 79.80000305175781,
+                    "end": 80.41999816894531,
+                    "text": "I'm"
+                },
+                {
+                    "start": 80.41999816894531,
+                    "end": 80.41999816894531,
+                    "text": "sorry"
+                },
+                {
+                    "start": 81.18000030517578,
+                    "end": 81.5199966430664,
+                    "text": "No"
+                },
+                {
+                    "start": 81.5199966430664,
+                    "end": 81.91999816894531,
+                    "text": "problem"
+                },
+                {
+                    "start": 82.13999938964844,
+                    "end": 82.62000274658203,
+                    "text": "I"
+                },
+                {
+                    "start": 82.62000274658203,
+                    "end": 82.81999969482422,
+                    "text": "will"
+                },
+                {
+                    "start": 82.81999969482422,
+                    "end": 83.0,
+                    "text": "send"
+                },
+                {
+                    "start": 83.0,
+                    "end": 83.05999755859375,
+                    "text": "it"
+                },
+                {
+                    "start": 83.05999755859375,
+                    "end": 83.22000122070312,
+                    "text": "to"
+                },
+                {
+                    "start": 83.22000122070312,
+                    "end": 83.55999755859375,
+                    "text": "you"
+                },
+                {
+                    "start": 83.55999755859375,
+                    "end": 83.76000213623047,
+                    "text": "today"
+                },
+                {
+                    "start": 84.62000274658203,
+                    "end": 84.76000213623047,
+                    "text": "Once"
+                },
+                {
+                    "start": 84.76000213623047,
+                    "end": 84.86000061035156,
+                    "text": "you"
+                },
+                {
+                    "start": 84.86000061035156,
+                    "end": 85.0999984741211,
+                    "text": "have"
+                },
+                {
+                    "start": 85.0999984741211,
+                    "end": 85.68000030517578,
+                    "text": "the"
+                },
+                {
+                    "start": 85.68000030517578,
+                    "end": 85.68000030517578,
+                    "text": "document"
+                },
+                {
+                    "start": 86.37999725341797,
+                    "end": 86.62000274658203,
+                    "text": "please"
+                },
+                {
+                    "start": 86.62000274658203,
+                    "end": 86.86000061035156,
+                    "text": "read"
+                },
+                {
+                    "start": 86.86000061035156,
+                    "end": 87.5199966430664,
+                    "text": "it"
+                },
+                {
+                    "start": 87.5199966430664,
+                    "end": 87.5199966430664,
+                    "text": "carefully"
+                },
+                {
+                    "start": 87.5199966430664,
+                    "end": 88.30000305175781,
+                    "text": "and"
+                },
+                {
+                    "start": 88.30000305175781,
+                    "end": 88.58000183105469,
+                    "text": "sign"
+                },
+                {
+                    "start": 88.58000183105469,
+                    "end": 89.30000305175781,
+                    "text": "electronically"
+                },
+                {
+                    "start": 89.80000305175781,
+                    "end": 90.4000015258789,
+                    "text": "There"
+                },
+                {
+                    "start": 90.4000015258789,
+                    "end": 90.54000091552734,
+                    "text": "are"
+                },
+                {
+                    "start": 90.54000091552734,
+                    "end": 90.81999969482422,
+                    "text": "four"
+                },
+                {
+                    "start": 90.81999969482422,
+                    "end": 91.22000122070312,
+                    "text": "places"
+                },
+                {
+                    "start": 91.22000122070312,
+                    "end": 91.76000213623047,
+                    "text": "where"
+                },
+                {
+                    "start": 91.76000213623047,
+                    "end": 91.91999816894531,
+                    "text": "you"
+                },
+                {
+                    "start": 91.91999816894531,
+                    "end": 92.16000366210938,
+                    "text": "will"
+                },
+                {
+                    "start": 92.16000366210938,
+                    "end": 92.5,
+                    "text": "need"
+                },
+                {
+                    "start": 92.5,
+                    "end": 92.9000015258789,
+                    "text": "to"
+                },
+                {
+                    "start": 92.9000015258789,
+                    "end": 92.9000015258789,
+                    "text": "insert"
+                },
+                {
+                    "start": 92.9000015258789,
+                    "end": 93.19999694824219,
+                    "text": "your"
+                },
+                {
+                    "start": 93.19999694824219,
+                    "end": 94.18000030517578,
+                    "text": "initials"
+                },
+                {
+                    "start": 94.18000030517578,
+                    "end": 94.4800033569336,
+                    "text": "and"
+                },
+                {
+                    "start": 94.4800033569336,
+                    "end": 94.9000015258789,
+                    "text": "two"
+                },
+                {
+                    "start": 94.9000015258789,
+                    "end": 95.27999877929688,
+                    "text": "where"
+                },
+                {
+                    "start": 95.27999877929688,
+                    "end": 95.5,
+                    "text": "we"
+                },
+                {
+                    "start": 95.5,
+                    "end": 95.72000122070312,
+                    "text": "need"
+                },
+                {
+                    "start": 95.72000122070312,
+                    "end": 96.0199966430664,
+                    "text": "your"
+                },
+                {
+                    "start": 96.0199966430664,
+                    "end": 96.36000061035156,
+                    "text": "signature"
+                },
+                {
+                    "start": 97.12000274658203,
+                    "end": 97.80000305175781,
+                    "text": "Once"
+                },
+                {
+                    "start": 97.80000305175781,
+                    "end": 98.22000122070312,
+                    "text": "signed"
+                },
+                {
+                    "start": 98.22000122070312,
+                    "end": 98.66000366210938,
+                    "text": "and"
+                },
+                {
+                    "start": 98.66000366210938,
+                    "end": 98.95999908447266,
+                    "text": "saved"
+                },
+                {
+                    "start": 99.5,
+                    "end": 99.81999969482422,
+                    "text": "please"
+                },
+                {
+                    "start": 99.81999969482422,
+                    "end": 100.05999755859375,
+                    "text": "send"
+                },
+                {
+                    "start": 100.05999755859375,
+                    "end": 100.68000030517578,
+                    "text": "the"
+                },
+                {
+                    "start": 100.68000030517578,
+                    "end": 100.68000030517578,
+                    "text": "document"
+                },
+                {
+                    "start": 100.68000030517578,
+                    "end": 101.16000366210938,
+                    "text": "directly"
+                },
+                {
+                    "start": 101.16000366210938,
+                    "end": 101.4000015258789,
+                    "text": "to"
+                },
+                {
+                    "start": 101.4000015258789,
+                    "end": 101.66000366210938,
+                    "text": "me"
+                },
+                {
+                    "start": 102.27999877929688,
+                    "end": 102.77999877929688,
+                    "text": "My"
+                },
+                {
+                    "start": 102.77999877929688,
+                    "end": 103.0999984741211,
+                    "text": "email"
+                },
+                {
+                    "start": 103.0999984741211,
+                    "end": 103.5999984741211,
+                    "text": "address"
+                },
+                {
+                    "start": 103.5999984741211,
+                    "end": 104.76000213623047,
+                    "text": "is"
+                },
+                {
+                    "start": 104.76000213623047,
+                    "end": 104.76000213623047,
+                    "text": "Tarek"
+                },
+                {
+                    "start": 104.76000213623047,
+                    "end": 106.04000091552734,
+                    "text": "godas"
+                },
+                {
+                    "start": 106.04000091552734,
+                    "end": 106.91999816894531,
+                    "text": "at"
+                },
+                {
+                    "start": 106.91999816894531,
+                    "end": 107.05999755859375,
+                    "text": "mail"
+                },
+                {
+                    "start": 107.05999755859375,
+                    "end": 107.77999877929688,
+                    "text": "ca"
+                },
+                {
+                    "start": 108.44000244140625,
+                    "end": 108.5999984741211,
+                    "text": "That"
+                },
+                {
+                    "start": 108.5999984741211,
+                    "end": 109.19999694824219,
+                    "text": "is"
+                },
+                {
+                    "start": 109.19999694824219,
+                    "end": 109.44000244140625,
+                    "text": "T"
+                },
+                {
+                    "start": 109.44000244140625,
+                    "end": 110.0199966430664,
+                    "text": "A"
+                },
+                {
+                    "start": 110.0199966430664,
+                    "end": 110.81999969482422,
+                    "text": "R"
+                },
+                {
+                    "start": 110.81999969482422,
+                    "end": 111.58000183105469,
+                    "text": "E"
+                },
+                {
+                    "start": 111.58000183105469,
+                    "end": 112.31999969482422,
+                    "text": "K"
+                },
+                {
+                    "start": 112.31999969482422,
+                    "end": 113.58000183105469,
+                    "text": "dot"
+                },
+                {
+                    "start": 113.58000183105469,
+                    "end": 114.19999694824219,
+                    "text": "G"
+                },
+                {
+                    "start": 114.19999694824219,
+                    "end": 115.04000091552734,
+                    "text": "U"
+                },
+                {
+                    "start": 115.04000091552734,
+                    "end": 115.83999633789062,
+                    "text": "L"
+                },
+                {
+                    "start": 115.83999633789062,
+                    "end": 116.91999816894531,
+                    "text": "D"
+                },
+                {
+                    "start": 116.91999816894531,
+                    "end": 117.86000061035156,
+                    "text": "U"
+                },
+                {
+                    "start": 117.86000061035156,
+                    "end": 118.33999633789062,
+                    "text": "Z"
+                },
+                {
+                    "start": 118.33999633789062,
+                    "end": 119.23999786376953,
+                    "text": "at"
+                },
+                {
+                    "start": 119.23999786376953,
+                    "end": 119.5,
+                    "text": "mail"
+                },
+                {
+                    "start": 119.5,
+                    "end": 120.05999755859375,
+                    "text": "ca"
+                },
+                {
+                    "start": 120.41999816894531,
+                    "end": 121.4000015258789,
+                    "text": "This"
+                },
+                {
+                    "start": 121.4000015258789,
+                    "end": 121.55999755859375,
+                    "text": "is"
+                },
+                {
+                    "start": 121.55999755859375,
+                    "end": 121.86000061035156,
+                    "text": "very"
+                },
+                {
+                    "start": 121.86000061035156,
+                    "end": 122.16000366210938,
+                    "text": "important"
+                },
+                {
+                    "start": 122.16000366210938,
+                    "end": 122.9000015258789,
+                    "text": "because"
+                },
+                {
+                    "start": 122.9000015258789,
+                    "end": 123.23999786376953,
+                    "text": "you"
+                },
+                {
+                    "start": 123.23999786376953,
+                    "end": 123.58000183105469,
+                    "text": "cannot"
+                },
+                {
+                    "start": 123.58000183105469,
+                    "end": 124.13999938964844,
+                    "text": "work"
+                },
+                {
+                    "start": 124.13999938964844,
+                    "end": 124.58000183105469,
+                    "text": "until"
+                },
+                {
+                    "start": 124.58000183105469,
+                    "end": 124.81999969482422,
+                    "text": "I"
+                },
+                {
+                    "start": 124.81999969482422,
+                    "end": 125.08000183105469,
+                    "text": "have"
+                },
+                {
+                    "start": 125.08000183105469,
+                    "end": 125.31999969482422,
+                    "text": "the"
+                },
+                {
+                    "start": 125.31999969482422,
+                    "end": 125.54000091552734,
+                    "text": "signed"
+                },
+                {
+                    "start": 125.54000091552734,
+                    "end": 125.94000244140625,
+                    "text": "document"
+                },
+                {
+                    "start": 125.94000244140625,
+                    "end": 126.45999908447266,
+                    "text": "on"
+                },
+                {
+                    "start": 126.45999908447266,
+                    "end": 126.55999755859375,
+                    "text": "file"
+                },
+                {
+                    "start": 127.05999755859375,
+                    "end": 128.05999755859375,
+                    "text": "Do"
+                },
+                {
+                    "start": 128.05999755859375,
+                    "end": 128.05999755859375,
+                    "text": "you"
+                },
+                {
+                    "start": 128.05999755859375,
+                    "end": 128.16000366210938,
+                    "text": "have"
+                },
+                {
+                    "start": 128.16000366210938,
+                    "end": 128.3800048828125,
+                    "text": "any"
+                },
+                {
+                    "start": 128.3800048828125,
+                    "end": 128.6999969482422,
+                    "text": "questions"
+                },
+                {
+                    "start": 129.47999572753906,
+                    "end": 129.9199981689453,
+                    "text": "No"
+                },
+                {
+                    "start": 130.27999877929688,
+                    "end": 130.5800018310547,
+                    "text": "I'll"
+                },
+                {
+                    "start": 130.5800018310547,
+                    "end": 130.6999969482422,
+                    "text": "send"
+                },
+                {
+                    "start": 130.6999969482422,
+                    "end": 130.8000030517578,
+                    "text": "it"
+                },
+                {
+                    "start": 130.8000030517578,
+                    "end": 130.94000244140625,
+                    "text": "to"
+                },
+                {
+                    "start": 130.94000244140625,
+                    "end": 131.05999755859375,
+                    "text": "you"
+                },
+                {
+                    "start": 131.05999755859375,
+                    "end": 132.0800018310547,
+                    "text": "this"
+                },
+                {
+                    "start": 132.0800018310547,
+                    "end": 132.0800018310547,
+                    "text": "afternoon"
+                },
+                {
+                    "start": 132.6199951171875,
+                    "end": 132.74000549316406,
+                    "text": "Perfect"
+                },
+                {
+                    "start": 133.32000732421875,
+                    "end": 133.44000244140625,
+                    "text": "Thank"
+                },
+                {
+                    "start": 133.44000244140625,
+                    "end": 134.02000427246094,
+                    "text": "you"
+                },
+                {
+                    "start": 134.72000122070312,
+                    "end": 134.72000122070312,
+                    "text": "Ken"
+                },
+                {
+                    "start": 134.83999633789062,
+                    "end": 135.5399932861328,
+                    "text": "please"
+                },
+                {
+                    "start": 135.5399932861328,
+                    "end": 135.72000122070312,
+                    "text": "send"
+                },
+                {
+                    "start": 135.72000122070312,
+                    "end": 135.86000061035156,
+                    "text": "me"
+                },
+                {
+                    "start": 135.86000061035156,
+                    "end": 136.1999969482422,
+                    "text": "an"
+                },
+                {
+                    "start": 136.1999969482422,
+                    "end": 136.1999969482422,
+                    "text": "email"
+                },
+                {
+                    "start": 136.1999969482422,
+                    "end": 136.66000366210938,
+                    "text": "so"
+                },
+                {
+                    "start": 136.66000366210938,
+                    "end": 136.8000030517578,
+                    "text": "I"
+                },
+                {
+                    "start": 136.8000030517578,
+                    "end": 136.9600067138672,
+                    "text": "can"
+                },
+                {
+                    "start": 136.9600067138672,
+                    "end": 137.3000030517578,
+                    "text": "double"
+                },
+                {
+                    "start": 137.3000030517578,
+                    "end": 137.4199981689453,
+                    "text": "check"
+                },
+                {
+                    "start": 137.4199981689453,
+                    "end": 137.63999938964844,
+                    "text": "the"
+                },
+                {
+                    "start": 137.63999938964844,
+                    "end": 137.86000061035156,
+                    "text": "email"
+                },
+                {
+                    "start": 137.86000061035156,
+                    "end": 138.17999267578125,
+                    "text": "address"
+                },
+                {
+                    "start": 138.17999267578125,
+                    "end": 138.3800048828125,
+                    "text": "I"
+                },
+                {
+                    "start": 138.3800048828125,
+                    "end": 138.5399932861328,
+                    "text": "have"
+                },
+                {
+                    "start": 138.5399932861328,
+                    "end": 138.66000366210938,
+                    "text": "in"
+                },
+                {
+                    "start": 138.66000366210938,
+                    "end": 138.82000732421875,
+                    "text": "your"
+                },
+                {
+                    "start": 138.82000732421875,
+                    "end": 139.13999938964844,
+                    "text": "file"
+                },
+                {
+                    "start": 140.0800018310547,
+                    "end": 140.52000427246094,
+                    "text": "Absolutely"
+                },
+                {
+                    "start": 140.94000244140625,
+                    "end": 141.3800048828125,
+                    "text": "Thanks"
+                },
+                {
+                    "start": 142.25999450683594,
+                    "end": 142.6999969482422,
+                    "text": "Okay"
+                },
+                {
+                    "start": 142.8800048828125,
+                    "end": 143.3000030517578,
+                    "text": "that's"
+                },
+                {
+                    "start": 143.3000030517578,
+                    "end": 143.9600067138672,
+                    "text": "it"
+                },
+                {
+                    "start": 144.13999938964844,
+                    "end": 144.24000549316406,
+                    "text": "Thank"
+                },
+                {
+                    "start": 144.24000549316406,
+                    "end": 144.4600067138672,
+                    "text": "you"
+                },
+                {
+                    "start": 144.63999938964844,
+                    "end": 144.63999938964844,
+                    "text": "Angela"
+                },
+                {
+                    "start": 144.74000549316406,
+                    "end": 144.9600067138672,
+                    "text": "for"
+                },
+                {
+                    "start": 144.9600067138672,
+                    "end": 145.05999755859375,
+                    "text": "giving"
+                },
+                {
+                    "start": 145.05999755859375,
+                    "end": 145.1999969482422,
+                    "text": "me"
+                },
+                {
+                    "start": 145.1999969482422,
+                    "end": 145.39999389648438,
+                    "text": "the"
+                },
+                {
+                    "start": 145.39999389648438,
+                    "end": 145.67999267578125,
+                    "text": "time"
+                },
+                {
+                    "start": 146.3000030517578,
+                    "end": 146.4600067138672,
+                    "text": "I"
+                },
+                {
+                    "start": 146.4600067138672,
+                    "end": 146.66000366210938,
+                    "text": "will"
+                },
+                {
+                    "start": 146.66000366210938,
+                    "end": 146.83999633789062,
+                    "text": "leave"
+                },
+                {
+                    "start": 146.83999633789062,
+                    "end": 147.02000427246094,
+                    "text": "the"
+                },
+                {
+                    "start": 147.02000427246094,
+                    "end": 147.13999938964844,
+                    "text": "meeting"
+                },
+                {
+                    "start": 147.13999938964844,
+                    "end": 147.5800018310547,
+                    "text": "now"
+                },
+                {
+                    "start": 148.36000061035156,
+                    "end": 148.47999572753906,
+                    "text": "Have"
+                },
+                {
+                    "start": 148.47999572753906,
+                    "end": 148.60000610351562,
+                    "text": "a"
+                },
+                {
+                    "start": 148.60000610351562,
+                    "end": 148.67999267578125,
+                    "text": "good"
+                },
+                {
+                    "start": 148.67999267578125,
+                    "end": 148.97999572753906,
+                    "text": "day"
+                },
+                {
+                    "start": 148.97999572753906,
+                    "end": 149.27999877929688,
+                    "text": "everyone"
+                },
+                {
+                    "start": 149.67999267578125,
+                    "end": 150.1199951171875,
+                    "text": "Maria"
+                },
+                {
+                    "start": 150.63999938964844,
+                    "end": 150.9600067138672,
+                    "text": "Ken"
+                },
+                {
+                    "start": 151.25999450683594,
+                    "end": 151.66000366210938,
+                    "text": "good"
+                },
+                {
+                    "start": 151.66000366210938,
+                    "end": 151.66000366210938,
+                    "text": "luck"
+                },
+                {
+                    "start": 151.66000366210938,
+                    "end": 151.83999633789062,
+                    "text": "with"
+                },
+                {
+                    "start": 151.83999633789062,
+                    "end": 152.02000427246094,
+                    "text": "your"
+                },
+                {
+                    "start": 152.02000427246094,
+                    "end": 152.32000732421875,
+                    "text": "training"
+                }
+            ],
+            "source": null
+        },
+        {
+            "start": 153.6199951171875,
+            "end": 187.75999450683594,
+            "text": "Thanks Tarek Speak to you soon Thanks Thanks Bye Great So let's get back to our business Maria and Ken you were both hired for the customer care positions This means that you'll deal with our clients team leads and other companies who have purchased our software You will answer some of their questions or provide a short demo of how our software and its features work First let me tell you a little bit about our product and our company Then we'll go through your duties and responsibilities And finally you can ask me questions if you have any Sounds good",
+            "words": [
+                {
+                    "start": 153.6199951171875,
+                    "end": 153.89999389648438,
+                    "text": "Thanks"
+                },
+                {
+                    "start": 154.0399932861328,
+                    "end": 154.17999267578125,
+                    "text": "Tarek"
+                },
+                {
+                    "start": 154.3000030517578,
+                    "end": 154.4199981689453,
+                    "text": "Speak"
+                },
+                {
+                    "start": 154.4199981689453,
+                    "end": 154.5800018310547,
+                    "text": "to"
+                },
+                {
+                    "start": 154.5800018310547,
+                    "end": 154.82000732421875,
+                    "text": "you"
+                },
+                {
+                    "start": 154.82000732421875,
+                    "end": 154.9199981689453,
+                    "text": "soon"
+                },
+                {
+                    "start": 155.63999938964844,
+                    "end": 156.0800018310547,
+                    "text": "Thanks"
+                },
+                {
+                    "start": 156.27999877929688,
+                    "end": 156.72000122070312,
+                    "text": "Thanks"
+                },
+                {
+                    "start": 156.72000122070312,
+                    "end": 157.0399932861328,
+                    "text": "Bye"
+                },
+                {
+                    "start": 157.0399932861328,
+                    "end": 157.89999389648438,
+                    "text": "Great"
+                },
+                {
+                    "start": 158.36000061035156,
+                    "end": 158.8800048828125,
+                    "text": "So"
+                },
+                {
+                    "start": 158.8800048828125,
+                    "end": 159.0800018310547,
+                    "text": "let's"
+                },
+                {
+                    "start": 159.0800018310547,
+                    "end": 159.24000549316406,
+                    "text": "get"
+                },
+                {
+                    "start": 159.24000549316406,
+                    "end": 159.4199981689453,
+                    "text": "back"
+                },
+                {
+                    "start": 159.4199981689453,
+                    "end": 159.60000610351562,
+                    "text": "to"
+                },
+                {
+                    "start": 159.60000610351562,
+                    "end": 159.89999389648438,
+                    "text": "our"
+                },
+                {
+                    "start": 159.89999389648438,
+                    "end": 160.44000244140625,
+                    "text": "business"
+                },
+                {
+                    "start": 161.13999938964844,
+                    "end": 161.33999633789062,
+                    "text": "Maria"
+                },
+                {
+                    "start": 161.33999633789062,
+                    "end": 161.63999938964844,
+                    "text": "and"
+                },
+                {
+                    "start": 161.63999938964844,
+                    "end": 161.9199981689453,
+                    "text": "Ken"
+                },
+                {
+                    "start": 162.02000427246094,
+                    "end": 162.22000122070312,
+                    "text": "you"
+                },
+                {
+                    "start": 162.22000122070312,
+                    "end": 162.3800048828125,
+                    "text": "were"
+                },
+                {
+                    "start": 162.3800048828125,
+                    "end": 162.72000122070312,
+                    "text": "both"
+                },
+                {
+                    "start": 162.72000122070312,
+                    "end": 162.83999633789062,
+                    "text": "hired"
+                },
+                {
+                    "start": 162.83999633789062,
+                    "end": 163.1199951171875,
+                    "text": "for"
+                },
+                {
+                    "start": 163.1199951171875,
+                    "end": 163.47999572753906,
+                    "text": "the"
+                },
+                {
+                    "start": 163.47999572753906,
+                    "end": 163.6999969482422,
+                    "text": "customer"
+                },
+                {
+                    "start": 163.6999969482422,
+                    "end": 164.10000610351562,
+                    "text": "care"
+                },
+                {
+                    "start": 164.10000610351562,
+                    "end": 164.55999755859375,
+                    "text": "positions"
+                },
+                {
+                    "start": 165.24000549316406,
+                    "end": 165.3800048828125,
+                    "text": "This"
+                },
+                {
+                    "start": 165.3800048828125,
+                    "end": 165.5800018310547,
+                    "text": "means"
+                },
+                {
+                    "start": 165.5800018310547,
+                    "end": 165.77999877929688,
+                    "text": "that"
+                },
+                {
+                    "start": 165.77999877929688,
+                    "end": 166.0399932861328,
+                    "text": "you'll"
+                },
+                {
+                    "start": 166.0399932861328,
+                    "end": 166.16000366210938,
+                    "text": "deal"
+                },
+                {
+                    "start": 166.16000366210938,
+                    "end": 166.36000061035156,
+                    "text": "with"
+                },
+                {
+                    "start": 166.36000061035156,
+                    "end": 166.6199951171875,
+                    "text": "our"
+                },
+                {
+                    "start": 166.6199951171875,
+                    "end": 167.0,
+                    "text": "clients"
+                },
+                {
+                    "start": 167.47999572753906,
+                    "end": 167.5800018310547,
+                    "text": "team"
+                },
+                {
+                    "start": 167.5800018310547,
+                    "end": 167.72000122070312,
+                    "text": "leads"
+                },
+                {
+                    "start": 167.8800048828125,
+                    "end": 168.0,
+                    "text": "and"
+                },
+                {
+                    "start": 168.0,
+                    "end": 168.24000549316406,
+                    "text": "other"
+                },
+                {
+                    "start": 168.24000549316406,
+                    "end": 168.5399932861328,
+                    "text": "companies"
+                },
+                {
+                    "start": 168.5399932861328,
+                    "end": 168.8000030517578,
+                    "text": "who"
+                },
+                {
+                    "start": 168.8000030517578,
+                    "end": 169.32000732421875,
+                    "text": "have"
+                },
+                {
+                    "start": 169.32000732421875,
+                    "end": 169.32000732421875,
+                    "text": "purchased"
+                },
+                {
+                    "start": 169.32000732421875,
+                    "end": 169.9600067138672,
+                    "text": "our"
+                },
+                {
+                    "start": 169.9600067138672,
+                    "end": 169.9600067138672,
+                    "text": "software"
+                },
+                {
+                    "start": 170.72000122070312,
+                    "end": 171.1999969482422,
+                    "text": "You"
+                },
+                {
+                    "start": 171.1999969482422,
+                    "end": 171.47999572753906,
+                    "text": "will"
+                },
+                {
+                    "start": 171.47999572753906,
+                    "end": 171.6199951171875,
+                    "text": "answer"
+                },
+                {
+                    "start": 171.6199951171875,
+                    "end": 171.86000061035156,
+                    "text": "some"
+                },
+                {
+                    "start": 171.86000061035156,
+                    "end": 172.0399932861328,
+                    "text": "of"
+                },
+                {
+                    "start": 172.0399932861328,
+                    "end": 172.27999877929688,
+                    "text": "their"
+                },
+                {
+                    "start": 172.27999877929688,
+                    "end": 172.8000030517578,
+                    "text": "questions"
+                },
+                {
+                    "start": 172.8000030517578,
+                    "end": 173.10000610351562,
+                    "text": "or"
+                },
+                {
+                    "start": 173.10000610351562,
+                    "end": 173.44000244140625,
+                    "text": "provide"
+                },
+                {
+                    "start": 173.44000244140625,
+                    "end": 173.9600067138672,
+                    "text": "a"
+                },
+                {
+                    "start": 173.9600067138672,
+                    "end": 173.9600067138672,
+                    "text": "short"
+                },
+                {
+                    "start": 173.9600067138672,
+                    "end": 174.17999267578125,
+                    "text": "demo"
+                },
+                {
+                    "start": 174.17999267578125,
+                    "end": 174.47999572753906,
+                    "text": "of"
+                },
+                {
+                    "start": 174.47999572753906,
+                    "end": 174.6999969482422,
+                    "text": "how"
+                },
+                {
+                    "start": 174.6999969482422,
+                    "end": 175.36000061035156,
+                    "text": "our"
+                },
+                {
+                    "start": 175.36000061035156,
+                    "end": 175.36000061035156,
+                    "text": "software"
+                },
+                {
+                    "start": 175.36000061035156,
+                    "end": 175.6199951171875,
+                    "text": "and"
+                },
+                {
+                    "start": 175.6199951171875,
+                    "end": 175.82000732421875,
+                    "text": "its"
+                },
+                {
+                    "start": 175.82000732421875,
+                    "end": 176.0800018310547,
+                    "text": "features"
+                },
+                {
+                    "start": 176.0800018310547,
+                    "end": 176.55999755859375,
+                    "text": "work"
+                },
+                {
+                    "start": 177.13999938964844,
+                    "end": 177.4600067138672,
+                    "text": "First"
+                },
+                {
+                    "start": 177.4600067138672,
+                    "end": 177.60000610351562,
+                    "text": "let"
+                },
+                {
+                    "start": 177.60000610351562,
+                    "end": 177.75999450683594,
+                    "text": "me"
+                },
+                {
+                    "start": 177.75999450683594,
+                    "end": 177.83999633789062,
+                    "text": "tell"
+                },
+                {
+                    "start": 177.83999633789062,
+                    "end": 177.94000244140625,
+                    "text": "you"
+                },
+                {
+                    "start": 177.94000244140625,
+                    "end": 178.1999969482422,
+                    "text": "a"
+                },
+                {
+                    "start": 178.1999969482422,
+                    "end": 178.1999969482422,
+                    "text": "little"
+                },
+                {
+                    "start": 178.1999969482422,
+                    "end": 178.4199981689453,
+                    "text": "bit"
+                },
+                {
+                    "start": 178.4199981689453,
+                    "end": 178.66000366210938,
+                    "text": "about"
+                },
+                {
+                    "start": 178.66000366210938,
+                    "end": 179.0,
+                    "text": "our"
+                },
+                {
+                    "start": 179.0,
+                    "end": 179.17999267578125,
+                    "text": "product"
+                },
+                {
+                    "start": 179.17999267578125,
+                    "end": 179.4600067138672,
+                    "text": "and"
+                },
+                {
+                    "start": 179.4600067138672,
+                    "end": 179.77999877929688,
+                    "text": "our"
+                },
+                {
+                    "start": 179.77999877929688,
+                    "end": 179.89999389648438,
+                    "text": "company"
+                },
+                {
+                    "start": 180.44000244140625,
+                    "end": 180.8800048828125,
+                    "text": "Then"
+                },
+                {
+                    "start": 180.8800048828125,
+                    "end": 181.0399932861328,
+                    "text": "we'll"
+                },
+                {
+                    "start": 181.0399932861328,
+                    "end": 181.25999450683594,
+                    "text": "go"
+                },
+                {
+                    "start": 181.25999450683594,
+                    "end": 181.3800048828125,
+                    "text": "through"
+                },
+                {
+                    "start": 181.3800048828125,
+                    "end": 181.97999572753906,
+                    "text": "your"
+                },
+                {
+                    "start": 181.97999572753906,
+                    "end": 181.97999572753906,
+                    "text": "duties"
+                },
+                {
+                    "start": 181.97999572753906,
+                    "end": 182.4199981689453,
+                    "text": "and"
+                },
+                {
+                    "start": 182.4199981689453,
+                    "end": 182.9600067138672,
+                    "text": "responsibilities"
+                },
+                {
+                    "start": 183.27999877929688,
+                    "end": 183.75999450683594,
+                    "text": "And"
+                },
+                {
+                    "start": 183.75999450683594,
+                    "end": 183.89999389648438,
+                    "text": "finally"
+                },
+                {
+                    "start": 183.89999389648438,
+                    "end": 184.16000366210938,
+                    "text": "you"
+                },
+                {
+                    "start": 184.16000366210938,
+                    "end": 184.36000061035156,
+                    "text": "can"
+                },
+                {
+                    "start": 184.36000061035156,
+                    "end": 184.47999572753906,
+                    "text": "ask"
+                },
+                {
+                    "start": 184.47999572753906,
+                    "end": 184.82000732421875,
+                    "text": "me"
+                },
+                {
+                    "start": 184.82000732421875,
+                    "end": 185.1199951171875,
+                    "text": "questions"
+                },
+                {
+                    "start": 185.1199951171875,
+                    "end": 185.32000732421875,
+                    "text": "if"
+                },
+                {
+                    "start": 185.32000732421875,
+                    "end": 185.44000244140625,
+                    "text": "you"
+                },
+                {
+                    "start": 185.44000244140625,
+                    "end": 185.6199951171875,
+                    "text": "have"
+                },
+                {
+                    "start": 185.6199951171875,
+                    "end": 185.8800048828125,
+                    "text": "any"
+                },
+                {
+                    "start": 186.66000366210938,
+                    "end": 187.33999633789062,
+                    "text": "Sounds"
+                },
+                {
+                    "start": 187.33999633789062,
+                    "end": 187.75999450683594,
+                    "text": "good"
+                }
+            ],
+            "source": null
+        },
+        {
+            "start": 188.9199981689453,
+            "end": 258.17999267578125,
+            "text": "So the two owners Jen and Nina created our company three years ago They created software for training work teams called Logiteam It became an instant success and now we have 43 employees 82 customers and five different product packages Our product is simple to use with some training and that's where you come into the picture In the next two weeks you'll become experts of Logiteam We'll make sure that you're familiar with all basic functions security features add ons and the most common glitches too By the end of this training you'll be able to assist our clients with using the software to its full potential Do you guys have any questions so far Yes I have a question Do we use our own devices or the company's laptop during the training Great question You don't need your own device We will set up your account on the computer you'll be using for work so it's better to start working on that Great thanks I have a question Will I be interacting with clients over the phone or video conference We use a video conferencing tool that will be covered during your training Okay thank you",
+            "words": [
+                {
+                    "start": 188.9199981689453,
+                    "end": 189.60000610351562,
+                    "text": "So"
+                },
+                {
+                    "start": 189.60000610351562,
+                    "end": 190.0,
+                    "text": "the"
+                },
+                {
+                    "start": 190.0,
+                    "end": 190.36000061035156,
+                    "text": "two"
+                },
+                {
+                    "start": 190.36000061035156,
+                    "end": 190.5800018310547,
+                    "text": "owners"
+                },
+                {
+                    "start": 191.02000427246094,
+                    "end": 191.02000427246094,
+                    "text": "Jen"
+                },
+                {
+                    "start": 191.02000427246094,
+                    "end": 191.25999450683594,
+                    "text": "and"
+                },
+                {
+                    "start": 191.25999450683594,
+                    "end": 191.47999572753906,
+                    "text": "Nina"
+                },
+                {
+                    "start": 191.82000732421875,
+                    "end": 191.9600067138672,
+                    "text": "created"
+                },
+                {
+                    "start": 191.9600067138672,
+                    "end": 192.17999267578125,
+                    "text": "our"
+                },
+                {
+                    "start": 192.17999267578125,
+                    "end": 192.4600067138672,
+                    "text": "company"
+                },
+                {
+                    "start": 192.4600067138672,
+                    "end": 192.83999633789062,
+                    "text": "three"
+                },
+                {
+                    "start": 192.83999633789062,
+                    "end": 193.0399932861328,
+                    "text": "years"
+                },
+                {
+                    "start": 193.0399932861328,
+                    "end": 193.33999633789062,
+                    "text": "ago"
+                },
+                {
+                    "start": 193.9600067138672,
+                    "end": 193.9600067138672,
+                    "text": "They"
+                },
+                {
+                    "start": 193.9600067138672,
+                    "end": 194.3000030517578,
+                    "text": "created"
+                },
+                {
+                    "start": 194.3000030517578,
+                    "end": 194.89999389648438,
+                    "text": "software"
+                },
+                {
+                    "start": 194.89999389648438,
+                    "end": 195.25999450683594,
+                    "text": "for"
+                },
+                {
+                    "start": 195.25999450683594,
+                    "end": 195.5399932861328,
+                    "text": "training"
+                },
+                {
+                    "start": 195.5399932861328,
+                    "end": 195.86000061035156,
+                    "text": "work"
+                },
+                {
+                    "start": 195.86000061035156,
+                    "end": 196.16000366210938,
+                    "text": "teams"
+                },
+                {
+                    "start": 196.16000366210938,
+                    "end": 196.55999755859375,
+                    "text": "called"
+                },
+                {
+                    "start": 196.55999755859375,
+                    "end": 197.02000427246094,
+                    "text": "Logiteam"
+                },
+                {
+                    "start": 197.5399932861328,
+                    "end": 197.9199981689453,
+                    "text": "It"
+                },
+                {
+                    "start": 197.9199981689453,
+                    "end": 198.25999450683594,
+                    "text": "became"
+                },
+                {
+                    "start": 198.25999450683594,
+                    "end": 198.6999969482422,
+                    "text": "an"
+                },
+                {
+                    "start": 198.6999969482422,
+                    "end": 198.9199981689453,
+                    "text": "instant"
+                },
+                {
+                    "start": 198.9199981689453,
+                    "end": 199.44000244140625,
+                    "text": "success"
+                },
+                {
+                    "start": 199.5399932861328,
+                    "end": 199.82000732421875,
+                    "text": "and"
+                },
+                {
+                    "start": 199.82000732421875,
+                    "end": 200.0,
+                    "text": "now"
+                },
+                {
+                    "start": 200.0,
+                    "end": 200.17999267578125,
+                    "text": "we"
+                },
+                {
+                    "start": 200.17999267578125,
+                    "end": 200.4600067138672,
+                    "text": "have"
+                },
+                {
+                    "start": 200.4600067138672,
+                    "end": 201.25999450683594,
+                    "text": "43"
+                },
+                {
+                    "start": 201.25999450683594,
+                    "end": 201.82000732421875,
+                    "text": "employees"
+                },
+                {
+                    "start": 202.5399932861328,
+                    "end": 202.9600067138672,
+                    "text": "82"
+                },
+                {
+                    "start": 202.9600067138672,
+                    "end": 203.4600067138672,
+                    "text": "customers"
+                },
+                {
+                    "start": 203.75999450683594,
+                    "end": 203.97999572753906,
+                    "text": "and"
+                },
+                {
+                    "start": 203.97999572753906,
+                    "end": 204.5399932861328,
+                    "text": "five"
+                },
+                {
+                    "start": 204.5399932861328,
+                    "end": 204.8800048828125,
+                    "text": "different"
+                },
+                {
+                    "start": 204.8800048828125,
+                    "end": 205.27999877929688,
+                    "text": "product"
+                },
+                {
+                    "start": 205.27999877929688,
+                    "end": 205.63999938964844,
+                    "text": "packages"
+                },
+                {
+                    "start": 206.0,
+                    "end": 206.55999755859375,
+                    "text": "Our"
+                },
+                {
+                    "start": 206.55999755859375,
+                    "end": 206.83999633789062,
+                    "text": "product"
+                },
+                {
+                    "start": 206.83999633789062,
+                    "end": 207.17999267578125,
+                    "text": "is"
+                },
+                {
+                    "start": 207.17999267578125,
+                    "end": 207.44000244140625,
+                    "text": "simple"
+                },
+                {
+                    "start": 207.44000244140625,
+                    "end": 207.94000244140625,
+                    "text": "to"
+                },
+                {
+                    "start": 207.94000244140625,
+                    "end": 207.94000244140625,
+                    "text": "use"
+                },
+                {
+                    "start": 207.94000244140625,
+                    "end": 208.4199981689453,
+                    "text": "with"
+                },
+                {
+                    "start": 208.4199981689453,
+                    "end": 208.77999877929688,
+                    "text": "some"
+                },
+                {
+                    "start": 208.77999877929688,
+                    "end": 209.10000610351562,
+                    "text": "training"
+                },
+                {
+                    "start": 209.24000549316406,
+                    "end": 209.5399932861328,
+                    "text": "and"
+                },
+                {
+                    "start": 209.5399932861328,
+                    "end": 209.77999877929688,
+                    "text": "that's"
+                },
+                {
+                    "start": 209.77999877929688,
+                    "end": 209.9199981689453,
+                    "text": "where"
+                },
+                {
+                    "start": 209.9199981689453,
+                    "end": 210.0800018310547,
+                    "text": "you"
+                },
+                {
+                    "start": 210.0800018310547,
+                    "end": 210.25999450683594,
+                    "text": "come"
+                },
+                {
+                    "start": 210.25999450683594,
+                    "end": 210.4199981689453,
+                    "text": "into"
+                },
+                {
+                    "start": 210.4199981689453,
+                    "end": 210.89999389648438,
+                    "text": "the"
+                },
+                {
+                    "start": 210.89999389648438,
+                    "end": 210.89999389648438,
+                    "text": "picture"
+                },
+                {
+                    "start": 211.10000610351562,
+                    "end": 211.5800018310547,
+                    "text": "In"
+                },
+                {
+                    "start": 211.5800018310547,
+                    "end": 211.74000549316406,
+                    "text": "the"
+                },
+                {
+                    "start": 211.74000549316406,
+                    "end": 211.9199981689453,
+                    "text": "next"
+                },
+                {
+                    "start": 211.9199981689453,
+                    "end": 212.27999877929688,
+                    "text": "two"
+                },
+                {
+                    "start": 212.27999877929688,
+                    "end": 212.4199981689453,
+                    "text": "weeks"
+                },
+                {
+                    "start": 212.4600067138672,
+                    "end": 212.8000030517578,
+                    "text": "you'll"
+                },
+                {
+                    "start": 212.8000030517578,
+                    "end": 213.0800018310547,
+                    "text": "become"
+                },
+                {
+                    "start": 213.0800018310547,
+                    "end": 213.63999938964844,
+                    "text": "experts"
+                },
+                {
+                    "start": 213.63999938964844,
+                    "end": 213.94000244140625,
+                    "text": "of"
+                },
+                {
+                    "start": 213.94000244140625,
+                    "end": 214.39999389648438,
+                    "text": "Logiteam"
+                },
+                {
+                    "start": 214.39999389648438,
+                    "end": 214.97999572753906,
+                    "text": "We'll"
+                },
+                {
+                    "start": 214.97999572753906,
+                    "end": 215.16000366210938,
+                    "text": "make"
+                },
+                {
+                    "start": 215.16000366210938,
+                    "end": 215.32000732421875,
+                    "text": "sure"
+                },
+                {
+                    "start": 215.32000732421875,
+                    "end": 215.52000427246094,
+                    "text": "that"
+                },
+                {
+                    "start": 215.52000427246094,
+                    "end": 215.94000244140625,
+                    "text": "you're"
+                },
+                {
+                    "start": 215.94000244140625,
+                    "end": 215.94000244140625,
+                    "text": "familiar"
+                },
+                {
+                    "start": 215.94000244140625,
+                    "end": 216.22000122070312,
+                    "text": "with"
+                },
+                {
+                    "start": 216.22000122070312,
+                    "end": 216.52000427246094,
+                    "text": "all"
+                },
+                {
+                    "start": 216.52000427246094,
+                    "end": 216.8800048828125,
+                    "text": "basic"
+                },
+                {
+                    "start": 216.8800048828125,
+                    "end": 217.47999572753906,
+                    "text": "functions"
+                },
+                {
+                    "start": 218.0,
+                    "end": 218.16000366210938,
+                    "text": "security"
+                },
+                {
+                    "start": 218.16000366210938,
+                    "end": 218.72000122070312,
+                    "text": "features"
+                },
+                {
+                    "start": 219.10000610351562,
+                    "end": 219.32000732421875,
+                    "text": "add"
+                },
+                {
+                    "start": 219.32000732421875,
+                    "end": 219.44000244140625,
+                    "text": "ons"
+                },
+                {
+                    "start": 219.6199951171875,
+                    "end": 220.1199951171875,
+                    "text": "and"
+                },
+                {
+                    "start": 220.1199951171875,
+                    "end": 220.39999389648438,
+                    "text": "the"
+                },
+                {
+                    "start": 220.39999389648438,
+                    "end": 220.60000610351562,
+                    "text": "most"
+                },
+                {
+                    "start": 220.60000610351562,
+                    "end": 220.83999633789062,
+                    "text": "common"
+                },
+                {
+                    "start": 220.83999633789062,
+                    "end": 221.32000732421875,
+                    "text": "glitches"
+                },
+                {
+                    "start": 221.32000732421875,
+                    "end": 221.60000610351562,
+                    "text": "too"
+                },
+                {
+                    "start": 221.94000244140625,
+                    "end": 222.44000244140625,
+                    "text": "By"
+                },
+                {
+                    "start": 222.44000244140625,
+                    "end": 222.72000122070312,
+                    "text": "the"
+                },
+                {
+                    "start": 222.72000122070312,
+                    "end": 222.77999877929688,
+                    "text": "end"
+                },
+                {
+                    "start": 222.77999877929688,
+                    "end": 222.9199981689453,
+                    "text": "of"
+                },
+                {
+                    "start": 222.9199981689453,
+                    "end": 223.17999267578125,
+                    "text": "this"
+                },
+                {
+                    "start": 223.17999267578125,
+                    "end": 223.4199981689453,
+                    "text": "training"
+                },
+                {
+                    "start": 223.55999755859375,
+                    "end": 223.94000244140625,
+                    "text": "you'll"
+                },
+                {
+                    "start": 223.94000244140625,
+                    "end": 224.10000610351562,
+                    "text": "be"
+                },
+                {
+                    "start": 224.10000610351562,
+                    "end": 224.16000366210938,
+                    "text": "able"
+                },
+                {
+                    "start": 224.16000366210938,
+                    "end": 224.60000610351562,
+                    "text": "to"
+                },
+                {
+                    "start": 224.60000610351562,
+                    "end": 224.60000610351562,
+                    "text": "assist"
+                },
+                {
+                    "start": 224.60000610351562,
+                    "end": 224.97999572753906,
+                    "text": "our"
+                },
+                {
+                    "start": 224.97999572753906,
+                    "end": 225.17999267578125,
+                    "text": "clients"
+                },
+                {
+                    "start": 225.17999267578125,
+                    "end": 225.60000610351562,
+                    "text": "with"
+                },
+                {
+                    "start": 225.60000610351562,
+                    "end": 225.94000244140625,
+                    "text": "using"
+                },
+                {
+                    "start": 225.94000244140625,
+                    "end": 226.4600067138672,
+                    "text": "the"
+                },
+                {
+                    "start": 226.4600067138672,
+                    "end": 226.55999755859375,
+                    "text": "software"
+                },
+                {
+                    "start": 226.55999755859375,
+                    "end": 226.8800048828125,
+                    "text": "to"
+                },
+                {
+                    "start": 226.8800048828125,
+                    "end": 227.0800018310547,
+                    "text": "its"
+                },
+                {
+                    "start": 227.0800018310547,
+                    "end": 227.3000030517578,
+                    "text": "full"
+                },
+                {
+                    "start": 227.3000030517578,
+                    "end": 227.66000366210938,
+                    "text": "potential"
+                },
+                {
+                    "start": 228.1199951171875,
+                    "end": 228.6199951171875,
+                    "text": "Do"
+                },
+                {
+                    "start": 228.6199951171875,
+                    "end": 228.67999267578125,
+                    "text": "you"
+                },
+                {
+                    "start": 228.67999267578125,
+                    "end": 228.83999633789062,
+                    "text": "guys"
+                },
+                {
+                    "start": 228.83999633789062,
+                    "end": 228.9600067138672,
+                    "text": "have"
+                },
+                {
+                    "start": 228.9600067138672,
+                    "end": 229.1999969482422,
+                    "text": "any"
+                },
+                {
+                    "start": 229.1999969482422,
+                    "end": 229.4199981689453,
+                    "text": "questions"
+                },
+                {
+                    "start": 229.4199981689453,
+                    "end": 229.72000122070312,
+                    "text": "so"
+                },
+                {
+                    "start": 229.72000122070312,
+                    "end": 229.77999877929688,
+                    "text": "far"
+                },
+                {
+                    "start": 230.66000366210938,
+                    "end": 231.10000610351562,
+                    "text": "Yes"
+                },
+                {
+                    "start": 231.10000610351562,
+                    "end": 231.3000030517578,
+                    "text": "I"
+                },
+                {
+                    "start": 231.3000030517578,
+                    "end": 231.39999389648438,
+                    "text": "have"
+                },
+                {
+                    "start": 231.39999389648438,
+                    "end": 231.8000030517578,
+                    "text": "a"
+                },
+                {
+                    "start": 231.8000030517578,
+                    "end": 231.8000030517578,
+                    "text": "question"
+                },
+                {
+                    "start": 232.0,
+                    "end": 232.10000610351562,
+                    "text": "Do"
+                },
+                {
+                    "start": 232.10000610351562,
+                    "end": 232.27999877929688,
+                    "text": "we"
+                },
+                {
+                    "start": 232.27999877929688,
+                    "end": 232.3800048828125,
+                    "text": "use"
+                },
+                {
+                    "start": 232.3800048828125,
+                    "end": 232.6199951171875,
+                    "text": "our"
+                },
+                {
+                    "start": 232.6199951171875,
+                    "end": 232.86000061035156,
+                    "text": "own"
+                },
+                {
+                    "start": 232.86000061035156,
+                    "end": 233.1999969482422,
+                    "text": "devices"
+                },
+                {
+                    "start": 233.1999969482422,
+                    "end": 233.6199951171875,
+                    "text": "or"
+                },
+                {
+                    "start": 233.6199951171875,
+                    "end": 233.9199981689453,
+                    "text": "the"
+                },
+                {
+                    "start": 233.9199981689453,
+                    "end": 234.5800018310547,
+                    "text": "company's"
+                },
+                {
+                    "start": 234.5800018310547,
+                    "end": 234.82000732421875,
+                    "text": "laptop"
+                },
+                {
+                    "start": 234.82000732421875,
+                    "end": 235.17999267578125,
+                    "text": "during"
+                },
+                {
+                    "start": 235.17999267578125,
+                    "end": 235.66000366210938,
+                    "text": "the"
+                },
+                {
+                    "start": 235.66000366210938,
+                    "end": 235.66000366210938,
+                    "text": "training"
+                },
+                {
+                    "start": 236.52000427246094,
+                    "end": 236.6999969482422,
+                    "text": "Great"
+                },
+                {
+                    "start": 236.6999969482422,
+                    "end": 237.10000610351562,
+                    "text": "question"
+                },
+                {
+                    "start": 237.27999877929688,
+                    "end": 237.77999877929688,
+                    "text": "You"
+                },
+                {
+                    "start": 237.77999877929688,
+                    "end": 238.13999938964844,
+                    "text": "don't"
+                },
+                {
+                    "start": 238.13999938964844,
+                    "end": 238.36000061035156,
+                    "text": "need"
+                },
+                {
+                    "start": 238.36000061035156,
+                    "end": 238.5399932861328,
+                    "text": "your"
+                },
+                {
+                    "start": 238.5399932861328,
+                    "end": 238.72000122070312,
+                    "text": "own"
+                },
+                {
+                    "start": 238.72000122070312,
+                    "end": 239.0399932861328,
+                    "text": "device"
+                },
+                {
+                    "start": 239.0399932861328,
+                    "end": 239.32000732421875,
+                    "text": "We"
+                },
+                {
+                    "start": 239.32000732421875,
+                    "end": 239.5399932861328,
+                    "text": "will"
+                },
+                {
+                    "start": 239.5399932861328,
+                    "end": 239.75999450683594,
+                    "text": "set"
+                },
+                {
+                    "start": 239.75999450683594,
+                    "end": 239.9600067138672,
+                    "text": "up"
+                },
+                {
+                    "start": 239.9600067138672,
+                    "end": 240.1999969482422,
+                    "text": "your"
+                },
+                {
+                    "start": 240.1999969482422,
+                    "end": 240.5,
+                    "text": "account"
+                },
+                {
+                    "start": 240.5,
+                    "end": 240.86000061035156,
+                    "text": "on"
+                },
+                {
+                    "start": 240.86000061035156,
+                    "end": 241.05999755859375,
+                    "text": "the"
+                },
+                {
+                    "start": 241.05999755859375,
+                    "end": 241.27999877929688,
+                    "text": "computer"
+                },
+                {
+                    "start": 241.27999877929688,
+                    "end": 241.52000427246094,
+                    "text": "you'll"
+                },
+                {
+                    "start": 241.52000427246094,
+                    "end": 241.67999267578125,
+                    "text": "be"
+                },
+                {
+                    "start": 241.67999267578125,
+                    "end": 241.83999633789062,
+                    "text": "using"
+                },
+                {
+                    "start": 241.83999633789062,
+                    "end": 242.16000366210938,
+                    "text": "for"
+                },
+                {
+                    "start": 242.16000366210938,
+                    "end": 242.3800048828125,
+                    "text": "work"
+                },
+                {
+                    "start": 242.6199951171875,
+                    "end": 242.9199981689453,
+                    "text": "so"
+                },
+                {
+                    "start": 242.9199981689453,
+                    "end": 243.16000366210938,
+                    "text": "it's"
+                },
+                {
+                    "start": 243.16000366210938,
+                    "end": 243.27999877929688,
+                    "text": "better"
+                },
+                {
+                    "start": 243.27999877929688,
+                    "end": 243.47999572753906,
+                    "text": "to"
+                },
+                {
+                    "start": 243.47999572753906,
+                    "end": 243.67999267578125,
+                    "text": "start"
+                },
+                {
+                    "start": 243.67999267578125,
+                    "end": 243.89999389648438,
+                    "text": "working"
+                },
+                {
+                    "start": 243.89999389648438,
+                    "end": 244.13999938964844,
+                    "text": "on"
+                },
+                {
+                    "start": 244.13999938964844,
+                    "end": 244.74000549316406,
+                    "text": "that"
+                },
+                {
+                    "start": 245.32000732421875,
+                    "end": 245.5,
+                    "text": "Great"
+                },
+                {
+                    "start": 245.5800018310547,
+                    "end": 245.89999389648438,
+                    "text": "thanks"
+                },
+                {
+                    "start": 246.86000061035156,
+                    "end": 247.3800048828125,
+                    "text": "I"
+                },
+                {
+                    "start": 247.3800048828125,
+                    "end": 247.4600067138672,
+                    "text": "have"
+                },
+                {
+                    "start": 247.4600067138672,
+                    "end": 248.0399932861328,
+                    "text": "a"
+                },
+                {
+                    "start": 248.0399932861328,
+                    "end": 248.0399932861328,
+                    "text": "question"
+                },
+                {
+                    "start": 248.44000244140625,
+                    "end": 248.5399932861328,
+                    "text": "Will"
+                },
+                {
+                    "start": 248.5399932861328,
+                    "end": 248.77999877929688,
+                    "text": "I"
+                },
+                {
+                    "start": 248.77999877929688,
+                    "end": 249.13999938964844,
+                    "text": "be"
+                },
+                {
+                    "start": 249.13999938964844,
+                    "end": 249.33999633789062,
+                    "text": "interacting"
+                },
+                {
+                    "start": 249.33999633789062,
+                    "end": 249.72000122070312,
+                    "text": "with"
+                },
+                {
+                    "start": 249.72000122070312,
+                    "end": 250.05999755859375,
+                    "text": "clients"
+                },
+                {
+                    "start": 250.05999755859375,
+                    "end": 250.33999633789062,
+                    "text": "over"
+                },
+                {
+                    "start": 250.33999633789062,
+                    "end": 250.67999267578125,
+                    "text": "the"
+                },
+                {
+                    "start": 250.67999267578125,
+                    "end": 250.82000732421875,
+                    "text": "phone"
+                },
+                {
+                    "start": 250.82000732421875,
+                    "end": 251.13999938964844,
+                    "text": "or"
+                },
+                {
+                    "start": 251.13999938964844,
+                    "end": 251.47999572753906,
+                    "text": "video"
+                },
+                {
+                    "start": 251.47999572753906,
+                    "end": 251.89999389648438,
+                    "text": "conference"
+                },
+                {
+                    "start": 252.6199951171875,
+                    "end": 253.13999938964844,
+                    "text": "We"
+                },
+                {
+                    "start": 253.13999938964844,
+                    "end": 253.33999633789062,
+                    "text": "use"
+                },
+                {
+                    "start": 253.33999633789062,
+                    "end": 253.5800018310547,
+                    "text": "a"
+                },
+                {
+                    "start": 253.5800018310547,
+                    "end": 253.86000061035156,
+                    "text": "video"
+                },
+                {
+                    "start": 253.86000061035156,
+                    "end": 254.25999450683594,
+                    "text": "conferencing"
+                },
+                {
+                    "start": 254.25999450683594,
+                    "end": 254.55999755859375,
+                    "text": "tool"
+                },
+                {
+                    "start": 254.55999755859375,
+                    "end": 254.74000549316406,
+                    "text": "that"
+                },
+                {
+                    "start": 254.74000549316406,
+                    "end": 254.86000061035156,
+                    "text": "will"
+                },
+                {
+                    "start": 254.86000061035156,
+                    "end": 255.39999389648438,
+                    "text": "be"
+                },
+                {
+                    "start": 255.39999389648438,
+                    "end": 255.39999389648438,
+                    "text": "covered"
+                },
+                {
+                    "start": 255.39999389648438,
+                    "end": 255.66000366210938,
+                    "text": "during"
+                },
+                {
+                    "start": 255.66000366210938,
+                    "end": 255.9199981689453,
+                    "text": "your"
+                },
+                {
+                    "start": 255.9199981689453,
+                    "end": 256.1400146484375,
+                    "text": "training"
+                },
+                {
+                    "start": 256.67999267578125,
+                    "end": 257.1400146484375,
+                    "text": "Okay"
+                },
+                {
+                    "start": 257.3599853515625,
+                    "end": 257.70001220703125,
+                    "text": "thank"
+                },
+                {
+                    "start": 257.70001220703125,
+                    "end": 258.17999267578125,
+                    "text": "you"
+                }
+            ],
+            "source": null
+        }
+    ],
+    "transcriptSliceCount": 0,
+    "transcriptionError": null,
+    "transcriptionMode": "ai",
+    "uploadedAt": "2026-09-04T07:07:53.281Z",
+    "userId": "6a6e39b4fa2173292bad5766"
+}
