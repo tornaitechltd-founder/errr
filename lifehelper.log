@@ -1,27 +1,25 @@
   1) [ui] › tests\features\auth\routing.ui.spec.js:78:5 › Auth > Routing (browser) › a relative returnTo lands the user where the deep link started
 
-    Error: expect(page).toHaveURL(expected) failed
+    Error: expect(locator).toBeVisible() failed
 
-    Expected: "http://localhost:8081/trash"
-    Received: "http://localhost:8081/dashboard"
-    Timeout:  15000ms
+    Locator: getByRole('heading', { name: 'Trash', level: 1 })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
 
     Call log:
-      - Expect "toHaveURL" with timeout 15000ms
-        - locator resolved to <html lang="en">…</html>
-        - unexpected value "http://localhost:8081/login?returnTo=%2Ftrash"
-        32 × locator resolved to <html lang="en">…</html>
-           - unexpected value "http://localhost:8081/dashboard"
+      - Expect "toBeVisible" with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Trash', level: 1 })
 
 
-      84 |         expect((await signInWithReturnTo(page, '/trash', email, password)).status()).toBe(200);
       85 |
-    > 86 |         await expect(page).toHaveURL('/trash');
-         |                            ^
-      87 |         await expect(page.getByRole('heading', { level: 1, name: 'Trash' })).toBeVisible();
+      86 |         await expect(page).toHaveURL('/trash');
+    > 87 |         await expect(page.getByRole('heading', { level: 1, name: 'Trash' })).toBeVisible();
+         |                                                                              ^
       88 |     });
       89 |
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\auth\routing.ui.spec.js:86:28
+      90 |     test('an off-site returnTo is refused and falls back to the dashboard', async ({
+        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\auth\routing.ui.spec.js:87:78
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     test-results\features-auth-routing.ui-A-4ec58-where-the-deep-link-started-ui\test-failed-1.png
