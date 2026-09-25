@@ -3,236 +3,131 @@ import { fundedOrgWithMember } from '../../support/org.js';
 import { appendSlice, createRecording, TRANSCRIPT } from '../../support/recordings.js';
 
 /**
- * Folding two contacts into one, and the rename that made the endpoint worth
- * calling at all.
+ * Two reps, one client. Rep B picks up the call Rep A started and needs to
+ * know where it left off.
  *
- * Two things here are load-bearing and neither is obvious from the response.
- * * A rename has to reach every teammate's own 'Speaker', because that is the
- * row every list renders - stopping at the contact would make the rename
- * invisible to the whole team, including whoever just made it. And a merge
- * must repoint links **without** merging anybody's speakers: that moves
- * voiceprints, and doing it to a colleague because someone else clicked merge
- * is both unasked-for and impossible to undo.
+ * The money assertions are the point, as they were for the personal briefing:
+ * * a team briefing that billed per reader would be a worse deal than no
+ * sharing at all.
  */
 const enableSharing = (owner, orgId, on = true) =>
     owner.api.json(owner.api.put(`/api/v1/organizations/${orgId}/enforcement-settings`, {
         data: { contactHistoryVisibleToPeers: on },
     }), 200);
 
-const listContacts = (api) => api.json(api.get('/api/v1/contacts'), 200);
-
 const createContact = (api, name) =>
     api.json(api.post('/api/v1/contacts', { data: { name } }), 200);
 
-const mySpeakers = (api) => api.json(api.get('/api/v1/speakers'), 200);
+const brief = (api, speakerId) =>
+    api.json(api.get(`/api/v1/speakers/${speakerId}/brief`), 200);
 
-const mergeContacts = (api, sourceId, targetId) =>
-    api.post(`/api/v1/contacts/${sourceId}/merge`, { data: { targetId } });
+const spentByCaller = async (who, orgId) =>
+    Number((await who.api.json(who.api.get(`/api/v1/organizations/${orgId}`), 200))
+        .callersSpentThisPeriodUsd);
 
-/** Tags an untranscribed call, which is enough to mint the caller's own speaker. */
-async function tagCallWith(callId, contactId, title) {
+/**
+ * A summarised call with a shared contact, owned by whoever api is.
+ *
+ * @returns that user's own speaker id for the contact - the thing their
+ * briefing is requested by.
+ */
+async function callWith(api, contactId, title) {
     const { id } = await createRecording(api, 'E2E group', title);
+    await expectStatus(await appendSlice(api, id, `${TRANSCRIPT} `), 200);
+    await expectStatus(await api.post(`/api/v1/recordings/${id}/summary`), 200);
     const tagged = await api.json(api.patch(`/api/v1/recordings/${id}/participants`, {
         data: { contactIds: [contactId], oneOnOne: true },
     }), 200);
     return tagged.participantIds[0];
 }
 
-test.describe('Diarization > Contact merge', () => {
-    test('a rename reaches every teammate own record of that person',
+test.describe('Diarization > Team briefing', () => {
+    test('the briefing pools the whole team and says whose call was whose',
         async ({ createAccount, mailpit }) => {
             test.slow();
             const { owner, member, orgId } = await fundedOrgWithMember(createAccount, mailpit);
             await enableSharing(owner, orgId);
-            const john = await createContact(owner.api, 'Jon Casson');
+            const john = await createContact(owner.api, 'John Casson');
 
-            const ownerSpeaker = await tagCallWith(owner.api, john.id, 'Discovery call');
-            const memberSpeaker = await tagCallWith(member.api, john.id, 'Follow-up call');
+            const memberSpeaker = await callWith(member.api, john.id, 'Follow-up call');
+            // Owner's call last, so it is the newest conversation and leads the
+            // prompt - which is what makes the attribution assertion below bite.
+            await callWith(owner.api, john.id, 'Discovery call');
 
-            await member.api.json(
-                member.api.patch(`/api/v1/contacts/${john.id}`, { data: { name: 'John Casson' } }), 200);
+            const result = await brief(member.api, memberSpeaker);
+            expect(result.sourceCount).toBe(2);
 
-            // speakerfor copies the contact name in at link time, so a rename
-            // that stopped at the contact row would change nothing anybody sees.
-            expect((await mySpeakers(owner.api)).find((s) => s.id === ownerSpeaker).name)
-                .toBe('John Casson');
-            expect((await mySpeakers(member.api)).find((s) => s.id === memberSpeaker).name)
-                .toBe('John Casson');
+            // The stub echoes the first source header it was handed. A shared
+            // briefing that did not mark a colleague's call would tell the
+            // reader "you agreed to send the contract" about a conversation
+            // they were never on.
+            expect(result.brief).toContain('call, not yours');
         });
 
-    test('merging leaves one contact and repoints every link',
+    test('whoever opens it first pays, and the rest of the team reads it free',
         async ({ createAccount, mailpit }) => {
             test.slow();
             const { owner, member, orgId } = await fundedOrgWithMember(createAccount, mailpit);
             await enableSharing(owner, orgId);
-            const stale = await createContact(owner.api, 'Jon Casson');
-            const survivor = await createContact(owner.api, 'John Casson');
+            const john = await createContact(owner.api, 'John Casson');
 
-            const memberSpeaker = await tagCallWith(member.api, stale.id, 'Follow-up call');
+            const ownerSpeaker = await callWith(owner.api, john.id, 'Discovery call');
+            const memberSpeaker = await callWith(member.api, john.id, 'Follow-up call');
 
-            const merged = await member.api.json(mergeContacts(member.api, stale.id, survivor.id), 200);
-            expect(merged.id).toBe(survivor.id);
+            const first = await brief(owner.api, ownerSpeaker);
+            expect(first.cached).toBe(false);
+            expect(first.sourceCount).toBe(2);
 
-            // The tombstone stays in the database but leaves the list: two rows
-            // for one person is the outcome this whole surface avoids to avoid.
-            expect(await listContacts(owner.api)).toMatchObject([{ id: survivor.id }]);
+            const walletBefore = await spentByCaller(member, orgId);
+            const second = await brief(member.api, memberSpeaker);
 
-            // The colleague's own row followed the merge without being asked.
-            expect((await mySpeakers(member.api)).find((s) => s.id === memberSpeaker.name).contactId)
-                .toBe(survivor.id);
+            // One briefing per contact, not per reader - a handover the second
+            // rep has to pay for is a handover they will skip.
+            expect(second.cached).toBe(true);
+            expect(second.brief).toBe(first.brief);
+            expect(await spentByCaller(member, orgId)).toBeCloseTo(walletBefore, 6);
         });
 
-    test('merging contacts does not merge anybody voiceprints',
-        async ({ createAccount, mailpit }) => {
-            test.slow();
-            const { owner, member, orgId } = await fundedOrgWithMember(createAccount, mailpit);
-            await enableSharing(owner, orgId);
-            const stale = await createContact(owner.api, 'Jon Casson');
-            const survivor = await createContact(owner.api, 'John Casson');
-
-            // One member who has spoken to "both" of them, so the merge leaves
-            // them holding two records for what is now one person.
-            const first = await tagCallWith(member.api, stale.id, 'Early call');
-            const second = await tagCallWith(member.api, survivor.id, 'Later call');
-            expect(first).not.toBe(second);
-
-            await expectStatus(await mergeContacts(member.api, stale.id, survivor.id), 200);
-
-            const speakers = await mySpeakers(member.api);
-            const kept = speakers.filter((s) => s.id === first || s.id === second);
-
-            // Both survive, both point at the survivor. Folding them together
-            // would move prototypes and segments - a write to this member's
-            // biometric data that nobody asked them about.
-            expect(kept).toHaveLength(2);
-            expect(kept.every((s) => s.contactId === survivor.id)).toBe(true);
-
-            // And the tagging path still resolves, which it would not if the
-            // lookup were a single-result Optional over (userId, contactId).
-            const again = await tagCallWith(member.api, survivor.id, 'Third call');
-            expect([first, second]).toContain(again);
-        });
-
-    test('folding your own two records keeps the person shared',
-        async ({ createAccount, mailpit }) => {
-            test.slow();
-            const { owner, member, orgId } = await fundedOrgWithMember(createAccount, mailpit);
-            await enableSharing(owner, orgId);
-            const stale = await createContact(owner.api, 'Jon Casson');
-            const survivor = await createContact(owner.api, 'John Casson');
-
-            // The state a contact merge leaves behind, and the one the people
-            // page offers "Merge mine" for.
-            const first = await tagCallWith(member.api, stale.id, 'Early call');
-            const second = await tagCallWith(member.api, survivor.id, 'Later call');
-            await expectStatus(await mergeContacts(member.api, stale.id, survivor.id), 200);
-
-            await expectStatus(await member.api.post(`/api/v1/speakers/${first}/merge`, {
-                data: { targetId: second },
-            }), 200, 204);
-
-            // The link lives on the row the merge deletes. Losing it drops this
-            // member out of the team's history for someone they just tidied up,
-            // and nothing in the response would say so.
-            const kept = await mySpeakers(member.api).filter((s) => s.id === first || s.id === second);
-            expect(kept).toHaveLength(1);
-            expect(kept[0].contactId).toBe(survivor.id);
-        });
-
-    test('an id that was merged away still lands on the right person',
-        async ({ createAccount, mailpit }) => {
-            test.slow();
-            const { owner, member, orgId } = await fundedOrgWithMember(createAccount, mailpit);
-            await enableSharing(owner, orgId);
-            const stale = await createContact(owner.api, 'Jon Casson');
-            const survivor = await createContact(owner.api, 'John Casson');
-            await expectStatus(await mergeContacts(member.api, stale.id, survivor.id), 200);
-
-            // Clients cache the contact list, so a tap on a row merged a minute
-            // ago must follow the merge rather than mint a dangling link.
-            const speakerId = await tagCallWith(member.api, stale.id, 'Stale-id call');
-            expect((await mySpeakers(member.api)).find((s) => s.id === speakerId).contactId)
-                .toBe(survivor.id);
-
-            // Renaming through the old id lands on the survivor too.
-            const renamed = await member.api.json(
-                member.api.patch(`/api/v1/contacts/${stale.id}`, { data: { name: 'John Q. Casson' } }), 200);
-            expect(renamed.id).toBe(survivor.id);
-        });
-
-    test('the merges that must be refused', async ({ createAccount, mailpit, newUser }) => {
+    test('the person who asked is the one billed', async ({ createAccount, mailpit }) => {
         test.slow();
         const { owner, member, orgId } = await fundedOrgWithMember(createAccount, mailpit);
         await enableSharing(owner, orgId);
-        const stale = await createContact(owner.api, 'Jon Casson');
-        const survivor = await createContact(owner.api, 'John Casson');
+        const john = await createContact(owner.api, 'John Casson');
 
-        expect((await mergeContacts(member.api, survivor.id, survivor.id)).status()).toBe(400);
-        expect((await member.api.post(`/api/v1/contacts/${stale.id}/merge`, { data: {} })).status())
-            .toBe(400);
-        expect((await mergeContacts(member.api, stale.id, '000000000000000000000000')).status())
-            .toBe(404);
+        await callWith(member.api, john.id, 'Follow-up call');
+        // Owner's call is newest, so the ledger row is anchored on a recording
+        // the member does not own.
+        await callWith(owner.api, john.id, 'Discovery call');
+        const memberSpeaker = (await member.api.json(await member.api.get('/api/v1/speakers'), 200))
+            .find((s) => s.contactId === john.id).id;
 
-        await expectStatus(await mergeContacts(member.api, stale.id, survivor.id), 200);
+        const ownerBefore = await spentByCaller(owner, orgId);
+        const memberBefore = await spentByCaller(member, orgId);
 
-        // Merging into a tombstone would bury the links one hop deeper for no
-        // reason; the caller is holding a stale list and should refetch.
-        const third = await createContact(owner.api, 'Jonathan Casson');
-        expect((await mergeContacts(member.api, third.id, stale.id)).status()).toBe(400);
+        await brief(member.api, memberSpeaker);
 
-        // Someone on their own personal org never reaches the lookup at all.
-        const stranger = await newUser('stranger');
-        expect((await stranger.post(`/api/v1/contacts/${third.id}/merge`,
-            { data: { targetId: survivor.id } })).status()).toBe(403);
+        // Attributing this to the anchor recording's owner would bill a
+        // colleague for someone else's question and burn their spend cap.
+        expect(await spentByCaller(owner, orgId)).toBeGreaterThan(ownerBefore);
+        expect(await spentByCaller(member, orgId)).toBeCloseTo(memberBefore, 6);
     });
 
-    test('a name that differs only by spacing is the same person',
+    test('switching sharing off falls back to your own history',
         async ({ createAccount, mailpit }) => {
             test.slow();
             const { owner, member, orgId } = await fundedOrgWithMember(createAccount, mailpit);
             await enableSharing(owner, orgId);
+            const john = await createContact(owner.api, 'John Casson');
 
-            const first = await createContact(owner.api, 'John Casson');
+            const memberSpeaker = await callWith(member.api, john.id, 'Follow-up call');
+            await callWith(owner.api, john.id, 'Discovery call');
+            expect((await brief(member.api, memberSpeaker)).sourceCount).toBe(2);
 
-            // Trimming the ends is not enough: an accidental double space would
-            // otherwise slip past the dedupe and become a duplicate to merge.
-            expect((await createContact(owner.api, ' John Casson ')).id).toBe(first.id);
-            expect(await listContacts(owner.api)).toHaveLength(1);
-        });
+            await enableSharing(owner, orgId, false);
 
-    test('the team briefing rebuilds from the union after a merge',
-        async ({ createAccount, mailpit }) => {
-            test.slow();
-            const { owner, member, orgId } = await fundedOrgWithMember(createAccount, mailpit);
-            await enableSharing(owner, orgId);
-            const stale = await createContact(owner.api, 'Jon Casson');
-            const survivor = await createContact(owner.api, 'John Casson');
-
-            const summarised = async (api, contactId, title) => {
-                const { id } = await createRecording(api, 'E2E group', title);
-                await expectStatus(await appendSlice(api, id, `${TRANSCRIPT} `), 200);
-                await expectStatus(await api.post(`/api/v1/recordings/${id}/summary`), 200);
-                const tagged = await api.json(api.patch(`/api/v1/recordings/${id}/participants`, {
-                    data: { contactIds: [contactId], oneOnOne: true },
-                }), 200);
-                return tagged.participantIds[0];
-            };
-
-            await summarised(owner.api, stale.id, 'Discovery call');
-            const memberSpeaker = await summarised(member.api, survivor.id, 'Pricing call');
-
-            const before = await member.api.json(
-                member.api.get(`/api/v1/speakers/${memberSpeaker}/brief`), 200);
-            expect(before.sourceCount).toBe(1);
-
-            await expectStatus(await mergeContacts(member.api, stale.id, survivor.id), 200);
-
-            // Both cached briefings are dropped on merge, so the next read is
-            // built from both calls rather than serving the half-history that
-            // was fingerprinted before the two people became one.
-            const after = await member.api.json(
-                member.api.get(`/api/v1/speakers/${memberSpeaker}/brief`), 200);
-            expect(after.sourceCount).toBe(2);
-            expect(after.cached).toBe(false);
+            // The link survives, but the org no longer pools - so the briefing
+            // is built from this member's own calls and nobody else's.
+            const solo = await brief(member.api, memberSpeaker);
+            expect(solo.sourceCount).toBe(1);
         });
 });
