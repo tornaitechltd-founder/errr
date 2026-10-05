@@ -1,35 +1,5 @@
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://127.0.0.1:8066/api/status. (Reason: CORS request did not succeed). Status code: (null). Learn More
 
-  1) [ui] › tests\features\contacts\person-brief.ui.spec.js:71:5 › Contacts > Person briefing (browser) › the rail card and the chip drawer show the same briefing, both free
+Content-Security-Policy: The page’s settings blocked the loading of a resource (frame-src) at naplo://launch?nonce=dFmtAYq9JP7_J5c1BAxNBzmADTmweu3T because it violates the following directive: “frame-src https://js.stripe.com https://*.js.stripe.com https://hooks.stripe.com https://*.stripe.network https://www.google.com”
 
-    Test timeout of 270000ms exceeded.
-
-    Error: locator.click: Test timeout of 270000ms exceeded.
-    Call log:
-      - waiting for getByRole('button', { name: /The thing about John Casson/ }).last()
-
-
-      94 |             const drawer = toggle.locator('xpath=..');
-      95 |             await expect(drawer.getByText('two children')).toBeHidden();
-    > 96 |             await toggle.click();
-         |                          ^
-      97 |             await expect(drawer.getByText('two children')).toBeVisible();
-      98 |
-      99 |             expect(await api.balance()).toBeCloseTo(idle, 6);
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\contacts\person-brief.ui.spec.js:96:26
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results\features-contacts-person-b-a3caa-the-same-briefing-both-free-ui\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: test-results\features-contacts-person-b-a3caa-the-same-briefing-both-free-ui\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-contacts-person-b-a3caa-the-same-briefing-both-free-ui\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-contacts-person-b-a3caa-the-same-briefing-both-free-ui\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  1 failed
-    [ui] › tests\features\contacts\person-brief.ui.spec.js:71:5 › Contacts > Person briefing (browser) › the rail card and the chip drawer show the same briefing, both free
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://127.0.0.1:8066/api/status. (Reason: CORS request did not succeed). Status code: (null). Learn More
