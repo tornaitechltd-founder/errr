@@ -1,0 +1,65 @@
+ 1) [api] › tests\features\contacts\briefing-governance.api.spec.js:183:5 › Contacts > Briefing governance › a call kept out of briefings keeps its summary from teammates
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+        "ownedByCaller": false,
+        "recordingId": "6ad92343486bbba5988cb250",
+    -   "summary": null,
+    -   "summaryWithheld": true,
+    +   "summary": "The recording covers the naplo end to end suite and its synthetic audio.",
+    +   "summaryWithheld": false,
+      }
+
+      192 |         // and the person page is that knowledge too.
+      193 |         const [seenByOwner] = await owner.api.json(owner.api.get(`/api/v1/contacts/${john.id}/recordings`), 200);
+    > 194 |         expect(seenByOwner).toMatchObject({
+          |                             ^
+      195 |             recordingId: call, summary: null, summaryWithheld: true, ownedByCaller: false,
+      196 |         });
+      197 |         const [seenByMember] = await member.api.json(member.api.get(`/api/v1/contacts/${john.id}/recordings`), 200);
+        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\contacts\briefing-governance.api.spec.js:194:29
+
+    Error Context: test-results\features-contacts-briefing-5f0cc--its-summary-from-teammates-api\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\features-contacts-briefing-5f0cc--its-summary-from-teammates-api\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\features-contacts-briefing-5f0cc--its-summary-from-teammates-api\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [api] › tests\features\recording\live-chunks.api.spec.js:169:5 › Recording > Live chunks › the audio stream serves a requested byte range
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 416
+    Received: 200
+
+      184 |             headers: {Range: `bytes=${CHUNK_BYTES}-`},
+      185 |         });
+    > 186 |         expect(past.status()).toBe(416);
+          |                               ^
+      187 |         expect(past.headers()['content-range']).toBe(`bytes */${CHUNK_BYTES}`);
+      188 |     });
+      189 |
+        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\recording\live-chunks.api.spec.js:186:31
+
+    Error Context: test-results\features-recording-live-ch-e8360-rves-a-requested-byte-range-api\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\features-recording-live-ch-e8360-rves-a-requested-byte-range-api\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\features-recording-live-ch-e8360-rves-a-requested-byte-range-api\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [api] › tests\features\contacts\briefing-governance.api.spec.js:183:5 › Contacts > Briefing governance › a call kept out of briefings keeps its summary from teammates
+    [api] › tests\features\recording\live-chunks.api.spec.js:169:5 › Recording > Live chunks › the audio stream serves a requested byte range
+  610 passed (8.8m)
