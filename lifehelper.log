@@ -1,68 +1,28 @@
-  1) [api] › tests\features\transcription\local.api.spec.js:46:5 › Transcription > Local › starting flips the engine to local and stamps the in-progress title
-
-    Error: expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 0
-    + Received  + 1
-
-      Object {
-        "mode": "local",
-    +   "recordingType": "AUTO_RECORDING",
-        "status": "transcribing_locally",
-      }
-
-      52 |
-      53 |         // previousTitle only travels on the force path, so the whole body is pinned.
-    > 54 |         expect(await api.json(startLocal(api, id), 202)).toEqual({
-         |                                                          ^
-      55 |             status: 'transcribing_locally',
-      56 |             mode: 'local',
-      57 |         });
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\transcription\local.api.spec.js:54:58
-
-    Error Context: test-results\features-transcription-loc-a1370-tamps-the-in-progress-title-api\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-transcription-loc-a1370-tamps-the-in-progress-title-api\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-transcription-loc-a1370-tamps-the-in-progress-title-api\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  2) [api] › tests\features\transcription\local.api.spec.js:84:5 › Transcription > Local › force wipes the transcript, keeps the summary and returns the user title
-
-    Error: expect(received).toEqual(expected) // deep equality
-
-    - Expected  - 0
-    + Received  + 1
-
-      Object {
-        "mode": "local",
-        "previousTitle": "Q3 pipeline review",
-    +   "recordingType": "AUTO_RECORDING",
-        "status": "retranscribing_locally",
-      }
-
-      93 |         expect(summarised.summary ?? '').not.toBe('');
-      94 |
-    > 95 |         expect(await api.json(startLocal(api, id, {force: true}), 202)).toEqual({
-         |                                                                         ^
-      96 |             status: 'retranscribing_locally',
-      97 |             mode: 'local',
-      98 |             previousTitle: 'Q3 pipeline review',
-        at C:\Users\Mate\Desktop\Project\naplo\e2e\tests\features\transcription\local.api.spec.js:95:73
-
-    Error Context: test-results\features-transcription-loc-3ad23--and-returns-the-user-title-api\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results\features-transcription-loc-3ad23--and-returns-the-user-title-api\trace.zip
-    Usage:
-
-        npx playwright show-trace test-results\features-transcription-loc-3ad23--and-returns-the-user-title-api\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  2 failed
-    [api] › tests\features\transcription\local.api.spec.js:46:5 › Transcription > Local › starting flips the engine to local and stamps the in-progress title
-    [api] › tests\features\transcription\local.api.spec.js:84:5 › Transcription > Local › force wipes the transcript, keeps the summary and returns the user title
+backend-1  | 2026-10-24 17:31:57.858  INFO [req=37ef4e7c user=- org=- POST /api/v1/recordings/6adceb8387aca808929d2145/transcript/append] [cat-handler-586] a.n.record.TranscriptAppendController    : Transcript append for recording 6adceb8387aca808929d2145 by t***@gmail.com: offset=0.0s, text=1344 chars, chunks=17, source=null
+backend-1  | 2026-10-24 17:32:02.374  INFO [req=2dc6add5 user=- org=- POST /api/v1/recordings/6adceb8387aca808929d2145/audio/chunk] [cat-handler-589] a.n.record.service.FileStorageService    : Buffered chunk 0 for 6adceb8387aca808929d2145_audio (1904624 bytes total)
+backend-1  | 2026-10-24 17:32:03.309  INFO [req=2dc6add5 user=- org=- POST /api/v1/recordings/6adceb8387aca808929d2145/audio/chunk] [cat-handler-589] a.n.r.s.s.R2MultipartUploadOrchestrator  : Uploaded 6adceb8387aca808929d2145_audio.m4a (1904624 bytes) via single PutObject
+backend-1  | 2026-10-24 17:32:03.309  INFO [req=2dc6add5 user=- org=- POST /api/v1/recordings/6adceb8387aca808929d2145/audio/chunk] [cat-handler-589] a.n.record.service.FileStorageService    : Uploaded 6adceb8387aca808929d2145_audio.m4a to R2 (1904624 bytes, normalized=false)
+backend-1  | 2026-10-24 17:32:03.356  INFO [req=2dc6add5 user=- org=- POST /api/v1/recordings/6adceb8387aca808929d2145/audio/chunk] [        media-1] a.n.record.event.RecordingEventListener  : Handling RecordingFinishedEvent for recording 6adceb8387aca808929d2145
+backend-1  | 2026-10-24 17:32:03.388  INFO [req=2dc6add5 user=- org=- POST /api/v1/recordings/6adceb8387aca808929d2145/audio/chunk] [        media-1] a.n.record.event.RecordingEventListener  : Recording 6adceb8387aca808929d2145 is transcriptionMode=local - no AI artifacts requested (summary=false, title=false)
+backend-1  | 2026-10-24 17:32:03.766  INFO [req=6e1ebaa6 user=- org=- GET /api/v1/recordings] [cat-handler-591] a.naplo.record.service.RecordingService  : getRecordingHistory() user=t***@gmail.com org=6ada5e8d3ad9ae9f04964c99 count=6
+backend-1  | 2026-10-24 17:32:07.198  INFO [req=f3180dc0 user=- org=- GET /api/v1/chat-collections] [cat-handler-597] a.n.rag.service.ChatCollectionService    : listCollections() user=t***@gmail.com org=6ada5e8d3ad9ae9f04964c99 count=0
+backend-1  | 2026-10-24 17:32:07.252  INFO [req=be93449a user=- org=- GET /api/v1/recordings] [cat-handler-596] a.naplo.record.service.RecordingService  : getRecordingHistory() user=t***@gmail.com org=6ada5e8d3ad9ae9f04964c99 count=6
+backend-1  | 2026-10-24 17:32:14.942  INFO [req=f2242619 user=- org=- GET /api/v1/recordings] [cat-handler-603] a.naplo.record.service.RecordingService  : getRecordingHistory() user=t***@gmail.com org=6ada5e8d3ad9ae9f04964c99 count=6
+backend-1  | 2026-10-24 17:32:25.746  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [cat-handler-607] a.n.r.s.s.R2MultipartUploadOrchestrator  : Uploaded 6adceba887aca808929d2146_audio.m4a (1904624 bytes) via single PutObject
+backend-1  | 2026-10-24 17:32:25.746  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [cat-handler-607] a.n.record.service.FileStorageService    : Saved full file 6adceba887aca808929d2146_audio.m4a to R2 (1904624 bytes, normalized=false)
+backend-1  | 2026-10-24 17:32:25.769  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [cat-handler-607] a.naplo.record.service.RecordingService  : uploadFullRecording() created recording 6adceba887aca808929d2146 for user t***@gmail.com
+backend-1  | 2026-10-24 17:32:25.788  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.record.event.RecordingEventListener  : Handling RecordingFinishedEvent for recording 6adceba887aca808929d2146
+backend-1  | 2026-10-24 17:32:25.826  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.record.event.RecordingEventListener  : No transcript found for recording 6adceba887aca808929d2146 - attempting AI transcription from audio
+backend-1  | 2026-10-24 17:32:26.377  INFO [req=1e8b8234 user=- org=- GET /api/v1/recordings] [cat-handler-608] a.naplo.record.service.RecordingService  : getRecordingHistory() user=t***@gmail.com org=6ada5e8d3ad9ae9f04964c99 count=7
+backend-1  | 2026-10-24 17:32:26.566  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.r.service.storage.AudioTranscoder    : Channel correlation for first call done.m4a: 1.000
+backend-1  | 2026-10-24 17:32:26.568  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.record.event.RecordingEventListener  : Upload first call done.m4a is stereo but both sides carry the same audio - single stream
+backend-1  | 2026-10-24 17:32:27.912  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.r.ai.service.AITranscriptionService  : AI transcription successful for user t***@gmail.com org 6ada5e8d3ad9ae9f04964c99 (cost: $0.003880, text length: 1318 chars, chunks: 6)
+backend-1  | 2026-10-24 17:32:27.983  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.record.event.RecordingEventListener  : Auto-transcription complete for recording 6adceba887aca808929d2146: 1318 chars, 6 chunks
+backend-1  | 2026-10-24 17:32:34.848  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] app.naplo.record.ai.service.AIService    : Received chat response for recordingId: 6adceba887aca808929d2146, type: summary
+backend-1  | 2026-10-24 17:32:34.848  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.naplo.transactionledger.AIPricingEnum  : Found AI pricing: AIPricingEnum.GPT_6_LUNA(modelName=gpt-6-luna, category=CHAT, inputPricePerMillionTokens=0.1, cachedInputPricePerMillionTokens=0.01, outputPricePerMillionTokens=0.5)
+backend-1  | 2026-10-24 17:32:34.881  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.t.service.PricingService             : For recordingId: 6adceba887aca808929d2146, the total cost is 0.0006
+backend-1  | 2026-10-24 17:32:34.967  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.t.service.TransactionLedgerService   : AI query billed: orgId=6ada5e8d3ad9ae9f04964c99 recordingId=6adceba887aca808929d2146 actingUserId=6ada5e8d3ad9ae9f04964c97 cost=0.0006
+backend-1  | 2026-10-24 17:32:36.495  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] app.naplo.record.ai.service.AIService    : Received chat response for recordingId: 6adceba887aca808929d2146, type: title
+backend-1  | 2026-10-24 17:32:36.495  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.naplo.transactionledger.AIPricingEnum  : Found AI pricing: AIPricingEnum.GPT_6_LUNA(modelName=gpt-6-luna, category=CHAT, inputPricePerMillionTokens=0.1, cachedInputPricePerMillionTokens=0.01, outputPricePerMillionTokens=0.5)
+backend-1  | 2026-10-24 17:32:36.525  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.t.service.PricingService             : For recordingId: 6adceba887aca808929d2146, the total cost is 0.0001
+backend-1  | 2026-10-24 17:32:36.616  INFO [req=b4e00a1d user=- org=- POST /api/v1/recordings/upload] [        media-2] a.n.t.service.TransactionLedgerService   : AI query billed: orgId=6ada5e8d3ad9ae9f04964c99 recordingId=6adceba887aca808929d2146 actingUserId=6ada5e8d3ad9ae9f04964c97 cost=0.0001
